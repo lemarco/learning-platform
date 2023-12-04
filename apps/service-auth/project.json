@@ -1,7 +1,7 @@
 {
-  "name": "gateway",
+  "name": "service-auth",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/gateway/src",
+  "sourceRoot": "apps/service-auth/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,12 +10,12 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "dist/apps/gateway",
+        "outputPath": "dist/apps/service-auth",
         "format": ["cjs"],
         "bundle": false,
-        "main": "apps/gateway/src/main.ts",
-        "tsConfig": "apps/gateway/tsconfig.app.json",
-        "assets": ["apps/gateway/src/assets"],
+        "main": "apps/service-auth/src/main.ts",
+        "tsConfig": "apps/service-auth/tsconfig.app.json",
+        "assets": ["apps/service-auth/src/assets"],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -40,15 +40,15 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "gateway:build"
+        "buildTarget": "service-auth:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "gateway:build:development",
+          "buildTarget": "service-auth:build:development",
           "runBuildTargetDependencies": true
         },
         "production": {
-          "buildTarget": "gateway:build:production"
+          "buildTarget": "service-auth:build:production"
         }
       }
     },
@@ -56,14 +56,14 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/gateway/**/*.ts"]
+        "lintFilePatterns": ["apps/service-auth/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/gateway/jest.config.ts"
+        "jestConfig": "apps/service-auth/jest.config.ts"
       }
     }
   },

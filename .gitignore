@@ -3,6 +3,7 @@
 # compiled output
 dist
 tmp
+temp
 /out-tsc
 
 # dependencies
@@ -39,3 +40,6 @@ testem.log
 Thumbs.db
 
 .nx/cache
+
+# Next.js
+.next
