@@ -1,6 +1,10 @@
 // import jwt from 'jsonwebtoken';
 import { createEnvStore, getEnv } from '@learning-platform-monorepo/env';
-
+import {
+  connectRedis,
+  deleteRecord,
+  disconnectRedis,
+} from '@learning-platform-monorepo/redis';
 import {
   addExchangeAndQueue,
   closeEventBusConnection,
@@ -10,6 +14,7 @@ import {
 } from '@learning-platform-monorepo/rabbit';
 import { logger } from '@learning-platform-monorepo/logger';
 import { Event } from '@learning-platform-monorepo/events';
+import { listen } from './http-server';
 
 // export class AuthController {
 //   private readonly logger = new Logger(AuthController.name);
@@ -52,8 +57,16 @@ const handler = async (event: Event<unknown>) => {
   logger.info(`Event - ${JSON.stringify(event)}`);
   await publish('AUTH-GW', event);
 };
+
 const bootstrap = async () => {
-  createEnvStore(['RABBIT_URL', 'RABBITMQ_USER', 'RABBITMQ_PASSWORD']);
+  createEnvStore([
+    'RABBIT_URL',
+    'RABBITMQ_USER',
+    'RABBITMQ_PASSWORD',
+    'REDIS_HOST',
+    'REDIS_PORT',
+    'AUTH_SERVICE_PORT',
+  ]);
   logger.info('ENV reading success');
   await createEventBusConnection(getEnv('RABBIT_URL'));
   logger.info('Event bus connection success');
@@ -62,8 +75,8 @@ const bootstrap = async () => {
   await addExchangeAndQueue('AUTH-GW', 'AUTH-GW', true);
   logger.info('Event bus create/check AUTH-GW exchange and queue success');
   await subscribeToQueue('GW-AUTH', (event) => handler(event));
-
   logger.info('Subscription to queue AUTH-GW success');
+  listen(+getEnv('AUTH_SERVICE_PORT'));
 };
 (async () => {
   await bootstrap();
@@ -71,5 +84,6 @@ const bootstrap = async () => {
     console.info('SIGTERM signal received.');
     console.log('Closing http server.');
     await closeEventBusConnection();
+    await disconnectRedis();
   });
 })();

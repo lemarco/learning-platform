@@ -1,6 +1,7 @@
 import { WebSocket, WebSocketServer, Server } from 'ws';
 import { Event } from '@learning-platform-monorepo/events';
 import { logger } from '@learning-platform-monorepo/logger';
+import { IncomingMessage } from 'http';
 export type VerifyMiddleware = (info: unknown, cb: unknown) => void;
 export type WSGatewayArgs = {
   port: number;
@@ -40,13 +41,29 @@ export const createServer = ({
     verifyClient,
   });
 
-  instance.server.on('connection', function connection(ws: WebSocket) {
-    const connectionId = createConnectionId();
-    instance.connections.set(connectionId, ws);
+  instance.server.on(
+    'connection',
+    function connection(
+      ws: WebSocket & { uuid: string },
+      req: IncomingMessage & { userData: { id: string } }
+    ) {
+      //@ts-ignore
+      console.log(' instance.server.on conecction headers = ', req.userData);
+      const { id } = req.userData;
 
-    ws.on('message', (data) => handler(data, connectionId));
-    ws.send(connectionMessage);
-  });
+      ws.uuid = id;
+      instance.connections.set(id, ws);
+
+      ws.on('message', (data) => handler(data, id));
+      ws.send(connectionMessage);
+    }
+  );
+  instance.server.on(
+    'close',
+    function connection(ws: WebSocket & { uuid: string }) {
+      instance.connections.delete(ws.uuid);
+    }
+  );
 
   onSetup();
   return instance;

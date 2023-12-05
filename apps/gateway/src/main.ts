@@ -1,4 +1,4 @@
-// import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { createEnvStore, getEnv } from '@learning-platform-monorepo/env';
 
 import {
@@ -14,25 +14,18 @@ import { createServer, killServer, pushFront } from './gateway';
 //   expiresIn: 15 * 24 * 60 * 60 * 1000, // 15 days
 // });
 
-// const HTTP_STATUSES = {
-//   401: 'Unauthorized',
-// };
-const verifyClient = (info: unknown, cb: (boolean) => void) => {
-  // console.log('info', info);
-  return cb(true);
-  // const userToken = info.req.headers.token;
-
-  // if (!userToken) cb(false, 401, HTTP_STATUSES[401]);
-  // else {
-  //   jwt.verify(token, 'secret-key', function (err, decoded) {
-  //     if (err) {
-  //       cb(false, 401, 'Unauthorized');
-  //     } else {
-  //       info.req.user = decoded; //[1]
-  //       cb(true);
-  //     }
-  //   });
-  // }
+const HTTP_STATUSES = {
+  401: 'Unauthorized',
+};
+const verifyClient = async (info: any, cb: (boolean, ...args: any) => void) => {
+  // TODO: CHANGE TO REAL AUTH SERVER URL FROM ENV
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+  if (res.ok) {
+    info.req.userData = await res.json();
+    return cb(true);
+  } else {
+    return cb(false, 401, HTTP_STATUSES[401]);
+  }
 };
 const eventsTableQueueMatch = {
   AUTH: 'GW-AUTH',
@@ -89,10 +82,6 @@ const bootstrap = async () => {
         'Gateway setup completed.Listening websocket connections on 8080...'
       ),
   });
-
-  return {
-    closeConnection: closeEventBusConnection,
-  };
 };
 (async () => {
   await bootstrap();
