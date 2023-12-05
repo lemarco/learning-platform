@@ -1,6 +1,7 @@
 import { Redis } from 'ioredis';
 
-const instance = {
+type Instance = { redis?: Redis };
+const instance: Instance = {
   redis: undefined,
 };
 //  process.env.REDIS_HOST,
@@ -13,6 +14,7 @@ export const connectRedis = ({
   host: string;
   port: number;
 }) => {
+  // TODO: implement verification connection and retry logic.
   instance.redis = new Redis({
     host,
     port,
@@ -29,7 +31,7 @@ export const getRecord = async (
   prefix: string,
   key: string
 ): Promise<string | null> => {
-  return instance.redis.get(`${prefix}:${key}`);
+  return await instance.redis.get(`${prefix}:${key}`);
 };
 
 export const setRecord = async (

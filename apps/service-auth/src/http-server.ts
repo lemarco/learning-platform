@@ -1,18 +1,12 @@
 import { getEnv } from '@learning-platform-monorepo/env';
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import useragent from 'express-useragent';
+import { generateAuthUrl, gooogleSignin } from './google';
 const app = express();
 app.use(express.json());
+app.use(useragent.express());
 
-function generate_refresh_token(len) {
-  let text = '';
-  const charset = 'abcdefghijklmnopqrstuvwxyz0123456789';
-
-  for (let i = 0; i < len; i++) {
-    text += charset.charAt(Math.floor(Math.random() * charset.length));
-  }
-  return text;
-}
 // const emitNewTokensEvent = (redis_token) => {
 //   if (redis_token.expires > new Date()) {
 //     // refresh token expired, we issue refresh token as well
@@ -53,6 +47,8 @@ function generate_refresh_token(len) {
 //     httpOnly: true,
 //   });
 // };
+import { Request } from 'express';
+
 app.post('/verify', async (req, res) => {
   const accesstoken = req.cookies.access_token || null;
   const refreshtoken = req.cookies.refresh_token || null;
@@ -85,9 +81,48 @@ app.post('/verify', async (req, res) => {
       return;
     }
     // TODO: CREATE EVENT FOR USER TO RE-LOGIN
+    // UNIFY DATA OF SUCCESS RESPONSE = > NEED TO GET SOMEWHERE USER_ID TO
+    // ESTABLISH CONNECTION IN GW AND PUT ID AS MAP KEY
     res.status(200);
     res.end();
   }
+});
+
+app.get('/google-link', async (_, res) => {
+  try {
+    const data = await generateAuthUrl();
+    res.json(data);
+  } catch (e) {
+    res.status(400);
+    res.end();
+  }
+});
+app.get('/signin/google', async (req: Request & { useragent: string }, res) => {
+  const code = req.query.code;
+  if (!code) {
+    res.status(400);
+    res.end();
+  }
+  const { ip, useragent } = req;
+  try {
+    const { token, opts } = await gooogleSignin({
+      ip,
+      useragent,
+      code: String(code),
+    });
+  } catch (e) {
+    res.status(401);
+    res.end();
+  }
+  return {};
+  ///req.query;
+});
+app.get('/logout', async (req, res) => {
+  res.clearCookie('_access_token');
+
+  // TODO: DELETE ACCESS TOKEN FROM REDIS (IF EXISTS)
+  // TODO: EMIT EVENT to KILL CONNECTION ON GW
+  res.redirect('/');
 });
 
 export const listen = (port: number) => {

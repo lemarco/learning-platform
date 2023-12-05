@@ -1,8 +1,6 @@
-// import jwt from 'jsonwebtoken';
 import { createEnvStore, getEnv } from '@learning-platform-monorepo/env';
 import {
   connectRedis,
-  deleteRecord,
   disconnectRedis,
 } from '@learning-platform-monorepo/redis';
 import {
@@ -15,35 +13,7 @@ import {
 import { logger } from '@learning-platform-monorepo/logger';
 import { Event } from '@learning-platform-monorepo/events';
 import { listen } from './http-server';
-
-// export class AuthController {
-//   private readonly logger = new Logger(AuthController.name);
-//   constructor(private readonly googleAuthService: GoogleAuthService) {}
-
-//   @Get('/google-link')
-//   async getGoogleLink() {
-//     return await this.googleAuthService.getGoogleLink();
-//   }
-//   @Get('/signin/google')
-//   async gooogleSignin(@Request() req, @Res() res, @Query('code') code: string) {
-//     const { ip, userAgent } = req;
-//     const { token, opts } = await this.googleAuthService.gooogleSignin({
-//       ip,
-//       userAgent,
-//       code,
-//     });
-//     // this.logger.log(
-//     //   'gooogleSignin',
-//     //   JSON.stringify({ token, opts, id }, null, 4)
-//     // );
-//     res.cookie('htoken', token, opts);
-//     res.status(302).redirect('/');
-//   }
-//   @Get('/logout')
-//   async me(@Res() res) {
-//     res.clearCookie('htoken');
-//   }
-
+export const authPrefix = 'auth-token**';
 const supportedEventNames = [
   'REQUEST_GOOGLE_LINK',
   'REQUEST_GOOGLE_SIGNIN',
@@ -76,7 +46,13 @@ const bootstrap = async () => {
   logger.info('Event bus create/check AUTH-GW exchange and queue success');
   await subscribeToQueue('GW-AUTH', (event) => handler(event));
   logger.info('Subscription to queue AUTH-GW success');
+  await connectRedis({
+    host: getEnv('REDIS_HOST'),
+    port: +getEnv('REDIS_PORT'),
+  });
+  logger.info('REDIS connection success');
   listen(+getEnv('AUTH_SERVICE_PORT'));
+  logger.info('HTTP server establishing success');
 };
 (async () => {
   await bootstrap();
