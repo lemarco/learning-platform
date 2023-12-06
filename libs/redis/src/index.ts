@@ -1,11 +1,10 @@
+import { logger } from '@learning-platform-monorepo/logger';
 import { Redis } from 'ioredis';
 
 type Instance = { redis?: Redis };
 const instance: Instance = {
   redis: undefined,
 };
-//  process.env.REDIS_HOST,
-//  +process.env.REDIS_PORT,
 
 export const connectRedis = ({
   host,
@@ -22,10 +21,12 @@ export const connectRedis = ({
   instance.redis.on('error', (e) => {
     throw new Error(`Redis connection failed: ${e}`);
   });
+  logger.info('Connect Redis success');
 };
 
 export const disconnectRedis = () => {
   instance.redis.disconnect();
+  logger.info('Disconnect Redis success');
 };
 export const getRecord = async (
   prefix: string,

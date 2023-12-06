@@ -88,13 +88,11 @@ export const gooogleSignin = async ({
     throw new Error();
   }
 
-  let dbUser = await usersService.getByGoogleId(googleUser?.id || '');
-  let event;
-  if (dbUser && dbUser.id) {
-    event = createUpdateUserEvent(dbUser, googleUser);
-  } else {
-    event = createCreateUserEvent(googleUser);
-  }
+  const dbUser = await usersService.getByGoogleId(googleUser?.id || '');
+  const event = dbUser
+    ? createUpdateUserEvent(dbUser, googleUser)
+    : createCreateUserEvent(googleUser);
+
   publish(event);
   await setRecord(
     authPrefix,

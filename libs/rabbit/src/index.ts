@@ -32,6 +32,7 @@ export const createEventBusConnection = async (
       `Error while connecticon to event bus.${JSON.stringify(e)}`
     );
   }
+  logger.info('Event bus connection success');
   return instance;
 };
 const reconnect = async (out: boolean) => {
@@ -106,11 +107,11 @@ export const addExchangeAndQueue = async (
 export const closeEventBusConnection = async (): Promise<void> => {
   if (instance.outConnection) {
     await instance.outConnection.close();
-    console.log('Out connection closed');
+    logger.info(`Close EventBus OUT connection success`);
   }
   if (instance.inConnection) {
     await instance.inConnection.close();
-    console.log('In connection closed');
+    logger.info(`Close EventBus IN connection success`);
   }
 };
 export const subscribeToQueue = async (
@@ -131,4 +132,5 @@ export const subscribeToQueue = async (
     },
     {}
   );
+  logger.info(`Subscribtion to Queue(${queueName}) success`);
 };

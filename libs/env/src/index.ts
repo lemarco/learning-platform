@@ -14,7 +14,8 @@ export const createEnvStore = (names: string[]) => {
       throw new Error(`Variable must be defined ${name} in env file.`);
     }
   });
-  logger.info('ENVS:' + JSON.stringify(data));
+  logger.info('ENV reading success');
+  logger.debug('ENV:' + JSON.stringify(data));
 };
 
 export const getEnv = (name: string) => {

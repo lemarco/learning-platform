@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import useragent from 'express-useragent';
 import { generateAuthUrl, gooogleSignin } from './google';
 import { Request } from 'express';
+import { logger } from '@learning-platform-monorepo/logger';
 const app = express();
 app.use(express.json());
 app.use(useragent.express());
@@ -83,5 +84,7 @@ app.get('/logout', async (req, res) => {
 });
 
 export const listen = (port: number) => {
-  app.listen(port);
+  app.listen(port, 'localhost', () =>
+    logger.info('HTTP server establishing success')
+  );
 };

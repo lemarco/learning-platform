@@ -37,28 +37,25 @@ const bootstrap = async () => {
     'REDIS_PORT',
     'AUTH_SERVICE_PORT',
   ]);
-  logger.info('ENV reading success');
-  await createEventBusConnection(getEnv('RABBIT_URL'));
-  logger.info('Event bus connection success');
-  await addExchangeAndQueue('GW-AUTH', 'GW-AUTH', false);
-  logger.info('Event bus create/check GW-AUTH exchange and queue success');
-  await addExchangeAndQueue('AUTH-GW', 'AUTH-GW', true);
-  logger.info('Event bus create/check AUTH-GW exchange and queue success');
+
+  await Promise.all([
+    createEventBusConnection(getEnv('RABBIT_URL')),
+    connectRedis({
+      host: getEnv('REDIS_HOST'),
+      port: +getEnv('REDIS_PORT'),
+    }),
+  ]);
+  await Promise.all([
+    addExchangeAndQueue('GW-AUTH', 'GW-AUTH', false),
+    addExchangeAndQueue('AUTH-GW', 'AUTH-GW', true),
+  ]);
   await subscribeToQueue('GW-AUTH', (event) => handler(event));
-  logger.info('Subscription to queue AUTH-GW success');
-  await connectRedis({
-    host: getEnv('REDIS_HOST'),
-    port: +getEnv('REDIS_PORT'),
-  });
-  logger.info('REDIS connection success');
   listen(+getEnv('AUTH_SERVICE_PORT'));
-  logger.info('HTTP server establishing success');
 };
 (async () => {
   await bootstrap();
   process.on('SIGTERM', async () => {
-    console.info('SIGTERM signal received.');
-    console.log('Closing http server.');
+    logger.info('START GRACEFULL SHUTDOWN');
     await closeEventBusConnection();
     await disconnectRedis();
   });
