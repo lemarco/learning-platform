@@ -48,7 +48,7 @@ export const createServer = ({
       req: IncomingMessage & { userData: { id: string } }
     ) {
       //@ts-ignore
-      console.log(' instance.server.on conecction headers = ', req.userData);
+      logger.debug(' instance.server.on conecction headers = ', req.userData);
       const { id } = req.userData;
 
       ws.uuid = id;

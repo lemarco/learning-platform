@@ -6,6 +6,9 @@ import { generateAuthUrl, gooogleSignin } from './google';
 import { Request } from 'express';
 import { logger } from '@learning-platform-monorepo/logger';
 const app = express();
+const envs = {
+  jwtSecret: getEnv('JWT_SECRET'),
+};
 app.use(express.json());
 app.use(useragent.express());
 app.post('/verify', async (req, res) => {
@@ -16,7 +19,7 @@ app.post('/verify', async (req, res) => {
     return res.end();
   }
   try {
-    const result = jwt.verify(accesstoken, getEnv('JWT_SECRET'));
+    const result = jwt.verify(accesstoken, envs.jwtSecret);
     return res.json({
       data: result,
     });
@@ -63,11 +66,12 @@ app.get('/signin/google', async (req: Request & { useragent: string }, res) => {
   }
   const { ip, useragent } = req;
   try {
-    const { token, opts } = await gooogleSignin({
+    const data = await gooogleSignin({
       ip,
       useragent,
       code: String(code),
     });
+    return res.json(data);
   } catch (e) {
     res.status(401);
     res.end();

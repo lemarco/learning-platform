@@ -48,6 +48,7 @@ const bootstrap = async () => {
   await Promise.all([
     addExchangeAndQueue('GW-AUTH', 'GW-AUTH', false),
     addExchangeAndQueue('AUTH-GW', 'AUTH-GW', true),
+    addExchangeAndQueue('USERS', 'USERS', true),
   ]);
   await subscribeToQueue('GW-AUTH', (event) => handler(event));
   listen(+getEnv('AUTH_SERVICE_PORT'));

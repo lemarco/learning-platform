@@ -124,8 +124,8 @@ export const subscribeToQueue = async (
     queueName,
     (msg) => {
       if (msg !== null) {
-        console.log(` [x] Received ${msg.content.toString()}`);
-        console.log(' [x] Done');
+        logger.debug(` [x] Received ${msg.content.toString()}`);
+        logger.debug(' [x] Done');
         handleMessage(JSON.parse(msg.content.toString()));
         channel.ack(msg);
       }

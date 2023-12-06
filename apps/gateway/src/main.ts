@@ -86,8 +86,8 @@ const bootstrap = async () => {
 (async () => {
   await bootstrap();
   process.on('SIGTERM', async () => {
-    console.info('SIGTERM signal received.');
-    console.log('Closing http server.');
+    logger.info('SIGTERM signal received.');
+    logger.info('Closing http server.');
     await closeEventBusConnection();
     killServer();
   });

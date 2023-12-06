@@ -1,1 +1,3 @@
-console.log('Hello World');
+import { createServer } from 'http';
+
+createServer((req, res) => {});
