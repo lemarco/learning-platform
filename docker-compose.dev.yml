@@ -8,7 +8,7 @@ services:
     volumes:
       - ./configs/nginx.dev.conf:/etc/nginx/nginx.conf
     ports:
-      - '80:80'
+      - '8000:80'
   users_db:
     container_name: users_db
     restart: always
@@ -29,7 +29,7 @@ services:
   token_store:
     container_name: token_store
     image: redis:alpine
-    
+
     ports:
       - '6379:6379'
     volumes:
