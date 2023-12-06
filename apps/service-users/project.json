@@ -44,7 +44,8 @@
       },
       "configurations": {
         "development": {
-          "buildTarget": "service-users:build:development"
+          "buildTarget": "service-users:build:development",
+          "runBuildTargetDependencies": true
         },
         "production": {
           "buildTarget": "service-users:build:production"
