@@ -43,6 +43,36 @@ const getGoogleUser = async (code: string) => {
     throw new HttpException('Unauthorized');
   }
 };
+const getGoogleUserName = (googleUserData) =>
+  `${googleUserData.given_name} ${googleUserData.family_name}`;
+
+const createUpdateUserEvent = (dbUser: any, googleUserData: any) => {
+  const event = {
+    type: 'UPDATE_USER',
+    payload: {
+      id: dbUser.id,
+      name: dbUser.name || getGoogleUserName(googleUserData),
+      image: googleUserData.picture,
+      googleId: googleUserData.id,
+      email: googleUserData.email,
+      locale: googleUserData.locale,
+    },
+  };
+  return event;
+};
+const createCreateUserEvent = (googleUserData: any) => {
+  const event = {
+    type: 'CREATE_USER',
+    payload: {
+      googleId: googleUserData.id,
+      email: googleUserData.email,
+      image: googleUserData.picture,
+      name: getGoogleUserName(googleUserData),
+      locale: googleUserData.locale,
+    },
+  };
+  return event;
+};
 export const gooogleSignin = async ({
   ip,
   useragent,
@@ -57,28 +87,15 @@ export const gooogleSignin = async ({
     // TODO: DEFINE SPECIFIC  ERROR
     throw new Error();
   }
+
   let dbUser = await usersService.getByGoogleId(googleUser?.id || '');
-
+  let event;
   if (dbUser && dbUser.id) {
-    console.log('UPDATE USER');
-    await usersService.update({
-      id: dbUser.id,
-      name: dbUser.name || `${googleUser.given_name} ${googleUser.family_name}`,
-      image: googleUser.picture,
-      googleId: googleUser.id,
-      email: googleUser.email,
-      locale: googleUser.locale,
-    });
+    event = createUpdateUserEvent(dbUser, googleUser);
   } else {
-    dbUser = await usersService.create({
-      googleId: googleUser.id,
-      email: googleUser.email,
-      image: googleUser.picture,
-      given_name: googleUser.given_name,
-      family_name: googleUser.family_name,
-    });
+    event = createCreateUserEvent(googleUser);
   }
-
+  publish(event);
   await setRecord(
     authPrefix,
     dbUser.id,

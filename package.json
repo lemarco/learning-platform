@@ -32,7 +32,8 @@
     "react-dom": "18.2.0",
     "react-router-dom": "6.11.2",
     "tslib": "^2.3.0",
-    "ws": "^8.14.2"
+    "ws": "^8.14.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@nx/esbuild": "17.1.3",
