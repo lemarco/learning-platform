@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
 import { v4 as uuidV4 } from 'uuid';
-import { db } from '../db';
+import { db } from '../main';
 import { Paginated, Pagination } from '@learning-platform-monorepo/types';
 import { users } from '../schema';
 import { logger } from '@learning-platform-monorepo/logger';

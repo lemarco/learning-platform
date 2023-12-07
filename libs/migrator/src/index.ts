@@ -1,16 +1,20 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import { migrate } from 'drizzle-orm/postgres-js/migrator';
+import { logger } from '@learning-platform-monorepo/logger';
 import postgres from 'postgres';
-const migrationsFolder = 'apps/gateway/drizzle';
 
-export const migrator = async (creds: {
+type DBCredentials = {
   user: string;
   database: string;
   host: string;
   password: string;
-}) => {
-  console.log('***MIGRATION STARTED***');
-  const migrationClient = postgres(creds as unknown as string, { max: 1 });
+};
+export const migrator = async (creds: DBCredentials, migrationsFolder) => {
+  logger.debug('***MIGRATION STARTED***', creds);
+
+  const migrationClient = postgres(creds as unknown as string, {
+    max: 1,
+  });
   await migrate(drizzle(migrationClient), { migrationsFolder });
-  console.log('***MIGRATION ENDED***');
+  logger.debug('***MIGRATION ENDED***');
 };

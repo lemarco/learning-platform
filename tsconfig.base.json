@@ -8,9 +8,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2022",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["es2022", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -23,6 +23,9 @@
       "@learning-platform-monorepo/redis": ["libs/redis/src/index.ts"],
       "@learning-platform-monorepo/server-errors": [
         "libs/server-errors/src/index.ts"
+      ],
+      "@learning-platform-monorepo/server-utils": [
+        "libs/server-utils/src/index.ts"
       ],
       "@learning-platform-monorepo/types": ["libs/types/src/index.ts"]
     }
