@@ -1,6 +1,11 @@
+import { GoogleUser } from '../types';
+
 const getGoogleUserName = (googleUserData) =>
   `${googleUserData.given_name} ${googleUserData.family_name}`;
-export const createUpdateUserEvent = (dbUser: any, googleUserData: any) => {
+export const createUpdateUserEvent = (
+  dbUser: any,
+  googleUserData: GoogleUser
+) => {
   const event = {
     type: 'UPDATE_USER',
     payload: {
@@ -14,7 +19,7 @@ export const createUpdateUserEvent = (dbUser: any, googleUserData: any) => {
   };
   return event;
 };
-export const createCreateUserEvent = (googleUserData: any) => {
+export const createCreateUserEvent = (googleUserData: GoogleUser) => {
   const event = {
     type: 'CREATE_USER',
     payload: {

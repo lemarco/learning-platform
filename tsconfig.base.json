@@ -18,11 +18,13 @@
       "@learning-platform-monorepo/env": ["libs/env/src/index.ts"],
       "@learning-platform-monorepo/events": ["libs/events/src/index.ts"],
       "@learning-platform-monorepo/logger": ["libs/logger/src/index.ts"],
+      "@learning-platform-monorepo/migrator": ["libs/migrator/src/index.ts"],
       "@learning-platform-monorepo/rabbit": ["libs/rabbit/src/index.ts"],
       "@learning-platform-monorepo/redis": ["libs/redis/src/index.ts"],
       "@learning-platform-monorepo/server-errors": [
         "libs/server-errors/src/index.ts"
-      ]
+      ],
+      "@learning-platform-monorepo/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

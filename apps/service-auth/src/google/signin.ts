@@ -7,34 +7,44 @@ import { generateRefreshToken } from '../tokens';
 import { oauth2ClientGoogle } from './client';
 import { createCreateUserEvent, createUpdateUserEvent } from '../events';
 import { publish } from '@learning-platform-monorepo/rabbit';
-const getGoogleUserLink = (token: string) =>
+import {
+  GoogleSigninCode,
+  GoogleUser,
+  RequestInfo,
+  Tokens,
+  User,
+} from '../types';
+const getGoogleUserLink = (token: string): string =>
   `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${token}`;
 
 const userService = {
   host: getEnv('USER_SERVICE_HOST'),
   port: +getEnv('USER_SERVICE_PORT'),
 };
-const createBearerHeader = (token: string) => ({
+const createBearerHeader = (token: string): { Authorization: string } => ({
   Authorization: `Bearer ${token}`,
 });
-const getGoogleUser = async (code: string) => {
+const getGoogleUser = async (code: string): Promise<GoogleUser | null> => {
   const { tokens } = await oauth2ClientGoogle.getToken(code);
 
   if (!tokens.id_token || !tokens.access_token) {
-    throw new HttpException('Unauthorized');
+    return null;
   }
   oauth2ClientGoogle.setCredentials(tokens);
   try {
     const data = await fetch(getGoogleUserLink(tokens.access_token), {
       headers: createBearerHeader(tokens.id_token),
     });
-    return await data.json();
+    if (data.ok) {
+      return await data.json();
+    }
+    return null;
   } catch (e) {
-    throw new HttpException('Unauthorized');
+    return null;
   }
 };
 
-const getByGoogleId = async (id: string) => {
+const getByGoogleId = async (id: string): Promise<User | null> => {
   try {
     const data = await fetch(
       `http://${userService.host}:${userService.port}/users/google/${id}`
@@ -47,19 +57,16 @@ const getByGoogleId = async (id: string) => {
     return null;
   }
 };
+
+type GoogleSigninArgs = RequestInfo & GoogleSigninCode;
 export const gooogleSignin = async ({
   ip,
   useragent,
   code,
-}: {
-  ip: string;
-  useragent: string;
-  code: string;
-}) => {
+}: GoogleSigninArgs): Promise<Tokens> => {
   const googleUser = await getGoogleUser(code);
   if (!googleUser) {
-    // TODO: DEFINE SPECIFIC  ERROR
-    throw new Error();
+    throw new HttpException('Unauthorized');
   }
 
   const dbUser = await getByGoogleId(googleUser?.id || '');
