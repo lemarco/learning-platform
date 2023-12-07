@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@learning-platform-monorepo/appmodule": ["libs/appmodule/src/index.ts"],
       "@learning-platform-monorepo/env": ["libs/env/src/index.ts"],
       "@learning-platform-monorepo/events": ["libs/events/src/index.ts"],
       "@learning-platform-monorepo/logger": ["libs/logger/src/index.ts"],

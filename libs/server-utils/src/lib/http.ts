@@ -1,5 +1,5 @@
-import { request as httpRequest } from 'node:http';
-import { request as httpsRequest } from 'node:https';
+// import { request as httpRequest } from 'node:http';
+// import { request as httpsRequest } from 'node:https';
 
 export const parseHost = (host: string) => {
   if (!host) return 'no-host-name-in-http-headers';
@@ -21,7 +21,7 @@ export const parseCookies = (cookie: string) => {
   return Object.fromEntries(values);
 };
 
-const receiveBody = async (stream) => {
+export const receiveBody = async (stream) => {
   const chunks = [];
   for await (const chunk of stream) chunks.push(chunk);
   return Buffer.concat(chunks);
@@ -54,30 +54,16 @@ export const intToIp = (int: number) => {
   return octets.join('.');
 };
 
-export const httpApiCall = (url: string, { method = 'POST', body }) => {
-  const request = url.startsWith('https') ? httpsRequest : httpRequest;
+export const httpApiCall = async (url: string, { method = 'POST', body }) => {
   const mimeType = 'application/json';
   const len = body ? Buffer.byteLength(body) : 0;
-  const headers = { 'Content-Type': mimeType, 'Content-Length': len };
-  return new Promise((resolve, reject) => {
-    const req = request(url, { method, headers }, (res) => {
-      const code = res.statusCode;
-      if (code !== 200) {
-        const dest = `for ${method} ${url}`;
-        return void reject(new Error(`HTTP status code ${code} ${dest}`));
-      }
-      receiveBody(res).then((data) => {
-        const json = data.toString();
-        try {
-          const object = JSON.parse(json);
-          resolve(object);
-        } catch (error) {
-          reject(error);
-        }
-      }, reject);
-    });
-    req.on('error', reject);
-    if (body) req.write(body);
-    req.end();
-  });
+  const headers = { 'Content-Type': mimeType, 'Content-Length': String(len) };
+
+  const res = await fetch(url, { method, headers }).catch(() => null);
+  if (res.statusCode !== 200) {
+    return null;
+  } else {
+    const json = await res.json();
+    return json;
+  }
 };
