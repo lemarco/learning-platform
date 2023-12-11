@@ -51,6 +51,15 @@ import { createEventBusConnection } from '@learning-platform-monorepo/rabbit';
 //   events: Record<string, EventHandler>;
 //   // expected to define cache mechanic for events that require results from other events
 // };
+
+// const createServer = () => {};
+
+// type RouteHandler = async  (req,res)=>void;
+// type RouteMap = Record<string,  >
+const a = { a: 1 };
+const b = { b: 2 };
+const c = Object.assign({}, a, b);
+console.log(c);
 const collectAllEnvsAndCreateStore = ({
   server,
   storage,

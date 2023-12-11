@@ -8,7 +8,7 @@ temp
 .env
 # dependencies
 node_modules
-
+temp.env
 # IDEs and editors
 /.idea
 .project

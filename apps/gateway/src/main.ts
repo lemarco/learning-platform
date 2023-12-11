@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import { createEnvStore, getEnv } from '@learning-platform-monorepo/env';
 
 import {
@@ -17,15 +16,38 @@ import { createServer, killServer, pushFront } from './gateway';
 const HTTP_STATUSES = {
   401: 'Unauthorized',
 };
-const verifyClient = async (info: any, cb: (boolean, ...args: any) => void) => {
-  // TODO: CHANGE TO REAL AUTH SERVER URL FROM ENV
-  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
-  if (res.ok) {
-    info.req.userData = await res.json();
-    return cb(true);
-  } else {
-    return cb(false, 401, HTTP_STATUSES[401]);
-  }
+
+const AUTH_SERVICE = {
+  host: getEnv('AUTH_SERVICE_HOST'),
+  port: +getEnv('AUTH_SERVICE_PORT'),
+};
+const verifyClient = async (
+  info: { req },
+  cb: (boolean, code?: number, stutus?: string) => void
+) => {
+  const headers = info.req.headers;
+  console.log('Headers:', headers);
+
+  // Access cookies
+  const cookies = info.req.headers.cookie;
+  console.log('Cookies:', cookies);
+
+  return await fetch(
+    `http://${AUTH_SERVICE.host}:${AUTH_SERVICE.port}/verify`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        access: 'asdasd',
+        refresh: 'asdasd',
+      }),
+    }
+  )
+    .then((data) => data.json())
+    .then(() => cb(true))
+    .catch(() => cb(false, 401, HTTP_STATUSES[401]));
 };
 const eventsTableQueueMatch = {
   AUTH: 'GW-AUTH',
@@ -38,16 +60,10 @@ const bootstrap = async () => {
     'RABBITMQ_PASSWORD',
     'GATEWAY_PORT',
   ]);
-  logger.info('ENV reading success');
   await createEventBusConnection(getEnv('RABBIT_URL'));
-  logger.info('Event bus connection success');
   await addExchangeAndQueue('GW-AUTH', 'GW-AUTH', true);
-  logger.info('Event bus create/check GW-AUTH exchange and queue success');
   await addExchangeAndQueue('AUTH-GW', 'AUTH-GW', false);
-  logger.info('Event bus create/check AUTH-GW exchange and queue success');
   await subscribeToQueue('AUTH-GW', (event) => pushFront(event));
-
-  logger.info('Subscription to queue AUTH-GW success');
   createServer({
     port: getEnv('GATEWAY_PORT'),
     verifyClient,
