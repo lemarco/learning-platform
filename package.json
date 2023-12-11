@@ -15,9 +15,11 @@
     "build:service-users": "pnpm exec nx run service-users:build --configuration=production",
     "migrate:users": "drizzle-kit generate:pg --out apps/service-users/migrations --schema apps/service-users/src/schema.ts",
     "dev:all": " pnpm exec nx run-many --target=serve --all=true ",
-    "dev:env-up": "docker compose -f ./docker-compose.dev.yml up -d",
     "new:server-lib": "nx g @nx/node:lib",
-    "orm:studio": "pnpm drizzle-kit studio"
+    "orm:studio": "pnpm drizzle-kit studio",
+    "dev:env-up": "docker compose -f ./docker-compose.dev.yml up -d",
+    "own:data": "sudo chown -R ${USER}:${USER} data",
+    "own:logs": "sudo chown -R ${USER}:${USER} logs"
   },
   "private": true,
   "dependencies": {
