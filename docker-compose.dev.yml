@@ -6,7 +6,7 @@ services:
     restart: always
     image: nginx:1.25.2-alpine
     volumes:
-      - ${PWD}/configs/nginx.dev.conf:/etc/nginx/nginx.conf
+      - ${PWD}/configs/nginx/nginx.dev.conf:/etc/nginx/nginx.conf
       - ${PWD}/logs/nginx/:/var/log/nginx
     ports:
       - '8000:80'
@@ -89,14 +89,17 @@ services:
       - ${PWD}/data/auth_read_db/:/var/lib/postgresql/data
 
   zookeeper:
+    container_name: zookeeper
     image: confluentinc/cp-zookeeper:latest
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     volumes:
-      -  ${PWD}/data/kafka/zookeeper/:/var/lib/zookeeper/data
-      -  ${PWD}/logs/kafka/zookeeper/:/var/lib/zookeeper/log
+      -  ${PWD}/data/zookeeper/:/var/lib/zookeeper/data
+      -  ${PWD}/logs/zookeeper/:/var/lib/zookeeper/log
+      -  ${PWD}/configs/kafka:/etc/zookeeper/conf
   kafka:
+    container_name: kafka
     image: confluentinc/cp-kafka:latest
     depends_on:
       - zookeeper
