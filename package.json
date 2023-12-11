@@ -17,7 +17,8 @@
     "dev:all": " pnpm exec nx run-many --target=serve --all=true ",
     "new:server-lib": "nx g @nx/node:lib",
     "orm:studio": "pnpm drizzle-kit studio",
-    "dev:env-up": "docker compose -f ./docker-compose.dev.yml up -d",
+    "dev:env-up": "pnpm run own:data-and-logs && docker compose -f ./docker-compose.dev.yml up -d",
+    "own:data-and-logs": "pnpm run own:data && pnpm run own:logs",
     "own:data": "sudo chown -R ${USER}:${USER} data",
     "own:logs": "sudo chown -R ${USER}:${USER} logs"
   },
