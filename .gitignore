@@ -6,6 +6,7 @@ tmp
 temp
 /out-tsc
 .env
+logs/*
 # dependencies
 node_modules
 temp.env
