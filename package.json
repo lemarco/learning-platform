@@ -29,16 +29,5 @@
   },
   "private": true,
   "module": "index.ts",
-  "type": "module",
-  "dependencies": {
-    "elysia": "^0.7.30",
-    "ioredis": "^5.3.2",
-    "kafkajs": "^2.2.4",
-    "pino": "^8.16.2",
-    "reflect-metadata": "^0.1.14",
-    "tsyringe": "^4.8.0"
-  },
-  "devDependencies": {
-    "pino-pretty": "^10.2.3"
-  }
+  "type": "module"
 }
