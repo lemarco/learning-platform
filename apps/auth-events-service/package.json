@@ -1,5 +1,5 @@
 {
-  "name": "events",
+  "name": "auth-events-service",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
@@ -7,5 +7,9 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "utils": "workspace:*",
+    "framework": "workspace:*"
   }
 }

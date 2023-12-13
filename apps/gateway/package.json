@@ -1,5 +1,5 @@
 {
-  "name": "events",
+  "name": "gateway",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {

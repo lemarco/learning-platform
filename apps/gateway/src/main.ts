@@ -17,9 +17,11 @@ const HTTP_STATUSES = {
   401: 'Unauthorized',
 };
 
-const AUTH_SERVICE = {
-  host: getEnv('AUTH_SERVICE_HOST'),
-  port: +getEnv('AUTH_SERVICE_PORT'),
+const environment = {
+  authQueryServiceHost: getEnv('AUTH_QUERY_SERVICE_HOST'),
+  authQueryServicePort: +getEnv('AUTH_QUERY_SERVICE_PORT'),
+  host: getEnv('GATEWAY_HOST'),
+  port: +getEnv('GATEWAY_PORT'),
 };
 const verifyClient = async (
   info: { req },
@@ -33,7 +35,7 @@ const verifyClient = async (
   console.log('Cookies:', cookies);
 
   return await fetch(
-    `http://${AUTH_SERVICE.host}:${AUTH_SERVICE.port}/verify`,
+    `http://${environment.authQueryServiceHost}:${environment.authQueryServicePort}/verify`,
     {
       method: 'POST',
       headers: {
@@ -49,23 +51,21 @@ const verifyClient = async (
     .then(() => cb(true))
     .catch(() => cb(false, 401, HTTP_STATUSES[401]));
 };
-const eventsTableQueueMatch = {
-  AUTH: 'GW-AUTH',
-};
 
 const bootstrap = async () => {
   createEnvStore([
-    'RABBIT_URL',
-    'RABBITMQ_USER',
-    'RABBITMQ_PASSWORD',
+    'AUTH_QUERY_SERVICE_HOST',
+    'AUTH_QUERY_SERVICE_PORT',
+    'GATEWAY_HOST',
     'GATEWAY_PORT',
+    'MESSAGE_BUS_URL',
   ]);
   await createEventBusConnection(getEnv('RABBIT_URL'));
   await addExchangeAndQueue('GW-AUTH', 'GW-AUTH', true);
   await addExchangeAndQueue('AUTH-GW', 'AUTH-GW', false);
   await subscribeToQueue('AUTH-GW', (event) => pushFront(event));
   createServer({
-    port: getEnv('GATEWAY_PORT'),
+    port: environment.port,
     verifyClient,
     connectionMessage: 'CONNECTED',
     handler: async (data, connectionId: string) => {

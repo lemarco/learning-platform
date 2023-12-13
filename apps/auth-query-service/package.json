@@ -1,0 +1,17 @@
+{
+  "name": "auth-query-service",
+  "module": "./src/main.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "utils": "workspace:*",
+    "framework": "workspace:*",
+    "zod": "^3.22.4",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

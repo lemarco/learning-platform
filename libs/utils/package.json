@@ -1,5 +1,5 @@
 {
-  "name": "events",
+  "name": "utils",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
