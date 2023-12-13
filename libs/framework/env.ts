@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { logger } from './logger';
 import z from 'zod';
 const data: Record<string, string> = {};
