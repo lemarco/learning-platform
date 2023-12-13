@@ -1,5 +1,5 @@
 {
-  "name": "@learning-platform-monorepo/source",
+  "name": "learning-platform",
   "version": "0.0.0",
   "license": "MIT",
   "workspaces": [
