@@ -68,6 +68,15 @@ services:
       - .env
     volumes:
       - ${PWD}/data/auth_events_db/:/var/lib/postgresql/data
+  redis:
+    image: "redis:latest"
+    container_name: "auth_token_store"
+    ports:
+      - "${AUTH_TOKEN_STORE_PORT}:6379"
+    env_file:
+      - .env
+    volumes:
+      - ${PWD}/data/auth_token_store/:/data
 
   auth_read_db:
     container_name: auth_read_db

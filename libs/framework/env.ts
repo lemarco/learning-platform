@@ -9,26 +9,30 @@ const validateObjectAgainstSchema = <T>(
 ): boolean => {
   try {
     schema.parse(data);
+
     return true;
   } catch (error: any) {
-    logger.error('Validation failed:', error.errors);
+    logger.error('Validation failed:', JSON.stringify(error));
     return false;
   }
 };
 
 export const createEnvStore = (schema: AnySchema) => {
-  const names = Object.keys(schema);
+  const names = schema.keyof()._def.values as string[];
+
   if (!names.length || Object.keys(data).length) {
     return {};
   }
+
   names.forEach((name: string) => {
     const variable = process.env[name];
     if (variable) {
       data[name] = variable;
     } else {
-      throw new Error(`Variable must be defined ${name} in env file.`);
+      throw new Error(`Variable ${name} must be defined in env file.`);
     }
   });
+  console.log('data = ', JSON.stringify(data, null, 4));
   if (!validateObjectAgainstSchema(data, schema)) {
     throw new Error(`Env variables formats failed`);
   }

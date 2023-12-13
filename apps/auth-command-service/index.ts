@@ -18,11 +18,11 @@ const env = createEnvStore(
   z.object({
     JWT_SECRET: z.string(),
 
-    AUTH_COMMAND_SERVICE_PORT: z.number(),
-    AUTH_COMMAND_SERVICE_HOST: z.string(),
+    AUTH_COMMANDS_SERVICE_PORT: z.string(),
+    AUTH_COMMANDS_SERVICE_HOST: z.string(),
 
     AUTH_TOKEN_STORE_HOST: z.string(),
-    AUTH_TOKEN_STORE_PORT: z.number(),
+    AUTH_TOKEN_STORE_PORT: z.string(),
 
     OAUTH_REDIRECT_URL: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
