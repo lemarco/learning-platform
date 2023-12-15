@@ -9,6 +9,9 @@
   "scripts": {
     "migration:generate:auth-users": "bunx drizzle-kit generate:pg --schema=./apps/auth-query-service/database/schema.ts --out=./apps/auth-query-service/database/migrations/",
     "migration:generate:auth-events": "bunx drizzle-kit generate:pg --schema=./apps/auth-command-service/database/schema.ts --out=./apps/auth-command-service/database/migrations/",
+    "dev:auth-query": "bun ./apps/auth-query-service/",
+    "dev:auth-command": "bun ./apps/auth-command-service/",
+    "dev:auth-events": "bun ./apps/auth-events-service/",
     "dev:gateway": "pnpm exec nx run gateway:serve   --configuration=development",
     "dev:front-blog": "pnpm exec nx run front-blog:serve --configuration=development",
     "dev:front-platform": "pnpm exec nx run front-platform:serve --configuration=development",

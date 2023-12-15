@@ -11,7 +11,7 @@ type DbUser = {
   googleId: string;
   role: string;
 };
-const secret = getEnv<string>('JWT_SECRET');
+
 const getGoogleUser = (access_token: string, id_token: string) =>
   fetch(
     `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${access_token}`,
@@ -62,10 +62,10 @@ export const gooogleSignin = async ({
     id: usersEvent.payload.id,
     role: usersEvent.payload.role,
   };
-  const refresh = sign(tokenData, secret, {
+  const refresh = sign(tokenData, env.JWT_SECRET as string, {
     expiresIn: '7d',
   });
-  const access = sign(tokenData, secret, {
+  const access = sign(tokenData, env.JWT_SECRET as string, {
     expiresIn: '15m',
   });
   await redis.setWithExpiry(

@@ -21,13 +21,11 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 
 import { eq } from 'drizzle-orm';
 import { users } from './database/schema';
-const secret = getEnv<string>('JWT_SECRET');
-const migrationsUsersFolder = resolve('./drizzle');
-const usersClient = new Pool({
-  connectionString: process.env.AUTH_EVENTS_DB_URL,
-});
+
+const migrationsUsersFolder = resolve('./database/migrations');
+console.log('migrationsUsersFolder = ', migrationsUsersFolder);
+
 await migrator(process.env.AUTH_READ_DB_URL || '', migrationsUsersFolder);
-const userdb = drizzle(usersClient, { schema: { ...users } });
 
 const linkProperties = {
   access_type: 'offline',
@@ -52,14 +50,14 @@ const env = createEnvStore(
 );
 const verifyHandler = async ({
   access,
-  store: { redis },
+  store: { redis, env },
 }: {
   access: string;
   store: Store;
 }) => {
   const {
     payload: { id, role },
-  } = verify(access, secret) as any;
+  } = verify(access, env.JWT_SECRET) as any;
   const token = await redis.get('access-block', id);
   return token ? NotAuthorizedResponse() : Response.json({ id, role });
 };
@@ -80,13 +78,13 @@ const tokenExpireFlow = async ({
     // Expired refresh. User has to login again
     return NotAuthorizedResponse();
   }
-  const { payload } = verify(token, secret) as any;
+  const { payload } = verify(token, env.JWT_SECRET) as any;
   // issue new token pair
   const { id, role } = payload;
-  const newRefresh = sign({ id, role }, secret, {
+  const newRefresh = sign({ id, role }, env.JWT_SECRET, {
     expiresIn: '7d',
   });
-  const newAccess = sign({ id, role }, secret, {
+  const newAccess = sign({ id, role }, env.JWT_SECRET, {
     expiresIn: '15m',
   });
   await redis.setWithExpiry('refresh', id, refresh, DURATION_UNITS.w);
@@ -126,7 +124,15 @@ const app = new Elysia().group('/auth', (app) =>
     .state('env', env)
     .state('logger', logger)
     .state('redis', redis)
-    .state('usersDb', userdb)
+    .state(
+      'usersDb',
+      drizzle(
+        new Pool({
+          connectionString: process.env.AUTH_EVENTS_DB_URL,
+        }),
+        { schema: { ...users } }
+      )
+    )
     .state('eventProducer', eventProducer)
     .derive(({ cookie }) => ({
       access: cookie['access_token'].get(),
