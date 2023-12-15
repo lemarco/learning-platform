@@ -7,40 +7,19 @@
     "libs/*"
   ],
   "scripts": {
-    "migration:generate:auth-users": "bunx drizzle-kit generate:pg --schema=./apps/auth-query-service/database/schema.ts --out=./apps/auth-query-service/database/migrations/",
-    "migration:generate:auth-events": "bunx drizzle-kit generate:pg --schema=./apps/auth-command-service/database/schema.ts --out=./apps/auth-command-service/database/migrations/",
-    "dev:auth-query": "bun ./apps/auth-query-service/",
-    "dev:auth-command": "bun ./apps/auth-command-service/",
+    "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./apps/auth-query-service/database/config.ts",
+    "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./apps/auth-command-service/database/config.ts",
+    "dev:auth-query": "bun run migration:generate:auth-users && bun --watch ./apps/auth-query-service/",
+    "dev:auth-command": "bun run migration:generate:auth-events && bun --watch ./apps/auth-command-service/",
     "dev:auth-events": "bun ./apps/auth-events-service/",
-    "dev:gateway": "pnpm exec nx run gateway:serve   --configuration=development",
-    "dev:front-blog": "pnpm exec nx run front-blog:serve --configuration=development",
-    "dev:front-platform": "pnpm exec nx run front-platform:serve --configuration=development",
-    "dev:service-auth": "pnpm exec nx run service-auth:serve --configuration=development",
-    "dev:service-users": "pnpm exec nx run service-users:serve --configuration=development",
-    "build:gateway": "pnpm exec nx run gateway:build   --configuration=production",
-    "build:front-blog": "pnpm exec nx run front-blog:build --configuration=production",
-    "build:front-platform": "pnpm exec nx run front-platform:build --configuration=production",
-    "build:service-auth": "pnpm exec nx run service-auth:build --configuration=production",
-    "build:service-users": "pnpm exec nx run service-users:build --configuration=production",
-    "migrate:users": "drizzle-kit generate:pg --out apps/service-users/migrations --schema apps/service-users/src/schema.ts",
-    "dev:all": " pnpm exec nx run-many --target=serve --all=true ",
-    "new:server-lib": "nx g @nx/node:lib",
-    "orm:studio": "pnpm drizzle-kit studio",
-    "dev:env-up": "pnpm run own:shared-folders && docker compose -f ./docker-compose.dev.yml up -d",
-    "own:shared-folders": "pnpm run own:data && pnpm run own:logs && pnpm run own:configs",
+    "orm:studio": "bunx drizzle-kit studio",
+    "dev:env-up": "bun run own:shared-folders && docker compose -f ./docker-compose.dev.yml up -d",
+    "own:shared-folders": "bun run own:data && bun run own:logs && bun run own:configs",
     "own:data": "sudo chown -R ${USER}:${USER} data",
     "own:logs": "sudo chown -R ${USER}:${USER} logs",
     "own:configs": "sudo chown -R ${USER}:${USER} configs"
   },
   "private": true,
   "module": "index.ts",
-  "type": "module",
-  "dependencies": {
-    "drizzle-orm": "^0.29.1",
-    "kafkajs": "^2.2.4",
-    "pg": "^8.11.3"
-  },
-  "devDependencies": {
-    "drizzle-kit": "^0.20.6"
-  }
+  "type": "module"
 }

@@ -14,7 +14,7 @@ import {
 import { migrator } from 'framework';
 import { resolve } from 'path';
 import { Pool } from 'pg';
-import { events } from './database/schema';
+import { events } from 'schemas';
 import { drizzle } from 'drizzle-orm/node-postgres';
 
 const migrationsEventsFolder = resolve(
@@ -119,6 +119,9 @@ const app = new Elysia().group('/auth', (app) => {
         port: env.AUTH_COMMANDS_SERVICE_PORT,
         hostname: env.AUTH_COMMANDS_SERVICE_HOST,
       },
-      () => console.log('AUTH COMMANDS SERVICE STARTED')
+      () =>
+        logger.info(
+          `Auth command service started on port ${env.AUTH_COMMANDS_SERVICE_PORT}`
+        )
     );
 });

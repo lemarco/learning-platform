@@ -19,7 +19,7 @@ import { resolve } from 'path';
 import { drizzle } from 'drizzle-orm/node-postgres';
 
 import { eq } from 'drizzle-orm';
-import { users } from './database/schema';
+import { users } from 'schemas';
 
 const migrationsUsersFolder = resolve(
   './apps/auth-query-service/database/migrations'
@@ -185,7 +185,9 @@ const app = new Elysia().group('/auth', (app) => {
         hostname: env.AUTH_QUERY_SERVICE_HOST,
       },
       () => {
-        console.log('AUTH QUERY SERVICE STARTED');
+        logger.info(
+          `Auth query service started on port ${env.AUTH_QUERY_SERVICE_PORT}`
+        );
       }
     );
 });

@@ -22,7 +22,7 @@ import { DURATION_UNITS } from 'utils/datetime';
 import { Pool } from 'pg';
 
 import { drizzle } from 'drizzle-orm/node-postgres';
-
+import { users } from 'schemas';
 import { eq } from 'drizzle-orm';
 // import { users } from './database/schema';
 // const migrationsFolder = resolve('./migrations');
@@ -58,7 +58,8 @@ const bootstrap = async () => {
     port: +env.AUTH_TOKEN_STORE_PORT,
     logger,
   });
+  const consumer = new KafkaConsumer();
+  await consumer.connect();
+  await consumer.subscribe('', handleMessage);
 };
-const consumer = new KafkaConsumer();
-await consumer.connect();
-await consumer.subscribe('', handleMessage);
+await bootstrap();

@@ -12,6 +12,7 @@
     "utils": "workspace:*",
     "framework": "workspace:*",
     "zod": "^3.22.4",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "schemas": "workspace:*"
   }
 }
