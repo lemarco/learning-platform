@@ -10,7 +10,7 @@ type DBCredentials = {
   password: string;
 };
 export const migrator = async (
-  creds: DBCredentials,
+  creds: DBCredentials | string,
   migrationsFolder: string
 ) => {
   logger.debug('***MIGRATION STARTED***', creds);

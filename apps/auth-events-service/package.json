@@ -9,7 +9,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "utils": "workspace:*",
-    "framework": "workspace:*"
+    "drizzle-orm": "^0.29.1",
+    "framework": "workspace:*",
+    "utils": "workspace:*"
   }
 }

@@ -7,3 +7,4 @@ export * from './kafka';
 export * from './migrator';
 export * from './responses';
 export * from './redis';
+export * from './events';

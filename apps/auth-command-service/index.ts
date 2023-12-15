@@ -12,6 +12,15 @@ import {
   NotAuthorizedResponse,
   BadRequest,
 } from 'framework';
+import { migrator } from 'framework';
+import { resolve } from 'path';
+import { Pool } from 'pg';
+
+import { events } from './database/schema';
+import { drizzle } from 'drizzle-orm/node-postgres';
+
+const migrationsEventsFolder = resolve('./database/events-migrations');
+await migrator(process.env.AUTH_EVENTS_DB_URL || '', migrationsEventsFolder);
 
 const secret = getEnv<string>('JWT_SECRET');
 const env = createEnvStore(
@@ -27,6 +36,7 @@ const env = createEnvStore(
     OAUTH_REDIRECT_URL: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
+    INTERNAL_COMUNICATION_SECRET: z.string(),
   })
 );
 const redis = new Redis({
@@ -39,14 +49,24 @@ const app = new Elysia()
   .state('env', env)
   .state('logger', logger)
   .state('redis', redis)
+
+  .state(
+    'eventsDb',
+    drizzle(
+      new Pool({
+        connectionString: process.env.AUTH_EVENTS_DB_URL,
+      }),
+      { schema: { ...events } }
+    )
+  )
   .state('eventProducer', eventProducer)
+
   .derive(({ cookie }) => ({
     access: cookie['access_token'].get(),
     refresh: cookie['refresh_token'].get(),
   }))
   .group('/auth', (app) =>
     app
-
       .group('/google', (app) =>
         app
           .derive(({ request, query, headers, store }) => {
@@ -59,6 +79,7 @@ const app = new Elysia()
               ip: clientIP,
               eventProducer: store.eventProducer,
               redis: store.redis,
+              env: store.env,
             };
           })
           .get('/signin', gooogleSignin, {

@@ -9,11 +9,26 @@ import {
   Logger,
   logger,
   NotAuthorizedResponse,
+  migrator,
+  BadRequest,
 } from 'framework';
 import { randomUUID } from 'crypto';
-import Elysia from 'elysia';
+import { Elysia, t } from 'elysia';
 import { DURATION_UNITS } from 'utils/datetime';
+import { Pool } from 'pg';
+import { resolve } from 'path';
+import { drizzle } from 'drizzle-orm/node-postgres';
+
+import { eq } from 'drizzle-orm';
+import { users } from './database/schema';
 const secret = getEnv<string>('JWT_SECRET');
+const migrationsUsersFolder = resolve('./drizzle');
+const usersClient = new Pool({
+  connectionString: process.env.AUTH_EVENTS_DB_URL,
+});
+await migrator(process.env.AUTH_READ_DB_URL || '', migrationsUsersFolder);
+const userdb = drizzle(usersClient, { schema: { ...users } });
+
 const linkProperties = {
   access_type: 'offline',
   prompt: 'consent',
@@ -32,6 +47,7 @@ const env = createEnvStore(
     OAUTH_REDIRECT_URL: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
+    INTERNAL_COMUNICATION_SECRET: z.string(),
   })
 );
 const verifyHandler = async ({
@@ -110,21 +126,48 @@ const app = new Elysia().group('/auth', (app) =>
     .state('env', env)
     .state('logger', logger)
     .state('redis', redis)
+    .state('usersDb', userdb)
     .state('eventProducer', eventProducer)
     .derive(({ cookie }) => ({
       access: cookie['access_token'].get(),
       refresh: cookie['refresh_token'].get(),
     }))
     .group('/google', (app) =>
-      app.get(
-        '/link',
-        async () => ({
-          link: await oauth2ClientGoogle.generateAuthUrl(linkProperties),
-        }),
-        {
-          error: () => NotAuthorizedResponse(),
-        }
-      )
+      app
+        .get(
+          '/link',
+          async () => ({
+            link: await oauth2ClientGoogle.generateAuthUrl(linkProperties),
+          }),
+          {
+            error: () => NotAuthorizedResponse(),
+          }
+        )
+        .get(
+          '/:id',
+          async ({ store: { usersDb }, params }) => {
+            const user = await usersDb
+              .select()
+              .from(users)
+              .where(eq(users.googleId, params.id));
+
+            return {
+              data: user && user[0] ? user[0] : null,
+            };
+          },
+          {
+            params: t.Object({ id: t.String() }),
+            query: t.Object({
+              secret: t.String(),
+            }),
+            beforeHandle: ({ store: { env }, query: { secret } }) => {
+              if (secret !== env.INTERNAL_COMUNICATION_SECRET) {
+                throw new Error();
+              }
+            },
+            error: () => BadRequest(),
+          }
+        )
     )
     .get('/verify', verifyHandler, {
       beforeHandle: ({ access, refresh }) => {

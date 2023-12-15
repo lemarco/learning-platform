@@ -1,6 +1,7 @@
 // TODO: Integrate validation schema for each type of Event
 // using library ZOD(installed)
 //
+
 const authEventNames = {
   LOGIN_SUCCESFULL: 'LOGIN_SUCCESFULL',
   LOGIN_FAILED: 'LOGIN_FAILED',
@@ -8,13 +9,15 @@ const authEventNames = {
   REQUESTED_GOOGLE_LINK: 'REQUESTED_GOOGLE_LINK',
   NOT_AUTHORIZED: 'NOT_AUTHORIZED',
 };
-
-export type EventType = '';
 export interface Event<T> {
-  connectionId: string;
-  event: EventType;
-  data: T;
+  id: string;
+  name: string;
+  version: number;
+  causationId: string;
+  timestamp: string;
+  payload: T;
 }
+
 // TODO:
 // THINK ABOUT ACTION PERMISSIONS
 // EVENT EXAMPLE
