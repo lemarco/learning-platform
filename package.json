@@ -12,6 +12,7 @@
     "dev:auth-query": "bun run migration:generate:auth-users && bun --watch ./apps/auth-query-service/",
     "dev:auth-command": "bun run migration:generate:auth-events && bun --watch ./apps/auth-command-service/",
     "dev:auth-events": "bun ./apps/auth-events-service/",
+    "dev:gateway": "bun --watch ./apps/gateway",
     "orm:studio": "bunx drizzle-kit studio",
     "dev:env-up": "bun run own:shared-folders && docker compose -f ./docker-compose.dev.yml up -d",
     "own:shared-folders": "bun run own:data && bun run own:logs && bun run own:configs",
@@ -21,5 +22,8 @@
   },
   "private": true,
   "module": "index.ts",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "elysia": "^0.7.30"
+  }
 }

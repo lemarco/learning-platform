@@ -8,6 +8,6 @@ export default {
   out: './apps/auth-command-service/database/migrations',
   driver: 'pg',
   dbCredentials: {
-    connectionString: process.env.AUTH_READ_DB_URL || '',
+    connectionString: process.env.AUTH_EVENTS_DB_URL || '',
   },
 } satisfies Config;
