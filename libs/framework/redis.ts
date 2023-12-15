@@ -13,7 +13,8 @@ export class Redis {
     this.instance = new R({ host, port });
     this.logger = logger;
     this.instance.on('error', (e) => {
-      throw new Error(`Redis connection failed: ${e}`);
+      console.error(`Redis connection failed: ${e}`);
+      process.exit();
     });
     logger.info('Connect Redis success');
   }

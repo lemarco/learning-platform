@@ -6,36 +6,34 @@ type AnySchema = z.ZodObject<{ [k: string]: z.ZodTypeAny }, any, any>;
 const validateObjectAgainstSchema = <T>(
   data: Record<string, string>,
   schema: AnySchema
-): boolean => {
-  try {
-    schema.parse(data);
-
-    return true;
-  } catch (error: any) {
-    logger.error('Validation failed:', JSON.stringify(error));
-    return false;
+) => {
+  const res = schema.safeParse(data);
+  if (!res.success) {
+    console.log(res.error.issues);
+    console.log('Env variables checking failed');
+    process.exit();
   }
 };
 
 export const createEnvStore = (schema: AnySchema) => {
   const names = schema.keyof()._def.values as string[];
 
-  if (!names.length || Object.keys(data).length) {
+  if (!names.length) {
     return {};
   }
-
-  names.forEach((name: string) => {
+  for (const name of names) {
     const variable = process.env[name];
     if (variable) {
       data[name] = variable;
     } else {
-      throw new Error(`Variable ${name} must be defined in env file.`);
+      logger.info(`Variable ${name} must be defined in env file.`);
+      process.exit();
     }
-  });
-  console.log('data = ', JSON.stringify(data, null, 4));
-  if (!validateObjectAgainstSchema(data, schema)) {
-    throw new Error(`Env variables formats failed`);
   }
+
+  console.log('data = ', JSON.stringify(data, null, 4));
+  validateObjectAgainstSchema(data, schema);
+
   logger.info('ENV reading success');
   logger.debug('ENV:' + JSON.stringify(data));
 

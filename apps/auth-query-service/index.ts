@@ -2,7 +2,6 @@ import { sign, verify } from 'jsonwebtoken';
 import { oauth2ClientGoogle } from './google-client';
 import z from 'zod';
 import {
-  getEnv,
   createEnvStore,
   KafkaProducer,
   Redis,
@@ -22,11 +21,10 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq } from 'drizzle-orm';
 import { users } from './database/schema';
 
-const migrationsUsersFolder = resolve('./database/migrations');
-console.log('migrationsUsersFolder = ', migrationsUsersFolder);
-
+const migrationsUsersFolder = resolve(
+  './apps/auth-query-service/database/migrations'
+);
 await migrator(process.env.AUTH_READ_DB_URL || '', migrationsUsersFolder);
-
 const linkProperties = {
   access_type: 'offline',
   prompt: 'consent',
@@ -35,36 +33,16 @@ const linkProperties = {
     'https://www.googleapis.com/auth/userinfo.email',
   ],
 };
-const env = createEnvStore(
-  z.object({
-    AUTH_QUERY_SERVICE_PORT: z.number(),
-    AUTH_QUERY_SERVICE_HOST: z.string(),
-    JWT_SECRET: z.string(),
-    AUTH_TOKEN_STORE_HOST: z.string(),
-    AUTH_TOKEN_STORE_PORT: z.number(),
-    OAUTH_REDIRECT_URL: z.string(),
-    GOOGLE_CLIENT_SECRET: z.string(),
-    GOOGLE_CLIENT_ID: z.string(),
-    INTERNAL_COMUNICATION_SECRET: z.string(),
-  })
-);
-const verifyHandler = async ({
-  access,
-  store: { redis, env },
-}: {
-  access: string;
-  store: Store;
-}) => {
-  const {
-    payload: { id, role },
-  } = verify(access, env.JWT_SECRET) as any;
-  const token = await redis.get('access-block', id);
-  return token ? NotAuthorizedResponse() : Response.json({ id, role });
+type Store = {
+  redis: Redis;
+  eventProducer: KafkaProducer;
+  env: Record<string, string>;
+  logger: Logger;
 };
 const tokenExpireFlow = async ({
   error,
   refresh,
-  store: { eventProducer, env },
+  store: { eventProducer, env, redis },
 }: {
   store: Store;
   refresh: string;
@@ -106,24 +84,32 @@ const tokenExpireFlow = async ({
     tokens: { access: newAccess, refresh: newRefresh },
   });
 };
-type Store = {
-  redis: Redis;
-  eventProducer: KafkaProducer;
-  env: Record<string, string>;
-  logger: Logger;
-};
 
-const redis = new Redis({
-  host: getEnv('AUTH_TOKEN_STORE_HOST'),
-  port: getEnv<number>('AUTH_TOKEN_STORE_PORT'),
-  logger,
-});
-const eventProducer = new KafkaProducer();
-const app = new Elysia().group('/auth', (app) =>
-  app
+const app = new Elysia().group('/auth', (app) => {
+  const env = createEnvStore(
+    z.object({
+      AUTH_QUERY_SERVICE_PORT: z.string().transform((val) => +val),
+      AUTH_QUERY_SERVICE_HOST: z.string(),
+      JWT_SECRET: z.string(),
+      AUTH_TOKEN_STORE_HOST: z.string(),
+      AUTH_TOKEN_STORE_PORT: z.string().transform((val) => +val),
+      OAUTH_REDIRECT_URL: z.string(),
+      GOOGLE_CLIENT_SECRET: z.string(),
+      GOOGLE_CLIENT_ID: z.string(),
+      INTERNAL_COMUNICATION_SECRET: z.string(),
+    })
+  );
+  return app
     .state('env', env)
     .state('logger', logger)
-    .state('redis', redis)
+    .state(
+      'redis',
+      new Redis({
+        host: env.AUTH_TOKEN_STORE_HOST,
+        port: +env.AUTH_TOKEN_STORE_PORT,
+        logger,
+      })
+    )
     .state(
       'usersDb',
       drizzle(
@@ -133,7 +119,7 @@ const app = new Elysia().group('/auth', (app) =>
         { schema: { ...users } }
       )
     )
-    .state('eventProducer', eventProducer)
+    .state('eventProducer', new KafkaProducer())
     .derive(({ cookie }) => ({
       access: cookie['access_token'].get(),
       refresh: cookie['refresh_token'].get(),
@@ -175,16 +161,31 @@ const app = new Elysia().group('/auth', (app) =>
           }
         )
     )
-    .get('/verify', verifyHandler, {
-      beforeHandle: ({ access, refresh }) => {
-        if (!access || !refresh) {
-          return NotAuthorizedResponse();
-        }
+    .get(
+      '/verify',
+      async ({ access, store: { redis, env } }) => {
+        const {
+          payload: { id, role },
+        } = verify(access, env.JWT_SECRET) as any;
+        const token = await redis.get('access-block', id);
+        return token ? NotAuthorizedResponse() : Response.json({ id, role });
       },
-      error: tokenExpireFlow,
-    })
-    .listen({
-      port: getEnv<number>('AUTH_QUERY_SERVICE_PORT'),
-      hostname: getEnv('AUTH_QUERY_SERVICE_HOST'),
-    })
-);
+      {
+        beforeHandle: ({ access, refresh }) => {
+          if (!access || !refresh) {
+            return NotAuthorizedResponse();
+          }
+        },
+        error: tokenExpireFlow,
+      }
+    )
+    .listen(
+      {
+        port: env.AUTH_QUERY_SERVICE_PORT,
+        hostname: env.AUTH_QUERY_SERVICE_HOST,
+      },
+      () => {
+        console.log('AUTH QUERY SERVICE STARTED');
+      }
+    );
+});
