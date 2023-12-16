@@ -14,7 +14,7 @@
     "dev:auth-events": "bun ./apps/auth-events-service/",
     "dev:gateway": "bun --watch ./apps/gateway",
     "orm:studio": "bunx drizzle-kit studio",
-    "dev:env-up": "bun run own:shared-folders && docker compose -f ./docker-compose.dev.yml up -d",
+    "dev:env-up": " docker compose -f ./docker-compose.dev.yml up -d",
     "own:shared-folders": "bun run own:data && bun run own:logs && bun run own:configs",
     "own:data": "sudo chown -R ${USER}:${USER} data",
     "own:logs": "sudo chown -R ${USER}:${USER} logs",
@@ -24,6 +24,13 @@
   "module": "index.ts",
   "type": "module",
   "dependencies": {
-    "elysia": "^0.7.30"
+    "elysia": "^0.7.30",
+    "flowbite-react": "^0.7.2",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6"
   }
 }

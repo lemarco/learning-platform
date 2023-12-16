@@ -24,9 +24,16 @@ const app = new Elysia()
     async open(ws) {
       console.log('ON OPEN');
       try {
+        console.log(
+          `http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}/auth/verify`
+        );
         const data = await fetch(
           `http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}/auth/verify`
-        ).then((data) => data.json());
+        ).then((data) => {
+          console.log('data', data);
+
+          return data.json();
+        });
         const { id, role } = data as { id: string; role: string };
         connections.set(id, ws);
       } catch (e) {

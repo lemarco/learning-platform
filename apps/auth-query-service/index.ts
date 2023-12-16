@@ -48,6 +48,7 @@ const tokenExpireFlow = async ({
   refresh: string;
   error: any;
 }) => {
+  console.log('tokenExpireFlow');
   if (error.name !== 'TokenExpiredError') {
     return NotAuthorizedResponse();
   }
@@ -120,10 +121,33 @@ const app = new Elysia().group('/auth', (app) => {
       )
     )
     .state('eventProducer', new KafkaProducer())
-    .derive(({ cookie }) => ({
-      access: cookie['access_token'].get(),
-      refresh: cookie['refresh_token'].get(),
-    }))
+    .derive(({ headers }) => {
+      console.log('IN DERIVE');
+      return {
+        access: headers['access_token'] || '',
+        refresh: headers['refresh_token'] || '',
+      };
+    })
+    .get(
+      '/verify',
+      async ({ access, store: { redis, env } }) => {
+        console.log('IN  HANDLE', { access });
+        const {
+          payload: { id, role },
+        } = verify(access, env.JWT_SECRET) as any;
+        const token = await redis.get('access-block', id);
+        return token ? NotAuthorizedResponse() : Response.json({ id, role });
+      },
+      {
+        beforeHandle: ({ access, refresh }) => {
+          console.log('IN BEFORE HANDLE', { access, refresh });
+          if (!access || !refresh) {
+            return NotAuthorizedResponse();
+          }
+        },
+        error: tokenExpireFlow,
+      }
+    )
     .group('/google', (app) =>
       app
         .get(
@@ -161,24 +185,7 @@ const app = new Elysia().group('/auth', (app) => {
           }
         )
     )
-    .get(
-      '/verify',
-      async ({ access, store: { redis, env } }) => {
-        const {
-          payload: { id, role },
-        } = verify(access, env.JWT_SECRET) as any;
-        const token = await redis.get('access-block', id);
-        return token ? NotAuthorizedResponse() : Response.json({ id, role });
-      },
-      {
-        beforeHandle: ({ access, refresh }) => {
-          if (!access || !refresh) {
-            return NotAuthorizedResponse();
-          }
-        },
-        error: tokenExpireFlow,
-      }
-    )
+
     .listen(
       {
         port: env.AUTH_QUERY_SERVICE_PORT,

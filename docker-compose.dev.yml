@@ -4,12 +4,15 @@ services:
   reverse_proxy:
     container_name: reverse_proxy
     restart: always
+
     image: nginx:1.25.2-alpine
     volumes:
       - ${PWD}/configs/nginx/nginx.dev.conf:/etc/nginx/nginx.conf
       - ${PWD}/logs/nginx/:/var/log/nginx
     ports:
-      - '8000:80'
+      - '80:80'
+
+    
 
   users_events_db:
     container_name: users_events_db
