@@ -13,6 +13,7 @@
     "dev:auth-command": "bun run migration:generate:auth-events && bun --watch ./apps/auth-command-service/",
     "dev:auth-events": "bun ./apps/auth-events-service/",
     "dev:gateway": "bun --watch ./apps/gateway",
+    "dev:platform-app": "cd ./apps/platform-app && bun run dev ",
     "orm:studio": "bunx drizzle-kit studio",
     "dev:env-up": " docker compose -f ./docker-compose.dev.yml up -d",
     "dev:env-down": "docker compose -f ./docker-compose.dev.yml down",
