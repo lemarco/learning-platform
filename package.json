@@ -15,6 +15,7 @@
     "dev:gateway": "bun --watch ./apps/gateway",
     "orm:studio": "bunx drizzle-kit studio",
     "dev:env-up": " docker compose -f ./docker-compose.dev.yml up -d",
+    "dev:env-down": "docker compose -f ./docker-compose.dev.yml down",
     "own:shared-folders": "bun run own:data && bun run own:logs && bun run own:configs",
     "own:data": "sudo chown -R ${USER}:${USER} data",
     "own:logs": "sudo chown -R ${USER}:${USER} logs",
