@@ -9,7 +9,6 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "drizzle-orm": "^0.29.1",
     "pino": "^8.16.2"
   }
 }

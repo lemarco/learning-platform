@@ -1,19 +1,100 @@
 version: '3.9'
 
 services:
-  reverse_proxy:
-    container_name: reverse_proxy
-    restart: always
-
-    image: nginx:1.25.2-alpine
-    volumes:
-      - ${PWD}/configs/nginx/nginx.dev.conf:/etc/nginx/nginx.conf
-      - ${PWD}/logs/nginx/:/var/log/nginx
+  auth_command_service:
+    build:
+      context: .
+      dockerfile: ./apps/auth-command-service/.dockerfile
+    command: bun run dev:auth-command
     ports:
-      - '80:80'
-    env_file:
-      - .env
-    
+      - "${AUTH_COMMANDS_SERVICE_PORT}:${AUTH_COMMANDS_SERVICE_PORT}"
+    develop:
+      watch:
+        - path: ./package.json
+          action: rebuild
+        - path: ./apps/auth-command-service
+          target: /app/apps/auth-command-service
+          action: sync+restart
+          ignore:
+            - node_modules/
+            - data
+            - logs
+            - temp
+        - path: ./libs
+          target: /app/libs
+          action: sync+restart
+          ignore:
+            - node_modules/
+            - data
+            - logs
+            - temp
+
+  # auth_query_service:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/auth-query-service/.dockerfile
+  #   command: bun run dev:auth-query
+  #   ports:
+  #     - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
+  #   develop:
+  #     watch:
+  #       - action: sync
+  #         path: ./
+  #         target: /app
+  #         ignore:
+  #           - node_modules/
+  #           - data
+  #           - logs
+  #           - temp
+
+  # auth_events_service:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/auth-events-service/.dockerfile
+  #   command: bun run dev:auth-events
+  #   # ports:
+  #   #   - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
+  #   develop:
+  #     watch:
+  #       - action: sync
+  #         path: ./
+  #         target: /app
+  #         ignore:
+  #           - node_modules/
+  #           - data
+  #           - logs
+  #           - temp
+  # gateway:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/gateway/.dockerfile
+  #   command: bun run dev:gateway
+  #   # ports:
+  #   #   - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
+  #   develop:
+  #     watch:
+  #       - action: sync
+  #         path: ./
+  #         target: /app
+  #         ignore:
+  #           - node_modules/
+  #           - data
+  #           - logs
+  #           - temp
+
+  # reverse_proxy:
+  #   container_name: reverse_proxy
+  #   restart: always
+
+  #   image: nginx:1.25.2-alpine
+  #   volumes:
+  #     - ${PWD}/configs/nginx/nginx.dev.conf:/etc/nginx/nginx.conf
+  #     - ${PWD}/logs/nginx/:/var/log/nginx
+  #   ports:
+  #     - '8000:80'
+  #   env_file:
+  #     - .env
+
 
   users_events_db:
     container_name: users_events_db

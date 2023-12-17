@@ -189,7 +189,7 @@ const app = new Elysia().group('/auth', (app) => {
     .listen(
       {
         port: env.AUTH_QUERY_SERVICE_PORT,
-        hostname: env.AUTH_QUERY_SERVICE_HOST,
+        // hostname: env.AUTH_QUERY_SERVICE_HOST,
       },
       () => {
         logger.info(

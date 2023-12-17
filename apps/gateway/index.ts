@@ -22,7 +22,7 @@ const connections = new Map();
 const app = new Elysia()
   .ws('/ws', {
     async open(ws) {
-      console.log('ON OPEN');
+      console.log('ON OPEN SOCKET');
       try {
         console.log(
           `http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}/auth/verify`
@@ -49,9 +49,9 @@ const app = new Elysia()
   .listen(
     {
       port: env.GATEWAY_PORT,
-      hostname: env.GATEWAY_HOST,
+      // hostname: env.GATEWAY_HOST,
     },
     () => {
-      logger.info(`Gateway started on port ${env.GATEWAY_PORT}`);
+      logger.info(`Gateway!! started on port ${env.GATEWAY_PORT}`);
     }
   );

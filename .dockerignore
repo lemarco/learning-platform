@@ -1,0 +1,7 @@
+data
+configs
+dist
+temp
+logs
+.vscode
+node_modules

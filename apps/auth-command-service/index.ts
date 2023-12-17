@@ -39,6 +39,7 @@ const app = new Elysia().group('/auth', (app) => {
       INTERNAL_COMUNICATION_SECRET: z.string(),
     })
   );
+
   return app
     .state('env', env)
     .state('logger', logger)
@@ -67,6 +68,7 @@ const app = new Elysia().group('/auth', (app) => {
     .group('/google', (app) =>
       app
         .derive(({ request, query, headers, store }) => {
+          console.log(env);
           const code = String(query['code']);
           const userAgent = headers['user-agent'] || '';
           const clientIP = app.server?.requestIP(request)?.address || '';
@@ -117,7 +119,7 @@ const app = new Elysia().group('/auth', (app) => {
     .listen(
       {
         port: env.AUTH_COMMANDS_SERVICE_PORT,
-        hostname: env.AUTH_COMMANDS_SERVICE_HOST,
+        // hostname: env.AUTH_COMMANDS_SERVICE_HOST,
       },
       () =>
         logger.info(
