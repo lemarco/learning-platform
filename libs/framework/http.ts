@@ -7,7 +7,6 @@ export const parseHost = (host: string) => {
   if (portOffset > -1) host = host.substr(0, portOffset);
   return host;
 };
-
 export const parseParams = (params: string) =>
   Object.fromEntries(new URLSearchParams(params));
 
