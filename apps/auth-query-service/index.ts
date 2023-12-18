@@ -24,6 +24,7 @@ import { users } from 'schemas';
 const migrationsUsersFolder = resolve(
   './apps/auth-query-service/database/migrations'
 );
+
 await migrator(process.env.AUTH_READ_DB_URL || '', migrationsUsersFolder);
 const linkProperties = {
   access_type: 'offline',

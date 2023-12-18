@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 // import FlowbiteLogoSVG from '../../../components/flowbite-logo';
 import { Avatar, Button, Checkbox, Label, TextInput } from 'flowbite-react';
-
+console.log('PLATFORM APP CHECK');
 const RegisterFormWithDescription: FC = function () {
   return (
     <section className="bg-white dark:bg-gray-900">

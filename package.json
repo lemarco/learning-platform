@@ -37,6 +37,7 @@
     "tailwindcss": "^3.3.6"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "drizzle-orm": "^0.29.1",
     "elysia": "^0.7.30",
     "flowbite-react": "^0.7.2",
