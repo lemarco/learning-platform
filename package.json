@@ -26,7 +26,6 @@
   "private": true,
   "module": "index.ts",
   "type": "module",
-  "description": "sdsddsddsssdsdsdsfksdfksdfskfkddsddsds",
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.5",
     "@types/pg": "^8.10.9",
