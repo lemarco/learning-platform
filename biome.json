@@ -13,7 +13,6 @@
   },
   "linter": {
     "ignore": ["node_modules", "temp", "data", "logs", "dist"],
-
     "enabled": true,
     "rules": {
       "recommended": true

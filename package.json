@@ -2,15 +2,13 @@
   "name": "learning-platform",
   "version": "0.0.0",
   "license": "MIT",
-  "workspaces": [
-    "apps/*",
-    "libs/*"
-  ],
+  "workspaces": ["apps/*", "libs/*"],
   "scripts": {
     "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./apps/auth-query-service/database/config.ts",
     "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./apps/auth-command-service/database/config.ts",
     "mirgation:generate:all": "bun run migration:generate:auth-users && bun run migration:generate:auth-events",
-    "dev:env-up": "bun run mirgation:generate:all && docker compose -f ./docker-compose.dev.yml up -d",
+    "deps-install": "bun i ",
+    "dev:env-up": "bun run deps-install && bun run mirgation:generate:all && docker compose -f ./docker-compose.dev.yml up -d",
     "dev:auth-query": " bun --watch ./apps/auth-query-service/",
     "dev:auth-command": "bun --watch ./apps/auth-command-service/",
     "dev:auth-events": "bun ./apps/auth-events-service/",
