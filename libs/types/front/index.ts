@@ -1,1 +1,1 @@
-export const frontStub = '';
+export const frontStub = "";

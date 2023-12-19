@@ -1,12 +1,12 @@
-import { Producer, Kafka } from 'kafkajs';
+import { Kafka, Producer } from "kafkajs";
 
 export class KafkaProducer {
   private client: Kafka;
   private producer: Producer;
   constructor() {
     this.client = new Kafka({
-      clientId: 'my-app',
-      brokers: ['localhost:9092', 'localhost:9092'],
+      clientId: "my-app",
+      brokers: ["localhost:9092", "localhost:9092"],
     });
     this.producer = this.client.producer();
   }

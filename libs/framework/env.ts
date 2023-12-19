@@ -1,12 +1,9 @@
-import { logger } from './logger';
-import z from 'zod';
+import z from "zod";
+import { logger } from "./logger";
 const data: Record<string, string> = {};
 
 type AnySchema = z.ZodObject<{ [k: string]: z.ZodTypeAny }, any, any>;
-const validateObjectAgainstSchema = <T>(
-  data: Record<string, string>,
-  schema: AnySchema
-) => {
+const validateObjectAgainstSchema = <T>(data: Record<string, string>, schema: AnySchema) => {
   const res = schema.safeParse(data);
   if (!res.success) {
     console.log(res.error.issues);

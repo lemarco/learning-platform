@@ -1,18 +1,15 @@
-import { GoogleUser } from '../types';
-import { randomUUID } from 'crypto';
+import { randomUUID } from "crypto";
+import { GoogleUser } from "../types";
 const getGoogleUserName = (googleUserData: {
   family_name?: string;
   given_name?: string;
 }) => `${googleUserData.given_name} ${googleUserData.family_name}`;
-export const createUpdateUserEvent = (
-  dbUser: any,
-  googleUserData: GoogleUser
-) => {
+export const createUpdateUserEvent = (dbUser: { id: string; name: string; role: string }, googleUserData: GoogleUser) => {
   const event = {
     id: randomUUID(),
-    name: 'USER_UPDATED',
+    name: "USER_UPDATED",
     version: 1,
-    causationId: '',
+    causationId: "",
     timestamp: new Date().toISOString(),
     payload: {
       id: dbUser.id,
@@ -29,9 +26,9 @@ export const createUpdateUserEvent = (
 export const createCreateUserEvent = (googleUserData: GoogleUser) => {
   const event = {
     id: randomUUID(),
-    name: 'USER_CREATED',
+    name: "USER_CREATED",
     version: 1,
-    causationId: '',
+    causationId: "",
     timestamp: new Date().toISOString(),
     payload: {
       id: randomUUID(),
@@ -40,7 +37,7 @@ export const createCreateUserEvent = (googleUserData: GoogleUser) => {
       image: googleUserData.picture,
       name: getGoogleUserName(googleUserData),
       locale: googleUserData.locale,
-      role: 'USER',
+      role: "USER",
     },
   };
   return event;

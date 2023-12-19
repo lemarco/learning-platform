@@ -28,6 +28,7 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
+    "@biomejs/biome": "1.4.1",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/pg": "^8.10.9",
     "autoprefixer": "^10.4.16",

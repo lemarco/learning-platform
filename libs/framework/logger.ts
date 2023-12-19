@@ -1,8 +1,8 @@
-import loggerConstructor, { Logger as L } from 'pino';
+import loggerConstructor, { Logger as L } from "pino";
 
 export const logger = loggerConstructor({
   transport: {
-    target: 'pino-pretty',
+    target: "pino-pretty",
     options: {
       colorize: true,
     },

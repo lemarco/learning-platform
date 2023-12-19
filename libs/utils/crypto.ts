@@ -1,4 +1,4 @@
-import { randomUUID, randomBytes, randomFillSync } from 'node:crypto';
+import { randomBytes, randomFillSync, randomUUID } from "node:crypto";
 
 const UINT32_MAX = 0xffffffff;
 const BUF_LEN = 1024;

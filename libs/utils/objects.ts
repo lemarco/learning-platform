@@ -1,4 +1,4 @@
-import { toUpperCamel } from './strings';
+import { toUpperCamel } from "./strings";
 
 export const jsonParse = (buffer: Buffer) => {
   if (buffer.length === 0) return null;
@@ -12,13 +12,9 @@ export const jsonParse = (buffer: Buffer) => {
 export const toBuffer = (obj: Record<string, unknown>): Buffer => {
   return Buffer.from(JSON.stringify(obj));
 };
-export const isHashObject = (o: unknown) =>
-  typeof o === 'object' && o !== null && !Array.isArray(o);
+export const isHashObject = (o: unknown) => typeof o === "object" && o !== null && !Array.isArray(o);
 
-export const flatObject = (
-  source: Record<string, unknown>,
-  fields: string[] = []
-) => {
+export const flatObject = (source: Record<string, unknown>, fields: string[] = []) => {
   const target: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(source)) {
     if (!isHashObject(value)) {
@@ -42,10 +38,7 @@ export const flatObject = (
   return target;
 };
 
-export const unflatObject = (
-  source: Record<string, unknown>,
-  fields: string[]
-) => {
+export const unflatObject = (source: Record<string, unknown>, fields: string[]) => {
   const result: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(source)) {
     const prefix = fields.find((name) => key.startsWith(name));
@@ -64,10 +57,7 @@ export const unflatObject = (
   }
   return result;
 };
-export const projection = (
-  source: Record<string, unknown>,
-  fields: string[]
-) => {
+export const projection = (source: Record<string, unknown>, fields: string[]) => {
   const entries = [];
   for (const key of fields) {
     if (Object.hasOwn(source, key)) {

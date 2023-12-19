@@ -1,14 +1,14 @@
-import { type EachMessagePayload, Kafka, Consumer } from 'kafkajs';
+import { Consumer, type EachMessagePayload, Kafka } from "kafkajs";
 
 export class KafkaConsumer {
   private client: Kafka;
   private consumer: Consumer;
   constructor() {
     this.client = new Kafka({
-      clientId: 'AUTH-EVENTS-SERVICE',
-      brokers: ['localhost:9092'],
+      clientId: "AUTH-EVENTS-SERVICE",
+      brokers: ["localhost:9092"],
     });
-    this.consumer = this.client.consumer({ groupId: 'notification-group' });
+    this.consumer = this.client.consumer({ groupId: "notification-group" });
 
     this.consumer.connect();
   }

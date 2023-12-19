@@ -1,1 +1,1 @@
-export const commonStub = '';
+export const commonStub = "";
