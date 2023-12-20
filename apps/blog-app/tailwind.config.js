@@ -4,7 +4,7 @@ import flowbite from "flowbite/plugin";
 import colors from "tailwindcss/colors";
 
 export default {
-  darkMode: "class",
+  darkMode: "media",
   content: [
     "./node_modules/flowbite-react/lib/**/*.{js,ts}",
 
