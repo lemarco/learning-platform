@@ -1,9 +1,9 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useVisibleTask$ } from "@builder.io/qwik";
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from "@builder.io/qwik-city";
 import { RouterHead } from "./features/router-head/router-head";
 
 import "./global.css";
-
+import { initFlowbite } from "flowbite";
 export default component$(() => {
   /**
    * The root of a QwikCity site always start with the <QwikCityProvider> component,
@@ -11,6 +11,9 @@ export default component$(() => {
    *
    * Don't remove the `<head>` and `<body>` elements.
    */
+  useVisibleTask$(() => {
+    initFlowbite();
+  });
 
   return (
     <QwikCityProvider>
