@@ -3,7 +3,7 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
-import LoginButton from "../login-popup";
+import LoginButton from "./login-popup";
 import { ExploreDesignWorkIcon } from "~/icons/exploreDesignWork";
 import { ArrowIcon } from "~/icons/arrow";
 import { BurgerIcon } from "~/icons/burger";
@@ -183,7 +183,7 @@ const LangMenu = component$(() => {
 });
 const UpperHeader = component$(() => {
   return (
-    <nav class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-800">
+    <nav class=" bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-800">
       <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
         <a href="https://flowbite.com" class="flex items-center">
           <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
@@ -349,7 +349,7 @@ const SearchBlock = component$(() => {
 
 const BottomHeader = component$(() => {
   return (
-    <nav class="bg-white border-gray-200 dark:bg-gray-700 dark:border-gray-600 border-y">
+    <nav class="z-100 bg-white border-gray-200 dark:bg-gray-700 dark:border-gray-600 border-y">
       <div class="grid py-4 px-4 mx-auto max-w-screen-xl lg:grid-cols-2 md:px-6">
         <SearchBlock />
         <div class="flex items-center lg:order-1">
@@ -357,6 +357,11 @@ const BottomHeader = component$(() => {
             <li>
               <a href="/" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-500" aria-current="page">
                 Home
+              </a>
+            </li>
+            <li>
+              <a href="/blog" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-500">
+                Blog
               </a>
             </li>
             <li>
@@ -506,11 +511,7 @@ const BottomHeader = component$(() => {
                 </div>
               </div>
             </li>
-            <li>
-              <a href="/blog" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-500">
-                Blog
-              </a>
-            </li>
+
             <li>
               <a href="/" class="hidden text-gray-900 dark:text-white hover:text-primary-600 md:inline dark:hover:text-primary-500">
                 Resources
@@ -530,7 +531,7 @@ const BottomHeader = component$(() => {
 
 export default component$(() => {
   return (
-    <header class="shadow-md sticky">
+    <header class="shadow-md z-[99] sticky top-0 ">
       <UpperHeader />
       <BottomHeader />
     </header>

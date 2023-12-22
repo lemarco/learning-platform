@@ -1,7 +1,7 @@
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
-import Popup from "../../features/modal";
-import { GithubIcon } from "../../icons/github";
-import { GoogleIcon } from "../../icons/google";
+import Popup from "../features/modal";
+import { GithubIcon } from "../icons/github";
+import { GoogleIcon } from "../icons/google";
 
 const Form = component$(() => {
   return (
