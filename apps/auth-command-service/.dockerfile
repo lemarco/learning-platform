@@ -4,4 +4,4 @@ COPY package.json /app
 RUN mkdir libs apps
 VOLUME /app
 WORKDIR /app
-RUN  bun i --unsafe-perm --ignore-scripts
+RUN  bun i 

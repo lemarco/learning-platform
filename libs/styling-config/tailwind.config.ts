@@ -1,9 +1,9 @@
-/** @type {import('tailwindcss').Config} */
-
+// /** @type {import('tailwindcss').Config} */
+import { Config } from "tailwindcss";
 import flowbite from "flowbite/plugin";
 import colors from "tailwindcss/colors";
 
-export default {
+export const config: Config = {
   darkMode: "media",
   content: [
     "./node_modules/flowbite-react/lib/**/*.{js,ts}",
@@ -59,5 +59,5 @@ export default {
     },
   },
 
-  plugins: [require("flowbite/plugin")],
+  plugins: [flowbite],
 };
