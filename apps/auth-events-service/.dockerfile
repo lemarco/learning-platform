@@ -1,4 +1,4 @@
-FROM oven/bun:latest
+FROM oven/bun:1.0-alpine
 WORKDIR /app
 COPY package.json /app
 RUN mkdir libs apps
