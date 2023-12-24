@@ -2,21 +2,20 @@
   "name": "learning-platform",
   "version": "0.0.0",
   "license": "MIT",
-  "workspaces": ["apps/*", "libs/*"],
+  "workspaces": ["./src/front-apps/*", "./src/front-libs/*", "./src/server-apps/*", "./src/server-libs/*", "./src/shared-libs/*"],
   "scripts": {
-    "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./apps/auth-query-service/database/config.ts",
-    "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./apps/auth-command-service/database/config.ts",
+    "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./src/server-apps/auth-query-service/database/config.ts",
+    "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./src/server-apps/auth-command-service/database/config.ts",
     "mirgation:generate:all": "bun run migration:generate:auth-users && bun run migration:generate:auth-events",
     "deps-install": "bun i ",
     "dev:env-up": "bun run deps-install && bun run mirgation:generate:all && docker compose -f ./docker-compose.dev.yml up -d",
-    "dev:auth-query": " bun --watch ./apps/auth-query-service/",
-    "dev:auth-command": "bun --watch ./apps/auth-command-service/",
-    "dev:auth-events": "bun ./apps/auth-events-service/",
-
-    "dev:gateway": "bun --watch ./apps/gateway",
-    "dev:platform-app": "cd ./apps/platform-app && bun run dev ",
-    "dev:blog-app": "cd ./apps/blog-app && bun --bun run dev ",
-    "dev:host-front-app": "cd ./apps/host-front-app && bun --bun run dev ",
+    "dev:auth-query": " bun --watch ./src/server-apps/auth-query-service/",
+    "dev:auth-command": "bun --watch ./src/server-apps/auth-command-service/",
+    "dev:auth-events": "bun ./src/server-apps/auth-events-service/",
+    "dev:gateway": "bun --watch ./src/server-apps/gateway",
+    "dev:platform-app": "cd ./src/front-apps/platform-app && bun run dev ",
+    "dev:blog-app": "cd ./src/front-apps/blog-app && bun --bun run dev ",
+    "dev:host-front-app": "cd ./src/front-apps/host-front-app && bun --bun run dev ",
     "orm:studio": "bunx drizzle-kit studio",
     "dev:env-down": "docker compose -f ./docker-compose.dev.yml down",
     "own:shared-folders": "bun run own:data && bun run own:logs && bun run own:configs",
@@ -27,18 +26,8 @@
   "private": true,
   "module": "index.ts",
   "type": "module",
-  "devDependencies": {
-    "@biomejs/biome": "1.4.1",
-    "@types/jsonwebtoken": "^9.0.5",
-    "@types/pg": "^8.10.9",
-    "autoprefixer": "^10.4.16",
-    "drizzle-kit": "^0.20.7",
-    "pino-pretty": "^10.3.0",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0"
-  },
   "dependencies": {
-    "dotenv": "^16.3.1",
+    "drizzle-kit": "^0.20.7",
     "drizzle-orm": "^0.29.1",
     "elysia": "^0.8.3",
     "flowbite": "^2.2.1",
@@ -50,8 +39,12 @@
     "pg": "^8.11.3",
     "pino": "^8.17.1",
     "postgres": "^3.4.3",
-    "qwik-image": "^0.0.8",
-    "zod": "^3.22.4",
-    "zustand": "^4.4.7"
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20.10.5",
+    "@types/pg": "^8.10.9",
+    "pino-pretty": "^10.3.0"
   }
 }
