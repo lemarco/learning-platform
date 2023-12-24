@@ -13,8 +13,6 @@ services:
     volumes:
       - './:/app'
 
-
-
   auth_query_service:
     container_name: auth_query_service
     build:
@@ -24,8 +22,7 @@ services:
     ports:
       - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
-      - './:/app'  
-
+      - './:/app'
 
   auth_events_service:
     container_name: auth_events_service
@@ -47,8 +44,7 @@ services:
     # ports:
     #   - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
-      - './:/app' 
-
+      - './:/app'
 
   platform-app:
     network_mode: "host"
@@ -62,7 +58,7 @@ services:
     # expose:
     #   - ${PLATFORM_APP_FRONTEND_PORT}
     volumes:
-      - './:/app' 
+      - './:/app'
   blog-app:
     network_mode: "host"
     container_name: blog-app
@@ -75,7 +71,20 @@ services:
     # expose:
     #   - ${PLATFORM_APP_FRONTEND_PORT}
     volumes:
-      - './:/app' 
+      - './:/app'
+  host-front-app:
+    network_mode: "host"
+    container_name: host-front-app
+    build:
+      context: .
+      dockerfile: ./apps/host-front-app/.dockerfile
+    command: bun run dev:host-front-app
+    ports:
+      - "10002:10002"
+    # expose:
+    #   - ${PLATFORM_APP_FRONTEND_PORT}
+    volumes:
+      - './:/app'
   reverse_proxy:
     container_name: reverse_proxy
     network_mode: "host"
@@ -89,7 +98,6 @@ services:
       - '80:80'
     env_file:
       - .env
-
 
   users_events_db:
     container_name: users_events_db
@@ -148,7 +156,7 @@ services:
     volumes:
       - ${PWD}/data/auth_events_db/:/var/lib/postgresql/data
   auth_token_store:
-    image: "redis:latest"
+    image: "redis:alpine"
     container_name: auth_token_store
     ports:
       - "${AUTH_TOKEN_STORE_PORT}:6379"
@@ -183,9 +191,9 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     volumes:
-      -  ${PWD}/data/zookeeper/:/var/lib/zookeeper/data
-      -  ${PWD}/logs/zookeeper/:/var/lib/zookeeper/log
-      -  ${PWD}/configs/kafka:/etc/zookeeper/conf
+      - ${PWD}/data/zookeeper/:/var/lib/zookeeper/data
+      - ${PWD}/logs/zookeeper/:/var/lib/zookeeper/log
+      - ${PWD}/configs/kafka:/etc/zookeeper/conf
   kafka:
     container_name: kafka
     image: confluentinc/cp-kafka:latest

@@ -20,11 +20,9 @@ const app = new Elysia()
       console.log("ON OPEN SOCKET");
       try {
         console.log(`http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}/auth/verify`);
-        const data = await fetch(`http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}/auth/verify`).then((data) => {
-          console.log("data", data);
-
-          return data.json();
-        });
+        const data = await fetch(`http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}/auth/verify`).then((data) =>
+          data.json(),
+        );
         const { id, role } = data as { id: string; role: string };
         connections.set(id, ws);
       } catch (e) {
@@ -37,12 +35,24 @@ const app = new Elysia()
       ws.send(message);
     },
   })
+  .group("/api", (app) =>
+    app.get("/", () => {
+      return new Response();
+    }),
+  )
+  .group("/auth", (app) =>
+    app.get("/", () => {
+      return new Response();
+    }),
+  )
   .listen(
     {
       port: env.GATEWAY_PORT,
-      // hostname: env.GATEWAY_HOST,
     },
-    () => {
-      logger.info(`Gateway!! started on port ${env.GATEWAY_PORT}`);
-    },
+    () =>
+      logger.info(`Gateway!! started on port $
+{
+  env.GATEWAY_PORT;
+}
+`),
   );

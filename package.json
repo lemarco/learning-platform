@@ -12,9 +12,11 @@
     "dev:auth-query": " bun --watch ./apps/auth-query-service/",
     "dev:auth-command": "bun --watch ./apps/auth-command-service/",
     "dev:auth-events": "bun ./apps/auth-events-service/",
+
     "dev:gateway": "bun --watch ./apps/gateway",
     "dev:platform-app": "cd ./apps/platform-app && bun run dev ",
     "dev:blog-app": "cd ./apps/blog-app && bun --bun run dev ",
+    "dev:host-front-app": "cd ./apps/host-front-app && bun --bun run dev ",
     "orm:studio": "bunx drizzle-kit studio",
     "dev:env-down": "docker compose -f ./docker-compose.dev.yml down",
     "own:shared-folders": "bun run own:data && bun run own:logs && bun run own:configs",
