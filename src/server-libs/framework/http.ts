@@ -60,10 +60,9 @@ export const httpApiCall = async (url: string, { method = "POST", body }: { meth
   const res = await fetch(url, { method, headers }).catch(() => null);
   if (res?.status !== 200) {
     return null;
-  } else {
-    const json = await res.json();
-    return json;
   }
+  const json = await res.json();
+  return json;
 };
 
 export const cookiesExtractor = (cookiesHeader: string) => {

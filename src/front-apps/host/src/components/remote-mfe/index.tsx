@@ -78,7 +78,7 @@ const getSSRStreamFunction = (remoteUrl: string, user: string) => {
   const decoder = new TextDecoder();
 
   return async (stream: StreamWriter) => {
-    const reader = (await fetchRemote(remoteUrl, user)).body!.getReader();
+    const reader = (await fetchRemote(remoteUrl, user)).body?.getReader();
     let fragmentChunk = await reader.read();
     let base = "";
     while (!fragmentChunk.done) {

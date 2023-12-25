@@ -370,7 +370,7 @@ const BottomHeader = component$(() => {
                 Blog
               </a>
             </li>
-            <li>
+            {/* <li>
               <button
                 id="mega-menu-button"
                 data-dropdown-toggle="mega-menu"
@@ -516,7 +516,7 @@ const BottomHeader = component$(() => {
                   </ul>
                 </div>
               </div>
-            </li>
+            </li> */}
 
             <li>
               <a href="/" class="hidden text-gray-900 dark:text-white hover:text-primary-600 md:inline dark:hover:text-primary-500">

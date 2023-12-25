@@ -23,7 +23,7 @@ export const DURATION_UNITS = {
 
 const twoDigit = (n: number) => {
   const s = n.toString();
-  if (n < 10) return "0" + s;
+  if (n < 10) return `0${s}`;
   return s;
 };
 

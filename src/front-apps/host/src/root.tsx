@@ -3,6 +3,7 @@ import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from "@builder.
 import { initFlowbite } from "flowbite";
 import { RouterHead } from "./components/router-head/router-head";
 import styles from "./global.css?inline";
+
 export default component$(() => {
   useStyles$(styles);
   useVisibleTask$(() => {

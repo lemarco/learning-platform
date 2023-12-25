@@ -9,16 +9,8 @@ export class DomainError extends Error {
     super("Domain error", opt);
   }
 }
-export class HttpException extends Error {
-  constructor(type: HttpExceptionTypes) {
-    super(type);
-  }
-}
+export class HttpException extends Error {}
 type InternalExceptionypes = "Connection Drop" | "DB Query fail";
-export class InternalException extends Error {
-  constructor(type: InternalExceptionypes) {
-    super(type);
-  }
-}
+export class InternalException extends Error {}
 
 export const isError = (err: unknown) => err?.constructor?.name?.includes("Error") || false;

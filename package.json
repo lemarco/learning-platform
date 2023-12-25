@@ -13,9 +13,14 @@
     "dev:auth-command": "bun --watch ./src/server-apps/auth-command-service/",
     "dev:auth-events": "bun ./src/server-apps/auth-events-service/",
     "dev:gateway": "bun --watch ./src/server-apps/gateway",
-    "dev:platform-app": "cd ./src/front-apps/platform-app && bun run dev ",
-    "dev:blog-app": "cd ./src/front-apps/blog-app && bun run dev ",
-    "dev:host-front-app": "cd ./src/front-apps/host-front-app && bun run dev ",
+
+    "dev:host":     "cd ./src/front-apps/host     && bun run dev ",
+    "dev:article":  "cd ./src/front-apps/article  && bun run dev ",
+    "dev:blog":     "cd ./src/front-apps/blog     && bun run dev ",
+    "dev:footer":   "cd ./src/front-apps/footer   && bun run dev ",
+    "dev:header":   "cd ./src/front-apps/header   && bun run dev ",
+    "dev:home":     "cd ./src/front-apps/home     && bun run dev ",
+
     "orm:studio": "bunx drizzle-kit studio",
     "dev:env-down": "docker compose -f ./docker-compose.dev.yml down",
     "own:shared-folders": "bun run own:data && bun run own:logs && bun run own:configs",
