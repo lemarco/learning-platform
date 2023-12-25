@@ -1,36 +1,34 @@
 {
-  "name": "blog-app",
-  "description": "Blog app  microfrontend",
-
+  "name": "footer",
+  "description": "footer microfrontend",
   "private": true,
+  "trustedDependencies": [
+    "sharp"
+  ],
   "type": "module",
   "scripts": {
     "build": "qwik build",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.types": "tsc --incremental --noEmit",
+    "deploy": "echo 'Run \"npm run qwik add\" to install a server adapter'",
     "dev": "vite --mode ssr",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "lint": "eslint \"src/**/*.ts*\"",
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
     "qwik": "qwik"
   },
-  "dependencies": { "styling-config": "workspace:*" },
   "devDependencies": {
-
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32",
-
-
-
-
+    "icons":"workspace:*",
     "@builder.io/qwik": "^1.3.1",
     "@builder.io/qwik-city": "^1.3.1",
     "@types/node": "^20.10.5",
-
     "typescript": "^5.3.3",
     "undici": "^5.28.2",
     "vite": "^5.0.10",
-    "tailwindcss": "3.4.0",
     "vite-tsconfig-paths": "^4.2.2"
   }
 }

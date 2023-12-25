@@ -1,6 +1,6 @@
 {
-  "name": "blog-app",
-  "description": "Blog app  microfrontend",
+  "name": "host",
+  "description": "App with Routing built-in ready to create your app",
 
   "private": true,
   "type": "module",
@@ -10,19 +10,13 @@
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.types": "tsc --incremental --noEmit",
     "dev": "vite --mode ssr",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
     "qwik": "qwik"
   },
   "dependencies": { "styling-config": "workspace:*" },
   "devDependencies": {
-
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32",
-
-
-
-
     "@builder.io/qwik": "^1.3.1",
     "@builder.io/qwik-city": "^1.3.1",
     "@types/node": "^20.10.5",
