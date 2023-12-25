@@ -3,10 +3,10 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
-import LoginButton from "./login-popup";
-import { ExploreDesignWorkIcon } from "~/icons/exploreDesignWork";
 import { ArrowIcon } from "~/icons/arrow";
 import { BurgerIcon } from "~/icons/burger";
+import { ExploreDesignWorkIcon } from "~/icons/exploreDesignWork";
+import LoginButton from "./login-popup";
 
 const EnglishIcon = component$(() => {
   return (

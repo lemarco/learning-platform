@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
-import pkg from "./package.json";
 import { qwikVite } from "@builder.io/qwik/optimizer";
+import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import pkg from "./package.json";
 
 const { dependencies = {}, peerDependencies = {} } = pkg as any;
 const makeRegex = (dep) => new RegExp(`^${dep}(/.*)?$`);
@@ -18,11 +18,7 @@ export default defineConfig(() => {
       },
       rollupOptions: {
         // externalize deps that shouldn't be bundled into the library
-        external: [
-          /^node:.*/,
-          ...excludeAll(dependencies),
-          ...excludeAll(peerDependencies),
-        ],
+        external: [/^node:.*/, ...excludeAll(dependencies), ...excludeAll(peerDependencies)],
       },
     },
     plugins: [qwikVite(), tsconfigPaths()],

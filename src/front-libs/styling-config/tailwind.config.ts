@@ -1,6 +1,6 @@
+import flowbite from "flowbite/plugin";
 // /** @type {import('tailwindcss').Config} */
 import { Config } from "tailwindcss";
-import flowbite from "flowbite/plugin";
 import colors from "tailwindcss/colors";
 
 export const config: Config = {

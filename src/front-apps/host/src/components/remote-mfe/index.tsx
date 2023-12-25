@@ -1,8 +1,8 @@
 import { SSRStream, SSRStreamBlock, StreamWriter, component$, useContext, useSignal, useVisibleTask$ } from "@builder.io/qwik";
-import { server$ } from "@builder.io/qwik-city";
 // import type { RemoteData } from "@qwikdream/shared";
 // import { GlobalAppState } from "../../store";
 import { createContextId } from "@builder.io/qwik";
+import { server$ } from "@builder.io/qwik-city";
 
 export interface AppState {
   showSeams: boolean;
@@ -16,7 +16,7 @@ export interface RemoteData {
   url: string;
   _url: string;
   secondsOfDelay: number;
-  seamsColor: string;
+  // seamsColor: string;
   hideLabel?: true;
   queryParam?: boolean;
 }

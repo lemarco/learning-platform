@@ -1,9 +1,9 @@
-import { component$, useVisibleTask$, useStyles$ } from "@builder.io/qwik";
+import { component$, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from "@builder.io/qwik-city";
 import { RouterHead } from "./features/router-head/router-head";
 
-import globalStyles from "./global.css?inline";
 import { initFlowbite } from "flowbite";
+import globalStyles from "./global.css?inline";
 export default component$(() => {
   useStyles$(globalStyles);
   /**

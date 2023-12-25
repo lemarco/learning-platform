@@ -3,8 +3,8 @@ import { $ } from "@builder.io/qwik";
 // import { Image, type ImageTransformerProps, useImageProvider } from "qwik-image";
 
 const ArticlePreview = component$(() => {
-console.log("!23")
-  
+  console.log("!23");
+
   return (
     <article class="w-full max-w-4xl">
       <header class="mb-4 lg:mb-6 ">

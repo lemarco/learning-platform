@@ -1,17 +1,9 @@
-
-import {
-
-  Event,
-  KafkaConsumer,
-  Redis,
-  createEnvStore,
-  logger,
-} from "framework";
-import { EachMessagePayload } from "kafkajs";
-import z from "zod";
-import { Pool } from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
+import { Event, KafkaConsumer, Redis, createEnvStore, logger } from "framework";
+import { EachMessagePayload } from "kafkajs";
+import { Pool } from "pg";
 import { users } from "schemas";
+import z from "zod";
 // import { users } from './database/schema';
 // const migrationsFolder = resolve('./migrations');
 // await migrator(process.env.AUTH_READ_DB_URL || '', migrationsFolder);

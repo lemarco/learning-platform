@@ -5,8 +5,7 @@ import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
 import LoginButton from "./login-popup";
 
-import { ArrowIcon ,BurgerIcon,ExploreDesignWorkIcon} from "icons";
-
+import { ArrowIcon, BurgerIcon, ExploreDesignWorkIcon } from "icons";
 
 const EnglishIcon = component$(() => {
   return (
