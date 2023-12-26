@@ -53,8 +53,8 @@
       "executor": "@nx/vite:dev-server",
       "options": {
         "buildTarget": "host:build.client",
-        "mode": "ssr",
-        "port": 5173
+        "mode": "ssr"
+
       }
     },
     "serve.debug": {
