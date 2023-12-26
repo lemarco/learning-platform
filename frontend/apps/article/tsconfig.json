@@ -1,18 +1,13 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "allowJs": true,
     "target": "ES2017",
-    "module": "ES2022",
-    "lib": [
-      "es2022",
-      "DOM",
-      "WebWorker",
-      "DOM.Iterable"
-    ],
+    "module": "ES2020",
+    "lib": ["es2020", "DOM", "WebWorker", "DOM.Iterable"],
     "jsx": "react-jsx",
     "jsxImportSource": "@builder.io/qwik",
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -21,19 +16,15 @@
     "isolatedModules": true,
     "outDir": "tmp",
     "noEmit": true,
-    "types": [
-      "node",
-      "vite/client"
-    ],
-    "paths": {
-      "~/*": [
-        "./src/*"
-      ]
-    }
+    "types": ["node", "vite/client", "vitest"]
   },
-  "include": [
-    "src",
-    "./*.d.ts",
-    "./*.config.ts"
-  ]
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "include": ["src"]
 }
