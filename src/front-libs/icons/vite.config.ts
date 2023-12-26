@@ -4,8 +4,8 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import pkg from "./package.json";
 
 const { dependencies = {}, peerDependencies = {} } = pkg as any;
-const makeRegex = (dep) => new RegExp(`^${dep}(/.*)?$`);
-const excludeAll = (obj) => Object.keys(obj).map(makeRegex);
+const makeRegex = (dep: string) => new RegExp(`^${dep}(/.*)?$`);
+const excludeAll = (obj: Record<string, unknown>) => Object.keys(obj).map(makeRegex);
 
 export default defineConfig(() => {
   return {

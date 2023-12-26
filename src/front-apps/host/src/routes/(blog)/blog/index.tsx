@@ -7,7 +7,7 @@ export default component$(() => {
     <RemoteMfe
       remote={{
         name: "home",
-        url:`http://localhost:${process.env.FRONTEND_BLOG_APP_PORT}/`,
+        url: `http://localhost:${process.env.FRONTEND_BLOG_APP_PORT}/`,
         _url: `http://localhost:${process.env.FRONTEND_BLOG_APP_PORT}/`,
         secondsOfDelay: 0,
       }}

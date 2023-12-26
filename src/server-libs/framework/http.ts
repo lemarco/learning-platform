@@ -4,7 +4,9 @@
 export const parseHost = (host: string) => {
   if (!host) return "no-host-name-in-http-headers";
   const portOffset = host.indexOf(":");
-  if (portOffset > -1) host = host.substr(0, portOffset);
+  if (portOffset > -1) {
+    host = host.substr(0, portOffset);
+  }
   return host;
 };
 export const parseParams = (params: string) => Object.fromEntries(new URLSearchParams(params));
@@ -19,7 +21,7 @@ export const parseCookies = (cookie: string) => {
   return Object.fromEntries(values);
 };
 
-export const receiveBody = async (stream: any) => {
+export const receiveBody = async (stream: ReadableStream) => {
   const chunks = [];
   for await (const chunk of stream) chunks.push(chunk);
   return Buffer.concat(chunks);
@@ -52,7 +54,7 @@ export const intToIp = (int: number) => {
   return octets.join(".");
 };
 
-export const httpApiCall = async (url: string, { method = "POST", body }: { method: string; body: any }) => {
+export const httpApiCall = async (url: string, { method = "POST", body }: { method: string; body: Buffer }) => {
   const mimeType = "application/json";
   const len = body ? Buffer.byteLength(body) : 0;
   const headers = { "Content-Type": mimeType, "Content-Length": String(len) };
@@ -68,10 +70,11 @@ export const httpApiCall = async (url: string, { method = "POST", body }: { meth
 export const cookiesExtractor = (cookiesHeader: string) => {
   const cookies: Record<string, string> = {};
   if (cookiesHeader) {
-    cookiesHeader.split(";").forEach((cookie) => {
+    const splitted = cookiesHeader.split(";");
+    for (const cookie of splitted) {
       const [name, value] = cookie.trim().split("=");
       cookies[name] = value;
-    });
+    }
   }
   return cookies;
 };

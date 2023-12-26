@@ -27,8 +27,9 @@ const twoDigit = (n: number) => {
   return s;
 };
 
-export const nowDate = (date: Date) => {
-  if (!date) date = new Date();
+export const nowDate = (d: Date) => {
+  const date = !d ? new Date() : d;
+
   const yyyy = date.getUTCFullYear().toString();
   const mm = twoDigit(date.getUTCMonth() + 1);
   const dd = twoDigit(date.getUTCDate());

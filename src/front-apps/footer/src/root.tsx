@@ -10,7 +10,6 @@ export default component$(() => {
     initFlowbite();
   });
 
-
   return (
     <QwikCityProvider>
       <head>
