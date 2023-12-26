@@ -189,13 +189,70 @@ const Logo = component$(() => {
     </a>
   );
 });
+// import { Button, DarkThemeToggle, Flowbite, Navbar } from "flowbite-react";
 
+// 'use client';
+// import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+// import { HiMoon, HiSun } from 'react-icons/hi';
+// import { twMerge } from 'tailwind-merge';
+// import { useIsMounted } from '../../hooks/use-is-mounted';
+// import { mergeDeep } from '../../helpers/merge-deep';
+// import { useThemeMode } from '../../hooks/use-theme-mode';
+// import { getTheme } from '../../theme-store';
+// export const DarkThemeToggle = ({ className, theme: customTheme = {}, iconDark: IconDark = HiSun, iconLight: IconLight = HiMoon, ...props }) => {
+//     const isMounted = useIsMounted();
+//     const { computedMode, toggleMode } = useThemeMode();
+//     const theme = mergeDeep(getTheme().darkThemeToggle, customTheme);
+//     return (_jsxs("button", { type: "button", "aria-label": "Toggle dark mode", "data-testid": "dark-theme-toggle", className: twMerge(theme.root.base, className), onClick: toggleMode, ...props, children: [_jsx(IconDark, { "aria-label": "Currently dark mode", "data-active": isMounted && computedMode === 'dark', className: twMerge(theme.root.icon, 'hidden dark:block') }), _jsx(IconLight, { "aria-label": "Currently light mode", "data-active": isMounted && computedMode === 'light', className: twMerge(theme.root.icon, 'dark:hidden') })] }));
+// };
+// DarkThemeToggle.displayName = 'DarkThemeToggle';
+// if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+//   themeToggleLightIcon.classList.remove('hidden');
+// } else {
+//   themeToggleDarkIcon.classList.remove('hidden');
+// }
+
+// var themeToggleBtn = document.getElementById('theme-toggle');
+
+// let event = new Event('dark-mode');
+
+// themeToggleBtn.addEventListener('click', function() {
+
+//   // toggle icons
+//   themeToggleDarkIcon.classList.toggle('hidden');
+//   themeToggleLightIcon.classList.toggle('hidden');
+
+//   // if set via local storage previously
+//   if (localStorage.getItem('color-theme')) {
+//       if (localStorage.getItem('color-theme') === 'light') {
+//           document.documentElement.classList.add('dark');
+//           localStorage.setItem('color-theme', 'dark');
+//       } else {
+//           document.documentElement.classList.remove('dark');
+//           localStorage.setItem('color-theme', 'light');
+//       }
+
+//   // if NOT set via local storage previously
+//   } else {
+//       if (document.documentElement.classList.contains('dark')) {
+//           document.documentElement.classList.remove('dark');
+//           localStorage.setItem('color-theme', 'light');
+//       } else {
+//           document.documentElement.classList.add('dark');
+//           localStorage.setItem('color-theme', 'dark');
+//       }
+//   }
+
+//   document.dispatchEvent(event);
+  
+// });
 const UpperHeader = component$(() => {
   return (
     <nav class=" bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-800">
       <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
         <Logo />
         <div class="flex items-center">
+
           <button
             type="button"
             data-dropdown-toggle="language-dropdown"
@@ -242,7 +299,7 @@ const UpperHeader = component$(() => {
             />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </button>
-          <button
+          {/* <button
             data-tooltip-target="tooltip-dark"
             type="button"
             class="inline-flex items-center p-2 mr-1 text-sm font-medium text-gray-500 rounded-lg dark:text-gray-400 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
@@ -259,7 +316,8 @@ const UpperHeader = component$(() => {
           >
             Toggle dark mode
             <div class="tooltip-arrow" data-popper-arrow />
-          </div>
+          </div> */}
+                    {/* <DarkThemeToggle/> */}
           <button
             data-tooltip-target="tooltip-statistics"
             type="button"
