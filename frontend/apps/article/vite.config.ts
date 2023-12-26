@@ -3,8 +3,10 @@ import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { qwikNxVite } from 'qwik-nx/plugins';
-
+import { config } from "dotenv";
+config({ path: "../../../.env" });
 export default defineConfig({
+
   cacheDir: '../../node_modules/.vite/apps/article',
   plugins: [
     qwikNxVite(),
@@ -25,6 +27,7 @@ export default defineConfig({
       // Allow serving files from the project root
       allow: ['../../'],
     },
+    host: "0.0.0.0", port: Number(process.env.FRONTEND_ARTICLE_APP_PORT)
   },
   preview: {
     headers: {
@@ -40,3 +43,4 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },
 });
+

@@ -2,7 +2,15 @@
   "name": "@frontend/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev:article":"pnpm exec nx run article:serve",
+    "dev:blog":"pnpm exec nx run blog:serve",
+    "dev:host":"pnpm exec nx run article:host" ,
+    "dev:footer":"pnpm exec nx run footer:serve",
+    "dev:home":"pnpm exec nx run home:serve",
+    "dev:header":"pnpm exec nx run article:serve"
+
+  },
   "private": true,
   "devDependencies": {
     "@builder.io/qwik": "~1.3.1",
