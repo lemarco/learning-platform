@@ -79,14 +79,14 @@ const getSSRStreamFunction = (remoteUrl: string, user: string) => {
 
   return async (stream: StreamWriter) => {
     const reader = (await fetchRemote(remoteUrl, user)).body?.getReader();
-    let fragmentChunk = await reader.read();
+    let fragmentChunk = await reader?.read();
     let base = "";
-    while (!fragmentChunk.done) {
-      const rawHtml = decoder.decode(fragmentChunk.value);
+    while (!fragmentChunk?.done) {
+      const rawHtml = decoder.decode(fragmentChunk?.value);
       const fixedHtmlObj = fixRemoteHTMLInDevMode(rawHtml, base);
       base = fixedHtmlObj.base;
       stream.write(fixedHtmlObj.html);
-      fragmentChunk = await reader.read();
+      fragmentChunk = await reader?.read();
     }
   };
 };

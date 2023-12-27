@@ -7,7 +7,10 @@
     "build": {
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["blog:build.client", "blog:build.ssr"],
+        "runSequence": [
+          "blog:build.client",
+          "blog:build.ssr"
+        ],
         "outputPath": "dist/apps/blog"
       },
       "configurations": {
@@ -43,7 +46,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/blog"
@@ -53,22 +58,27 @@
       "executor": "@nx/vite:dev-server",
       "options": {
         "buildTarget": "blog:build.client",
-        "mode": "ssr"
-
+        "mode": "ssr",
+        "postcssConfig": "apps/blog/postcss.config.ts"
       }
     },
     "serve.debug": {
       "executor": "nx:run-commands",
       "options": {
         "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/blog"
+        "cwd": "apps/blog",
+        "postcssConfig": "apps/blog/postcss.config.ts"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/blog/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/blog/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     }
   },

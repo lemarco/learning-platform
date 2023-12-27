@@ -3,13 +3,9 @@ import flowbite from "flowbite/plugin";
 import { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
 
-export const config: Config = {
+export const config: Partial<Config> = {
     darkMode: "media",
-    content: [
-        "./node_modules/flowbite-react/lib/**/*.{js,ts}",
 
-        "./src/**/*.{js,ts,jsx,tsx}",
-    ],
     theme: {
         extend: {
             colors: {

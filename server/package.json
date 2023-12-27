@@ -2,24 +2,19 @@
   "name": "learning-platform",
   "version": "0.0.0",
   "license": "MIT",
-  "workspaces": ["./src/front-apps/*", "./src/front-libs/*", "./src/server-apps/*", "./src/server-libs/*", "./src/shared-libs/*"],
+  "workspaces": [ "./apps/*", "./libs/*"],
   "scripts": {
     "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./src/server-apps/auth-query-service/database/config.ts",
     "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./src/server-apps/auth-command-service/database/config.ts",
     "mirgation:generate:all": "bun run migration:generate:auth-users && bun run migration:generate:auth-events",
     "deps-install": "bun i ",
     "dev:env-up": "bun run deps-install && bun run mirgation:generate:all && docker compose -f ./docker-compose.dev.yml up -d",
+    
     "dev:auth-query": " bun --watch ./src/server-apps/auth-query-service/",
     "dev:auth-command": "bun --watch ./src/server-apps/auth-command-service/",
     "dev:auth-events": "bun ./src/server-apps/auth-events-service/",
     "dev:gateway": "bun --watch ./src/server-apps/gateway",
 
-    "dev:host":     "cd ./src/front-apps/host     && bun run dev ",
-    "dev:article":  "cd ./src/front-apps/article  && bun run dev ",
-    "dev:blog":     "cd ./src/front-apps/blog     && bun run dev ",
-    "dev:footer":   "cd ./src/front-apps/footer   && bun run dev ",
-    "dev:header":   "cd ./src/front-apps/header   && bun run dev ",
-    "dev:home":     "cd ./src/front-apps/home     && bun run dev ",
 
     "orm:studio": "bunx drizzle-kit studio",
     "dev:env-down": "docker compose -f ./docker-compose.dev.yml down",
@@ -42,7 +37,7 @@
     "jsonwebtoken": "^9.0.2",
     "kafkajs": "^2.2.4",
     "pg": "^8.11.3",
-    "pino": "^8.17.1",
+    "pino": "^8.17.2",
     "postgres": "^3.4.3",
     "zod": "^3.22.4"
   },

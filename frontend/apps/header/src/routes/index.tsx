@@ -299,7 +299,7 @@ const UpperHeader = component$(() => {
             />
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </button>
-          {/* <button
+          <button
             data-tooltip-target="tooltip-dark"
             type="button"
             class="inline-flex items-center p-2 mr-1 text-sm font-medium text-gray-500 rounded-lg dark:text-gray-400 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
@@ -316,7 +316,7 @@ const UpperHeader = component$(() => {
           >
             Toggle dark mode
             <div class="tooltip-arrow" data-popper-arrow />
-          </div> */}
+          </div>
                     {/* <DarkThemeToggle/> */}
           <button
             data-tooltip-target="tooltip-statistics"

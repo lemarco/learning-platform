@@ -6,9 +6,9 @@ import styles from "./global.css?inline";
 
 export default component$(() => {
   useStyles$(styles);
-  useVisibleTask$(() => {
-    initFlowbite();
-  });
+  // useVisibleTask$(() => {
+  //   initFlowbite();
+  // });
 
   return (
     <QwikCityProvider>

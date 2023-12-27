@@ -7,8 +7,12 @@
     "build": {
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["host:build.client", "host:build.ssr"],
-        "outputPath": "dist/apps/host"
+        "runSequence": [
+          "host:build.client",
+          "host:build.ssr"
+        ],
+        "outputPath": "dist/apps/host",
+        "postcssConfig": "apps/article/postcss.config.ts"
       },
       "configurations": {
         "preview": {}
@@ -18,14 +22,16 @@
       "executor": "@nx/vite:build",
       "options": {
         "outputPath": "dist/apps/host",
-        "configFile": "apps/host/vite.config.ts"
+        "configFile": "apps/host/vite.config.ts",
+        "postcssConfig": "apps/host/postcss.config.ts"
       }
     },
     "build.ssr": {
       "executor": "@nx/vite:build",
       "defaultConfiguration": "preview",
       "options": {
-        "outputPath": "dist/apps/host"
+        "outputPath": "dist/apps/host",
+        "postcssConfig": "apps/host/postcss.config.ts"
       },
       "configurations": {
         "preview": {
@@ -43,7 +49,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/host"
@@ -53,22 +61,27 @@
       "executor": "@nx/vite:dev-server",
       "options": {
         "buildTarget": "host:build.client",
-        "mode": "ssr"
-
+        "mode": "ssr",
+        "postcssConfig": "apps/host/postcss.config.ts"
       }
     },
     "serve.debug": {
       "executor": "nx:run-commands",
       "options": {
         "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/host"
+        "cwd": "apps/host",
+        "postcssConfig": "apps/host/postcss.config.ts"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/host/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/host/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     }
   },

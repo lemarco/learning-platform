@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { qwikNxVite } from 'qwik-nx/plugins';
 import { config } from "dotenv";
-const { parsed, error } = config({ path: "../.env" })
+const { parsed, error } = config()
 if (error) {
   console.log(error)
   process.exit()
@@ -48,4 +48,5 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },
 });
+
 

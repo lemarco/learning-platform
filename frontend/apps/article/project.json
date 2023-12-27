@@ -7,7 +7,10 @@
     "build": {
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": ["article:build.client", "article:build.ssr"],
+        "runSequence": [
+          "article:build.client",
+          "article:build.ssr"
+        ],
         "outputPath": "dist/apps/article"
       },
       "configurations": {
@@ -25,7 +28,8 @@
       "executor": "@nx/vite:build",
       "defaultConfiguration": "preview",
       "options": {
-        "outputPath": "dist/apps/article"
+        "outputPath": "dist/apps/article",
+        "postcssConfig": "apps/article/postcss.config.ts"
       },
       "configurations": {
         "preview": {
@@ -43,7 +47,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/article"
@@ -53,22 +59,27 @@
       "executor": "@nx/vite:dev-server",
       "options": {
         "buildTarget": "article:build.client",
-        "mode": "ssr"
-
+        "mode": "ssr",
+        "postcssConfig": "apps/article/postcss.config.ts"
       }
     },
     "serve.debug": {
       "executor": "nx:run-commands",
       "options": {
         "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "apps/article"
+        "cwd": "apps/article",
+        "postcssConfig": "apps/article/postcss.config.ts"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/article/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/article/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     }
   },

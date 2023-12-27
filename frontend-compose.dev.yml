@@ -1,0 +1,84 @@
+version: "3.9"
+
+services:
+  host-app:
+    network_mode: "host"
+    container_name: host-app
+    build:
+
+      dockerfile: ./frontend/.dev.dockerfile
+    command: pnpm run dev:host
+    ports:
+      - "${PUBLIC_FRONTEND_HOST_APP_PORT}:${PUBLIC_FRONTEND_HOST_APP_PORT}"
+    volumes:
+      - "./frontend:/app"
+    env_file:
+      - .env
+    
+
+  article-app:
+    network_mode: "host"
+    container_name: article-app
+    build:
+      
+      dockerfile: ./frontend/.dev.dockerfile
+    command: pnpm run dev:article
+    ports:
+      - "${FRONTEND_ARTICLE_APP_PORT}:${FRONTEND_ARTICLE_APP_PORT}"
+    volumes:
+      - "./frontend:/app"
+    env_file:
+      - .env
+
+  blog-app:
+    network_mode: "host"
+    container_name: blog-app
+    build:
+      
+      dockerfile: ./frontend/.dev.dockerfile
+    command: pnpm run dev:blog
+    ports:
+      - "${FRONTEND_BLOG_APP_PORT}:${FRONTEND_BLOG_APP_PORT}"
+    volumes:
+      - "./frontend:/app"
+    env_file:
+      - .env
+  footer-app:
+    network_mode: "host"
+    container_name: footer-app
+    build:
+      
+      dockerfile: ./frontend/.dev.dockerfile
+    command: pnpm run dev:footer
+    ports:
+      - "${FRONTEND_FOOTER_APP_PORT}:${FRONTEND_FOOTER_APP_PORT}"
+    volumes:
+      - "./frontend:/app"
+    env_file:
+      - .env
+  header-app:
+    network_mode: "host"
+    container_name: header-app
+    build:
+      
+      dockerfile: ./frontend/.dev.dockerfile
+    command: pnpm run dev:header
+    ports:
+      - "${FRONTEND_HEADER_APP_PORT}:${FRONTEND_HEADER_APP_PORT}"
+    volumes:
+      - "./frontend:/app"
+    env_file:
+      - .env
+  home-app:
+    network_mode: "host"
+    container_name: home-app
+    build:
+      
+      dockerfile: ./frontend/.dev.dockerfile
+    command: pnpm run dev:home
+    ports:
+      - "${FRONTEND_HOME_APP_PORT}:${FRONTEND_HOME_APP_PORT}"
+    volumes:
+      - "./frontend:/app"
+    env_file:
+      - .env

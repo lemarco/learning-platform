@@ -4,7 +4,12 @@
     "allowJs": true,
     "target": "ES2017",
     "module": "ES2020",
-    "lib": ["es2020", "DOM", "WebWorker", "DOM.Iterable"],
+    "lib": [
+      "es2020",
+      "DOM",
+      "WebWorker",
+      "DOM.Iterable"
+    ],
     "jsx": "react-jsx",
     "jsxImportSource": "@builder.io/qwik",
     "strict": true,
@@ -16,7 +21,11 @@
     "isolatedModules": true,
     "outDir": "tmp",
     "noEmit": true,
-    "types": ["node", "vite/client", "vitest"]
+    "types": [
+      "node",
+      "vite/client",
+      "vitest"
+    ]
   },
   "references": [
     {
@@ -26,5 +35,8 @@
       "path": "./tsconfig.spec.json"
     }
   ],
-  "include": ["src"]
+  "include": [
+    "src",
+    "tailwind.config.ts"
+  ]
 }

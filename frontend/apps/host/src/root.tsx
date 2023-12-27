@@ -18,8 +18,9 @@ export default component$(() => {
   useVisibleTask$(() => {
     initFlowbite();
   });
-  const theme = useSignal('dark');
-  useContextProvider(ThemeContext, theme);
+  // const theme = useSignal('dark');
+  // useContextProvider(ThemeContext, theme);
+  console.log("ASdasds")
   return (
     <QwikCityProvider>
       <head>

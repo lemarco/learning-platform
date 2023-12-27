@@ -5,10 +5,11 @@
   "scripts": {
     "dev:article": "pnpm exec nx run article:serve",
     "dev:blog": "pnpm exec nx run blog:serve",
-    "dev:host": "pnpm exec nx run article:host",
+    "dev:host": "pnpm exec nx run host:serve",
     "dev:footer": "pnpm exec nx run footer:serve",
     "dev:home": "pnpm exec nx run home:serve",
-    "dev:header": "pnpm exec nx run article:serve"
+    "dev:header": "pnpm exec nx run header:serve",
+    "dev:all": ""
   },
   "private": true,
   "devDependencies": {
@@ -17,6 +18,7 @@
     "@nx/eslint": "17.2.7",
     "@nx/eslint-plugin": "17.2.7",
     "@nx/js": "17.2.7",
+    "@nx/react": "^17.2.7",
     "@nx/vite": "17.2.7",
     "@nx/workspace": "17.2.7",
     "@swc-node/register": "~1.6.8",
@@ -43,6 +45,7 @@
     "vitest": "~0.34.6"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "flowbite": "^2.2.1"
   }
 }
