@@ -1,9 +1,0 @@
-FROM oven/bun
-WORKDIR /app
-COPY . /app
-# RUN mkdir -p src/front-apps src/front-libs src/shared-libs src/server-apps src/server-libs
-
-
-VOLUME /app
-WORKDIR /app
-RUN  bun i 

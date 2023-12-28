@@ -9,7 +9,7 @@ import { events } from "schemas";
 import z from "zod";
 import { gooogleSignin } from "./handlers/signin";
 
-const migrationsEventsFolder = resolve("./src/server-apps/auth-command-service/database/migrations");
+const migrationsEventsFolder = resolve("./apps/auth-command-service/database/migrations");
 await migrator(process.env.AUTH_EVENTS_DB_URL || "", migrationsEventsFolder);
 
 const app = new Elysia().group("/auth", (app) => {

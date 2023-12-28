@@ -8,7 +8,7 @@ const { parsed, error } = config()
 if (error) {
 
   console.log(error)
-  process.exit()
+  // process.exit()
 }
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/host',

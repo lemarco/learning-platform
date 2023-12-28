@@ -69,7 +69,7 @@ services:
     volumes:
       - './:/app'
   blog-app:
-    network_mode: "host"
+
     container_name: blog-app
     build:
       context: .
@@ -92,7 +92,7 @@ services:
     volumes:
       - './:/app'
   header-app:
-    network_mode: "host"
+
     container_name: header-app
     build:
       context: .
@@ -104,7 +104,7 @@ services:
       - './:/app'
 
   home-app:
-    network_mode: "host"
+
     container_name: home-app
     build:
       context: .
@@ -130,7 +130,7 @@ services:
   #     - './:/app'
   reverse_proxy:
     container_name: reverse_proxy
-    network_mode: "host"
+
     restart: always
 
     image: nginx:1.25.2-alpine
@@ -254,3 +254,4 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
     volumes:
       - ${PWD}/data/kafka/:/var/lib/kafka/data
+

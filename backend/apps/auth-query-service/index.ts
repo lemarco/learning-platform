@@ -12,7 +12,7 @@ import { oauth2ClientGoogle } from "./google-client";
 import { eq } from "drizzle-orm";
 import { users } from "schemas";
 
-const migrationsUsersFolder = resolve("./src/server-apps/auth-query-service/database/migrations");
+const migrationsUsersFolder = resolve("./apps/auth-query-service/database/migrations");
 
 await migrator(process.env.AUTH_READ_DB_URL || "", migrationsUsersFolder);
 const linkProperties = {
