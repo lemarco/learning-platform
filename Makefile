@@ -1,9 +1,11 @@
 
 
+prepare:
+	npm i -g bun pnpm
 
 install:
 	cd frontend && pnpm i
-	cd server && bun i
+	cd backend && bun i
 
 clean-docker:
 	yes | docker system prune -a
@@ -31,9 +33,6 @@ dev-infra-up:
 dev-infra-down:
 	docker compose -f ./infra-compose.dev.yml down
 
-
-
-
 copy-env-to-backend:
 	cp .env ./backend/.env
 
@@ -43,25 +42,13 @@ dev-backend-up: copy-env-to-backend dev-infra-up
 
 dev-env-up: dev-frontend-up dev-backend-up
 
-
-
-
-
-
-
-
 clean-backend:
-	@-rm -f ./server/.env
-	@-rm -rf ./server/node_modules
+	@-rm -f ./backend/.env
+	@-rm -rf ./backend/node_modules
 
 clean: clean-frontend clean-backend clean-docker
 
-
-
-
 clean-dev-env-up: clean dev-frontend-up dev-backend-up
-
-
 
 dev-all: clean copy-env-to-frontend copy-env-to-backend install
 	docker compose -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up 
