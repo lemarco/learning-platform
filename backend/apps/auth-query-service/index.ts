@@ -109,7 +109,7 @@ const app = new Elysia().group("/auth", (app) => {
     )
     .state("eventProducer", new KafkaProducer())
     .derive(({ headers }) => {
-      console.log("IN DERIVE");
+      // console.log("IN DERIVE");
       return {
         access: headers.access_token || "",
         refresh: headers.refresh_token || "",
@@ -118,7 +118,7 @@ const app = new Elysia().group("/auth", (app) => {
     .get(
       "/verify",
       async ({ access, store: { redis, env } }) => {
-        console.log("IN  HANDLE", { access });
+        // console.log("IN  HANDLE", { access });
         const {
           payload: { id, role },
         } = verify(access, env.JWT_SECRET) as JwtPayload;
@@ -127,7 +127,7 @@ const app = new Elysia().group("/auth", (app) => {
       },
       {
         beforeHandle: ({ access, refresh }) => {
-          console.log("IN BEFORE HANDLE", { access, refresh });
+          //console.log("IN BEFORE HANDLE", { access, refresh });
           if (!access || !refresh) {
             return NotAuthorizedResponse();
           }
@@ -136,13 +136,17 @@ const app = new Elysia().group("/auth", (app) => {
       },
     )
     .group("/google", (app) =>
+
       app
         .get(
           "/link",
+
           async () => ({
+
             link: await oauth2ClientGoogle.generateAuthUrl(linkProperties),
           }),
           {
+            beforeHandle: () => console.log("/auth/google/link triggered"),
             error: () => NotAuthorizedResponse(),
           },
         )
@@ -169,14 +173,13 @@ const app = new Elysia().group("/auth", (app) => {
           },
         ),
     )
-
     .listen(
       {
         port: env.AUTH_QUERY_SERVICE_PORT,
-        // hostname: env.AUTH_QUERY_SERVICE_HOST,
+        hostname: env.AUTH_QUERY_SERVICE_HOST,
       },
       () => {
         logger.info(`Auth query service started on port ${env.AUTH_QUERY_SERVICE_PORT}`);
       },
-    );
+    )
 });

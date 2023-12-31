@@ -11,7 +11,7 @@ services:
       - "${AUTH_COMMANDS_SERVICE_PORT}:${AUTH_COMMANDS_SERVICE_PORT}"
     volumes:
       - "./backend:/app"
-    network_mode: host
+    # network_mode: host
 
   auth_query_service:
     container_name: auth_query_service
@@ -22,27 +22,33 @@ services:
       - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
       - "./backend:/app"
-    network_mode: host
+    # network_mode: host
+    expose:
+      - ${AUTH_QUERY_SERVICE_PORT}
+
   auth_events_service:
     container_name: auth_events_service
     build:
       dockerfile: ./backend/.dev.dockerfile
     command: bun run dev:auth-events
-    # ports:
-    #   - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
+    expose:
+      - ${AUTH_QUERY_SERVICE_PORT}
+    ports:
+      - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
       - "./backend:/app"
-    network_mode: host
+    # network_mode: host
+
   gateway:
     container_name: gateway
     build:
       dockerfile: ./backend/.dev.dockerfile
     command: bun run dev:gateway
-    # ports:
-    #   - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
+    ports:
+      - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
       - "./backend:/app"
-    network_mode: host
+    # network_mode: host
 
   # backend:
   #   name: backend

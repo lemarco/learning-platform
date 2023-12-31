@@ -6,7 +6,7 @@ import { qwikNxVite } from 'qwik-nx/plugins';
 import { config } from "dotenv";
 const { parsed, error } = config()
 if (error) {
-  console.log(error)
+
   process.exit()
 }
 
@@ -32,7 +32,9 @@ export default defineConfig({
       // Allow serving files from the project root
       allow: ['../../'],
     },
-    host: "0.0.0.0", port: Number(process.env.FRONTEND_ARTICLE_APP_PORT)
+    host: "0.0.0.0",
+    port: Number(parsed?.FRONTEND_ARTICLE_APP_PORT),
+
   },
   preview: {
     headers: {

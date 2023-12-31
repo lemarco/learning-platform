@@ -17,9 +17,9 @@ const connections = new Map();
 const app = new Elysia()
   .ws("/ws", {
     async open(ws) {
-      console.log("ON OPEN SOCKET");
+      //  console.log("ON OPEN SOCKET");
       try {
-        console.log(`http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}/auth/verify`);
+        //  console.log(`http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}/auth/verify`);
         const data = await fetch(`http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}/auth/verify`).then((data) =>
           data.json(),
         );

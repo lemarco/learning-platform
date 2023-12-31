@@ -5,10 +5,11 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import { qwikNxVite } from 'qwik-nx/plugins';
 import { config } from "dotenv";
 const { parsed, error } = config()
+console.log(parsed?.['PUBLIC_FRONTEND_HOST_APP_PORT'])
 if (error) {
 
-  console.log(error)
-  // process.exit()
+
+  process.exit()
 }
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/host',
@@ -28,7 +29,7 @@ export default defineConfig({
   ],
   server: {
     host: "0.0.0.0",
-    port: Number(process.env.PUBLIC_FRONTEND_HOST_APP_PORT),
+    port: Number(parsed?.['PUBLIC_FRONTEND_HOST_APP_PORT']),
     fs: {
       // Allow serving files from the project root
       allow: ['../../'],

@@ -3,9 +3,7 @@ version: "3.9"
 services:
   reverse_proxy:
     container_name: reverse_proxy
-
     restart: always
-
     image: nginx:1.25.2-alpine
     volumes:
       - ${PWD}/configs/nginx/nginx.dev.conf:/etc/nginx/nginx.conf
@@ -14,7 +12,7 @@ services:
       - "80:80"
     env_file:
       - .env
-    network_mode: host
+    # network_mode: host
   users_events_db:
     container_name: users_events_db
     restart: always
@@ -33,6 +31,7 @@ services:
       - .env
     volumes:
       - ${PWD}/data/users_events_db/:/var/lib/postgresql/data
+    # network_mode: host
 
   users_read_db:
     container_name: users_read_db
@@ -52,7 +51,7 @@ services:
       - .env
     volumes:
       - ${PWD}/data/users_read_db/:/var/lib/postgresql/data
-
+      # network_mode: host
   auth_events_db:
     container_name: auth_events_db
     restart: always
@@ -71,7 +70,7 @@ services:
       - .env
     volumes:
       - ${PWD}/data/auth_events_db/:/var/lib/postgresql/data
-
+    # network_mode: host
   auth_token_store:
     image: "redis:alpine"
     container_name: auth_token_store
@@ -81,7 +80,7 @@ services:
       - .env
     volumes:
       - ${PWD}/data/auth_token_store/:/data
-
+    # network_mode: host
   auth_read_db:
     container_name: auth_read_db
     restart: always
@@ -100,7 +99,7 @@ services:
       - .env
     volumes:
       - ${PWD}/data/auth_read_db/:/var/lib/postgresql/data
-
+    # network_mode: host
   zookeeper:
     container_name: zookeeper
     image: confluentinc/cp-zookeeper:latest
@@ -111,7 +110,7 @@ services:
       - ${PWD}/data/zookeeper/:/var/lib/zookeeper/data
       - ${PWD}/logs/zookeeper/:/var/lib/zookeeper/log
       - ${PWD}/configs/kafka:/etc/zookeeper/conf
-
+    # network_mode: host
   kafka:
     container_name: kafka
     image: confluentinc/cp-kafka:latest
@@ -129,3 +128,4 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
     volumes:
       - ${PWD}/data/kafka/:/var/lib/kafka/data
+    # network_mode: host

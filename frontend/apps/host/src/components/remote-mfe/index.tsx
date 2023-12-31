@@ -4,6 +4,45 @@ import { SSRStream, SSRStreamBlock, StreamWriter, component$, useContext, useSig
 import { createContextId } from "@builder.io/qwik";
 import { server$ } from "@builder.io/qwik-city";
 
+// import { fixRemoteHTMLInDevMode } from 'apps/host/shared';
+// import { type RemoteData } from '../../../../../shared/remotes';
+
+// export interface Props {
+//   remote: RemoteData;
+//   removeLoader?: boolean;
+// }
+
+// export default component$(({ remote, removeLoader = false }: Props) => {
+//   const url = remote.url;
+//   const decoder = new TextDecoder();
+//   const getSSRStreamFunction =
+//     (remoteUrl: string) => async (stream: StreamWriter) => {
+//       const _remoteUrl = new URL(remoteUrl);
+//       if (removeLoader) {
+//         _remoteUrl.searchParams.append('loader', 'false');
+//       }
+//       const reader = (
+//         await fetch(_remoteUrl, { headers: { accept: 'text/html' } })
+//       ).body!.getReader();
+//       let fragmentChunk = await reader.read();
+//       let base = '';
+//       while (!fragmentChunk.done) {
+//         const rawHtml = decoder.decode(fragmentChunk.value);
+//         const fixedHtmlObj = fixRemoteHTMLInDevMode(rawHtml, base);
+//         base = fixedHtmlObj.base;
+//         stream.write(fixedHtmlObj.html);
+//         fragmentChunk = await reader.read();
+//       }
+//     };
+
+//   return (
+//     <SSRStreamBlock>
+//       <SSRStream>{getSSRStreamFunction(url)}</SSRStream>
+//     </SSRStreamBlock>
+//   );
+// });
+
+
 export interface AppState {
   showSeams: boolean;
   user: string;
@@ -93,9 +132,11 @@ const getSSRStreamFunction = (remoteUrl: string, user: string) => {
 
 export default component$(({ remote }: Props) => {
   const store = useContext(GlobalAppState);
-  console.log("remote.url= ", remote.url);
-  const url = new URL(remote.url + (remote.queryParam ? (store.user === "Giorgio" ? "/builder-io" : "/qwik") : ""));
-  console.log("url = ", url);
+  //console.log("remote.url= ", remote.url);
+
+  const url = new URL(remote.url + (remote.queryParam ? "/qwik" : ""));
+  // const url = new URL(remote.url + (remote.queryParam ? (store.user === "Giorgio" ? "/builder-io" : "/qwik") : ""));
+  //console.log("url = ", url);
   return (
     <SSRStreamBlock>
       <SSRStream>{getSSRStreamFunction(url.href, store.user)}</SSRStream>
@@ -140,6 +181,7 @@ const fixRemoteHTMLInDevMode = (rawHtml: string): { html: string; base: string }
 
   let base = "";
   if (import.meta.env.DEV) {
+    console.log("import.meta.env.DEV ")
     html = html.replace(/q:base="\/(\w+)\/build\/"/gm, (match, child) => {
       base = `/${child}`;
       return match;

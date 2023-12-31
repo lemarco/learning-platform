@@ -1,13 +1,14 @@
 import { Slot, component$, useSignal } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
 
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
+import { Image } from 'qwik-image'
 import LoginButton from "./login-popup";
 
-// import { ArrowIcon, BurgerIcon, ExploreDesignWorkIcon } from "@frontend/icons";
 
 const EnglishIcon = component$(() => {
+  1
   return (
     <svg class="h-3.5 w-3.5 rounded-full mr-2" xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us" viewBox="0 0 512 512">
       <title>EnglishIcon</title>
@@ -46,7 +47,8 @@ const UserMenu = component$(() => {
         data-dropdown-toggle="user-profile-dropdown"
       >
         <span class="sr-only">Open user menu</span>
-        <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user " />
+        <Image layout="fixed" src={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"} class="w-8 h-8 rounded-full" alt="user" />
+        {/* <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user " /> */}
       </button>
 
       <div
@@ -184,7 +186,8 @@ const LangMenu = component$(() => {
 const Logo = component$(() => {
   return (
     <a href="/" class="flex items-center">
-      <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+      <Image layout="fixed" src={"https://flowbite.com/docs/images/logo.svg"} class="mr-3 h-6 sm:h-9" alt="logo" />
+      {/* <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" /> */}
       <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
     </a>
   );
@@ -244,9 +247,10 @@ const Logo = component$(() => {
 //   }
 
 //   document.dispatchEvent(event);
-  
+
 // });
-const UpperHeader = component$(() => {
+const UpperHeader = component$(({ googleLink }: { googleLink: string }) => {
+
   return (
     <nav class=" bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-800">
       <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
@@ -317,7 +321,7 @@ const UpperHeader = component$(() => {
             Toggle dark mode
             <div class="tooltip-arrow" data-popper-arrow />
           </div>
-                    {/* <DarkThemeToggle/> */}
+          {/* <DarkThemeToggle/> */}
           <button
             data-tooltip-target="tooltip-statistics"
             type="button"
@@ -338,7 +342,7 @@ const UpperHeader = component$(() => {
           </div>
           <span class="mr-0 ml-2 w-px h-5 bg-gray-200 dark:bg-gray-600 lg:inline lg:mr-3 lg:ml-5" />
           <LangMenu />
-          <LoginButton />
+          <LoginButton googleLink={googleLink} />
           <UserMenu />
         </div>
       </div>
@@ -378,9 +382,9 @@ const SearchBlock = component$(() => {
         style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(897px, 5637px, 0px);"
       >
         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-          {categoriesToSearch.map((name) => {
+          {categoriesToSearch.map((name, idx) => {
             return (
-              <li>
+              <li key={`${idx}${name}`}>
                 <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                   {name}
                 </button>
@@ -592,11 +596,42 @@ const BottomHeader = component$(() => {
     </nav>
   );
 });
+export const useGetGoogleLink = routeLoader$(async () => {
+  try {
+    const data = await fetch('http://0.0.0.0:6004/auth/google/link')
+    if (data.ok) {
+      const { link } = await data.json()
+      //  console.log(`FETCHED LINK = ${link}`)
+      return link
+    } else {
+      console.log(`FETCHED LINK  NOT OK`)
+      return ""
+    }
+  } catch (e) {
+    console.log("FETCH LINK ERROR")
+    return ""
 
+  }
+  // const link = await fetch('http://localhost:6004/auth/google/link').catch(
+  //   (e) => {
+  //     console.log("FETCH LINK ERROR", e)
+  //     return ""
+  //   }
+
+  // ).then(res => res.json()).then(data => data.link).catch((e) => {
+
+  //   console.log("FETCH LINK ERROR", e)
+  //   //   return ""
+  // })
+  // //console.log(`Link is = ${link}`)
+  // return link
+})
 export default component$(() => {
+  const googleLink = useGetGoogleLink()
+  const link = String(googleLink.value)
   return (
     <header class="shadow-md z-[99] sticky top-0 ">
-      <UpperHeader />
+      <UpperHeader googleLink={link} />
       <BottomHeader />
     </header>
   );

@@ -1,8 +1,14 @@
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
+import { routeLoader$, server$ } from "@builder.io/qwik-city";
 import { GithubIcon, GoogleIcon } from "@frontend/icons"
 import { Modal } from "@frontend/modal"
 
-const Form = component$(() => {
+
+// import { ArrowIcon, BurgerIcon, ExploreDesignWorkIcon } from "@frontend/icons";
+
+const Form = component$(({ googleLink }: { googleLink: string }) => {
+
+
   return (
     <form q:slot="content">
       <h2 class="mb-4 text-lg font-light text-gray-500 dark:text-white">
@@ -17,7 +23,7 @@ const Form = component$(() => {
           Github
         </a>
         <a
-          href="/"
+          href={googleLink}
           class="w-full inline-flex items-center justify-center text-white bg-[#4284F4] hover:bg-[#3372df] dark:focus:ring-[#0f53c9] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
         >
           <GoogleIcon />
@@ -51,14 +57,14 @@ const Form = component$(() => {
   );
 });
 
-const LoginTriggerAndPopup = component$(() => {
+const LoginTriggerAndPopup = component$(({ googleLink }: { googleLink: string }) => {
   return (
     <Modal
       modalId="signin-popup"
       triggerStyle="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 lg:px-5 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
       triggerText="Signin"
     >
-      <Form q:slot="content" />
+      <Form q:slot="content" googleLink={googleLink} />
     </Modal>
   );
 });

@@ -58,7 +58,7 @@ const app = new Elysia().group("/auth", (app) => {
     .group("/google", (app) =>
       app
         .derive(({ request, query, headers, store }) => {
-          console.log(env);
+          //console.log(env);
           const code = String(query.code);
           const userAgent = headers["user-agent"] || "";
           const clientIP = app.server?.requestIP(request)?.address || "";

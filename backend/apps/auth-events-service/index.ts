@@ -35,7 +35,7 @@ const bootstrap = async () => {
     logger,
   });
   const consumer = new KafkaConsumer();
-  console.log("KAFKA CONSUMER");
+
   await consumer.connect();
   await consumer.subscribe("", handleMessage);
 };

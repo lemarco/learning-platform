@@ -6,7 +6,7 @@ import { qwikNxVite } from 'qwik-nx/plugins';
 import { config } from "dotenv";
 const { parsed, error } = config()
 if (error) {
-  console.log(error)
+
   process.exit()
 }
 export default defineConfig({
@@ -26,7 +26,9 @@ export default defineConfig({
     tsconfigPaths({ root: '../../' }),
   ],
   server: {
-    host: "0.0.0.0", port: Number(process.env.FRONTEND_FOOTER_APP_PORT),
+    host: "0.0.0.0",
+    port: Number(parsed?.FRONTEND_FOOTER_APP_PORT),
+
     fs: {
       // Allow serving files from the project root
       allow: ['../../'],
