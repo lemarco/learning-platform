@@ -1,21 +1,17 @@
-import { randomUUID } from "crypto";
 import { resolve } from "path";
 import { NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
-import { Elysia, ListenCallback, TSchema, TraceHandler, t } from "elysia";
-import { BadRequest, KafkaProducer, Logger, NotAuthorizedResponse, Redis, createEnvStore, logger, migrator } from "framework";
-import { JwtPayload, sign, verify } from "jsonwebtoken";
+import { Elysia, ListenCallback, TSchema, TraceHandler } from "elysia";
+import { KafkaProducer, Redis, createEnvStore, Logger, migrator } from "framework";
 import { Pool } from "pg";
-import { DURATION_UNITS } from "utils/datetime";
 import z from "zod";
-
-
-
 import { users } from "schemas";
 import { VerifyGroupHandler } from "./verify";
 import { GoogleHandlerGroup } from "./google";
 
+const logger = Logger("Auth-query-service")
+
 const migrationsUsersFolder = resolve("./apps/auth-query-service/database/migrations");
-await migrator(process.env.AUTH_READ_DB_URL || "", migrationsUsersFolder);
+await migrator(process.env.AUTH_READ_DB_URL || "", migrationsUsersFolder, logger);
 const env = createEnvStore(
   z.object({
     AUTH_QUERY_SERVICE_PORT: z.string().transform((val) => +val),

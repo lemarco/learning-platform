@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import { migrate } from "drizzle-orm/postgres-js/migrator";
 import postgres from "postgres";
-import { logger } from "./logger";
+import { Logger } from "pino";
 
 type DBCredentials = {
   user: string;
@@ -9,7 +9,7 @@ type DBCredentials = {
   host: string;
   password: string;
 };
-export const migrator = async (creds: DBCredentials | string, migrationsFolder: string) => {
+export const migrator = async (creds: DBCredentials | string, migrationsFolder: string, logger: Logger<never>) => {
   logger.debug("***MIGRATION STARTED***", creds);
 
   const migrationClient = postgres(creds as unknown as string, {

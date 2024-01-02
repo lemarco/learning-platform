@@ -1,7 +1,7 @@
 import { resolve } from "path";
 import { NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
 import { Elysia, ListenCallback, TSchema, } from "elysia";
-import { KafkaProducer, NotAuthorizedResponse, Redis, createEnvStore, logger } from "framework";
+import { KafkaProducer, Redis, createEnvStore, Logger } from "framework";
 import { migrator } from "framework";
 import { Pool } from "pg";
 import { events } from "schemas";
@@ -9,9 +9,9 @@ import z from "zod";
 
 import { GoogleLoginGroupHandler } from "./google";
 import { LogoutGroupHandler } from "./logout";
-
+const logger = Logger("Auth-command-service")
 const migrationsEventsFolder = resolve("./apps/auth-command-service/database/migrations");
-await migrator(process.env.AUTH_EVENTS_DB_URL || "", migrationsEventsFolder);
+await migrator(process.env.AUTH_EVENTS_DB_URL || "", migrationsEventsFolder, logger);
 const env = createEnvStore(
   z.object({
     JWT_SECRET: z.string(),
@@ -41,6 +41,7 @@ const redis = new Redis({
   logger,
 })
 
+
 const app = new Elysia()
   .get('/', () => new Response("OK"))
   .state("env", env)
@@ -59,5 +60,5 @@ const ListenConfig = {
   port: env.AUTH_COMMANDS_SERVICE_PORT,
   hostname: '0.0.0.0',
 }
-const onStart: ListenCallback = () => logger.info(`Auth command service started on port ${env.AUTH_COMMANDS_SERVICE_PORT}`)
+const onStart: ListenCallback = () => logger.info(`Started on port ${env.AUTH_COMMANDS_SERVICE_PORT}`)
 app.group("/auth", (app) => app.use(GoogleLoginGroupHandler).use(LogoutGroupHandler)).listen(ListenConfig, onStart)

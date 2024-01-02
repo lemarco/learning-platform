@@ -13,6 +13,7 @@ services:
     #   - "${AUTH_COMMANDS_SERVICE_PORT}:${AUTH_COMMANDS_SERVICE_PORT}"
     volumes:
       - "./backend:/app"
+      - "./logs/services:/app/logs"
 
   auth_query_service:
     container_name: auth_query_service
@@ -23,6 +24,7 @@ services:
       - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
       - "./backend:/app"
+      - "./logs/services:/app/logs"
     expose:
       - ${AUTH_QUERY_SERVICE_PORT}
 
@@ -33,6 +35,7 @@ services:
     command: bun run dev:auth-events
     volumes:
       - "./backend:/app"
+      - "./logs/services:/app/logs"
 
   gateway:
     container_name: gateway
@@ -43,3 +46,4 @@ services:
       - "${GATEWAY_PORT}:${GATEWAY_PORT}"
     volumes:
       - "./backend:/app"
+      - "./logs/services:/app/logs"
