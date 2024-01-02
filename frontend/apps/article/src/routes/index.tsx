@@ -745,7 +745,7 @@ const ArticleJumbotron = component$(() => {
           </a>
         </span>
         <h1 class="mb-4 max-w-4xl text-2xl font-extrabold leading-none text-white sm:text-3xl lg:text-4xl">
-          Flowbite Blocks Tutorial - Learn how to get started with custom sections using the Flowbite Blocks
+          Blocks Tutorial - Learn how to get started with custom sections using the Flowbite Blocks
         </h1>
         <p class="text-lg font-normal text-gray-300">Before going digital, you might scribbling down some ideas in a sketchbook.</p>
       </div>
@@ -779,7 +779,7 @@ const Article = component$(() => {
     <article class="xl:w-[828px] w-full max-w-none format format-sm sm:format-base lg:format-lg format-blue dark:format-invert dark:text-white">
       <ArticleHeader />
       <p class="dark:text-white">
-        Flowbite is an open-source library of UI components built with the utility-first classes from Tailwind CSS. It also includes
+        An open-source library of UI components built with the utility-first classes from Tailwind CSS. It also includes
         interactive elements such as dropdowns, modals, datepickers.
       </p>
       <p class="dark:text-white">
@@ -787,7 +787,7 @@ const Article = component$(() => {
         before committing to an actual design project.
       </p>
       <p class="dark:text-white">
-        But then I found a <a href="/">component library based on Tailwind CSS called Flowbite</a>. It comes with the most commonly used UI
+        But then I found a <a href="/">component library based on Tailwind CSS</a>. It comes with the most commonly used UI
         components, such as buttons, navigation bars, cards, form elements, and more which are conveniently built with the utility classes
         from Tailwind CSS.
       </p>
@@ -795,9 +795,9 @@ const Article = component$(() => {
         <img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png" alt="" class="mx-auto" />
         <figcaption>Digital art by Anonymous</figcaption>
       </figure>
-      <h2>Getting started with Flowbite</h2>
+      <h2>Getting started </h2>
       <p class="dark:text-white">
-        First of all you need to understand how Flowbite works. This library is not another framework. Rather, it is a set of components
+        First of all you need to understand how  works. This library is not another framework. Rather, it is a set of components
         based on Tailwind CSS that you can just copy-paste from the documentation.
       </p>
       <p class="dark:text-white">
@@ -806,13 +806,13 @@ const Article = component$(() => {
       </p>
       <p class="dark:text-white">
         You can check out the <a href="https://flowbite.com/docs/getting-started/quickstart/">quickstart guide</a> to explore the elements
-        by including the CDN files into your project. But if you want to build a project with Flowbite I recommend you to follow the build
+        by including the CDN files into your project. But if you want to build a project with  I recommend you to follow the build
         tools steps so that you can purge and minify the generated CSS.
       </p>
       <p class="dark:text-white">
         You'll also receive a lot of useful application UI, marketing UI, and e-commerce pages that can help you get started with your
         projects even faster. You can check out this <a href="/">comparison table</a> to better understand the differences between the
-        open-source and pro version of Flowbite.
+        open-source and pro version of .
       </p>
       <h2>When does design come in handy?</h2>
       <p class="dark:text-white">
@@ -865,7 +865,7 @@ const Article = component$(() => {
       <p class="dark:text-white">A serif is a small shape or projection that appears at the beginning:</p>
       <blockquote>
         <p class="dark:text-white">
-          Flowbite is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard.
+          is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard.
           Perfect choice for your next SaaS application.
         </p>
       </blockquote>

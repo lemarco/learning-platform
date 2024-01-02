@@ -37,7 +37,7 @@ const app = new Elysia()
   })
   .group("/api", (app) =>
     app.get("/", () => {
-      return new Response();
+      return new Response("OK");
     }),
   )
   .group("/auth", (app) =>
@@ -47,6 +47,7 @@ const app = new Elysia()
   )
   .listen(
     {
+      hostname: '0.0.0.0',
       port: env.GATEWAY_PORT,
     },
     () => logger.info(`Gateway!! started on port ${env.GATEWAY_PORT}`),

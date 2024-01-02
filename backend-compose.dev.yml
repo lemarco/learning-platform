@@ -7,11 +7,12 @@ services:
     build:
       dockerfile: ./backend/.dev.dockerfile
     command: bun run dev:auth-command
-    ports:
-      - "${AUTH_COMMANDS_SERVICE_PORT}:${AUTH_COMMANDS_SERVICE_PORT}"
+    expose:
+      - ${AUTH_COMMANDS_SERVICE_PORT}
+    # ports:
+    #   - "${AUTH_COMMANDS_SERVICE_PORT}:${AUTH_COMMANDS_SERVICE_PORT}"
     volumes:
       - "./backend:/app"
-    # network_mode: host
 
   auth_query_service:
     container_name: auth_query_service
@@ -22,7 +23,6 @@ services:
       - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
       - "./backend:/app"
-    # network_mode: host
     expose:
       - ${AUTH_QUERY_SERVICE_PORT}
 
@@ -31,13 +31,8 @@ services:
     build:
       dockerfile: ./backend/.dev.dockerfile
     command: bun run dev:auth-events
-    expose:
-      - ${AUTH_QUERY_SERVICE_PORT}
-    ports:
-      - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
       - "./backend:/app"
-    # network_mode: host
 
   gateway:
     container_name: gateway
@@ -45,11 +40,6 @@ services:
       dockerfile: ./backend/.dev.dockerfile
     command: bun run dev:gateway
     ports:
-      - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
+      - "${GATEWAY_PORT}:${GATEWAY_PORT}"
     volumes:
       - "./backend:/app"
-    # network_mode: host
-
-  # backend:
-  #   name: backend
-  #   driver: bridge

@@ -14,7 +14,7 @@ copy-env-to-frontend:
 	cp .env ./frontend
 
 dev-frontend-up: copy-env-to-frontend
-	docker compose -f ./frontend-compose.dev.yml up
+	docker compose -f ./frontend-compose.dev.yml up -d
 
 clean-frontend:
 	docker compose -f ./frontend-compose.dev.yml down
@@ -38,7 +38,7 @@ copy-env-to-backend:
 
 
 dev-backend-up: copy-env-to-backend dev-infra-up
-	docker compose -f ./backend-compose.dev.yml up
+	docker compose -f ./backend-compose.dev.yml up -d
 
 dev-env-up: dev-frontend-up dev-backend-up
 
@@ -51,4 +51,4 @@ clean: clean-frontend clean-backend clean-docker
 clean-dev-env-up: clean dev-frontend-up dev-backend-up
 
 dev-all: clean copy-env-to-frontend copy-env-to-backend install
-	docker compose -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up 
+	docker compose -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d

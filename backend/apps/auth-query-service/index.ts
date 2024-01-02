@@ -87,6 +87,7 @@ const app = new Elysia().group("/auth", (app) => {
       INTERNAL_COMUNICATION_SECRET: z.string(),
     }),
   );
+  console.log("env.AUTH_QUERY_SERVICE_PORT = ", env.AUTH_QUERY_SERVICE_PORT)
   return app
     .state("env", env)
     .state("logger", logger)
@@ -114,7 +115,7 @@ const app = new Elysia().group("/auth", (app) => {
         access: headers.access_token || "",
         refresh: headers.refresh_token || "",
       };
-    })
+    }).get('/', () => new Response("OK"))
     .get(
       "/verify",
       async ({ access, store: { redis, env } }) => {
@@ -176,7 +177,7 @@ const app = new Elysia().group("/auth", (app) => {
     .listen(
       {
         port: env.AUTH_QUERY_SERVICE_PORT,
-        hostname: env.AUTH_QUERY_SERVICE_HOST,
+
       },
       () => {
         logger.info(`Auth query service started on port ${env.AUTH_QUERY_SERVICE_PORT}`);

@@ -108,7 +108,7 @@ const app = new Elysia().group("/auth", (app) => {
     .listen(
       {
         port: env.AUTH_COMMANDS_SERVICE_PORT,
-        // hostname: env.AUTH_COMMANDS_SERVICE_HOST,
+        hostname: '0.0.0.0',
       },
       () => logger.info(`Auth command service started on port ${env.AUTH_COMMANDS_SERVICE_PORT}`),
     );

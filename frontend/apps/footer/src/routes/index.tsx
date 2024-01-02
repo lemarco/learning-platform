@@ -7,11 +7,10 @@ const Footer = component$(() => {
         <div class="grid grid-cols-2 gap-8 lg:grid-cols-6">
           <div class="col-span-2">
             <a href="/" class="flex items-center mb-2 text-2xl font-semibold text-gray-900 sm:mb-0 dark:text-white">
-              Flowbite
+              COMPANY NAME
             </a>
             <p class="my-4 font-light text-gray-500 dark:text-gray-400">
-              Flowbite is a open-source library of over 400+ web components and interactive elements built with the utility classes from
-              Tailwind CSS.
+              COMPANY NAME is super cool
             </p>
             <ul class="flex mt-5 space-x-6">
               <li>
@@ -172,7 +171,7 @@ const Footer = component$(() => {
         <span class="block text-sm text-center text-gray-500 dark:text-gray-400">
           © 2021-2022{" "}
           <a href="/" class="hover:underline">
-            Flowbite™
+            COMPANY NAME™
           </a>
           . All Rights Reserved.
         </span>
