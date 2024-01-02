@@ -3,12 +3,12 @@ import { NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
 import { Elysia, ListenCallback, TSchema, } from "elysia";
 import { KafkaProducer, NotAuthorizedResponse, Redis, createEnvStore, logger } from "framework";
 import { migrator } from "framework";
-import { verify } from "jsonwebtoken";
 import { Pool } from "pg";
 import { events } from "schemas";
 import z from "zod";
 
-import { googleGroupHandler } from "./google";
+import { GoogleLoginGroupHandler } from "./google";
+import { LogoutGroupHandler } from "./logout";
 
 const migrationsEventsFolder = resolve("./apps/auth-command-service/database/migrations");
 await migrator(process.env.AUTH_EVENTS_DB_URL || "", migrationsEventsFolder);
@@ -41,7 +41,8 @@ const redis = new Redis({
   logger,
 })
 
-const app = new Elysia().group("/auth", (app) => app
+const app = new Elysia()
+  .get('/', () => new Response("OK"))
   .state("env", env)
   .state("logger", logger)
   .state("redis", redis)
@@ -51,7 +52,7 @@ const app = new Elysia().group("/auth", (app) => app
     access: cookie.access_token.get(),
     refresh: cookie.refresh_token.get(),
   }))
-)
+
 
 export type App = typeof app
 const ListenConfig = {
@@ -59,28 +60,4 @@ const ListenConfig = {
   hostname: '0.0.0.0',
 }
 const onStart: ListenCallback = () => logger.info(`Auth command service started on port ${env.AUTH_COMMANDS_SERVICE_PORT}`)
-app.derive(({ cookie }) => ({
-  access: cookie.access_token.get(),
-  refresh: cookie.refresh_token.get(),
-})).use(googleGroupHandler)
-  .get(
-    "/logout",
-    async ({ access, refresh, store: { redis, env } }) => {
-      const { id } = verify(access, env.JWT_SECRET) as { id: string };
-      await redis.setWithExpiry("access-block", id, refresh, 15);
-      return new Response("", {
-        status: 200,
-        headers: {
-          "Set-Cookie": "access=; Max-Age=0;HttpOnly;,refresh=; Max-Age=0;HttpOnly;",
-        },
-      });
-    },
-    {
-      error: async (e) => NotAuthorizedResponse(),
-      beforeHandle: ({ access, refresh }) => {
-        if (!access || !refresh) {
-          return NotAuthorizedResponse();
-        }
-      },
-    },
-  ).listen(ListenConfig, onStart);
+app.group("/auth", (app) => app.use(GoogleLoginGroupHandler).use(LogoutGroupHandler)).listen(ListenConfig, onStart)

@@ -1,7 +1,7 @@
 
 import { KafkaConsumer, KafkaProducer, createEnvStore, httpApiCall, logger } from "framework";
 import z from "zod";
-import { Context, Cookie, Elysia, Handler, ListenCallback, TraceHandler, t } from "elysia";
+import { Elysia, ListenCallback, TraceHandler } from "elysia";
 import { AuthRoutesHandler } from "./auth";
 import { ApiRoutesHandler } from "./api";
 
@@ -33,7 +33,7 @@ const ListenConfig = {
 }
 const onStart: ListenCallback = () => logger.info(`Gateway started on port ${env.GATEWAY_PORT}`)
 const tracer: TraceHandler = (req) => logger.info(req)
-const app = new Elysia().state("env", env).trace(tracer).ws('/ws', {
+const app = new Elysia().get('/', () => new Response("OK")).state("env", env).trace(tracer).ws('/ws', {
   async open(ws) {
     const data = await httpApiCall(`${servicesBaseUrls.authQuery}/auth/verify`)
     if (!data) { ws.close() }
