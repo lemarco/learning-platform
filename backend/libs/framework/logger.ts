@@ -4,16 +4,32 @@ import pino, { Logger as L, destination, stdTimeFunctions } from "pino";
 //   options: { destination: `${__dirname}/app.log` },
 // });
 
-export const Logger = (serviceName: string) => pino(
+export const Logger = (serviceName: string) => pino(pino.transport(
+  {
 
-  destination({
-    dest: `/app/logs/${serviceName}.log`,
-    minLength: 4096,
-    sync: false
-  })
-)
+    target: 'pino/file',
+    options: { destination: `/app/logs/${serviceName}.log` }
+
+
+  }
+))
+
+
 export type LoggerType = typeof Logger
 
+// destination({
+//   dest: `/app/logs/${serviceName}.log`,
+//   minLength: 4096,
+//   sync: false
+// })
+// {
+//   prettyPrint: {
+//     colorize: true,
+//     levelFirst: true,
+//     translateTime: "yyyy-dd-mm, h:MM:ss TT",
+//   },
+// },
+// pino.destination("./pino-logger.log")
 
 //   {
 

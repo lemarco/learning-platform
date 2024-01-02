@@ -14,7 +14,7 @@ monitoring.ui.container.logstash.enabled: true
 elasticsearch.username: kibana_system
 elasticsearch.password: ${KIBANA_SYSTEM_PASSWORD}
 
-kibana.heap.size: 2048m
+# kibana.heap.size: 2048m
 
 ## Fleet
 ## https://www.elastic.co/guide/en/kibana/current/fleet-settings-kb.html

@@ -132,15 +132,15 @@ services:
   ####################### SETUP #######################
   setup:
     build:
-      context: elk/setup/
+      context: ./configs/elk-setup/
       args:
         ELASTIC_VERSION: ${ELASTIC_VERSION}
     init: true
     volumes:
-      - ./elk/setup/entrypoint.sh:/entrypoint.sh:ro,Z
-      - ./elk/setup/helpers.sh:/helpers.sh:ro,Z
-      - ./elk/setup/roles:/roles:ro,Z
-      - setup:/state:Z
+      - ./configs/elk-setup/entrypoint.sh:/entrypoint.sh:ro,Z
+      - ./configs/elk-setup/helpers.sh:/helpers.sh:ro,Z
+      - ./configs/elk-setup/roles:/roles:ro,Z
+      - ./configs/elk-setup/:/state:Z
     environment:
       ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
       KIBANA_SYSTEM_PASSWORD: ${KIBANA_SYSTEM_PASSWORD:-}
@@ -148,7 +148,8 @@ services:
 
     depends_on:
       - elasticsearch
-
+    env_file:
+      - .env
   ###################### ELK #######################
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
@@ -165,7 +166,8 @@ services:
       ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
       discovery.type: single-node
     restart: unless-stopped
-
+    env_file:
+      - .env
   kibana:
     image: docker.elastic.co/kibana/kibana:${ELASTIC_VERSION}
     mem_limit: 2g
@@ -179,11 +181,12 @@ services:
     depends_on:
       - elasticsearch
     restart: unless-stopped
+    env_file:
+      - .env
 
   filebeat:
-    build:
-      image: elastic/filebeat:${ELASTIC_VERSION}
-      user: root
+    image: elastic/filebeat:${ELASTIC_VERSION}
+
     command:
       - -e
       - --strict.perms=false
@@ -198,3 +201,5 @@ services:
       BEATS_SYSTEM_PASSWORD: ${FILEBEAT_INTERNAL_PASSWORD:-}
     depends_on:
       - elasticsearch
+    env_file:
+      - .env
