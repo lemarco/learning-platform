@@ -1,0 +1,129 @@
+version: "3.9"
+
+services:
+  reverse_proxy:
+    container_name: reverse_proxy
+    restart: always
+    image: nginx:1.25.2-alpine
+    volumes:
+      - ${PWD}/configs/nginx/nginx.dev.conf:/etc/nginx/nginx.conf
+      - ${PWD}/logs/nginx/:/var/log/nginx
+    ports:
+      - "80:80"
+    env_file:
+      - .env
+
+  users_events_db:
+    container_name: users_events_db
+    restart: always
+    image: postgres:16.1-alpine
+
+    environment:
+      POSTGRES_HOST: ${USERS_EVENTS_DB_HOST}
+      POSTGRES_PASSWORD: ${USERS_EVENTS_DB_PASSWORD}
+      POSTGRES_DB: ${USERS_EVENTS_DB_NAME}
+      POSTGRES_USER: ${USERS_EVENTS_DB_USER}
+      POSTGRES_PORT: 5432
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "${USERS_EVENTS_DB_PORT}:5432"
+    env_file:
+      - .env
+    volumes:
+      - ${PWD}/data/users_events_db/:/var/lib/postgresql/data
+
+  users_read_db:
+    container_name: users_read_db
+    restart: always
+    image: postgres:16.1-alpine
+
+    environment:
+      POSTGRES_HOST: ${USERS_READ_DB_HOST}
+      POSTGRES_PASSWORD: ${USERS_READ_DB_PASSWORD}
+      POSTGRES_DB: ${USERS_READ_DB_NAME}
+      POSTGRES_USER: ${USERS_READ_DB_USER}
+      POSTGRES_PORT: 5432
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "${USERS_READ_DB_PORT}:5432"
+    env_file:
+      - .env
+    volumes:
+      - ${PWD}/data/users_read_db/:/var/lib/postgresql/data
+
+  auth_events_db:
+    container_name: auth_events_db
+    restart: always
+    image: postgres:16.1-alpine
+
+    environment:
+      POSTGRES_HOST: ${AUTH_EVENTS_DB_HOST}
+      POSTGRES_PASSWORD: ${AUTH_EVENTS_DB_PASSWORD}
+      POSTGRES_DB: ${AUTH_EVENTS_DB_NAME}
+      POSTGRES_USER: ${AUTH_EVENTS_DB_USER}
+      POSTGRES_PORT: 5432
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "${AUTH_EVENTS_DB_PORT}:5432"
+    env_file:
+      - .env
+    volumes:
+      - ${PWD}/data/auth_events_db/:/var/lib/postgresql/data
+
+  auth_token_store:
+    image: "redis:alpine"
+    container_name: auth_token_store
+    ports:
+      - "${AUTH_TOKEN_STORE_PORT}:6379"
+    env_file:
+      - .env
+    volumes:
+      - ${PWD}/data/auth_token_store/:/data
+
+  auth_read_db:
+    container_name: auth_read_db
+    restart: always
+    image: postgres:16.1-alpine
+
+    environment:
+      POSTGRES_HOST: ${AUTH_READ_DB_HOST}
+      POSTGRES_PASSWORD: ${AUTH_READ_DB_PASSWORD}
+      POSTGRES_DB: ${AUTH_READ_DB_NAME}
+      POSTGRES_USER: ${AUTH_READ_DB_USER}
+      POSTGRES_PORT: 5432
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "${AUTH_READ_DB_PORT}:5432"
+    env_file:
+      - .env
+    volumes:
+      - ${PWD}/data/auth_read_db/:/var/lib/postgresql/data
+
+  zookeeper:
+    container_name: zookeeper
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    volumes:
+      - ${PWD}/data/zookeeper/:/var/lib/zookeeper/data
+      - ${PWD}/logs/zookeeper/:/var/lib/zookeeper/log
+      - ${PWD}/configs/kafka:/etc/zookeeper/conf
+
+  kafka:
+    container_name: kafka
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+    volumes:
+      - ${PWD}/data/kafka/:/var/lib/kafka/data

@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  host-app:
+    container_name: ${PUBLIC_FRONTEND_HOST_APP_HOST}
+    build:
+      dockerfile: ./frontend/apps/host/Dockerfile
+    ports:
+      - "${PUBLIC_FRONTEND_HOST_APP_PORT}:${PUBLIC_FRONTEND_HOST_APP_PORT}"
+    volumes:
+      - "./frontend:/app"
+
+  article-app:
+    container_name: ${FRONTEND_ARTICLE_APP_HOST}
+    build:
+      dockerfile: ./frontend/apps/article/Dockerfile
+    volumes:
+      - "./frontend:/app"
+
+  blog-app:
+    container_name: ${FRONTEND_BLOG_APP_HOST}
+    build:
+      dockerfile: ./frontend/apps/blog/Dockerfile
+    volumes:
+      - "./frontend:/app"
+
+  footer-app:
+    container_name: ${FRONTEND_FOOTER_APP_HOST}
+    build:
+      dockerfile: ./frontend/apps/footer/Dockerfile
+    volumes:
+      - "./frontend:/app"
+
+  header-app:
+    container_name: ${FRONTEND_HEADER_APP_HOST}
+    build:
+      dockerfile: ./frontend/apps/header/Dockerfile
+    volumes:
+      - "./frontend:/app"
+
+  home-app:
+    container_name: ${FRONTEND_HOME_APP_HOST}
+    build:
+      dockerfile: ./frontend/apps/home/Dockerfile
+    volumes:
+      - "./frontend:/app"

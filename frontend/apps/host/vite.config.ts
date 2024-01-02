@@ -1,0 +1,52 @@
+import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikCity } from '@builder.io/qwik-city/vite';
+import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { qwikNxVite } from 'qwik-nx/plugins';
+import { config } from "dotenv";
+const { parsed, error } = config()
+console.log(parsed?.['PUBLIC_FRONTEND_HOST_APP_PORT'])
+if (error) {
+
+
+  process.exit()
+}
+export default defineConfig({
+  cacheDir: '../../node_modules/.vite/apps/host',
+  plugins: [
+    qwikNxVite(),
+    qwikCity(),
+    qwikVite({
+      client: {
+        outDir: '../../dist/apps/host/client',
+      },
+      ssr: {
+        outDir: '../../dist/apps/host/server',
+      },
+      tsconfigFileNames: ['tsconfig.app.json'],
+    }),
+    tsconfigPaths({ root: '../../' }),
+  ],
+  server: {
+    host: "0.0.0.0",
+    port: Number(parsed?.['PUBLIC_FRONTEND_HOST_APP_PORT']),
+    fs: {
+      // Allow serving files from the project root
+      allow: ['../../'],
+    },
+  },
+  preview: {
+    headers: {
+      'Cache-Control': 'public, max-age=600',
+    },
+  },
+  test: {
+    globals: true,
+    cache: {
+      dir: '../../node_modules/.vitest',
+    },
+    environment: 'node',
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+  },
+});
+

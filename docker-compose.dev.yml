@@ -6,32 +6,29 @@ services:
     restart: on-failure
     build:
       context: .
-      dockerfile: ./apps/auth-command-service/.dockerfile
+      dockerfile: ./src/server-apps/auth-command-service/.dockerfile
     command: bun run dev:auth-command
     ports:
       - "${AUTH_COMMANDS_SERVICE_PORT}:${AUTH_COMMANDS_SERVICE_PORT}"
     volumes:
       - './:/app'
 
-
-
   auth_query_service:
     container_name: auth_query_service
     build:
       context: .
-      dockerfile: ./apps/auth-query-service/.dockerfile
+      dockerfile: ./src/server-apps/auth-query-service/.dockerfile
     command: bun run dev:auth-query
     ports:
       - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
-      - './:/app'  
-
+      - './:/app'
 
   auth_events_service:
     container_name: auth_events_service
     build:
       context: .
-      dockerfile: ./apps/auth-events-service/.dockerfile
+      dockerfile: ./src/server-apps/auth-events-service/.dockerfile
     command: bun run dev:auth-events
     # ports:
     #   - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
@@ -42,43 +39,98 @@ services:
     container_name: gateway
     build:
       context: .
-      dockerfile: ./apps/gateway/.dockerfile
+      dockerfile: ./src/server-apps/gateway/.dockerfile
     command: bun run dev:gateway
     # ports:
     #   - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
     volumes:
-      - './:/app' 
+      - './:/app'
 
-
-  platform-app:
+  host-app:
     network_mode: "host"
-    container_name: platform-app
+    container_name: host-app
     build:
       context: .
-      dockerfile: ./apps/platform-app/.dockerfile
-    command: bun run dev:platform-app
+      dockerfile: ./src/front-apps/host/.dockerfile
+    command: bun run dev:host
     ports:
-      - "10000:10000"
-    # expose:
-    #   - ${PLATFORM_APP_FRONTEND_PORT}
+      - "${PUBLIC_FRONTEND_HOST_APP_PORT}:${PUBLIC_FRONTEND_HOST_APP_PORT}"
     volumes:
-      - './:/app' 
-  blog-app:
+      - './:/app'
+  article-app:
     network_mode: "host"
+    container_name: article-app
+    build:
+      context: .
+      dockerfile: ./src/front-apps/article/.dockerfile
+    command: bun run dev:article
+    ports:
+      - "${FRONTEND_ARTICLE_APP_PORT}:${FRONTEND_ARTICLE_APP_PORT}"
+    volumes:
+      - './:/app'
+  blog-app:
+
     container_name: blog-app
     build:
       context: .
-      dockerfile: ./apps/blog-app/.dockerfile
-    command: bun run dev:blog-app
+      dockerfile: ./src/front-apps/blog/.dockerfile
+    command: bun run dev:blog
     ports:
-      - "10001:10001"
-    # expose:
-    #   - ${PLATFORM_APP_FRONTEND_PORT}
+      - "${FRONTEND_BLOG_APP_PORT}:${FRONTEND_BLOG_APP_PORT}"
     volumes:
-      - './:/app' 
+      - './:/app'
+
+  footer-app:
+    network_mode: "host"
+    container_name: footer-app
+    build:
+      context: .
+      dockerfile: ./src/front-apps/footer/.dockerfile
+    command: bun run dev:footer
+    ports:
+      - "${FRONTEND_FOOTER_APP_PORT}:${FRONTEND_FOOTER_APP_PORT}"
+    volumes:
+      - './:/app'
+  header-app:
+
+    container_name: header-app
+    build:
+      context: .
+      dockerfile: ./src/front-apps/header/.dockerfile
+    command: bun run dev:header
+    ports:
+      - "${FRONTEND_HEADER_APP_PORT}:${FRONTEND_HEADER_APP_PORT}"
+    volumes:
+      - './:/app'
+
+  home-app:
+
+    container_name: home-app
+    build:
+      context: .
+      dockerfile: ./src/front-apps/home/.dockerfile
+    command: bun run dev:home
+    ports:
+      - "${FRONTEND_HOME_APP_PORT}:${FRONTEND_HOME_APP_PORT}"
+    volumes:
+      - './:/app'
+
+  # host-front-app:
+  #   network_mode: "host"
+  #   container_name: host-front-app
+  #   build:
+  #     context: .
+  #     dockerfile: ./src/front-apps/host-front-app/.dockerfile
+  #   command: bun run dev:host-front-app
+  #   ports:
+  #     - "10002:10002"
+  #   # expose:
+  #   #   - ${PLATFORM_APP_FRONTEND_PORT}
+  #   volumes:
+  #     - './:/app'
   reverse_proxy:
     container_name: reverse_proxy
-    network_mode: "host"
+
     restart: always
 
     image: nginx:1.25.2-alpine
@@ -89,7 +141,6 @@ services:
       - '80:80'
     env_file:
       - .env
-
 
   users_events_db:
     container_name: users_events_db
@@ -148,7 +199,7 @@ services:
     volumes:
       - ${PWD}/data/auth_events_db/:/var/lib/postgresql/data
   auth_token_store:
-    image: "redis:latest"
+    image: "redis:alpine"
     container_name: auth_token_store
     ports:
       - "${AUTH_TOKEN_STORE_PORT}:6379"
@@ -183,9 +234,9 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     volumes:
-      -  ${PWD}/data/zookeeper/:/var/lib/zookeeper/data
-      -  ${PWD}/logs/zookeeper/:/var/lib/zookeeper/log
-      -  ${PWD}/configs/kafka:/etc/zookeeper/conf
+      - ${PWD}/data/zookeeper/:/var/lib/zookeeper/data
+      - ${PWD}/logs/zookeeper/:/var/lib/zookeeper/log
+      - ${PWD}/configs/kafka:/etc/zookeeper/conf
   kafka:
     container_name: kafka
     image: confluentinc/cp-kafka:latest
@@ -203,3 +254,4 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
     volumes:
       - ${PWD}/data/kafka/:/var/lib/kafka/data
+
