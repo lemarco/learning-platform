@@ -1,6 +1,6 @@
+import { BadRequest } from "framework";
 import { App } from "..";
 import { gooogleSignin } from "./signin";
-import { BadRequest } from "framework";
 export const GoogleLoginGroupHandler = (app: App) => {
   return app.group("/google", (app) =>
     app

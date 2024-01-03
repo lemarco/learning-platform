@@ -1,7 +1,7 @@
 import { resolve } from "path";
 import { NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
 import { Elysia, ListenCallback, TSchema } from "elysia";
-import { KafkaProducer, Redis, createEnvStore, Logger } from "framework";
+import { KafkaProducer, Logger, Redis, createEnvStore } from "framework";
 import { migrator } from "framework";
 import { Pool } from "pg";
 import { events } from "schemas";
@@ -11,7 +11,6 @@ import { GoogleLoginGroupHandler } from "./google";
 import { LogoutGroupHandler } from "./logout";
 const logger = Logger("Auth-command-service");
 const migrationsEventsFolder = resolve("./apps/auth-command-service/database/migrations");
-await migrator(process.env.AUTH_EVENTS_DB_URL || "", migrationsEventsFolder, logger);
 const env = createEnvStore(
   z.object({
     JWT_SECRET: z.string(),
@@ -28,10 +27,11 @@ const env = createEnvStore(
     INTERNAL_COMUNICATION_SECRET: z.string(),
   }),
 );
+await migrator(env.AUTH_EVENTS_DB_URL || "", migrationsEventsFolder, logger);
 
 const pool: NodePgDatabase<TSchema> = drizzle(
   new Pool({
-    connectionString: process.env.AUTH_EVENTS_DB_URL,
+    connectionString: env.AUTH_EVENTS_DB_URL,
   }),
   { schema: { ...events } },
 );

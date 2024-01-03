@@ -1,5 +1,5 @@
-import type { Config } from "tailwindcss";
 import { join } from "node:path";
+import type { Config } from "tailwindcss";
 const { createGlobPatternsForDependencies } = require("@nx/react/tailwind");
 
 import flowbite from "flowbite/plugin";

@@ -1,5 +1,5 @@
 import { createDOM } from "@builder.io/qwik/testing";
-import { test, expect } from "vitest";
+import { expect, test } from "vitest";
 import { StylingConfig } from "./styling-config";
 
 test(`[StylingConfig Component]: Should render`, async () => {

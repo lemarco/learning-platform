@@ -1,6 +1,6 @@
+import { NotAuthorizedResponse } from "framework";
 import { verify } from "jsonwebtoken";
 import { App } from "..";
-import { NotAuthorizedResponse } from "framework";
 export const LogoutGroupHandler = (app: App) =>
   app
     .derive(({ cookie }) => ({

@@ -1,13 +1,14 @@
-import { KafkaConsumer, KafkaProducer, createEnvStore, httpApiCall, Logger } from "framework";
-import z from "zod";
 import { Elysia, ListenCallback, TraceHandler } from "elysia";
-import { AuthRoutesHandler } from "./auth";
+import { KafkaConsumer, KafkaProducer, Logger, createEnvStore, httpApiCall } from "framework";
+import z from "zod";
 import { ApiRoutesHandler } from "./api";
+import { AuthRoutesHandler } from "./auth";
 
 type AnyEvent = {
   type: string;
   payload: unknown;
 };
+const logger = Logger("Gateway");
 const env = createEnvStore(
   z.object({
     GATEWAY_HOST: z.string(),
@@ -18,6 +19,7 @@ const env = createEnvStore(
     AUTH_COMMANDS_SERVICE_PORT: z.string().transform((val) => +val),
     AUTH_COMMANDS_SERVICE_HOST: z.string(),
   }),
+  logger,
 );
 const connections = new Map();
 const servicesBaseUrls = {
@@ -29,8 +31,7 @@ const ListenConfig = {
   hostname: "0.0.0.0",
   port: env.GATEWAY_PORT,
 };
-const logger = Logger("Gateway");
-setTimeout(() => logger.info("I'm alive"), 500);
+
 const onStart: ListenCallback = () => logger.info(`Gateway started on port ${env.GATEWAY_PORT}`);
 const tracer: TraceHandler = (req) => logger.info(req);
 const app = new Elysia()
@@ -45,7 +46,7 @@ const app = new Elysia()
       }
       const { id, role } = data as { id: string; role: string };
       logger.info("WS connection ID = ", ws.id);
-      connections.set(id, ws.id);
+      connections.set(id, ws);
     },
     message(ws, message) {
       const msg = message as AnyEvent;
@@ -63,7 +64,9 @@ const app = new Elysia()
         }
       }
     },
-  });
+  })
+  .listen(ListenConfig);
+
 export type App = typeof app;
 
 app.use(ApiRoutesHandler).use(AuthRoutesHandler).listen(ListenConfig, onStart);

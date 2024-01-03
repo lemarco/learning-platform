@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import RemoteMfe from "../../components/remote-mfe";
-// console.log("process.env = ", process.env);
+
 export default component$(() => {
   return (
     <RemoteMfe

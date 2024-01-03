@@ -1,24 +1,14 @@
-import { JwtPayload, sign, verify } from "jsonwebtoken";
-import { App } from "..";
-import { NotAuthorizedResponse } from "framework";
 import { randomUUID } from "crypto";
+import { NotAuthorizedResponse } from "framework";
+import { JwtPayload, sign, verify } from "jsonwebtoken";
 import { DURATION_UNITS } from "utils/datetime";
-// const tokenExpireFlow = async ({
-//     error,
-//     refresh,
-//     store: { eventProducer, env, redis },
-// }: {
-//     store: Store;
-//     refresh: string;
-//     error: { name: string };
-// }) => {
+import { App } from "..";
 
-// };
 export const VerifyGroupHandler = (app: App) =>
   app.get(
     "/verify",
     async ({ access, store: { redis, env } }) => {
-      // console.log("IN  HANDLE", { access });
+
       const {
         payload: { id, role },
       } = verify(access, env.JWT_SECRET) as JwtPayload;
@@ -27,13 +17,13 @@ export const VerifyGroupHandler = (app: App) =>
     },
     {
       beforeHandle: ({ access, refresh }) => {
-        //console.log("IN BEFORE HANDLE", { access, refresh });
+
         if (!access || !refresh) {
           return NotAuthorizedResponse();
         }
       },
       error: async ({ error, refresh, store: { eventProducer, env, redis } }) => {
-        console.log("tokenExpireFlow");
+
         if (error.name !== "TokenExpiredError") {
           return NotAuthorizedResponse();
         }

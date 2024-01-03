@@ -2,48 +2,46 @@ version: "3.9"
 
 services:
   auth_command_service:
-    container_name: auth_command_service
+    container_name: ${AUTH_COMMANDS_SERVICE_HOST_NAME}
     restart: on-failure
     build:
       dockerfile: ./backend/.dev.dockerfile
     command: bun run dev:auth-command
     expose:
       - ${AUTH_COMMANDS_SERVICE_PORT}
-    # ports:
-    #   - "${AUTH_COMMANDS_SERVICE_PORT}:${AUTH_COMMANDS_SERVICE_PORT}"
     volumes:
-      - "./backend:/app"
-      - "./logs/services:/app/logs"
+      - ./backend:/app
+      - ./logs/services:/app/logs
 
   auth_query_service:
-    container_name: auth_query_service
+    container_name: ${AUTH_QUERY_SERVICE_HOST_NAME}
     build:
       dockerfile: ./backend/.dev.dockerfile
     command: bun run dev:auth-query
     ports:
-      - "${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}"
+      - ${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}
     volumes:
-      - "./backend:/app"
-      - "./logs/services:/app/logs"
+      - ./backend:/app
+      - ./logs/services:/app/logs
     expose:
       - ${AUTH_QUERY_SERVICE_PORT}
 
   auth_events_service:
-    container_name: auth_events_service
+    container_name: ${AUTH_EVENTS_SERVICE_HOST_NAME}
     build:
       dockerfile: ./backend/.dev.dockerfile
     command: bun run dev:auth-events
     volumes:
-      - "./backend:/app"
-      - "./logs/services:/app/logs"
+      - ./backend:/app
+      - ./logs/services:/app/logs
 
   gateway:
-    container_name: gateway
+    container_name: ${GATEWAY_HOST_NAME}
     build:
       dockerfile: ./backend/.dev.dockerfile
     command: bun run dev:gateway
     ports:
-      - "${GATEWAY_PORT}:${GATEWAY_PORT}"
+      - ${GATEWAY_PORT}:${GATEWAY_PORT}
     volumes:
-      - "./backend:/app"
-      - "./logs/services:/app/logs"
+      - ./backend:/app
+      - ./logs/services:/app/logs

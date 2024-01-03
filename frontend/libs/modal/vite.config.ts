@@ -1,6 +1,6 @@
 import { qwikVite } from '@builder.io/qwik/optimizer';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { qwikNxVite } from 'qwik-nx/plugins';
 

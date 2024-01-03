@@ -1,5 +1,5 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-import { Event, KafkaConsumer, Redis, createEnvStore, logger } from "framework";
+import { Event, KafkaConsumer, Logger, Redis, createEnvStore } from "framework";
 import { EachMessagePayload } from "kafkajs";
 import { Pool } from "pg";
 import { users } from "schemas";
@@ -13,19 +13,21 @@ const handleMessage = async ({ message }: EachMessagePayload): Promise<void> => 
     const messageParsed = JSON.parse(message.value?.toString()) as Event<unknown>;
   }
 };
+const logger = Logger("auth-events-service");
+const env = createEnvStore(
+  z.object({
+    AUTH_TOKEN_STORE_PORT: z.string().transform((val) => +val),
+    AUTH_TOKEN_STORE_HOST: z.string(),
+
+    INTERNAL_COMUNICATION_SECRET: z.string(),
+  }),
+  logger,
+);
 
 const bootstrap = async () => {
-  const env = createEnvStore(
-    z.object({
-      AUTH_TOKEN_STORE_PORT: z.string().transform((val) => +val),
-      AUTH_TOKEN_STORE_HOST: z.string(),
-
-      INTERNAL_COMUNICATION_SECRET: z.string(),
-    }),
-  );
   const usersdb = drizzle(
     new Pool({
-      connectionString: process.env.AUTH_EVENTS_DB_URL,
+      connectionString: env.AUTH_EVENTS_DB_URL,
     }),
     { schema: { ...users } },
   );

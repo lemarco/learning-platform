@@ -1,5 +1,5 @@
 import { Slot, component$, useSignal } from "@builder.io/qwik";
-import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
+import { type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
@@ -599,33 +599,22 @@ const BottomHeader = component$(() => {
   );
 });
 export const useGetGoogleLink = routeLoader$(async () => {
+  // TODO: change to lib function httpApiCall
   try {
     const data = await fetch("http://0.0.0.0:6004/auth/google/link");
     if (data.ok) {
       const { link } = await data.json();
-      //  console.log(`FETCHED LINK = ${link}`)
+
       return link;
     } else {
-      console.log(`FETCHED LINK  NOT OK`);
+
       return "";
     }
   } catch (e) {
-    console.log("FETCH LINK ERROR");
+
     return "";
   }
-  // const link = await fetch('http://localhost:6004/auth/google/link').catch(
-  //   (e) => {
-  //     console.log("FETCH LINK ERROR", e)
-  //     return ""
-  //   }
 
-  // ).then(res => res.json()).then(data => data.link).catch((e) => {
-
-  //   console.log("FETCH LINK ERROR", e)
-  //   //   return ""
-  // })
-  // //console.log(`Link is = ${link}`)
-  // return link
 });
 export default component$(() => {
   const googleLink = useGetGoogleLink();

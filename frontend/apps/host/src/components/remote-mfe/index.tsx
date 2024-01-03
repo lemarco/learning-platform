@@ -131,11 +131,11 @@ const getSSRStreamFunction = (remoteUrl: string, user: string) => {
 
 export default component$(({ remote }: Props) => {
   const store = useContext(GlobalAppState);
-  //console.log("remote.url= ", remote.url);
+
 
   const url = new URL(remote.url + (remote.queryParam ? "/qwik" : ""));
   // const url = new URL(remote.url + (remote.queryParam ? (store.user === "Giorgio" ? "/builder-io" : "/qwik") : ""));
-  //console.log("url = ", url);
+
   return (
     <SSRStreamBlock>
       <SSRStream>{getSSRStreamFunction(url.href, store.user)}</SSRStream>
@@ -180,7 +180,7 @@ const fixRemoteHTMLInDevMode = (rawHtml: string): { html: string; base: string }
 
   let base = "";
   if (import.meta.env.DEV) {
-    console.log("import.meta.env.DEV ");
+
     html = html.replace(/q:base="\/(\w+)\/build\/"/gm, (match, child) => {
       base = `/${child}`;
       return match;

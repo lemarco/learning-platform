@@ -1,43 +1,41 @@
 import { resolve } from "path";
 import { NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
 import { Elysia, ListenCallback, TSchema, TraceHandler } from "elysia";
-import { KafkaProducer, Redis, createEnvStore, Logger, migrator } from "framework";
+import { KafkaProducer, Logger, Redis, createEnvStore, migrator } from "framework";
 import { Pool } from "pg";
-import z from "zod";
 import { users } from "schemas";
-import { VerifyGroupHandler } from "./verify";
+import z from "zod";
 import { GoogleHandlerGroup } from "./google";
+import { VerifyGroupHandler } from "./verify";
 
 const logger = Logger("Auth-query-service");
-
 const migrationsUsersFolder = resolve("./apps/auth-query-service/database/migrations");
-await migrator(process.env.AUTH_READ_DB_URL || "", migrationsUsersFolder, logger);
 const env = createEnvStore(
   z.object({
+    AUTH_EVENTS_DB_URL: z.string(),
+    AUTH_READ_DB_URL: z.string(),
     AUTH_QUERY_SERVICE_PORT: z.string().transform((val) => +val),
     AUTH_QUERY_SERVICE_HOST: z.string(),
     JWT_SECRET: z.string(),
-    AUTH_TOKEN_STORE_HOST: z.string(),
+    AUTH_TOKEN_STORE_CONTAINER_NAME: z.string(),
     AUTH_TOKEN_STORE_PORT: z.string().transform((val) => +val),
     OAUTH_REDIRECT_URL: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
     INTERNAL_COMUNICATION_SECRET: z.string(),
   }),
-);
-const userDb: NodePgDatabase<TSchema> = drizzle(
-  new Pool({
-    connectionString: process.env.AUTH_EVENTS_DB_URL,
-  }),
-  { schema: { ...users } },
-);
-const redis = new Redis({
-  host: env.AUTH_TOKEN_STORE_HOST,
-  port: +env.AUTH_TOKEN_STORE_PORT,
   logger,
-});
+);
+
+
+await migrator(env.AUTH_READ_DB_URL || "", migrationsUsersFolder, logger);
+const redis = new Redis({ host: env.AUTH_TOKEN_STORE_CONTAINER_NAME, port: +env.AUTH_TOKEN_STORE_PORT, logger });
+
+const userDb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.AUTH_READ_DB_URL }), { schema: { ...users } });
+
 const onStart: ListenCallback = () => logger.info(`Auth query service started on port ${env.AUTH_QUERY_SERVICE_PORT}`);
 const tracer: TraceHandler = (req) => logger.info(req);
+
 const app = new Elysia()
   .get("/", () => new Response("OK"))
   .state("env", env)

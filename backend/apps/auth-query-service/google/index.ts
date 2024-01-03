@@ -1,9 +1,9 @@
-import { BadRequest, NotAuthorizedResponse } from "framework";
-import { App } from "..";
-import { users } from "schemas";
 import { eq } from "drizzle-orm";
-import { oauth2ClientGoogle } from "./google-client";
 import { t } from "elysia";
+import { BadRequest, NotAuthorizedResponse } from "framework";
+import { users } from "schemas";
+import { App } from "..";
+import { oauth2ClientGoogle } from "./google-client";
 const linkProperties = {
   access_type: "offline",
   prompt: "consent",
