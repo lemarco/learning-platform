@@ -9,9 +9,7 @@ const Footer = component$(() => {
             <a href="/" class="flex items-center mb-2 text-2xl font-semibold text-gray-900 sm:mb-0 dark:text-white">
               COMPANY NAME
             </a>
-            <p class="my-4 font-light text-gray-500 dark:text-gray-400">
-              COMPANY NAME is super cool
-            </p>
+            <p class="my-4 font-light text-gray-500 dark:text-gray-400">COMPANY NAME is super cool</p>
             <ul class="flex mt-5 space-x-6">
               <li>
                 {/* biome-ignore lint/a11y/useAnchorContent: <explanation> */}

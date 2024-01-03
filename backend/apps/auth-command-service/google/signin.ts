@@ -10,10 +10,8 @@ type DbUser = {
   id: string;
   googleId: string;
   role: string;
-  name: string
+  name: string;
 };
-
-
 
 export const gooogleSignin = async ({
   code,
@@ -36,18 +34,21 @@ export const gooogleSignin = async ({
     return NotAuthorizedResponse();
   }
   oauth2ClientGoogle.setCredentials(tokens);
-  const googleUser = await httpApiCall<GoogleUser>(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`, {
-    headers: {
-      Authorization: `Bearer ${tokens.id_token}`,
+  const googleUser = await httpApiCall<GoogleUser>(
+    `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokens.id_token}`,
+      },
     },
-  })
+  );
   if (!googleUser) {
     return NotAuthorizedResponse();
   }
 
   const dbUser = await httpApiCall<{ data: DbUser }>(
     `http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT})}/auth/google/${googleUser?.id}?secret=${env.INTERNAL_COMUNICATION_SECRET}`,
-  )
+  );
 
   const usersEvent = dbUser?.data ? createUpdateUserEvent(dbUser.data!, googleUser) : createCreateUserEvent(googleUser);
 

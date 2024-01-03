@@ -1,24 +1,17 @@
-import type { Config } from 'tailwindcss'
-import { join } from 'node:path'
-const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
+import type { Config } from "tailwindcss";
+import { join } from "node:path";
+const { createGlobPatternsForDependencies } = require("@nx/react/tailwind");
 
 import flowbite from "flowbite/plugin";
 
 import colors from "tailwindcss/colors";
 
-export default {
+export default ({
   content: [
-    join(
-      __dirname,
-      'src/**/*!(*.stories|*.spec).{ts,tsx,html}'
-    ),
-    '/app/apps/home/src/**/*!(*.stories|*.spec).{ts,tsx,html}',
+    join(__dirname, "src/**/*!(*.stories|*.spec).{ts,tsx,html}"),
+    "/app/apps/home/src/**/*!(*.stories|*.spec).{ts,tsx,html}",
     ...createGlobPatternsForDependencies(__dirname),
-    join(
-      __dirname,
-      "node_modules/flowbite-react/lib/**/*.{js,ts}",
-    ),
-
+    join(__dirname, "node_modules/flowbite-react/lib/**/*.{js,ts}"),
   ],
   darkMode: "media",
 
@@ -72,5 +65,4 @@ export default {
   },
 
   plugins: [flowbite],
-} satisfies Config
-
+} satisfies Config);

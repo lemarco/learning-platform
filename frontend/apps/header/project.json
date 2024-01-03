@@ -7,10 +7,7 @@
     "build": {
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": [
-          "header:build.client",
-          "header:build.ssr"
-        ],
+        "runSequence": ["header:build.client", "header:build.ssr"],
         "outputPath": "dist/apps/header"
       },
       "configurations": {
@@ -46,9 +43,7 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/header"
@@ -72,13 +67,9 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/header/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["apps/header/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

@@ -1,14 +1,11 @@
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import { routeLoader$, server$ } from "@builder.io/qwik-city";
-import { GithubIcon, GoogleIcon } from "@frontend/icons"
-import { Modal } from "@frontend/modal"
-
+import { GithubIcon, GoogleIcon } from "@frontend/icons";
+import { Modal } from "@frontend/modal";
 
 // import { ArrowIcon, BurgerIcon, ExploreDesignWorkIcon } from "@frontend/icons";
 
 const Form = component$(({ googleLink }: { googleLink: string }) => {
-
-
   return (
     <form q:slot="content">
       <h2 class="mb-4 text-lg font-light text-gray-500 dark:text-white">

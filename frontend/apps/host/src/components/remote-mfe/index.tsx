@@ -42,7 +42,6 @@ import { server$ } from "@builder.io/qwik-city";
 //   );
 // });
 
-
 export interface AppState {
   showSeams: boolean;
   user: string;
@@ -181,7 +180,7 @@ const fixRemoteHTMLInDevMode = (rawHtml: string): { html: string; base: string }
 
   let base = "";
   if (import.meta.env.DEV) {
-    console.log("import.meta.env.DEV ")
+    console.log("import.meta.env.DEV ");
     html = html.replace(/q:base="\/(\w+)\/build\/"/gm, (match, child) => {
       base = `/${child}`;
       return match;

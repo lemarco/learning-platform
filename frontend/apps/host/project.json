@@ -7,10 +7,7 @@
     "build": {
       "executor": "qwik-nx:build",
       "options": {
-        "runSequence": [
-          "host:build.client",
-          "host:build.ssr"
-        ],
+        "runSequence": ["host:build.client", "host:build.ssr"],
         "outputPath": "dist/apps/host",
         "postcssConfig": "apps/article/postcss.config.ts"
       },
@@ -49,9 +46,7 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/host"
@@ -75,13 +70,9 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/host/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["apps/host/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },

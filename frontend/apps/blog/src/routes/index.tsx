@@ -3,8 +3,6 @@ import { $ } from "@builder.io/qwik";
 import { Image, type ImageTransformerProps, useImageProvider } from "qwik-image";
 
 const ArticlePreview = component$(() => {
-
-
   return (
     <article class="w-full max-w-4xl">
       <header class="mb-4 lg:mb-6 ">
@@ -211,8 +209,12 @@ const AsideProfileCard = component$(() => {
     <div class="p-6 mb-6 text-gray-500 rounded-lg border border-gray-200 dark:border-gray-700 dark:text-gray-400">
       <a href="/" class="flex items-center mb-4">
         <div class="mr-3 shrink-0">
-          <Image class="mt-1 w-8 h-8 rounded-full" layout="fixed" src={"https://flowbite.com/docs/images/people/profile-picture-1.jpg"} alt="Jese Leos" />
-
+          <Image
+            class="mt-1 w-8 h-8 rounded-full"
+            layout="fixed"
+            src={"https://flowbite.com/docs/images/people/profile-picture-1.jpg"}
+            alt="Jese Leos"
+          />
         </div>
         <div class="mr-3">
           <span class="block font-medium text-gray-900 dark:text-white">Jese Leos</span>
@@ -251,8 +253,12 @@ const RelatedArticles = component$(() => {
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <article>
             <a href="/">
-              <Image class="mb-5 w-full max-w-full rounded-lg" layout="fixed" src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-1.jpg"} alt="1" />
-
+              <Image
+                class="mb-5 w-full max-w-full rounded-lg"
+                layout="fixed"
+                src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-1.jpg"}
+                alt="1"
+              />
             </a>
             <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
               <a href="/">Flowbite enables IT to automate Apple device configuration</a>
@@ -266,9 +272,12 @@ const RelatedArticles = component$(() => {
           </article>
           <article>
             <a href="/">
-
-              <Image class="mb-5 w-full max-w-full rounded-lg" layout="fixed" src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-2.jpg"} alt="2" />
-
+              <Image
+                class="mb-5 w-full max-w-full rounded-lg"
+                layout="fixed"
+                src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-2.jpg"}
+                alt="2"
+              />
             </a>
             <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
               <a href="/">How AI is transforming your smartphone</a>
@@ -282,8 +291,12 @@ const RelatedArticles = component$(() => {
           </article>
           <article>
             <a href="/">
-              <Image class="mb-5 w-full max-w-full rounded-lg" layout="fixed" src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-3.jpg"} alt="3" />
-
+              <Image
+                class="mb-5 w-full max-w-full rounded-lg"
+                layout="fixed"
+                src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-3.jpg"}
+                alt="3"
+              />
             </a>
             <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
               <a href="/">Android, ChromeOS, and the future of app discovery</a>
@@ -297,8 +310,12 @@ const RelatedArticles = component$(() => {
           </article>
           <article>
             <a href="/">
-              <Image class="mb-5 w-full max-w-full rounded-lg" layout="fixed" src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-4.jpg"} alt="4" />
-
+              <Image
+                class="mb-5 w-full max-w-full rounded-lg"
+                layout="fixed"
+                src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-4.jpg"}
+                alt="4"
+              />
             </a>
             <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
               <a href="/">What Google collaboration app offers remote teams</a>
@@ -311,8 +328,14 @@ const RelatedArticles = component$(() => {
             </a>
           </article>
           <article>
-            <a href="/">  <Image class="mb-5 w-full max-w-full rounded-lg" layout="fixed" src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-5.jpg"} alt="5" />
-
+            <a href="/">
+              {" "}
+              <Image
+                class="mb-5 w-full max-w-full rounded-lg"
+                layout="fixed"
+                src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-5.jpg"}
+                alt="5"
+              />
             </a>
             <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
               <a href="/">Collaboration app spending grows in the face of crisis</a>
@@ -325,8 +348,14 @@ const RelatedArticles = component$(() => {
             </a>
           </article>
           <article>
-            <a href="/"> <Image class="mb-5 w-full max-w-full rounded-lg" layout="fixed" src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-6.jpg"} alt="6" />
-
+            <a href="/">
+              {" "}
+              <Image
+                class="mb-5 w-full max-w-full rounded-lg"
+                layout="fixed"
+                src={"https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/wordpress/image-6.jpg"}
+                alt="6"
+              />
             </a>
             <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
               <a href="/">For developers, too many meetings, too little 'focus' time</a>

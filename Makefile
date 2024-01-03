@@ -6,6 +6,7 @@ all: copy-env-to-frontend copy-env-to-backend install
 .PHONY: prepare
 prepare:
 	npm i -g bun pnpm
+	sysctl -w vm.max_map_count=262144 
 
 .PHONY: install
 install:
@@ -37,6 +38,10 @@ clean-dev-frontend-up: clean-frontend
 
 .PHONY: dev-infra-up
 dev-infra-up:
+
+dev-elk-up:
+	docker compose -f ./elk-compose.dev.yml up -d
+dev-infra-up: dev-elk-up
 	docker compose -f ./infra-compose.dev.yml up -d
 
 .PHONY: dev-infra-down
@@ -71,3 +76,7 @@ dev-all: clean copy-env-to-frontend copy-env-to-backend install
 
 .PHONY: re
 re: clean all
+	docker compose -f ./elk-compose.dev.yml -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d
+
+start:
+	docker compose -f ./elk-compose.dev.yml -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d

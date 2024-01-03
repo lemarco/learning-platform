@@ -4,18 +4,15 @@ import pino, { Logger as L, destination, stdTimeFunctions } from "pino";
 //   options: { destination: `${__dirname}/app.log` },
 // });
 
-export const Logger = (serviceName: string) => pino(pino.transport(
-  {
+export const Logger = (serviceName: string) =>
+  pino(
+    pino.transport({
+      target: "pino/file",
+      options: { destination: `/app/logs/${serviceName}.log` },
+    }),
+  );
 
-    target: 'pino/file',
-    options: { destination: `/app/logs/${serviceName}.log` }
-
-
-  }
-))
-
-
-export type LoggerType = typeof Logger
+export type LoggerType = typeof Logger;
 
 // destination({
 //   dest: `/app/logs/${serviceName}.log`,

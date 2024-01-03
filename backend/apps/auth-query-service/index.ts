@@ -8,7 +8,7 @@ import { users } from "schemas";
 import { VerifyGroupHandler } from "./verify";
 import { GoogleHandlerGroup } from "./google";
 
-const logger = Logger("Auth-query-service")
+const logger = Logger("Auth-query-service");
 
 const migrationsUsersFolder = resolve("./apps/auth-query-service/database/migrations");
 await migrator(process.env.AUTH_READ_DB_URL || "", migrationsUsersFolder, logger);
@@ -30,15 +30,16 @@ const userDb: NodePgDatabase<TSchema> = drizzle(
     connectionString: process.env.AUTH_EVENTS_DB_URL,
   }),
   { schema: { ...users } },
-)
+);
 const redis = new Redis({
   host: env.AUTH_TOKEN_STORE_HOST,
   port: +env.AUTH_TOKEN_STORE_PORT,
   logger,
-})
-const onStart: ListenCallback = () => logger.info(`Auth query service started on port ${env.AUTH_QUERY_SERVICE_PORT}`)
-const tracer: TraceHandler = (req) => logger.info(req)
-const app = new Elysia().get('/', () => new Response("OK"))
+});
+const onStart: ListenCallback = () => logger.info(`Auth query service started on port ${env.AUTH_QUERY_SERVICE_PORT}`);
+const tracer: TraceHandler = (req) => logger.info(req);
+const app = new Elysia()
+  .get("/", () => new Response("OK"))
   .state("env", env)
   .state("logger", logger)
   .state("redis", redis)
@@ -47,13 +48,13 @@ const app = new Elysia().get('/', () => new Response("OK"))
   .derive(({ headers }) => ({
     access: headers.access_token || "",
     refresh: headers.refresh_token || "",
-  })).trace(tracer)
-
+  }))
+  .trace(tracer);
 
 const ListenConfig = {
-  hostname: '0.0.0.0',
+  hostname: "0.0.0.0",
   port: env.AUTH_QUERY_SERVICE_PORT,
-}
+};
 
-app.group("/auth", (app) => app.use(VerifyGroupHandler).use(GoogleHandlerGroup)).listen(ListenConfig, onStart)
-export type App = typeof app
+app.group("/auth", (app) => app.use(VerifyGroupHandler).use(GoogleHandlerGroup)).listen(ListenConfig, onStart);
+export type App = typeof app;

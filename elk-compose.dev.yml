@@ -1,0 +1,100 @@
+version: "3.9"
+
+services:
+  setup:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    user: "0"
+    command: >
+      bash -c '
+      if [ x${ELASTIC_PASSWORD} == x ]; then
+        echo "Set the ELASTIC_PASSWORD environment variable in the .env file";
+        exit 1;
+      elif [ x${KIBANA_PASSWORD} == x ]; then
+        echo "Set the KIBANA_PASSWORD environment variable in the .env file";
+        exit 1;
+      fi;
+      find . -type d -exec chmod 750 \{\} \;;
+      find . -type f -exec chmod 640 \{\} \;;
+      echo "All done!";
+      '
+
+  es01:
+    depends_on:
+      - setup
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: elasticsearch
+    volumes:
+      - ./data/elasticsearch/esdata01:/usr/share/elasticsearch/data
+    ports:
+      - ${ES_PORT}:9200
+    environment:
+      - node.name=es01
+      - cluster.name=${CLUSTER_NAME}
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+
+    mem_limit: ${ES_MEM_LIMIT}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  kibana:
+    depends_on:
+      - es01
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    labels:
+      co.elastic.logs/module: kibana
+    volumes:
+      - ./data/kibana:/usr/share/kibana/data
+    ports:
+      - ${KIBANA_PORT}:5601
+    environment:
+      - SERVERNAME=kibana
+      - ELASTICSEARCH_HOSTS=http://es01:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+    mem_limit: ${KB_MEM_LIMIT}
+
+  metricbeat01:
+    depends_on:
+      - es01
+      - kibana
+
+    image: docker.elastic.co/beats/metricbeat:${STACK_VERSION}
+    user: root
+    volumes:
+      - ./data/metricbeatdata01:/usr/share/metricbeat/data
+      - "./configs/metricbeat/config.yml:/usr/share/metricbeat/metricbeat.yml:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro"
+      - "/proc:/hostfs/proc:ro"
+      - "/:/hostfs:ro"
+    environment:
+      - ELASTIC_USER=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - ELASTIC_HOSTS=http://es01:9200
+      - KIBANA_HOSTS=http://kibana:5601
+      # - LOGSTASH_HOSTS=http://logstash01:9600
+
+  filebeat01:
+    depends_on:
+      - es01
+    image: docker.elastic.co/beats/filebeat:${STACK_VERSION}
+    user: root
+    volumes:
+      - ./data/filebeatdata01:/usr/share/filebeat/data
+      - "./configs/filebeat/config.yml:/usr/share/filebeat/filebeat.yml:ro"
+      - "./logs/services/:/usr/share/filebeat/ingest_data/"
+      - "./logs/nginx/:/usr/share/filebeat/ingest_data/"
+      # - "/var/lib/docker/containers:/var/lib/docker/containers:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    environment:
+      - ELASTIC_USER=elastic
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - ELASTIC_HOSTS=http://es01:9200
+      - KIBANA_HOSTS=http://kibana:5601

@@ -2,18 +2,12 @@ import { component$, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from "@builder.io/qwik-city";
 import { initFlowbite } from "flowbite";
 import { RouterHead } from "./components/router-head/router-head";
-import { type Signal, useSignal } from '@builder.io/qwik';
+import { type Signal, useSignal } from "@builder.io/qwik";
 import styles from "./global.css?inline";
-import {
-  useContext,
-  useContextProvider,
-  createContextId,
-} from '@builder.io/qwik';
+import { useContext, useContextProvider, createContextId } from "@builder.io/qwik";
 import { useImageProvider } from "qwik-image";
 
-export const ThemeContext = createContextId<Signal<string>>(
-  'docs.theme-context'
-);
+export const ThemeContext = createContextId<Signal<string>>("docs.theme-context");
 export default component$(() => {
   useStyles$(styles);
   useVisibleTask$(() => {

@@ -1,4 +1,3 @@
-
 // import { request as httpRequest } from 'node:http';
 // import { request as httpsRequest } from 'node:https';
 
@@ -55,21 +54,19 @@ export const intToIp = (int: number) => {
   return octets.join(".");
 };
 
-type httpApiCallArgs = { method?: string; body?: Buffer, headers?: Record<string, string> }
-
-
+type httpApiCallArgs = { method?: string; body?: Buffer; headers?: Record<string, string> };
 
 export const httpApiCall = async <T>(url: string, args: httpApiCallArgs | undefined = undefined): Promise<T | null> => {
   const mimeType = "application/json";
-  const defaultHeaders = { "Content-Type": mimeType }
-  const headers = args?.headers ? { ...defaultHeaders, ...args.headers, } : defaultHeaders;
+  const defaultHeaders = { "Content-Type": mimeType };
+  const headers = args?.headers ? { ...defaultHeaders, ...args.headers } : defaultHeaders;
 
   const res = await fetch(url, { method: args?.method || "GET", headers, body: args?.body }).catch(() => null);
   if (res?.status !== 200) {
     return null;
   }
-  const json = await res.json() as T
-  return json
+  const json = (await res.json()) as T;
+  return json;
 };
 
 export const cookiesExtractor = (cookiesHeader: string) => {

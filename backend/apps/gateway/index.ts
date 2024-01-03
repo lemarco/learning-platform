@@ -1,15 +1,13 @@
-
 import { KafkaConsumer, KafkaProducer, createEnvStore, httpApiCall, Logger } from "framework";
 import z from "zod";
 import { Elysia, ListenCallback, TraceHandler } from "elysia";
 import { AuthRoutesHandler } from "./auth";
 import { ApiRoutesHandler } from "./api";
 
-
 type AnyEvent = {
-  type: string
-  payload: unknown
-}
+  type: string;
+  payload: unknown;
+};
 const env = createEnvStore(
   z.object({
     GATEWAY_HOST: z.string(),
@@ -24,43 +22,48 @@ const env = createEnvStore(
 const connections = new Map();
 const servicesBaseUrls = {
   authQuery: `http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}`,
-  authCommand: `http://${env.AUTH_COMMANDS_SERVICE_HOST}:${env.AUTH_COMMANDS_SERVICE_PORT}`
-}
+  authCommand: `http://${env.AUTH_COMMANDS_SERVICE_HOST}:${env.AUTH_COMMANDS_SERVICE_PORT}`,
+};
 
 const ListenConfig = {
-  hostname: '0.0.0.0',
+  hostname: "0.0.0.0",
   port: env.GATEWAY_PORT,
-}
-const logger = Logger('Gateway')
-setTimeout(() => logger.info("I'm alive"), 500)
-const onStart: ListenCallback = () => logger.info(`Gateway started on port ${env.GATEWAY_PORT}`)
-const tracer: TraceHandler = (req) => logger.info(req)
-const app = new Elysia().get('/', () => new Response("OK")).state("env", env).trace(tracer).ws('/ws', {
-  async open(ws) {
-    const data = await httpApiCall(`${servicesBaseUrls.authQuery}/auth/verify`)
-    if (!data) { ws.close() }
-    const { id, role } = data as { id: string; role: string };
-    logger.info('WS connection ID = ', ws.id)
-    connections.set(id, ws.id);
-  },
-  message(ws, message) {
-    const msg = message as AnyEvent
-    switch (msg.type) {
-      case "": { }
-      default: {
-        logger.error(JSON.stringify({
-          error: `Unsupported event type from user = ${ws.id}`,
-          message
-        }))
-        ws.close()
+};
+const logger = Logger("Gateway");
+setTimeout(() => logger.info("I'm alive"), 500);
+const onStart: ListenCallback = () => logger.info(`Gateway started on port ${env.GATEWAY_PORT}`);
+const tracer: TraceHandler = (req) => logger.info(req);
+const app = new Elysia()
+  .get("/", () => new Response("OK"))
+  .state("env", env)
+  .trace(tracer)
+  .ws("/ws", {
+    async open(ws) {
+      const data = await httpApiCall(`${servicesBaseUrls.authQuery}/auth/verify`);
+      if (!data) {
+        ws.close();
       }
-    }
+      const { id, role } = data as { id: string; role: string };
+      logger.info("WS connection ID = ", ws.id);
+      connections.set(id, ws.id);
+    },
+    message(ws, message) {
+      const msg = message as AnyEvent;
+      switch (msg.type) {
+        case "": {
+        }
+        default: {
+          logger.error(
+            JSON.stringify({
+              error: `Unsupported event type from user = ${ws.id}`,
+              message,
+            }),
+          );
+          ws.close();
+        }
+      }
+    },
+  });
+export type App = typeof app;
 
-  },
-})
-export type App = typeof app
-
-app.use(ApiRoutesHandler).use(AuthRoutesHandler).listen(ListenConfig, onStart)
-
-
-
+app.use(ApiRoutesHandler).use(AuthRoutesHandler).listen(ListenConfig, onStart);
