@@ -23,7 +23,7 @@
   "type": "module",
   "dependencies": {
     "drizzle-kit": "^0.20.9",
-    "drizzle-orm": "^0.29.2",
+    "drizzle-orm": "^0.29.3",
     "elysia": "^0.8.8",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",

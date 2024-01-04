@@ -36,8 +36,8 @@ export const nowDate = (d: Date) => {
   return `${yyyy}-${mm}-${dd}`;
 };
 
-export const nowDateTimeUTC = (date: Date, timeSep = ":") => {
-  if (!date) date = new Date();
+export const nowDateTimeUTC = (d: Date, timeSep = ":") => {
+  const date = d ? d : new Date();
   const yyyy = date.getUTCFullYear().toString();
   const mm = twoDigit(date.getUTCMonth() + 1);
   const dd = twoDigit(date.getUTCDate());

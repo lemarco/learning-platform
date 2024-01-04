@@ -1,14 +1,3 @@
-// import { request as httpRequest } from 'node:http';
-// import { request as httpsRequest } from 'node:https';
-
-export const parseHost = (host: string) => {
-  if (!host) return "no-host-name-in-http-headers";
-  const portOffset = host.indexOf(":");
-  if (portOffset > -1) {
-    host = host.substr(0, portOffset);
-  }
-  return host;
-};
 export const parseParams = (params: string) => Object.fromEntries(new URLSearchParams(params));
 
 export const parseCookies = (cookie: string) => {
@@ -54,16 +43,18 @@ export const intToIp = (int: number) => {
   return octets.join(".");
 };
 
-export const httpApiCall = async (url: string, { method = "POST", body }: { method: string; body: Buffer }) => {
-  const mimeType = "application/json";
-  const len = body ? Buffer.byteLength(body) : 0;
-  const headers = { "Content-Type": mimeType, "Content-Length": String(len) };
+type httpApiCallArgs = { method?: string; body?: Buffer; headers?: Record<string, string> };
 
-  const res = await fetch(url, { method, headers }).catch(() => null);
+export const httpApiCall = async <T>(url: string, args: httpApiCallArgs | undefined = undefined): Promise<T | null> => {
+  const mimeType = "application/json";
+  const defaultHeaders = { "Content-Type": mimeType };
+  const headers = args?.headers ? { ...defaultHeaders, ...args.headers } : defaultHeaders;
+
+  const res = await fetch(url, { method: args?.method || "GET", headers, body: args?.body }).catch(() => null);
   if (res?.status !== 200) {
     return null;
   }
-  const json = await res.json();
+  const json = (await res.json()) as T;
   return json;
 };
 

@@ -1,9 +1,9 @@
 import { component$, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from "@builder.io/qwik-city";
-import { RouterHead } from "./components/router-head/router-head";
 import { initFlowbite } from "flowbite";
-import styles from "./global.css?inline";
 import { useImageProvider } from "qwik-image";
+import { RouterHead } from "./components/router-head/router-head";
+import styles from "./global.css?inline";
 
 export default component$(() => {
   useStyles$(styles);
@@ -14,7 +14,6 @@ export default component$(() => {
     // you can set this property to overwrite default values [640, 960, 1280, 1920, 3840]
     // resolutions: [640],
     // you we can define the source from which to load our image
-
   });
   return (
     <QwikCityProvider>

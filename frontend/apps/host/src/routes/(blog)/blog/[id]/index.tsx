@@ -3,7 +3,6 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 import RemoteMfe from "../../../../components/remote-mfe";
 
 export default component$(() => {
-
   return (
     <RemoteMfe
       remote={{

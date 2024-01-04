@@ -2,7 +2,6 @@ import { $, Slot, component$, useContextProvider, useStore } from "@builder.io/q
 import { RequestHandler, routeLoader$, useLocation, useNavigate } from "@builder.io/qwik-city";
 import RemoteMfe, { AppState, GlobalAppState } from "../../components/remote-mfe";
 
-
 export default component$(() => {
   return (
     <>

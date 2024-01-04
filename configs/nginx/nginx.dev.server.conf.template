@@ -3,7 +3,7 @@ server {
       listen 80;
       server_name learning-platform.com;
       location /api {
-            proxy_pass http://${GATEWAY_HOST}:${GATEWAY_PORT};
+            proxy_pass http://${GATEWAY_HOST_NAME}:${GATEWAY_PORT};
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -11,7 +11,7 @@ server {
             proxy_set_header X-Original-URI $request_uri;
       }
       location /auth {
-            proxy_pass http://${GATEWAY_HOST}:${GATEWAY_PORT};
+            proxy_pass http://${GATEWAY_HOST_NAME}:${GATEWAY_PORT};
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -19,7 +19,7 @@ server {
             proxy_set_header X-Original-URI $request_uri;
       }
       location / {
-            #proxy_pass http://host-app:10000;
+
             proxy_pass http://${PUBLIC_FRONTEND_HOST_APP_HOST}:${PUBLIC_FRONTEND_HOST_APP_PORT};
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;

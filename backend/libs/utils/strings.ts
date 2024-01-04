@@ -8,6 +8,7 @@ export const replace = (str: string, substr: string, newstr: string) => {
     const start = src.substring(0, index);
     src = src.substring(index + substr.length, src.length);
     res += start + newstr;
+    // biome-ignore lint/correctness/noConstantCondition: good case for using such like this
   } while (true);
 };
 

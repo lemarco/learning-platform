@@ -6,8 +6,12 @@ all: copy-env-to-frontend copy-env-to-backend install
 .PHONY: prepare
 prepare:
 	npm i -g bun pnpm
+	sysctl -w vm.max_map_count=262144 
 
 .PHONY: install
+pretty:
+	bunx @biomejs/biome check --apply .
+
 install:
 	cd frontend && pnpm i
 	cd backend && bun i
@@ -37,6 +41,10 @@ clean-dev-frontend-up: clean-frontend
 
 .PHONY: dev-infra-up
 dev-infra-up:
+
+dev-elk-up:
+	docker compose -f ./elk-compose.dev.yml up -d
+dev-infra-up: dev-elk-up
 	docker compose -f ./infra-compose.dev.yml up -d
 
 .PHONY: dev-infra-down
@@ -71,3 +79,8 @@ dev-all: clean copy-env-to-frontend copy-env-to-backend install
 
 .PHONY: re
 re: clean all
+	docker compose -f ./elk-compose.dev.yml -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d
+
+start: copy-env-to-backend copy-env-to-backend
+	docker compose -f ./elk-compose.dev.yml -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d
+

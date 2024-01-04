@@ -1,11 +1,15 @@
-import loggerConstructor, { Logger as L } from "pino";
+import pino from "pino";
 
-export const logger = loggerConstructor({
-  transport: {
-    target: "pino-pretty",
-    options: {
-      colorize: true,
-    },
-  },
-});
-export type Logger = typeof logger;
+export const Logger = (serviceName: string) =>
+  pino(
+    pino.transport({
+      target: "pino/file",
+      options: { destination: `/app/logs/${serviceName}.log` },
+    }),
+  );
+
+export type L = {
+  error: (arg: unknown) => void;
+  info: (arg: unknown) => void;
+  debug: (arg: unknown) => void;
+};

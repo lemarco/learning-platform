@@ -1,3 +1,8 @@
-export * from "./common";
-export * from "./front";
-export * from "./server";
+export type Paginated<T> = {
+  count: number;
+  items: T[];
+};
+export type Pagination = {
+  limit: number;
+  skip: number;
+};

@@ -1,11 +1,11 @@
-import { qwikVite } from '@builder.io/qwik/optimizer';
 import { qwikCity } from '@builder.io/qwik-city/vite';
+import { qwikVite } from '@builder.io/qwik/optimizer';
+import { config } from "dotenv";
+import { qwikNxVite } from 'qwik-nx/plugins';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
-import { config } from "dotenv";
 const { parsed, error } = config()
-console.log(parsed?.['PUBLIC_FRONTEND_HOST_APP_PORT'])
+
 if (error) {
 
 
@@ -29,7 +29,7 @@ export default defineConfig({
   ],
   server: {
     host: "0.0.0.0",
-    port: Number(parsed?.['PUBLIC_FRONTEND_HOST_APP_PORT']),
+    port: Number(parsed?.PUBLIC_FRONTEND_HOST_APP_PORT),
     fs: {
       // Allow serving files from the project root
       allow: ['../../'],

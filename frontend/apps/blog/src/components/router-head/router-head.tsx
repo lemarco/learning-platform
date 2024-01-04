@@ -24,9 +24,10 @@ export const RouterHead = component$(() => {
         <link key={l.key} {...l} />
       ))}
 
-      {head.styles.map((s) => (
-        <style key={s.key} {...s.props} dangerouslySetInnerHTML={s.style} />
-      ))}
+      {head.styles.map((s) => {
+        // biome-ignore lint/security/noDangerouslySetInnerHtml : it's recomeded by qwik
+        return <style key={s.key} {...s.props} dangerouslySetInnerHTML={s.style} />;
+      })}
     </>
   );
 });

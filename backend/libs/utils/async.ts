@@ -1,14 +1,14 @@
-import { Error } from "./error";
+import { E } from "./error";
 
 export const timeout = (msec: number, signal: AbortSignal) =>
   new Promise((_, reject) => {
     const timer = setTimeout(() => {
-      reject(new Error(`Timeout of ${msec}ms reached`, "ETIMEOUT"));
+      reject(new E(`Timeout of ${msec}ms reached`, "ETIMEOUT"));
     }, msec);
     if (!signal) return;
     signal.addEventListener("abort", () => {
       clearTimeout(timer);
-      reject(new Error("Timeout aborted"));
+      reject(new E("Timeout aborted"));
     });
   });
 
@@ -18,7 +18,7 @@ export const delay = (msec: number, signal: AbortSignal) =>
     if (!signal) return;
     signal.addEventListener("abort", () => {
       clearTimeout(timer);
-      reject(new Error("Delay aborted"));
+      reject(new E("Delay aborted"));
     });
   });
 
@@ -26,7 +26,7 @@ export const timeoutify = (promise: Promise<unknown>, msec: number) =>
   new Promise((resolve, reject) => {
     let timer: Timer | null = setTimeout(() => {
       timer = null;
-      reject(new Error(`Timeout of ${msec}ms reached`, "ETIMEOUT"));
+      reject(new E(`Timeout of ${msec}ms reached`, "ETIMEOUT"));
     }, msec);
     promise.then(
       (result) => {

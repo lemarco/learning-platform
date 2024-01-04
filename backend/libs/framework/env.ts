@@ -1,38 +1,36 @@
-import z from "zod";
-import { logger } from "./logger";
+import z, { UnknownKeysParam, ZodTypeAny } from "zod";
+import { L } from "./logger";
 const data: Record<string, string> = {};
 
-type AnySchema = z.ZodObject<{ [k: string]: z.ZodTypeAny }, any, any>;
-const validateObjectAgainstSchema = <T>(data: Record<string, string>, schema: AnySchema) => {
+type AnySchema = z.ZodObject<{ [k: string]: z.ZodTypeAny }, UnknownKeysParam, ZodTypeAny>;
+const validateObjectAgainstSchema = <T>(data: Record<string, string>, schema: AnySchema, logger: L) => {
   const res = schema.safeParse(data);
   if (!res.success) {
-    console.log(res.error.issues);
-    // console.log('Env variables checking failed');
+    logger.error(res.error.issues);
+
     process.exit();
   }
 };
 
-export const createEnvStore = (schema: AnySchema) => {
+export const createEnvStore = (schema: AnySchema, logger: L) => {
   const names = schema.keyof()._def.values as string[];
 
   if (!names.length) {
     return {};
   }
+
   for (const name of names) {
     const variable = process.env[name];
     if (variable) {
       data[name] = variable;
     } else {
-      // logger.info(`Variable ${name} must be defined in env file.`);
+      console.error(`Variable ${name} must be defined in env file.`);
+      logger.error(`Variable ${name} must be defined in env file.`);
       process.exit();
     }
   }
 
-  //console.log('data = ', JSON.stringify(data, null, 4));
-  validateObjectAgainstSchema(data, schema);
-
-  // logger.info('ENV reading success');
-  // logger.debug('ENV:' + JSON.stringify(data));
+  validateObjectAgainstSchema(data, schema, logger);
 
   return data;
 };

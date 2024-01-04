@@ -11,7 +11,7 @@
   "dependencies": {
     "utils": "workspace:*",
     "framework": "workspace:*",
-    "jsonwebtoken": "^9.0.2",
-    "schemas": "workspace:*"
+    "schemas": "workspace:*",
+    "jsonwebtoken": "^9.0.2"
   }
 }

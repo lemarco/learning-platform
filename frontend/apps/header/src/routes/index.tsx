@@ -1,14 +1,13 @@
 import { Slot, component$, useSignal } from "@builder.io/qwik";
-import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
+import { type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
-import { Image } from 'qwik-image'
+import { Image } from "qwik-image";
 import LoginButton from "./login-popup";
 
-
 const EnglishIcon = component$(() => {
-  1
+  1;
   return (
     <svg class="h-3.5 w-3.5 rounded-full mr-2" xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us" viewBox="0 0 512 512">
       <title>EnglishIcon</title>
@@ -47,7 +46,12 @@ const UserMenu = component$(() => {
         data-dropdown-toggle="user-profile-dropdown"
       >
         <span class="sr-only">Open user menu</span>
-        <Image layout="fixed" src={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"} class="w-8 h-8 rounded-full" alt="user" />
+        <Image
+          layout="fixed"
+          src={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+          class="w-8 h-8 rounded-full"
+          alt="user"
+        />
         {/* <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user " /> */}
       </button>
 
@@ -250,13 +254,11 @@ const Logo = component$(() => {
 
 // });
 const UpperHeader = component$(({ googleLink }: { googleLink: string }) => {
-
   return (
     <nav class=" bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-800">
       <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
         <Logo />
         <div class="flex items-center">
-
           <button
             type="button"
             data-dropdown-toggle="language-dropdown"
@@ -597,38 +599,14 @@ const BottomHeader = component$(() => {
   );
 });
 export const useGetGoogleLink = routeLoader$(async () => {
-  try {
-    const data = await fetch('http://0.0.0.0:6004/auth/google/link')
-    if (data.ok) {
-      const { link } = await data.json()
-      //  console.log(`FETCHED LINK = ${link}`)
-      return link
-    } else {
-      console.log(`FETCHED LINK  NOT OK`)
-      return ""
-    }
-  } catch (e) {
-    console.log("FETCH LINK ERROR")
-    return ""
-
-  }
-  // const link = await fetch('http://localhost:6004/auth/google/link').catch(
-  //   (e) => {
-  //     console.log("FETCH LINK ERROR", e)
-  //     return ""
-  //   }
-
-  // ).then(res => res.json()).then(data => data.link).catch((e) => {
-
-  //   console.log("FETCH LINK ERROR", e)
-  //   //   return ""
-  // })
-  // //console.log(`Link is = ${link}`)
-  // return link
-})
+  return await fetch("http://0.0.0.0:6004/auth/google/link")
+    .then((data) => data.json())
+    .then((data) => data.link || "")
+    .catch(() => "");
+});
 export default component$(() => {
-  const googleLink = useGetGoogleLink()
-  const link = String(googleLink.value)
+  const googleLink = useGetGoogleLink();
+  const link = String(googleLink.value);
   return (
     <header class="shadow-md z-[99] sticky top-0 ">
       <UpperHeader googleLink={link} />
