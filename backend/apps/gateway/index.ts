@@ -8,23 +8,26 @@ type AnyEvent = {
   type: string;
   payload: unknown;
 };
+
 const logger = Logger("Gateway");
+
 const env = createEnvStore(
   z.object({
-    GATEWAY_HOST: z.string(),
+    GATEWAY_HOST_NAME: z.string(),
     GATEWAY_PORT: z.string().transform((val) => +val),
     INTERNAL_COMUNICATION_SECRET: z.string(),
     AUTH_QUERY_SERVICE_PORT: z.string().transform((val) => +val),
-    AUTH_QUERY_SERVICE_HOST: z.string(),
+    AUTH_QUERY_SERVICE_HOST_NAME: z.string(),
     AUTH_COMMANDS_SERVICE_PORT: z.string().transform((val) => +val),
-    AUTH_COMMANDS_SERVICE_HOST: z.string(),
+    AUTH_COMMANDS_SERVICE_HOST_NAME: z.string(),
   }),
   logger,
 );
+
 const connections = new Map();
 const servicesBaseUrls = {
-  authQuery: `http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT}`,
-  authCommand: `http://${env.AUTH_COMMANDS_SERVICE_HOST}:${env.AUTH_COMMANDS_SERVICE_PORT}`,
+  authQuery: `http://${env.AUTH_QUERY_SERVICE_HOST_NAME}:${env.AUTH_QUERY_SERVICE_PORT}`,
+  authCommand: `http://${env.AUTH_COMMANDS_SERVICE_HOST_NAME}:${env.AUTH_COMMANDS_SERVICE_PORT}`,
 };
 
 const ListenConfig = {
@@ -34,6 +37,7 @@ const ListenConfig = {
 
 const onStart: ListenCallback = () => logger.info(`Gateway started on port ${env.GATEWAY_PORT}`);
 const tracer: TraceHandler = (req) => logger.info(req);
+
 const app = new Elysia()
   .get("/", () => new Response("OK"))
   .state("env", env)

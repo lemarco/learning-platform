@@ -7,7 +7,7 @@ import { App } from "..";
 export const VerifyGroupHandler = (app: App) =>
   app.get(
     "/verify",
-    async ({ access, store: { redis, env } }) => {
+    async ({ access, redis, env }) => {
 
       const {
         payload: { id, role },
@@ -22,7 +22,7 @@ export const VerifyGroupHandler = (app: App) =>
           return NotAuthorizedResponse();
         }
       },
-      error: async ({ error, refresh, store: { eventProducer, env, redis } }) => {
+      error: async ({ error, refresh, eventProducer, env, redis }) => {
 
         if (error.name !== "TokenExpiredError") {
           return NotAuthorizedResponse();

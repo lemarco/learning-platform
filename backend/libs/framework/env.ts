@@ -18,15 +18,18 @@ export const createEnvStore = (schema: AnySchema, logger: any) => {
   if (!names.length) {
     return {};
   }
+
   for (const name of names) {
     const variable = process.env[name];
     if (variable) {
       data[name] = variable;
     } else {
+      console.error(`Variable ${name} must be defined in env file.`)
       logger.error(`Variable ${name} must be defined in env file.`);
       process.exit();
     }
   }
+
   validateObjectAgainstSchema(data, schema, logger);
 
   return data;

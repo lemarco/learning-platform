@@ -15,9 +15,9 @@ const env = createEnvStore(
     AUTH_EVENTS_DB_URL: z.string(),
     AUTH_READ_DB_URL: z.string(),
     AUTH_QUERY_SERVICE_PORT: z.string().transform((val) => +val),
-    AUTH_QUERY_SERVICE_HOST: z.string(),
+    AUTH_QUERY_SERVICE_HOST_NAME: z.string(),
     JWT_SECRET: z.string(),
-    AUTH_TOKEN_STORE_CONTAINER_NAME: z.string(),
+    AUTH_TOKEN_STORE_HOST_NAME: z.string(),
     AUTH_TOKEN_STORE_PORT: z.string().transform((val) => +val),
     OAUTH_REDIRECT_URL: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
@@ -29,7 +29,7 @@ const env = createEnvStore(
 
 
 await migrator(env.AUTH_READ_DB_URL || "", migrationsUsersFolder, logger);
-const redis = new Redis({ host: env.AUTH_TOKEN_STORE_CONTAINER_NAME, port: +env.AUTH_TOKEN_STORE_PORT, logger });
+const redis = new Redis({ host: env.AUTH_TOKEN_STORE_HOST_NAME, port: +env.AUTH_TOKEN_STORE_PORT, logger });
 
 const userDb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.AUTH_READ_DB_URL }), { schema: { ...users } });
 
@@ -38,11 +38,11 @@ const tracer: TraceHandler = (req) => logger.info(req);
 
 const app = new Elysia()
   .get("/", () => new Response("OK"))
-  .state("env", env)
-  .state("logger", logger)
-  .state("redis", redis)
-  .state("usersDb", userDb)
-  .state("eventProducer", new KafkaProducer())
+  .decorate("env", env)
+  .decorate("logger", logger)
+  .decorate("redis", redis)
+  .decorate("usersDb", userDb)
+  .decorate("eventProducer", new KafkaProducer())
   .derive(({ headers }) => ({
     access: headers.access_token || "",
     refresh: headers.refresh_token || "",

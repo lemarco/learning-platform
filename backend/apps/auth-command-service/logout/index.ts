@@ -9,7 +9,7 @@ export const LogoutGroupHandler = (app: App) =>
     }))
     .get(
       "/logout",
-      async ({ access, refresh, store: { redis, env } }) => {
+      async ({ access, refresh, redis, env }) => {
         const { id } = verify(access, env.JWT_SECRET) as { id: string };
         await redis.setWithExpiry("access-block", id, refresh, 15);
         return new Response("", {

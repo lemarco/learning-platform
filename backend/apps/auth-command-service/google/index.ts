@@ -4,7 +4,7 @@ import { gooogleSignin } from "./signin";
 export const GoogleLoginGroupHandler = (app: App) => {
   return app.group("/google", (app) =>
     app
-      .derive(({ request, query, headers, store }) => {
+      .derive(({ request, query, headers }) => {
         const code = String(query.code);
         const userAgent = headers["user-agent"] || "";
         const clientIP = app.server?.requestIP(request)?.address || "";
@@ -12,9 +12,7 @@ export const GoogleLoginGroupHandler = (app: App) => {
           code,
           userAgent,
           ip: clientIP,
-          eventProducer: store.eventProducer,
-          redis: store.redis,
-          env: store.env,
+
         };
       })
       .get("/signin", gooogleSignin, {

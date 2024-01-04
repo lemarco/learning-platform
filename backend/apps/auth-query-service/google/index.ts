@@ -25,7 +25,7 @@ export const GoogleHandlerGroup = (app: App) => {
       )
       .get(
         "/:id",
-        async ({ store: { usersDb }, params }) => {
+        async ({ usersDb, params }) => {
           const user = await usersDb.select().from(users).where(eq(users.googleId, params.id));
 
           return {
@@ -37,7 +37,7 @@ export const GoogleHandlerGroup = (app: App) => {
           query: t.Object({
             secret: t.String(),
           }),
-          beforeHandle: ({ store: { env }, query: { secret } }) => {
+          beforeHandle: ({ env, query: { secret } }) => {
             if (secret !== env.INTERNAL_COMUNICATION_SECRET) {
               throw new Error();
             }

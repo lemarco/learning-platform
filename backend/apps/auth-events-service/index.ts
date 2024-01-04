@@ -18,7 +18,6 @@ const env = createEnvStore(
   z.object({
     AUTH_TOKEN_STORE_PORT: z.string().transform((val) => +val),
     AUTH_TOKEN_STORE_HOST: z.string(),
-
     INTERNAL_COMUNICATION_SECRET: z.string(),
   }),
   logger,

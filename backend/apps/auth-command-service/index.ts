@@ -14,18 +14,15 @@ const migrationsEventsFolder = resolve("./apps/auth-command-service/database/mig
 const env = createEnvStore(
   z.object({
     JWT_SECRET: z.string(),
-
     AUTH_COMMANDS_SERVICE_PORT: z.string(),
-    AUTH_COMMANDS_SERVICE_HOST: z.string(),
-
-    AUTH_TOKEN_STORE_HOST: z.string(),
+    AUTH_COMMANDS_SERVICE_HOST_NAME: z.string(),
+    AUTH_TOKEN_STORE_HOST_NAME: z.string(),
     AUTH_TOKEN_STORE_PORT: z.string(),
-
     OAUTH_REDIRECT_URL: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
     INTERNAL_COMUNICATION_SECRET: z.string(),
-  }),
+  }), logger
 );
 await migrator(env.AUTH_EVENTS_DB_URL || "", migrationsEventsFolder, logger);
 
@@ -36,18 +33,18 @@ const pool: NodePgDatabase<TSchema> = drizzle(
   { schema: { ...events } },
 );
 const redis = new Redis({
-  host: env.AUTH_TOKEN_STORE_HOST,
+  host: env.AUTH_TOKEN_STORE_HOST_NAME,
   port: +env.AUTH_TOKEN_STORE_PORT,
   logger,
 });
 
 const app = new Elysia()
   .get("/", () => new Response("OK"))
-  .state("env", env)
-  .state("logger", logger)
-  .state("redis", redis)
-  .state("eventsDb", pool)
-  .state("eventProducer", new KafkaProducer())
+  .decorate("env", env)
+  .decorate("logger", logger)
+  .decorate("redis", redis)
+  .decorate("eventsDb", pool)
+  .decorate("eventProducer", new KafkaProducer())
   .derive(({ cookie }) => ({
     access: cookie.access_token.get(),
     refresh: cookie.refresh_token.get(),
