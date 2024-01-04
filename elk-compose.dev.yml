@@ -66,7 +66,7 @@ services:
       - kibana
 
     image: docker.elastic.co/beats/metricbeat:${STACK_VERSION}
-    user: root
+    user: ${USER_ID}
     volumes:
       - ./data/metricbeatdata01:/usr/share/metricbeat/data
       - "./configs/metricbeat/config.yml:/usr/share/metricbeat/metricbeat.yml:ro"
@@ -85,7 +85,7 @@ services:
     depends_on:
       - es01
     image: docker.elastic.co/beats/filebeat:${STACK_VERSION}
-    user: root
+    user: ${USER_ID}
     volumes:
       - ./data/filebeatdata01:/usr/share/filebeat/data
       - "./configs/filebeat/config.yml:/usr/share/filebeat/filebeat.yml:ro"
