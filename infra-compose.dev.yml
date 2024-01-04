@@ -12,7 +12,8 @@ services:
     ports:
       - 80:80
       - 443:443
-
+    env_file:
+      - .env
   users_events_db:
     container_name: ${USERS_EVENTS_DB_HOST}
     restart: always
