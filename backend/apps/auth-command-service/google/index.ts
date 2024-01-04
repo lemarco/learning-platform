@@ -12,7 +12,6 @@ export const GoogleLoginGroupHandler = (app: App) => {
           code,
           userAgent,
           ip: clientIP,
-
         };
       })
       .get("/signin", gooogleSignin, {

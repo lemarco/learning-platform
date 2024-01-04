@@ -54,19 +54,6 @@ const app = new Elysia()
     },
     message(ws, message) {
       const msg = message as AnyEvent;
-      switch (msg.type) {
-        case "": {
-        }
-        default: {
-          logger.error(
-            JSON.stringify({
-              error: `Unsupported event type from user = ${ws.id}`,
-              message,
-            }),
-          );
-          ws.close();
-        }
-      }
     },
   })
   .listen(ListenConfig);

@@ -27,7 +27,6 @@ const env = createEnvStore(
   logger,
 );
 
-
 await migrator(env.AUTH_READ_DB_URL || "", migrationsUsersFolder, logger);
 const redis = new Redis({ host: env.AUTH_TOKEN_STORE_HOST_NAME, port: +env.AUTH_TOKEN_STORE_PORT, logger });
 

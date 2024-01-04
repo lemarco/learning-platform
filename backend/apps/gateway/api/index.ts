@@ -1,8 +1,4 @@
 import Elysia, { Context, Handler } from "elysia";
 import { App } from "..";
 
-export const ApiRoutesHandler = (app: App) =>
-  app.group("/api", (app) =>
-    app.get("/", (ctx) => new Response()))
-
-
+export const ApiRoutesHandler = (app: App) => app.group("/api", (app) => app.get("/", (ctx) => new Response()));

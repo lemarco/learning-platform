@@ -15,11 +15,8 @@ export const migrator = async (creds: DBCredentials | string, migrationsFolder: 
   const migrationClient = postgres(creds as unknown as string, {
     max: 1,
   });
-  try {
-    await migrate(drizzle(migrationClient), { migrationsFolder });
-  } catch (e) {
 
-    throw e;
-  }
+  await migrate(drizzle(migrationClient), { migrationsFolder });
+
   logger.info("***MIGRATION ENDED***");
 };

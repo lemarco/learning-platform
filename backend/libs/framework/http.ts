@@ -1,14 +1,3 @@
-// import { request as httpRequest } from 'node:http';
-// import { request as httpsRequest } from 'node:https';
-
-export const parseHost = (host: string) => {
-  if (!host) return "no-host-name-in-http-headers";
-  const portOffset = host.indexOf(":");
-  if (portOffset > -1) {
-    host = host.substr(0, portOffset);
-  }
-  return host;
-};
 export const parseParams = (params: string) => Object.fromEntries(new URLSearchParams(params));
 
 export const parseCookies = (cookie: string) => {

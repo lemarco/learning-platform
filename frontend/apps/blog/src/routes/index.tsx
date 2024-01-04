@@ -381,7 +381,7 @@ const Blog = component$(() => {
         <div class="flex justify-between px-4 xl:px-0 mx-auto max-w-screen-xl ">
           <div class="flex flex-col">
             {articles.map((content, idx) => {
-              return <ArticlePreview key={idx} />;
+              return <ArticlePreview key={idx + Math.random()} />;
             })}
           </div>
 

@@ -8,7 +8,6 @@ export const VerifyGroupHandler = (app: App) =>
   app.get(
     "/verify",
     async ({ access, redis, env }) => {
-
       const {
         payload: { id, role },
       } = verify(access, env.JWT_SECRET) as JwtPayload;
@@ -17,13 +16,11 @@ export const VerifyGroupHandler = (app: App) =>
     },
     {
       beforeHandle: ({ access, refresh }) => {
-
         if (!access || !refresh) {
           return NotAuthorizedResponse();
         }
       },
       error: async ({ error, refresh, eventProducer, env, redis }) => {
-
         if (error.name !== "TokenExpiredError") {
           return NotAuthorizedResponse();
         }

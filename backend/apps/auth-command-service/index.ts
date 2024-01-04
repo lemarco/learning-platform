@@ -22,7 +22,8 @@ const env = createEnvStore(
     GOOGLE_CLIENT_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
     INTERNAL_COMUNICATION_SECRET: z.string(),
-  }), logger
+  }),
+  logger,
 );
 await migrator(env.AUTH_EVENTS_DB_URL || "", migrationsEventsFolder, logger);
 

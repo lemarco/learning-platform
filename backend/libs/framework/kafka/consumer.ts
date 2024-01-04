@@ -15,7 +15,7 @@ export class KafkaConsumer {
   async connect() {
     await this.consumer.connect();
   }
-  async subscribe(topic: string, handler: any) {
+  async subscribe(topic: string, handler: (args: unknown) => Promise<void>) {
     await this.consumer.subscribe({ topic });
     await this.consumer.run({
       eachMessage: handler,

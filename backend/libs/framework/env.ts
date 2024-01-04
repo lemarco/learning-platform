@@ -1,9 +1,9 @@
-import z from "zod";
-
+import z, { UnknownKeysParam, ZodTypeAny } from "zod";
+import { L } from "./logger";
 const data: Record<string, string> = {};
 
-type AnySchema = z.ZodObject<{ [k: string]: z.ZodTypeAny }, any, any>;
-const validateObjectAgainstSchema = <T>(data: Record<string, string>, schema: AnySchema, logger: any) => {
+type AnySchema = z.ZodObject<{ [k: string]: z.ZodTypeAny }, UnknownKeysParam, ZodTypeAny>;
+const validateObjectAgainstSchema = <T>(data: Record<string, string>, schema: AnySchema, logger: L) => {
   const res = schema.safeParse(data);
   if (!res.success) {
     logger.error(res.error.issues);
@@ -12,7 +12,7 @@ const validateObjectAgainstSchema = <T>(data: Record<string, string>, schema: An
   }
 };
 
-export const createEnvStore = (schema: AnySchema, logger: any) => {
+export const createEnvStore = (schema: AnySchema, logger: L) => {
   const names = schema.keyof()._def.values as string[];
 
   if (!names.length) {
@@ -24,7 +24,7 @@ export const createEnvStore = (schema: AnySchema, logger: any) => {
     if (variable) {
       data[name] = variable;
     } else {
-      console.error(`Variable ${name} must be defined in env file.`)
+      console.error(`Variable ${name} must be defined in env file.`);
       logger.error(`Variable ${name} must be defined in env file.`);
       process.exit();
     }

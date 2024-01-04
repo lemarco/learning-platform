@@ -1,6 +1,6 @@
-export class Error extends globalThis.Error {
+export class E extends globalThis.Error {
   code;
-  options: any;
+  options: unknown;
   constructor(message: string, options = {}) {
     super(message);
     if (typeof options === "object") {

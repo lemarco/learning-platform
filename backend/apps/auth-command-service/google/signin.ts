@@ -50,7 +50,7 @@ export const gooogleSignin = async ({
     `http://${env.AUTH_QUERY_SERVICE_HOST}:${env.AUTH_QUERY_SERVICE_PORT})}/auth/google/${googleUser?.id}?secret=${env.INTERNAL_COMUNICATION_SECRET}`,
   );
 
-  const usersEvent = dbUser?.data ? createUpdateUserEvent(dbUser.data!, googleUser) : createCreateUserEvent(googleUser);
+  const usersEvent = dbUser?.data ? createUpdateUserEvent(dbUser.data, googleUser) : createCreateUserEvent(googleUser);
 
   const tokenData = {
     id: usersEvent.payload.id,

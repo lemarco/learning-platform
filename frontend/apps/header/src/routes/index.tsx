@@ -599,22 +599,10 @@ const BottomHeader = component$(() => {
   );
 });
 export const useGetGoogleLink = routeLoader$(async () => {
-  // TODO: change to lib function httpApiCall
-  try {
-    const data = await fetch("http://0.0.0.0:6004/auth/google/link");
-    if (data.ok) {
-      const { link } = await data.json();
-
-      return link;
-    } else {
-
-      return "";
-    }
-  } catch (e) {
-
-    return "";
-  }
-
+  return await fetch("http://0.0.0.0:6004/auth/google/link")
+    .then((data) => data.json())
+    .then((data) => data.link || "")
+    .catch(() => "");
 });
 export default component$(() => {
   const googleLink = useGetGoogleLink();
