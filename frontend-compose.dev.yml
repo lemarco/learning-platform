@@ -8,39 +8,62 @@ services:
     ports:
       - "${PUBLIC_FRONTEND_HOST_APP_PORT}:${PUBLIC_FRONTEND_HOST_APP_PORT}"
     volumes:
-      - "./frontend:/app"
+      - "./frontend/nx.json:/app/nx.json"
+      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
+      - "./frontend/package.json:/app/package.json"
+      - "./frontend/libs:/app/libs"
+      - "./frontend/apps/host:/app/apps/host"
 
   article-app:
     container_name: ${FRONTEND_ARTICLE_APP_HOST}
     build:
       dockerfile: ./frontend/apps/article/Dockerfile
     volumes:
-      - "./frontend:/app"
-
+      - "./frontend/nx.json:/app/nx.json"
+      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
+      - "./frontend/package.json:/app/package.json"
+      - "./frontend/libs:/app/libs"
+      - "./frontend/apps/article:/app/apps/article"
   blog-app:
     container_name: ${FRONTEND_BLOG_APP_HOST}
     build:
       dockerfile: ./frontend/apps/blog/Dockerfile
     volumes:
-      - "./frontend:/app"
+      - "./frontend/nx.json:/app/nx.json"
+      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
+      - "./frontend/package.json:/app/package.json"
+      - "./frontend/libs:/app/libs"
+      - "./frontend/apps/blog:/app/apps/blog"
 
   footer-app:
     container_name: ${FRONTEND_FOOTER_APP_HOST}
     build:
       dockerfile: ./frontend/apps/footer/Dockerfile
     volumes:
-      - "./frontend:/app"
+      - "./frontend/nx.json:/app/nx.json"
+      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
+      - "./frontend/package.json:/app/package.json"
+      - "./frontend/libs:/app/libs"
+      - "./frontend/apps/footer:/app/apps/footer"
 
   header-app:
     container_name: ${FRONTEND_HEADER_APP_HOST}
     build:
       dockerfile: ./frontend/apps/header/Dockerfile
     volumes:
-      - "./frontend:/app"
+      - "./frontend/nx.json:/app/nx.json"
+      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
+      - "./frontend/package.json:/app/package.json"
+      - "./frontend/libs:/app/libs"
+      - "./frontend/apps/header:/app/apps/header"
 
   home-app:
     container_name: ${FRONTEND_HOME_APP_HOST}
     build:
       dockerfile: ./frontend/apps/home/Dockerfile
     volumes:
-      - "./frontend:/app"
+      - "./frontend/nx.json:/app/nx.json"
+      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
+      - "./frontend/package.json:/app/package.json"
+      - "./frontend/libs:/app/libs"
+      - "./frontend/apps/home:/app/apps/home"
