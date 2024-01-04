@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev:article": "pnpm exec nx run article:serve",
-    "dev:blog": "pnpm exec nx run blog:serve",
-    "dev:host": "pnpm exec nx run host:serve",
-    "dev:footer": "pnpm exec nx run footer:serve",
-    "dev:home": "pnpm exec nx run home:serve",
-    "dev:header": "pnpm exec nx run header:serve",
+    "dev:article": "pnpm nx run article:serve",
+    "dev:blog": "pnpm nx run blog:serve",
+    "dev:host": "pnpm nx run host:serve",
+    "dev:footer": "pnpm nx run footer:serve",
+    "dev:home": "pnpm nx run home:serve",
+    "dev:header": "pnpm nx run header:serve",
     "dev:all": ""
   },
   "private": true,
