@@ -1,0 +1,71 @@
+{
+  "name": "blog-admin",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/blog-admin/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/blog-admin",
+        "postcssConfig": "apps/blog-admin/postcss.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "blog-admin:build",
+        "postcssConfig": "apps/blog-admin/postcss.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "blog-admin:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "blog-admin:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "blog-admin:build",
+        "postcssConfig": "apps/blog-admin/postcss.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "blog-admin:build:development"
+        },
+        "production": {
+          "buildTarget": "blog-admin:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../coverage/apps/blog-admin"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

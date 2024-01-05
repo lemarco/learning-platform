@@ -1,6 +1,19 @@
 version: "3.9"
 
 services:
+  blog-admin-app:
+    container_name: ${PUBLIC_FRONTEND_BLOG_ADMIN_HOST}
+    build:
+      dockerfile: ./frontend/apps/blog-admin/Dockerfile
+    ports:
+      - "${PUBLIC_FRONTEND_BLOG_ADMIN_PORT}:${PUBLIC_FRONTEND_BLOG_ADMIN_PORT}"
+    volumes:
+      - "./frontend/nx.json:/app/nx.json"
+      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
+      - "./frontend/package.json:/app/package.json"
+      # - "./frontend/libs:/app/libs"
+      - "./frontend/apps/blog-admin:/app/apps/blog-admin"
+
   host-app:
     container_name: ${PUBLIC_FRONTEND_HOST_APP_HOST}
     build:
