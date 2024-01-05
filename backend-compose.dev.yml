@@ -1,6 +1,18 @@
 version: "3.9"
 
 services:
+  articles-query-service:
+    container_name: ${ARTICLES_QUERY_SERVICE_HOST_NAME}
+    restart: on-failure
+    build:
+      dockerfile: ./backend/.dev.dockerfile
+    command: bun dev:articles-query
+    expose:
+      - ${ARTICLES_QUERY_SERVICE_PORT}
+    volumes:
+      - ./backend:/app
+      - ./logs/services:/app/logs
+
   auth_command_service:
     container_name: ${AUTH_COMMANDS_SERVICE_HOST_NAME}
     restart: on-failure

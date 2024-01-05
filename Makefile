@@ -3,6 +3,12 @@
 all: copy-env-to-frontend copy-env-to-backend install
 	docker compose -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d
 
+
+.PHONY: generate-migrations
+generate-migrations: 
+	cd backend && bun run mirgation:generate:all
+
+	
 .PHONY: prepare
 prepare:
 	npm i -g bun pnpm
@@ -11,7 +17,8 @@ prepare:
 .PHONY: install
 pretty:
 	bunx @biomejs/biome check --apply .
-
+	
+.PHONY: install
 install:
 	cd frontend && pnpm i
 	cd backend && bun i
