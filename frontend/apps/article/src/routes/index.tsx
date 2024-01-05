@@ -2,7 +2,7 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 
 import { component$ } from "@builder.io/qwik";
 
-type RelatedArticleInfo = { image: string; link: string; title: string; previewText: string; estimatedReadTime: number };
+type RelatedArticleInfo = { id: string; image: string; link: string; title: string; previewText: string; estimatedReadTime: number };
 
 const RelatedArticle = component$(({ image, link, title, previewText, estimatedReadTime }: RelatedArticleInfo) => {
   return (
@@ -34,6 +34,7 @@ const RelatedArticles = component$(() => {
       title: "Enterprise design tips",
       previewText: "Over the past year, Volosoft has undergone many changes! After months of preparation.",
       estimatedReadTime: 12,
+      id: "1",
     },
     {
       image: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-2.png",
@@ -41,6 +42,7 @@ const RelatedArticles = component$(() => {
       title: "Enterprise design tips",
       previewText: "Over the past year, Volosoft has undergone many changes! After months of preparation.",
       estimatedReadTime: 12,
+      id: "2",
     },
     {
       image: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-3.png",
@@ -48,6 +50,7 @@ const RelatedArticles = component$(() => {
       title: "We partnered up with Google",
       previewText: "Over the past year, Volosoft has undergone many changes! After months of preparation.",
       estimatedReadTime: 8,
+      id: "3",
     },
     {
       image: "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-4.png",
@@ -55,6 +58,7 @@ const RelatedArticles = component$(() => {
       title: "Our first project with React",
       previewText: "Over the past year, Volosoft has undergone many changes! After months of preparation.",
       estimatedReadTime: 1,
+      id: "4",
     },
   ];
   return (
@@ -62,8 +66,8 @@ const RelatedArticles = component$(() => {
       <div class="px-4 mx-auto max-w-screen-xl">
         <h2 class="mb-6 lg:mb-8 text-2xl font-bold text-gray-900 dark:text-white">Related articles</h2>
         <div class="grid gap-6 lg:gap-12 md:grid-cols-2">
-          {articleInfos.map((article, index) => (
-            <RelatedArticle {...article} key={index} />
+          {articleInfos.map((article,) => (
+            <RelatedArticle {...article} key={article.id} />
           ))}
         </div>
       </div>
