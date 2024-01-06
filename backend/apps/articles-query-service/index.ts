@@ -20,9 +20,7 @@ const env = createEnvStore(
 );
 
 await migrator(env.ARTICLE_READ_DB_URL || "", migrationsUsersFolder, logger);
-
 const articlesdb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLE_READ_DB_URL }), { schema: { ...users } });
-
 const onStart: ListenCallback = () => logger.info(`Article query service started on port ${env.ARTICLES_QUERY_SERVICE_PORT}`);
 const tracer: TraceHandler = (req) => logger.info(req);
 
