@@ -1,11 +1,11 @@
+import { randomUUID } from "crypto";
 import { resolve } from "path";
-import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
-import { Elysia, type ListenCallback, type TraceHandler, type TSchema } from "elysia";
-import { KafkaProducer, KafkaConsumer, Logger, Redis, createEnvStore, migrator } from "framework";
+import { type NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
+import { Elysia, type ListenCallback, type TSchema, type TraceHandler } from "elysia";
+import { KafkaConsumer, KafkaProducer, Logger, Redis, createEnvStore, migrator } from "framework";
 import { Pool } from "pg";
 import { articlesEvents } from "schemas";
 import z from "zod";
-import { randomUUID } from "crypto";
 
 const logger = Logger("Articles-command-service");
 const migrationsUsersFolder = resolve("./apps/articles-command-service/database/migrations");

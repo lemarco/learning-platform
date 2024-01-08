@@ -24,18 +24,18 @@ import {
   linkDialogPlugin,
   linkPlugin,
   listsPlugin,
+  markdown$,
   markdownShortcutPlugin,
+  markdownSourceEditorValue$,
   quotePlugin,
+  readOnly$,
+  rootEditor$,
   setMarkdown$,
   tablePlugin,
   thematicBreakPlugin,
   toolbarPlugin,
-  markdown$,
-  readOnly$,
-  viewMode$,
   useCellValues,
-  rootEditor$,
-  markdownSourceEditorValue$,
+  viewMode$,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 import { useState } from "react";
