@@ -1,7 +1,7 @@
-import { articles } from "schemas/articles";
-import type { App } from "..";
 import { count, eq } from "drizzle-orm";
 import { t } from "elysia";
+import { articles } from "schemas/articles";
+import type { App } from "..";
 export const ArticleGroupHandler = (app: App) => {
   return app
     .get(

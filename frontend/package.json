@@ -10,7 +10,8 @@
     "dev:home": "pnpm nx run home:serve",
     "dev:header": "pnpm nx run header:serve",
     "dev:blog-admin": "pnpm nx run blog-admin:serve",
-    "dev:all": ""
+    "dev:info": "pnpm nx run info:serve",
+    "new:app": "nx generate qwik-nx:app"
   },
   "private": true,
   "devDependencies": {
