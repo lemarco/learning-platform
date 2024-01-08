@@ -262,7 +262,7 @@ const UpperHeader = component$(({ googleLink }: { googleLink: string }) => {
           <button
             type="button"
             data-dropdown-toggle="language-dropdown"
-            class="inline-flex items-center text-gray-900 dark:text-gray-300 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-2 lg:px-4 py-2 lg:py-2.5 mr-2 md:mr-3 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+            class="hidden items-center text-gray-900 dark:text-gray-300 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-2 lg:px-4 py-2 lg:py-2.5 mr-2 md:mr-3 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
           >
             <svg
               class="w-5 h-5 rounded-full md:mr-2"
@@ -308,7 +308,7 @@ const UpperHeader = component$(({ googleLink }: { googleLink: string }) => {
           <button
             data-tooltip-target="tooltip-dark"
             type="button"
-            class="inline-flex items-center p-2 mr-1 text-sm font-medium text-gray-500 rounded-lg dark:text-gray-400 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+            class="hidden items-center p-2 mr-1 text-sm font-medium text-gray-500 rounded-lg dark:text-gray-400 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
           >
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <title>tooltip-dark</title>
@@ -343,7 +343,9 @@ const UpperHeader = component$(({ googleLink }: { googleLink: string }) => {
             <div class="tooltip-arrow" data-popper-arrow />
           </div>
           <span class="mr-0 ml-2 w-px h-5 bg-gray-200 dark:bg-gray-600 lg:inline lg:mr-3 lg:ml-5" />
+
           <LangMenu />
+
           <LoginButton googleLink={googleLink} />
           <UserMenu />
         </div>

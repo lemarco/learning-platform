@@ -7,7 +7,7 @@ const validateObjectAgainstSchema = <T>(data: Record<string, string>, schema: An
   const res = schema.safeParse(data);
   if (!res.success) {
     logger.error(res.error.issues);
-
+    console.log(res.error.issues);
     process.exit();
   }
 };

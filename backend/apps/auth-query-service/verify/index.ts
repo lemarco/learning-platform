@@ -20,6 +20,7 @@ export const VerifyGroupHandler = (app: App) =>
           return NotAuthorizedResponse();
         }
       },
+
       error: async ({ error, refresh, eventProducer, env, redis }) => {
         if (error.name !== "TokenExpiredError") {
           return NotAuthorizedResponse();

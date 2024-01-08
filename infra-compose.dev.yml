@@ -14,6 +14,35 @@ services:
       - 443:443
     env_file:
       - .env
+
+  articles_events_db:
+    container_name: ${ARTICLES_EVENTS_DB_HOST}
+    restart: always
+    image: postgres:16.1-alpine
+    command: -p ${ARTICLES_EVENTS_DB_PORT}
+    environment:
+      POSTGRES_PASSWORD: ${ARTICLES_EVENTS_DB_PASSWORD}
+      POSTGRES_DB: ${ARTICLES_EVENTS_DB_NAME}
+      POSTGRES_USER: ${ARTICLES_EVENTS_DB_USER}
+    ports:
+      - ${ARTICLES_EVENTS_DB_PORT}:${ARTICLES_EVENTS_DB_PORT}
+    volumes:
+      - ${PWD}/data/articles_events_db/:/var/lib/postgresql/data
+
+  articles_read_db:
+    container_name: ${ARTICLES_READ_DB_HOST}
+    restart: always
+    image: postgres:16.1-alpine
+    command: -p ${ARTICLES_READ_DB_PORT}
+    environment:
+      POSTGRES_PASSWORD: ${ARTICLES_READ_DB_PASSWORD}
+      POSTGRES_DB: ${ARTICLES_READ_DB_NAME}
+      POSTGRES_USER: ${ARTICLES_READ_DB_USER}
+    ports:
+      - ${ARTICLES_READ_DB_PORT}:${ARTICLES_READ_DB_PORT}
+    volumes:
+      - ${PWD}/data/articles_read_db/:/var/lib/postgresql/data
+
   users_events_db:
     container_name: ${USERS_EVENTS_DB_HOST}
     restart: always

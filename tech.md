@@ -44,3 +44,4 @@
   - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken): npm package for utilizing JWT tokens while auth flow. An implementation of [JSON Web Tokens](https://jwt.io/).
   - [pino](https://getpino.io/#/): npm package for logging
   - [zod](https://zod.dev/): npm package for validating json objects in runtime
+
