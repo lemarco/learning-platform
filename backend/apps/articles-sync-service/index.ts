@@ -12,7 +12,7 @@ const env = createEnvStore(
     ARTICLES_READ_DB_URL: z.string(),
     ARTICLES_EVENTS_DB_URL: z.string(),
     ARTICLES_SYNC_SERVICE_HOST_NAME: z.string(),
-    ARTICLES_SYNC_SERVICE_PORT: z.string().transform((val) => +val),
+    ARTICLES_SYNC_SERVICE_PORT: z.string().transform(Number),
   }),
   logger,
 );

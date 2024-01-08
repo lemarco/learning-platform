@@ -45,4 +45,3 @@
   - [pino](https://getpino.io/#/): npm package for logging
   - [zod](https://zod.dev/): npm package for validating json objects in runtime
 
-[x] dsfsdf
