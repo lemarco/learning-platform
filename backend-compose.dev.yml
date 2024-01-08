@@ -19,7 +19,7 @@ services:
       dockerfile: ./backend/.dev.dockerfile
     command: bun dev:articles-command
     expose:
-      - ${ARTICLES_QUERY_COMMAND_PORT}
+      - ${ARTICLES_COMMAND_SERVICE_PORT}
     volumes:
       - ./backend:/app
       - ./logs/services:/app/logs
@@ -30,7 +30,7 @@ services:
       dockerfile: ./backend/.dev.dockerfile
     command: bun dev:articles-sync
     expose:
-      - ${ARTICLES_QUERY_SYNC_PORT}
+      - ${ARTICLES_SYNC_SERVICE_PORT}
     volumes:
       - ./backend:/app
       - ./logs/services:/app/logs

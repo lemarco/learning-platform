@@ -89,5 +89,6 @@ re: clean all
 	docker compose -f ./elk-compose.dev.yml -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d
 
 start: copy-env-to-backend copy-env-to-backend
+	cd backend && bun run mirgation:generate:all
 	docker compose -f ./elk-compose.dev.yml -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d
 

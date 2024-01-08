@@ -6,7 +6,7 @@ const connectionString = process.env.ARTICLE_READ_DB_URL as string;
 
 export default ({
   schema: schemaPath,
-  out: "./apps/auth-query-service/database/migrations",
+  out: "./apps/articles-query-service/database/migrations",
   driver: "pg",
   dbCredentials: {
     connectionString,

@@ -6,7 +6,7 @@ const connectionString = process.env.ARTICLE_EVENTS_DB_URL as string;
 
 export default ({
   schema: schemaPath,
-  out: "./apps/auth-events/database/migrations",
+  out: "./apps/articles-command-service/database/migrations",
   driver: "pg",
   dbCredentials: {
     connectionString,
