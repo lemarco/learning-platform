@@ -1,6 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 
 const Footer = component$(() => {
+  const date = new Date();
+
   return (
     <footer class="bg-gray-50 dark:bg-gray-800">
       <div class="p-4 py-6 mx-auto max-w-screen-xl md:p-8 lg:-10">
@@ -82,11 +84,7 @@ const Footer = component$(() => {
                   Careers
                 </a>
               </li>
-              <li class="mb-4">
-                <a href="/" class="hover:underline">
-                  Brand Center
-                </a>
-              </li>
+
               <li class="mb-4">
                 <a href="/" class="hover:underline">
                   Blog
@@ -102,19 +100,10 @@ const Footer = component$(() => {
                   Discord Server
                 </a>
               </li>
+
               <li class="mb-4">
                 <a href="/" class="hover:underline">
-                  Twitter
-                </a>
-              </li>
-              <li class="mb-4">
-                <a href="/" class="hover:underline">
-                  Facebook
-                </a>
-              </li>
-              <li class="mb-4">
-                <a href="/" class="hover:underline">
-                  Contact Us
+                  FAQ
                 </a>
               </li>
             </ul>
@@ -127,11 +116,7 @@ const Footer = component$(() => {
                   Privacy Policy
                 </a>
               </li>
-              <li class="mb-4">
-                <a href="/" class="hover:underline">
-                  Licensing
-                </a>
-              </li>
+
               <li class="mb-4">
                 <a href="/" class="hover:underline">
                   Terms
@@ -139,35 +124,10 @@ const Footer = component$(() => {
               </li>
             </ul>
           </div>
-          <div class="lg:mx-auto">
-            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Download</h2>
-            <ul class="text-gray-500 dark:text-gray-400">
-              <li class="mb-4">
-                <a href="/" class="hover:underline">
-                  iOS
-                </a>
-              </li>
-              <li class="mb-4">
-                <a href="/" class="hover:underline">
-                  Android
-                </a>
-              </li>
-              <li class="mb-4">
-                <a href="/" class="hover:underline">
-                  Windows
-                </a>
-              </li>
-              <li class="mb-4">
-                <a href="/" class="hover:underline">
-                  MacOS
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <span class="block text-sm text-center text-gray-500 dark:text-gray-400">
-          © 2021-2022{" "}
+          © {date.getFullYear()}
           <a href="/" class="hover:underline">
             COMPANY NAME™
           </a>

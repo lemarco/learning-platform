@@ -99,7 +99,7 @@ const CommentForm = component$(() => {
             Post comment
           </button>
           <div class="flex pl-0 space-x-1 sm:pl-2">
-            <button
+            {/* <button
               type="button"
               class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
             >
@@ -121,8 +121,8 @@ const CommentForm = component$(() => {
                 <path d="M8 0a7.992 7.992 0 0 0-6.583 12.535 1 1 0 0 0 .12.183l.12.146c.112.145.227.285.326.4l5.245 6.374a1 1 0 0 0 1.545-.003l5.092-6.205c.206-.222.4-.455.578-.7l.127-.155a.934.934 0 0 0 .122-.192A8.001 8.001 0 0 0 8 0Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
               </svg>
               <span class="sr-only">Set location</span>
-            </button>
-            <button
+            </button> */}
+            {/* <button
               type="button"
               class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
             >
@@ -130,7 +130,7 @@ const CommentForm = component$(() => {
                 <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
               </svg>
               <span class="sr-only">Upload image</span>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -687,19 +687,12 @@ const SocialMediaShare = component$(() => {
 });
 const ArticleJumbotron = component$(() => {
   return (
-    <header class="bg-[url('https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/background.png')] w-full h-[460px] xl:h-[537px] bg-no-repeat bg-cover bg-center bg-blend-darken relative">
+    <header class="w-full h-[460px] xl:h-[537px] bg-no-repeat bg-cover bg-center bg-blend-darken relative">
       {/* <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50" /> */}
       <div class="absolute top-20 left-1/2 px-4 mx-auto w-full max-w-screen-xl -translate-x-1/2 xl:top-1/2 xl:-translate-y-1/2 xl:px-0">
-        <span class="block mb-4 text-gray-300">
-          Published in{" "}
-          <a href="/" class="font-semibold text-white hover:underline">
-            World News
-          </a>
-        </span>
         <h1 class="mb-4 max-w-4xl text-2xl font-extrabold leading-none text-white sm:text-3xl lg:text-4xl">
           Blocks Tutorial - Learn how to get started with custom sections using the Flowbite Blocks
         </h1>
-        <p class="text-lg font-normal text-gray-300">Before going digital, you might scribbling down some ideas in a sketchbook.</p>
       </div>
     </header>
   );

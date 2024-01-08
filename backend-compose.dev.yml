@@ -12,6 +12,28 @@ services:
     volumes:
       - ./backend:/app
       - ./logs/services:/app/logs
+  articles-command-service:
+    container_name: ${ARTICLES_COMMAND_SERVICE_HOST_NAME}
+    restart: on-failure
+    build:
+      dockerfile: ./backend/.dev.dockerfile
+    command: bun dev:articles-command
+    expose:
+      - ${ARTICLES_QUERY_COMMAND_PORT}
+    volumes:
+      - ./backend:/app
+      - ./logs/services:/app/logs
+  articles-sync-service:
+    container_name: ${ARTICLES_SYNC_SERVICE_HOST_NAME}
+    restart: on-failure
+    build:
+      dockerfile: ./backend/.dev.dockerfile
+    command: bun dev:articles-sync
+    expose:
+      - ${ARTICLES_QUERY_SYNC_PORT}
+    volumes:
+      - ./backend:/app
+      - ./logs/services:/app/logs
 
   auth_command_service:
     container_name: ${AUTH_COMMANDS_SERVICE_HOST_NAME}

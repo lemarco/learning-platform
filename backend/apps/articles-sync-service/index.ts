@@ -2,7 +2,7 @@ import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
 import { Elysia, type ListenCallback, type TraceHandler, type TSchema } from "elysia";
 import { Logger, createEnvStore } from "framework";
 import { Pool } from "pg";
-import { users } from "schemas";
+import { articlesEvents, articles } from "schemas";
 import z from "zod";
 import { cron } from "@elysiajs/cron";
 const logger = Logger("Articles-query-service");
@@ -20,9 +20,11 @@ const ListenConfig = {
   hostname: "0.0.0.0",
   port: env.ARTICLES_SYNC_SERVICE_PORT,
 };
-const articleReadDb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLE_READ_DB_URL }), { schema: { ...users } });
+const articleReadDb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLE_READ_DB_URL }), {
+  schema: { ...articles },
+});
 const articleEventsDb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLE_EVENTS_DB_URL }), {
-  schema: { ...users },
+  schema: { ...articlesEvents },
 });
 const onStart: ListenCallback = () => logger.info(`Article query service started on port ${env.ARTICLES_SYNC_SERVICE_PORT}`);
 const tracer: TraceHandler = (req) => logger.info(req);

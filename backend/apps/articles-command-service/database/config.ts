@@ -2,7 +2,7 @@ import { resolve } from "path";
 import type { Config } from "drizzle-kit";
 
 const schemaPath = resolve("./libs/schemas/articles-events.ts");
-const connectionString = process.env.ARTICLE_READ_DB_URL as string;
+const connectionString = process.env.ARTICLE_EVENTS_DB_URL as string;
 
 export default ({
   schema: schemaPath,

@@ -53,10 +53,9 @@ async function imageUploadHandler(image: File) {
 }
 export function Editor() {
   const state = "# Hello worldsdfsdfdsfasd";
-  //   const [markdown] = useCellValues([markdown$, rootEditor$ as any] as any);
-  //   const [state, setState] = useState();
 
-  //   console.log("state= ", state);
+  const [md, setMd] = useState("");
+
   setInterval(() => {
     console.log("render", markdownSourceEditorValue$.toString());
   }, 1000);
@@ -65,12 +64,9 @@ export function Editor() {
       markdown={state}
       contentEditableClassName="prose"
       className="bg-white"
-      //   onChange={(curr) => {
-      //     setState(curr);
-      //   }}
-      //   toMarkdownOptions={}
-      //   ref={state}
-
+      onChange={(curr) => {
+        setMd(curr);
+      }}
       plugins={[
         listsPlugin(),
         quotePlugin(),

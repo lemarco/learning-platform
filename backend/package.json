@@ -14,6 +14,8 @@
     "dev:auth-command": "bun --watch ./apps/auth-command-service/",
     "dev:auth-events": "bun ./apps/auth-events-service/",
     "dev:articles-query": "bun ./apps/articles-query-service/",
+    "dev:articles-command": "bun ./apps/articles-command-service/",
+    "dev:articles-sync": "bun ./apps/articles-sync-service/",
     "dev:gateway": "bun --watch ./apps/gateway",
     "orm:studio": "bunx drizzle-kit studio"
   },
@@ -22,12 +24,12 @@
   "type": "module",
   "dependencies": {
     "@elysiajs/cron": "^0.8.0",
-    "drizzle-kit": "^0.20.9",
+    "drizzle-kit": "^0.20.10",
     "drizzle-orm": "^0.29.3",
     "elysia": "^0.8.8",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
-    "googleapis": "^129.0.0",
+    "googleapis": "^130.0.0",
     "ioredis": "^5.3.2",
     "jsonwebtoken": "^9.0.2",
     "kafkajs": "^2.2.4",
@@ -38,7 +40,7 @@
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.5",
-    "@types/node": "^20.10.6",
+    "@types/node": "^20.10.7",
     "@types/pg": "^8.10.9",
     "pino-pretty": "^10.3.1"
   }
