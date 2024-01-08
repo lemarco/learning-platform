@@ -19,8 +19,8 @@ const env = createEnvStore(
   logger,
 );
 
-await migrator(env.ARTICLE_EVENTS_DB_URL || "", migrationsUsersFolder, logger);
-const articlesdb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLE_EVENTS_DB_URL }), {
+await migrator(env.ARTICLES_EVENTS_DB_URL || "", migrationsUsersFolder, logger);
+const articlesdb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLES_EVENTS_DB_URL }), {
   schema: { ...articlesEvents },
 });
 const onStart: ListenCallback = () => logger.info(`Article command service started on port ${env.ARTICLES_COMMAND_SERVICE_PORT}`);

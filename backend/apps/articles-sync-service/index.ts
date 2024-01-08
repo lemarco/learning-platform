@@ -9,8 +9,8 @@ const logger = Logger("Articles-query-service");
 
 const env = createEnvStore(
   z.object({
-    ARTICLE_READ_DB_URL: z.string(),
-    ARTICLE_EVENTS_DB_URL: z.string(),
+    ARTICLES_READ_DB_URL: z.string(),
+    ARTICLES_EVENTS_DB_URL: z.string(),
     ARTICLES_SYNC_SERVICE_HOST_NAME: z.string(),
     ARTICLES_SYNC_SERVICE_PORT: z.string().transform((val) => +val),
   }),
@@ -20,10 +20,10 @@ const ListenConfig = {
   hostname: "0.0.0.0",
   port: env.ARTICLES_SYNC_SERVICE_PORT,
 };
-const articleReadDb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLE_READ_DB_URL }), {
+const articleReadDb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLES_READ_DB_URL }), {
   schema: { ...articles },
 });
-const articleEventsDb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLE_EVENTS_DB_URL }), {
+const articleEventsDb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLES_EVENTS_DB_URL }), {
   schema: { ...articlesEvents },
 });
 const onStart: ListenCallback = () => logger.info(`Article query service started on port ${env.ARTICLES_SYNC_SERVICE_PORT}`);
