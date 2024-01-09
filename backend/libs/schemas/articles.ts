@@ -20,7 +20,7 @@ export const userBookmarks = pgTable("userBookmarks", {
   articleId: uuid("articleId"),
 });
 
-export const Tags = pgTable("tags", {
+export const tags = pgTable("tags", {
   tag: text("tag").notNull(),
   articleId: uuid("articleId").notNull(),
 });
