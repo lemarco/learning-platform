@@ -18,6 +18,8 @@ const env = createEnvStore(
     INTERNAL_COMUNICATION_SECRET: z.string(),
     AUTH_QUERY_SERVICE_PORT: z.string().transform((val) => +val),
     AUTH_QUERY_SERVICE_HOST_NAME: z.string(),
+    USERS_QUERY_SERVICE_PORT: z.string().transform((val) => +val),
+    USERS_QUERY_SERVICE_HOST_NAME: z.string(),
     AUTH_COMMANDS_SERVICE_PORT: z.string().transform((val) => +val),
     AUTH_COMMANDS_SERVICE_HOST_NAME: z.string(),
   }),
@@ -25,9 +27,10 @@ const env = createEnvStore(
 );
 
 const connections = new Map();
-const servicesBaseUrls = {
-  authQuery: `http://${env.AUTH_QUERY_SERVICE_HOST_NAME}:${env.AUTH_QUERY_SERVICE_PORT}`,
-  authCommand: `http://${env.AUTH_COMMANDS_SERVICE_HOST_NAME}:${env.AUTH_COMMANDS_SERVICE_PORT}`,
+export const servicesBaseUrls = {
+  authQuery: `http://${env.AUTH_QUERY_SERVICE_HOST_NAME}:${env.AUTH_QUERY_SERVICE_PORT}/`,
+  usersQuery: `http://${env.USERS_QUERY_SERVICE_HOST_NAME}:${env.USERS_QUERY_SERVICE_PORT}/`,
+  authCommand: `http://${env.AUTH_COMMANDS_SERVICE_HOST_NAME}:${env.AUTH_COMMANDS_SERVICE_PORT}/`,
 };
 
 const ListenConfig = {

@@ -138,7 +138,7 @@ export default component$(() => {
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
                 The free updates that will be provided is based on the{" "}
-                <a href="#" class="font-medium underline text-primary-600 dark:text-primary-500 hover:no-underline">
+                <a href="/" class="font-medium underline text-primary-600 dark:text-primary-500 hover:no-underline">
                   roadmap
                 </a>{" "}
                 that we have laid out for this project. It is also possible that we will provide extra updates outside of the roadmap as
