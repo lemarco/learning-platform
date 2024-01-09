@@ -3,7 +3,7 @@ import { type NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
 import { Elysia, type ListenCallback, type TSchema, type TraceHandler } from "elysia";
 import { KafkaProducer, Logger, Redis, createEnvStore, migrator } from "framework";
 import { Pool } from "pg";
-import { articles } from "schemas";
+import { articles, tags, userBookmarks } from "schemas";
 import z from "zod";
 import { ArticleGroupHandler } from "./articles";
 
@@ -20,7 +20,9 @@ const env = createEnvStore(
 );
 
 await migrator(env.ARTICLES_READ_DB_URL || "", migrationsFolder, logger);
-const articlesdb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLES_READ_DB_URL }), { schema: { ...articles } });
+const articlesdb: NodePgDatabase<TSchema> = drizzle(new Pool({ connectionString: env.ARTICLES_READ_DB_URL }), {
+  schema: { ...articles, ...userBookmarks, ...tags },
+});
 const onStart: ListenCallback = () => logger.info(`Article query service started on port ${env.ARTICLES_QUERY_SERVICE_PORT}`);
 const tracer: TraceHandler = (req) => logger.info(req);
 

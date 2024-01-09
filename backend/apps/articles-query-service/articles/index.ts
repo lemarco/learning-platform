@@ -1,9 +1,36 @@
 import { count, eq } from "drizzle-orm";
 import { t } from "elysia";
-import { articles } from "schemas/articles";
+import { articles, tags } from "schemas/articles";
 import type { App } from "..";
 export const ArticleGroupHandler = (app: App) => {
   return app
+    .get("/related", async ({ articlesdb }) => {
+      const articlesFromDb = await articlesdb.select().from(articles).limit(3);
+
+      return Response.json({
+        data: {
+          list: articlesFromDb ? articlesFromDb : [],
+        },
+      });
+    })
+    .get("/latest", async ({ articlesdb }) => {
+      const articlesFromDb = await articlesdb.select().from(articles).limit(6);
+
+      return Response.json({
+        data: {
+          list: articlesFromDb ? articlesFromDb : [],
+        },
+      });
+    })
+    .get("/tags/recomeded", async ({ articlesdb }) => {
+      const tagsFromDb = await articlesdb.select().from(tags).limit(10);
+
+      return Response.json({
+        data: {
+          list: tagsFromDb ? tagsFromDb : [],
+        },
+      });
+    })
     .get(
       "/:id",
       async ({ articlesdb, query }) => {
@@ -22,7 +49,7 @@ export const ArticleGroupHandler = (app: App) => {
     )
     .get(
       "/",
-      async ({ body: { page, limit }, articlesdb }) => {
+      async ({ query: { page, limit }, articlesdb }) => {
         const articlesFromDb = await articlesdb.select().from(articles).limit(limit);
         const countArticles = await articlesdb.select({ value: count() }).from(articles);
         return Response.json({
@@ -33,7 +60,7 @@ export const ArticleGroupHandler = (app: App) => {
         });
       },
       {
-        body: t.Object({
+        query: t.Object({
           page: t.Number(),
           limit: t.Number(),
         }),
