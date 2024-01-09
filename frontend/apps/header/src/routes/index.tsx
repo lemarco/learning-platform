@@ -584,7 +584,7 @@ const BottomHeader = component$(() => {
               </div>
             </li> */}
 
-            <li>
+            {/* <li>
               <a href="/" class="hidden text-gray-900 dark:text-white hover:text-primary-600 md:inline dark:hover:text-primary-500">
                 Resources
               </a>
@@ -593,7 +593,7 @@ const BottomHeader = component$(() => {
               <a href="/" class="hidden text-gray-900 dark:text-white hover:text-primary-600 md:inline dark:hover:text-primary-500">
                 Contact
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

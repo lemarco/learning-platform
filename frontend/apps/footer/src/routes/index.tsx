@@ -80,13 +80,13 @@ const Footer = component$(() => {
                 </a>
               </li>
               <li class="mb-4">
-                <a href="/" class="hover:underline">
+                <a href="/careers" class="hover:underline">
                   Careers
                 </a>
               </li>
 
               <li class="mb-4">
-                <a href="/" class="hover:underline">
+                <a href="/blog" class="hover:underline">
                   Blog
                 </a>
               </li>
@@ -102,7 +102,7 @@ const Footer = component$(() => {
               </li>
 
               <li class="mb-4">
-                <a href="/" class="hover:underline">
+                <a href="/faq" class="hover:underline">
                   FAQ
                 </a>
               </li>
@@ -112,13 +112,13 @@ const Footer = component$(() => {
             <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
             <ul class="text-gray-500 dark:text-gray-400">
               <li class="mb-4">
-                <a href="/" class="hover:underline">
+                <a href="/policy" class="hover:underline">
                   Privacy Policy
                 </a>
               </li>
 
               <li class="mb-4">
-                <a href="/" class="hover:underline">
+                <a href="/terms" class="hover:underline">
                   Terms
                 </a>
               </li>
