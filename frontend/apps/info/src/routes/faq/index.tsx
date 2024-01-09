@@ -37,7 +37,6 @@ export default component$(() => {
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {" "}
                   <title>X</title>
                   <path
                     fill-rule="evenodd"
@@ -60,7 +59,6 @@ export default component$(() => {
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {" "}
                   <title>X</title>
                   <path
                     fill-rule="evenodd"
