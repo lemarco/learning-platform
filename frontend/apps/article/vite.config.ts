@@ -1,54 +1,49 @@
-import { qwikCity } from '@builder.io/qwik-city/vite';
-import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikCity } from "@builder.io/qwik-city/vite";
+import { qwikVite } from "@builder.io/qwik/optimizer";
 import { config } from "dotenv";
-import { qwikNxVite } from 'qwik-nx/plugins';
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
-const { parsed, error } = config()
+import { qwikNxVite } from "qwik-nx/plugins";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+const { parsed, error } = config();
 if (error) {
-
-  process.exit()
+  process.exit();
 }
 
 export default defineConfig({
-
-  cacheDir: '../../node_modules/.vite/apps/article',
+  cacheDir: "../../node_modules/.vite/apps/article",
   plugins: [
     qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {
-        outDir: '../../dist/apps/article/client',
+        outDir: "../../dist/apps/article/client",
       },
       ssr: {
-        outDir: '../../dist/apps/article/server',
+        outDir: "../../dist/apps/article/server",
       },
-      tsconfigFileNames: ['tsconfig.app.json'],
+      tsconfigFileNames: ["tsconfig.app.json"],
     }),
-    tsconfigPaths({ root: '../../' }),
+    tsconfigPaths({ root: "../../" }),
   ],
   server: {
     fs: {
       // Allow serving files from the project root
-      allow: ['../../'],
+      allow: ["../../"],
     },
     host: "0.0.0.0",
     port: Number(parsed?.FRONTEND_ARTICLE_APP_PORT),
-
   },
   preview: {
     headers: {
-      'Cache-Control': 'public, max-age=600',
+      "Cache-Control": "public, max-age=600",
     },
   },
   test: {
     globals: true,
     cache: {
-      dir: '../../node_modules/.vitest',
+      dir: "../../node_modules/.vitest",
     },
-    environment: 'node',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    environment: "node",
+    include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
   },
 });
-
-

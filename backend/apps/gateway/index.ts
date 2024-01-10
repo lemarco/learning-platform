@@ -43,7 +43,8 @@ const tracer: TraceHandler = (req) => logger.info(req);
 
 const app = new Elysia()
   .get("/", () => new Response("OK"))
-  .state("env", env)
+  .decorate("env", env)
+  .decorate("logger", logger)
   .trace(tracer)
   .ws("/ws", {
     async open(ws) {
@@ -63,4 +64,6 @@ const app = new Elysia()
 
 export type App = typeof app;
 
-app.use(ApiRoutesHandler).use(AuthRoutesHandler).listen(ListenConfig, onStart);
+app.use(ApiRoutesHandler).use(AuthRoutesHandler);
+console.log(app.modules);
+app.listen(ListenConfig, onStart);

@@ -1,4 +1,4 @@
-import type { DocumentHead } from "@builder.io/qwik-city";
+import type { DocumentHead, RequestHandler } from "@builder.io/qwik-city";
 
 import { component$ } from "@builder.io/qwik";
 
@@ -66,7 +66,7 @@ const RelatedArticles = component$(() => {
       <div class="px-4 mx-auto max-w-screen-xl">
         <h2 class="mb-6 lg:mb-8 text-2xl font-bold text-gray-900 dark:text-white">Related articles</h2>
         <div class="grid gap-6 lg:gap-12 md:grid-cols-2">
-          {articleInfos.map((article,) => (
+          {articleInfos.map((article) => (
             <RelatedArticle {...article} key={article.id} />
           ))}
         </div>
@@ -845,7 +845,18 @@ const Article = component$(() => {
     </article>
   );
 });
-const Page = component$(() => {
+export const onGet: RequestHandler<{ id: string }> = async ({ params }) => {
+  console.log("url = ", `http://${process.env.GATEWAY_HOST_NAME}:${process.env.GATEWAY_PORT}/api/articles/${params.id}`);
+  console.log("ARTICLE PARAMS ID =", params.id);
+  const article = await fetch(`http://${process.env.GATEWAY_HOST_NAME}:${process.env.GATEWAY_PORT}/api/articles/${params.id}`)
+    .then((d) => d.json())
+    .catch((e) => {
+      console.log(e);
+    });
+  return article;
+};
+const Page = component$((article) => {
+  console.log(article);
   return (
     <>
       <main class="pb-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">

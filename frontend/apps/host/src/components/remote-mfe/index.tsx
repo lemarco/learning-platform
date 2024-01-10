@@ -59,10 +59,10 @@ export interface RemoteData {
   queryParam?: boolean;
 }
 
-export interface Props {
-  remote: RemoteData;
-  fetchOnScroll?: true;
-}
+// export interface Props {
+//   remote: RemoteData;
+//   fetchOnScroll?: true;
+// }
 
 // export default component$(({ remote, fetchOnScroll }: Props) => {
 //   const store = useContext(GlobalAppState);
@@ -98,49 +98,80 @@ export interface Props {
 //   );
 // });
 
-const fetchRemote = server$((url: string, user: string) => {
-  const remoteUrl = new URL(url);
-  if (remoteUrl) {
-    remoteUrl.searchParams.append("loader", "false");
-    remoteUrl.searchParams.append("t", new Date().getTime().toString());
-  }
-  return fetch(remoteUrl, {
-    headers: {
-      accept: "text/html",
-      "Access-Control-Allow-Origin": "*",
-      cookie: `user=${user}`,
-    },
-  });
-});
-const getSSRStreamFunction = (remoteUrl: string, user: string) => {
-  const decoder = new TextDecoder();
+// const fetchRemote = server$((url: string, user: string) => {
+//   const remoteUrl = new URL(url);
+//   if (remoteUrl) {
+//     remoteUrl.searchParams.append("loader", "false");
+//     remoteUrl.searchParams.append("t", new Date().getTime().toString());
+//   }
+//   return fetch(remoteUrl, {
+//     headers: {
+//       accept: "text/html",
+//       "Access-Control-Allow-Origin": "*",
+//       cookie: `user=${user}`,
+//     },
+//   });
+// });
+// const getSSRStreamFunction = (remoteUrl: string, user: string) => {
+//   const decoder = new TextDecoder();
 
-  return async (stream: StreamWriter) => {
-    const reader = (await fetchRemote(remoteUrl, user)).body?.getReader();
-    let fragmentChunk = await reader?.read();
+//   return async (stream: StreamWriter) => {
+//     const reader = (await fetchRemote(remoteUrl, user)).body?.getReader();
+//     let fragmentChunk = await reader?.read();
+//     let base = "";
+//     while (!fragmentChunk?.done) {
+//       const rawHtml = decoder.decode(fragmentChunk?.value);
+//       const fixedHtmlObj = fixRemoteHTMLInDevMode(rawHtml, base);
+//       base = fixedHtmlObj.base;
+//       stream.write(fixedHtmlObj.html);
+//       fragmentChunk = await reader?.read();
+//     }
+//   };
+// };
+
+// export default component$(({ remote }: Props) => {
+//   const store = useContext(GlobalAppState);
+
+//   const url = new URL(remote.url + (remote.queryParam ? "/qwik" : ""))
+//   // const url = new URL(remote.url + (remote.queryParam ? (store.user === "Giorgio" ? "/builder-io" : "/qwik") : ""));
+
+//   return (
+//     <SSRStreamBlock>
+//       <SSRStream >{getSSRStreamFunction(url.href, store.user)}</SSRStream>
+//     </SSRStreamBlock>
+//   );
+// });
+
+type Props = {
+  url: string;
+  removeLoader?: boolean;
+};
+export default component$(({ url, removeLoader = false }: Props) => {
+  const decoder = new TextDecoder();
+  const getSSRStreamFunction = (url: string) => async (s: StreamWriter) => {
+    const _url = new URL(url);
+    if (removeLoader) {
+      _url.searchParams.append("loader", "false");
+    }
+    // biome-ignore lint/style/noNonNullAssertion: <explanation>
+    const reader = (await fetch(_url, { headers: { accept: "text/html" } })).body!.getReader();
+    let chunk = await reader.read();
     let base = "";
-    while (!fragmentChunk?.done) {
-      const rawHtml = decoder.decode(fragmentChunk?.value);
-      const fixedHtmlObj = fixRemoteHTMLInDevMode(rawHtml, base);
-      base = fixedHtmlObj.base;
-      stream.write(fixedHtmlObj.html);
-      fragmentChunk = await reader?.read();
+    while (!chunk.done) {
+      const rawHtml = decoder.decode(chunk.value);
+      const fixed = fixRemoteHTMLInDevMode(rawHtml, base);
+      base = fixed.base;
+      s.write(fixed.html);
+      chunk = await reader.read();
     }
   };
-};
-
-export default component$(({ remote }: Props) => {
-  const store = useContext(GlobalAppState);
-
-  const url = new URL(remote.url + (remote.queryParam ? "/qwik" : ""));
-  // const url = new URL(remote.url + (remote.queryParam ? (store.user === "Giorgio" ? "/builder-io" : "/qwik") : ""));
-
   return (
     <SSRStreamBlock>
-      <SSRStream>{getSSRStreamFunction(url.href, store.user)}</SSRStream>
+      <SSRStream>{getSSRStreamFunction(url)}</SSRStream>
     </SSRStreamBlock>
   );
 });
+
 // const useFetchOnScroll = (enabled: boolean, url: string, user: string) => {
 //   const scrollElementRef = useSignal<Element>();
 
@@ -174,18 +205,25 @@ export default component$(({ remote }: Props) => {
 /**
  * This function is a hack to work around the fact that in dev mode the remote html is failing to prefix the base path.
  */
-const fixRemoteHTMLInDevMode = (rawHtml: string): { html: string; base: string } => {
+export const fixRemoteHTMLInDevMode = (rawHtml: string, base = "", isDev?: boolean): { html: string; base: string } => {
   let html = rawHtml;
-
-  let base = "";
-  if (import.meta.env.DEV) {
+  if (isDev || import.meta.env.DEV) {
     html = html.replace(/q:base="\/(\w+)\/build\/"/gm, (match, child) => {
+      // biome-ignore lint/style/noParameterAssign: <explanation>
       base = `/${child}`;
+      // console.log('FOUND', base);
       return match;
     });
-
-    html = html.replace(/="(\/src\/([^"]+))"/gm, (_, path) => `="${base}${path}"`);
-    html = html.replace(/"\\u0002(\/src\/([^"]+))"/gm, (_, path) => `"\\u0002${base}${path}"`);
+    html = html.replace(/="(\/src\/([^"]+))"/gm, (match, path) => {
+      return `="${base}${path}"`;
+    });
+    html = html.replace(/"\\u0002(\/src\/([^"]+))"/gm, (match, path) => {
+      return `"\\u0002${base}${path}"`;
+    });
   }
+  html = fixErroredHostDefinition(html, base);
   return { html, base };
 };
+
+const fixErroredHostDefinition = (html: string, base: string) =>
+  html.replace(/ErroredHost/gm, `ErroredHost${base.replace("/", "")}`).replace(/errored-host/gm, `errored-host-${base.replace("/", "")}`);

@@ -1,16 +1,16 @@
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
-import react from '@vitejs/plugin-react';
+import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
+import react from "@vitejs/plugin-react";
 import { config } from "dotenv";
 /// <reference types='vitest' />
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
-const { parsed, error } = config()
+const { parsed, error } = config();
 if (error) {
-  process.exit()
+  process.exit();
 }
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/blog-admin',
+  cacheDir: "../../node_modules/.vite/apps/blog-admin",
 
   server: {
     port: Number(parsed?.PUBLIC_FRONTEND_BLOG_ADMIN_PORT),
@@ -30,7 +30,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: '../../dist/apps/blog-admin',
+    outDir: "../../dist/apps/blog-admin",
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -40,15 +40,15 @@ export default defineConfig({
   test: {
     globals: true,
     cache: {
-      dir: '../../node_modules/.vitest',
+      dir: "../../node_modules/.vitest",
     },
-    environment: 'jsdom',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    environment: "jsdom",
+    include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
 
-    reporters: ['default'],
+    reporters: ["default"],
     coverage: {
-      reportsDirectory: '../../coverage/apps/blog-admin',
-      provider: 'v8',
+      reportsDirectory: "../../coverage/apps/blog-admin",
+      provider: "v8",
     },
   },
 });

@@ -1,22 +1,22 @@
-import { qwikVite } from '@builder.io/qwik/optimizer';
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { qwikVite } from "@builder.io/qwik/optimizer";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
-import { qwikNxVite } from 'qwik-nx/plugins';
+import { qwikNxVite } from "qwik-nx/plugins";
 
 export default defineConfig({
-  cacheDir: '../../node_modules/.vite/libs/icons',
-  plugins: [qwikNxVite(), qwikVite(), tsconfigPaths({ root: '../../' })],
+  cacheDir: "../../node_modules/.vite/libs/icons",
+  plugins: [qwikNxVite(), qwikVite(), tsconfigPaths({ root: "../../" })],
 
   test: {
     globals: true,
     cache: {
-      dir: '../../node_modules/.vitest',
+      dir: "../../node_modules/.vitest",
     },
-    environment: 'node',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    environment: "node",
+    include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     coverage: {
-      reportsDirectory: '../../coverage/libs/icons',
+      reportsDirectory: "../../coverage/libs/icons",
     },
   },
 });
