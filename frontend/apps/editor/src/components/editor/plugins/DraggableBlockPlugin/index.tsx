@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 import "./index.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { eventFiles } from "@lexical/rich-text";
-import { mergeRegister } from "@lexical/utils";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { eventFiles } from "@frontend/lexical-editor";
+import { mergeRegister } from "@frontend/lexical-editor";
 import {
   $getNearestNodeFromDOMNode,
   $getNodeByKey,
@@ -13,7 +13,7 @@ import {
   DRAGOVER_COMMAND,
   DROP_COMMAND,
   LexicalEditor,
-} from "lexical";
+} from "@frontend/lexical-editor";
 import * as React from "react";
 import { DragEvent as ReactDragEvent, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";

@@ -1,10 +1,17 @@
 /** @jsxImportSource react */
 
-import type { RangeSelection } from "lexical";
+import type { RangeSelection } from "@frontend/lexical-editor";
 
-import { $getListDepth, $isListItemNode, $isListNode } from "@lexical/list";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $getSelection, $isElementNode, $isRangeSelection, COMMAND_PRIORITY_CRITICAL, ElementNode, INDENT_CONTENT_COMMAND } from "lexical";
+import { $getListDepth, $isListItemNode, $isListNode } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import {
+  $getSelection,
+  $isElementNode,
+  $isRangeSelection,
+  COMMAND_PRIORITY_CRITICAL,
+  ElementNode,
+  INDENT_CONTENT_COMMAND,
+} from "@frontend/lexical-editor";
 import { useEffect } from "react";
 
 type Props = Readonly<{

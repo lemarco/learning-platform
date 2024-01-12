@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $wrapNodeInElement } from "@lexical/utils";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { $wrapNodeInElement } from "@frontend/lexical-editor";
 import {
   $createParagraphNode,
   $insertNodes,
@@ -10,7 +10,7 @@ import {
   LexicalCommand,
   LexicalEditor,
   createCommand,
-} from "lexical";
+} from "@frontend/lexical-editor";
 import { useEffect, useState } from "react";
 import * as React from "react";
 

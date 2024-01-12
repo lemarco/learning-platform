@@ -2,9 +2,9 @@
 
 import * as http from "http";
 import * as url from "url";
-import { createHeadlessEditor } from "@lexical/headless";
-import { $isMarkNode, $unwrapMarkNode } from "@lexical/mark";
-import { $getRoot, $isElementNode, LexicalNode } from "lexical";
+import { createHeadlessEditor } from "@frontend/lexical-editor";
+import { $isMarkNode, $unwrapMarkNode } from "@frontend/lexical-editor";
+import { $getRoot, $isElementNode, LexicalNode } from "@frontend/lexical-editor";
 
 import PlaygroundNodes from "../nodes/PlaygroundNodes";
 

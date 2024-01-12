@@ -1,9 +1,15 @@
 /** @jsxImportSource react */
 
-import type { LexicalEditor } from "lexical";
+import type { LexicalEditor } from "@frontend/lexical-editor";
 
-import { AutoEmbedOption, EmbedConfig, EmbedMatchResult, LexicalAutoEmbedPlugin, URL_MATCHER } from "@lexical/react/LexicalAutoEmbedPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import {
+  useLexicalComposerContext,
+  AutoEmbedOption,
+  LexicalAutoEmbedPlugin,
+  URL_MATCHER,
+  EmbedMatchResult,
+  EmbedConfig,
+} from "@frontend/lexical-react";
 import { useMemo, useState } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -14,6 +20,7 @@ import { DialogActions } from "../../ui/Dialog";
 import { INSERT_FIGMA_COMMAND } from "../FigmaPlugin";
 import { INSERT_TWEET_COMMAND } from "../TwitterPlugin";
 import { INSERT_YOUTUBE_COMMAND } from "../YouTubePlugin";
+// import { EmbedMatchResult, EmbedConfig } from "@frontend/lexical-editor
 
 interface PlaygroundEmbedConfig extends EmbedConfig {
   // Human readable name of the embeded content e.g. Tweet or Google Map.

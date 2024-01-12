@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import type { DOMConversionMap, EditorConfig, LexicalNode, NodeKey, SerializedElementNode, Spread } from "lexical";
+import type { DOMConversionMap, EditorConfig, LexicalNode, NodeKey, SerializedElementNode, Spread } from "@frontend/lexical-editor";
 
-import { addClassNamesToElement } from "@lexical/utils";
-import { ElementNode } from "lexical";
+import { addClassNamesToElement } from "@frontend/lexical-editor";
+import { ElementNode } from "@frontend/lexical-editor";
 
 export type SerializedLayoutContainerNode = Spread<
   {

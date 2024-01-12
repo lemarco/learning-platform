@@ -1,15 +1,23 @@
 /** @jsxImportSource react */
 
-import { $createCodeNode } from "@lexical/code";
-import { INSERT_CHECK_LIST_COMMAND, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND } from "@lexical/list";
-import { INSERT_EMBED_COMMAND } from "@lexical/react/LexicalAutoEmbedPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { INSERT_HORIZONTAL_RULE_COMMAND } from "@lexical/react/LexicalHorizontalRuleNode";
-import { LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch } from "@lexical/react/LexicalTypeaheadMenuPlugin";
-import { $createHeadingNode, $createQuoteNode } from "@lexical/rich-text";
-import { $setBlocksType } from "@lexical/selection";
-import { INSERT_TABLE_COMMAND } from "@lexical/table";
-import { $createParagraphNode, $getSelection, $isRangeSelection, FORMAT_ELEMENT_COMMAND, LexicalEditor, TextNode } from "lexical";
+import { $createCodeNode, LexicalSelection } from "@frontend/lexical-editor";
+import { INSERT_CHECK_LIST_COMMAND, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND } from "@frontend/lexical-editor";
+import { INSERT_EMBED_COMMAND } from "@frontend/lexical-react";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { INSERT_HORIZONTAL_RULE_COMMAND } from "@frontend/lexical-react";
+import { LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch } from "@frontend/lexical-react";
+import { $createHeadingNode, $createQuoteNode } from "@frontend/lexical-editor";
+// import { $setBlocksType } from "@frontend/lexical-editor";
+const { $setBlocksType } = LexicalSelection;
+import { INSERT_TABLE_COMMAND } from "@frontend/lexical-editor";
+import {
+  $createParagraphNode,
+  $getSelection,
+  $isRangeSelection,
+  FORMAT_ELEMENT_COMMAND,
+  LexicalEditor,
+  TextNode,
+} from "@frontend/lexical-editor";
 import { useCallback, useMemo, useState } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";

@@ -20,6 +20,7 @@ export * from "./lexical-offset/LexicalOffset";
 export * from "./lexical-rich-text/LexicalRichText";
 export * from "./lexical-text/LexicalText";
 
-// export * from "./lexical-selection/LexicalSelection";
+export * as LexicalSelection from "./lexical-selection/LexicalSelection";
 export * from "./lexical-utils/LexicalUtils";
-export * from "./shared/";
+export * from "./lexical-yjs/index";
+export * from "./shared/src";

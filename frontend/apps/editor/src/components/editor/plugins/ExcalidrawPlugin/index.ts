@@ -1,7 +1,14 @@
 /** @jsxImportSource react */
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $wrapNodeInElement } from "@lexical/utils";
-import { $createParagraphNode, $insertNodes, $isRootOrShadowRoot, COMMAND_PRIORITY_EDITOR, LexicalCommand, createCommand } from "lexical";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { $wrapNodeInElement } from "@frontend/lexical-editor";
+import {
+  $createParagraphNode,
+  $insertNodes,
+  $isRootOrShadowRoot,
+  COMMAND_PRIORITY_EDITOR,
+  LexicalCommand,
+  createCommand,
+} from "@frontend/lexical-editor";
 import { useEffect } from "react";
 
 import { $createExcalidrawNode, ExcalidrawNode } from "../../nodes/ExcalidrawNode";

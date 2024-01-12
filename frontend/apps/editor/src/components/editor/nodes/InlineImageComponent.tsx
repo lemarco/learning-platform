@@ -1,4 +1,4 @@
-import type { BaseSelection, LexicalEditor, NodeKey } from "lexical";
+import type { BaseSelection, LexicalEditor, NodeKey } from "@frontend/lexical-editor";
 /** @jsxImportSource react */
 import type { Position } from "./InlineImageNode";
 
@@ -10,7 +10,7 @@ import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
-import { mergeRegister } from "@lexical/utils";
+import { mergeRegister } from "@frontend/lexical-editor";
 import {
   $getNodeByKey,
   $getSelection,
@@ -24,7 +24,7 @@ import {
   KEY_ENTER_COMMAND,
   KEY_ESCAPE_COMMAND,
   SELECTION_CHANGE_COMMAND,
-} from "lexical";
+} from "@frontend/lexical-editor";
 import * as React from "react";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 

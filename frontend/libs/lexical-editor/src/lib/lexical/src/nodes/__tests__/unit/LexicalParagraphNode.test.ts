@@ -1,4 +1,4 @@
-import { $createParagraphNode, $getRoot, $getSelection, $isParagraphNode, ParagraphNode, RangeSelection } from "lexical";
+import { $createParagraphNode, $getRoot, $getSelection, $isParagraphNode, ParagraphNode, RangeSelection } from "@frontend/lexical-editor";
 
 import { initializeUnitTest } from "../../../__tests__/utils";
 

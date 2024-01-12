@@ -1,4 +1,4 @@
-import { $createLineBreakNode, $isLineBreakNode } from "lexical";
+import { $createLineBreakNode, $isLineBreakNode } from "@frontend/lexical-editor";
 
 import { initializeUnitTest } from "../../../__tests__/utils";
 

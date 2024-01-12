@@ -1,17 +1,17 @@
 /** @jsxImportSource react */
 
-import type { LexicalEditor, NodeKey } from "lexical";
+import type { LexicalEditor, NodeKey } from "@frontend/lexical-editor";
 
 import "./StickyNode.css";
 
-import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
-import { CollaborationPlugin } from "@lexical/react/LexicalCollaborationPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
-import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
-import { $getNodeByKey } from "lexical";
+import { useCollaborationContext } from "@frontend/lexical-react";
+import { CollaborationPlugin } from "@frontend/lexical-react";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { LexicalErrorBoundary } from "@frontend/lexical-react";
+import { HistoryPlugin } from "@frontend/lexical-react";
+import { LexicalNestedComposer } from "@frontend/lexical-react";
+import { PlainTextPlugin } from "@frontend/lexical-react";
+import { $getNodeByKey } from "@frontend/lexical-editor";
 import * as React from "react";
 import { useEffect, useRef } from "react";
 

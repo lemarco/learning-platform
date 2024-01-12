@@ -1,9 +1,17 @@
 /** @jsxImportSource react */
 
-import type { DOMConversionMap, DOMConversionOutput, EditorConfig, LexicalNode, NodeKey, SerializedLexicalNode, Spread } from "lexical";
+import type {
+  DOMConversionMap,
+  DOMConversionOutput,
+  EditorConfig,
+  LexicalNode,
+  NodeKey,
+  SerializedLexicalNode,
+  Spread,
+} from "@frontend/lexical-editor";
 
 import katex from "katex";
-import { $applyNodeReplacement, DOMExportOutput, DecoratorNode } from "lexical";
+import { $applyNodeReplacement, DOMExportOutput, DecoratorNode } from "@frontend/lexical-editor";
 import * as React from "react";
 import { Suspense } from "react";
 

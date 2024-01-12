@@ -10,7 +10,7 @@ import type {
   LexicalNode,
   NodeKey,
   Spread,
-} from "lexical";
+} from  "@frontend/lexical-editor";
 
 import { BlockWithAlignableContents } from "@lexical/react/LexicalBlockWithAlignableContents";
 import { DecoratorBlockNode, SerializedDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";

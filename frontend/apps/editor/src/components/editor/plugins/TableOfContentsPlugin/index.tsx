@@ -1,12 +1,12 @@
 /** @jsxImportSource react */
-import type { TableOfContentsEntry } from "@lexical/react/LexicalTableOfContents";
-import type { HeadingTagType } from "@lexical/rich-text";
-import type { NodeKey } from "lexical";
+import type { TableOfContentsEntry } from "@frontend/lexical-react";
+import type { HeadingTagType } from "@frontend/lexical-editor";
+import type { NodeKey } from "@frontend/lexical-editor";
 
 import "./index.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import LexicalTableOfContents from "@lexical/react/LexicalTableOfContents";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { LexicalTableOfContentsPlugin as LexicalTableOfContents } from "@frontend/lexical-react";
 import { useEffect, useRef, useState } from "react";
 import * as React from "react";
 

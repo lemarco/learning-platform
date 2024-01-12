@@ -11,7 +11,7 @@ import {
   NodeKey,
   SerializedElementNode,
   Spread,
-} from "lexical";
+} from "@frontend/lexical-editor";
 
 type SerializedCollapsibleContainerNode = Spread<
   {

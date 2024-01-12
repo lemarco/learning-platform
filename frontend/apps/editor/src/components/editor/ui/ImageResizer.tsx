@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import type { LexicalEditor } from "lexical";
+import type { LexicalEditor } from "@frontend/lexical-editor";
 
 import * as React from "react";
 import { useRef } from "react";

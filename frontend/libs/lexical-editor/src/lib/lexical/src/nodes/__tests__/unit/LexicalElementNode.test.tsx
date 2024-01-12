@@ -1,4 +1,13 @@
-import { $createTextNode, $getRoot, $getSelection, $isRangeSelection, ElementNode, LexicalEditor, LexicalNode, TextNode } from "lexical";
+import {
+  $createTextNode,
+  $getRoot,
+  $getSelection,
+  $isRangeSelection,
+  ElementNode,
+  LexicalEditor,
+  LexicalNode,
+  TextNode,
+} from "@frontend/lexical-editor";
 import * as React from "react";
 import { createRef, useEffect } from "react";
 import { createRoot } from "react-dom/client";

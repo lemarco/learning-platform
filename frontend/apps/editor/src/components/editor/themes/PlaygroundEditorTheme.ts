@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import type { EditorThemeClasses } from "lexical";
+import type { EditorThemeClasses } from "@frontend/lexical-editor";
 
 import "./PlaygroundEditorTheme.css";
 

@@ -1,3 +1,3 @@
-export default function px(value: number) {
+export function px(value: number) {
   return `${value}px`;
 }

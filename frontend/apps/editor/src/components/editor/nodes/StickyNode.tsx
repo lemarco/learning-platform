@@ -1,8 +1,16 @@
 /** @jsxImportSource react */
 
-import type { EditorConfig, LexicalEditor, LexicalNode, NodeKey, SerializedEditor, SerializedLexicalNode, Spread } from "lexical";
+import type {
+  EditorConfig,
+  LexicalEditor,
+  LexicalNode,
+  NodeKey,
+  SerializedEditor,
+  SerializedLexicalNode,
+  Spread,
+} from "@frontend/lexical-editor";
 
-import { $setSelection, DecoratorNode, createEditor } from "lexical";
+import { $setSelection, DecoratorNode, createEditor } from "@frontend/lexical-editor";
 import * as React from "react";
 import { Suspense } from "react";
 import { createPortal } from "react-dom";

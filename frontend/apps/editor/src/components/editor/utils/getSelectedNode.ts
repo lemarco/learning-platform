@@ -1,6 +1,8 @@
 /** @jsxImportSource react */
-import { $isAtNodeEnd } from "@lexical/selection";
-import { ElementNode, RangeSelection, TextNode } from "lexical";
+import { $isAtNodeEnd } from
+from;
+("@frontend/lexical-editor");
+import { ElementNode, RangeSelection, TextNode } from "@frontend/lexical-editor";
 
 export function getSelectedNode(selection: RangeSelection): TextNode | ElementNode {
   const anchor = selection.anchor;

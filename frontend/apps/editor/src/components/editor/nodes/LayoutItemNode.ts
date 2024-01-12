@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import type { DOMConversionMap, EditorConfig, LexicalNode, SerializedElementNode } from "lexical";
+import type { DOMConversionMap, EditorConfig, LexicalNode, SerializedElementNode } from "@frontend/lexical-editor";
 
-import { addClassNamesToElement } from "@lexical/utils";
-import { ElementNode } from "lexical";
+import { addClassNamesToElement } from "@frontend/lexical-editor";
+import { ElementNode } from "@frontend/lexical-editor";
 
 export type SerializedLayoutItemNode = SerializedElementNode;
 

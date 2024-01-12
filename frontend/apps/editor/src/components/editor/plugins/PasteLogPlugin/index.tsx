@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { COMMAND_PRIORITY_NORMAL, PASTE_COMMAND } from "lexical";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { COMMAND_PRIORITY_NORMAL, PASTE_COMMAND } from "@frontend/lexical-editor";
 import * as React from "react";
 import { useEffect, useState } from "react";
 

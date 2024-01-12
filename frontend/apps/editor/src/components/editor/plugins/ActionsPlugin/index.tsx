@@ -1,15 +1,16 @@
 /** @jsxImportSource react */
 
-import type { LexicalEditor } from "lexical";
+import type { LexicalEditor } from "@frontend/lexical-editor";
 
-import { $createCodeNode, $isCodeNode } from "@lexical/code";
-import { exportFile, importFile } from "@lexical/file";
-import { $convertFromMarkdownString, $convertToMarkdownString } from "@lexical/markdown";
-import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { mergeRegister } from "@lexical/utils";
-import { CONNECTED_COMMAND, TOGGLE_CONNECT_COMMAND } from "@lexical/yjs";
-import { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND, COMMAND_PRIORITY_EDITOR } from "lexical";
+import { $createCodeNode, $isCodeNode } from "@frontend/lexical-editor";
+import { exportFile, importFile } from "@frontend/lexical-editor";
+import { $convertFromMarkdownString, $convertToMarkdownString } from "@frontend/lexical-editor";
+
+import { useCollaborationContext, useLexicalComposerContext } from "@frontend/lexical-react";
+
+import { mergeRegister } from "@frontend/lexical-editor";
+import { CONNECTED_COMMAND, TOGGLE_CONNECT_COMMAND } from "@frontend/lexical-editor";
+import { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND, COMMAND_PRIORITY_EDITOR } from "@frontend/lexical-editor";
 import * as React from "react";
 import { useCallback, useEffect, useState } from "react";
 

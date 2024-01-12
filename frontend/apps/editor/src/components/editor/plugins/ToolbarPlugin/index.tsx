@@ -1,7 +1,13 @@
 /** @jsxImportSource react */
 
-import { $createCodeNode, $isCodeNode, CODE_LANGUAGE_FRIENDLY_NAME_MAP, CODE_LANGUAGE_MAP, getLanguageFriendlyName } from "@lexical/code";
-import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
+import {
+  $createCodeNode,
+  $isCodeNode,
+  CODE_LANGUAGE_FRIENDLY_NAME_MAP,
+  CODE_LANGUAGE_MAP,
+  getLanguageFriendlyName,
+} from "@frontend/lexical-editor";
+import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@frontend/lexical-editor";
 import {
   $isListNode,
   INSERT_CHECK_LIST_COMMAND,
@@ -9,15 +15,21 @@ import {
   INSERT_UNORDERED_LIST_COMMAND,
   ListNode,
   REMOVE_LIST_COMMAND,
-} from "@lexical/list";
-import { INSERT_EMBED_COMMAND } from "@lexical/react/LexicalAutoEmbedPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $isDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
-import { INSERT_HORIZONTAL_RULE_COMMAND } from "@lexical/react/LexicalHorizontalRuleNode";
-import { $createHeadingNode, $createQuoteNode, $isHeadingNode, $isQuoteNode, HeadingTagType } from "@lexical/rich-text";
-import { $getSelectionStyleValueForProperty, $isParentElementRTL, $patchStyleText, $setBlocksType } from "@lexical/selection";
-import { $isTableNode } from "@lexical/table";
-import { $findMatchingParent, $getNearestBlockElementAncestorOrThrow, $getNearestNodeOfType, mergeRegister } from "@lexical/utils";
+} from "@frontend/lexical-editor";
+import { INSERT_EMBED_COMMAND } from "@frontend/lexical-react";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { $isDecoratorBlockNode } from "@frontend/lexical-react";
+import { INSERT_HORIZONTAL_RULE_COMMAND } from "@frontend/lexical-react";
+import { $createHeadingNode, $createQuoteNode, $isHeadingNode, $isQuoteNode, HeadingTagType } from "@frontend/lexical-editor";
+import { $getSelectionStyleValueForProperty, $isParentElementRTL, $patchStyleText, $setBlocksType } from
+
+import { $isTableNode } from "@frontend/lexical-editor";
+import {
+  $findMatchingParent,
+  $getNearestBlockElementAncestorOrThrow,
+  $getNearestNodeOfType,
+  mergeRegister,
+} from "@frontend/lexical-editor";
 import {
   $INTERNAL_isPointSelection,
   $createParagraphNode,
@@ -43,7 +55,7 @@ import {
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
-} from "lexical";
+} from "@frontend/lexical-editor";
 import { Dispatch, useCallback, useEffect, useState } from "react";
 import * as React from "react";
 import useModal from "../../hooks/useModal";

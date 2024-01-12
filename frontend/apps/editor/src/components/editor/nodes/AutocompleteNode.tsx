@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import type { Spread } from "lexical";
+import type { Spread } from "@frontend/lexical-editor";
 
-import { DecoratorNode, EditorConfig, NodeKey, SerializedLexicalNode } from "lexical";
+import { DecoratorNode, EditorConfig, NodeKey, SerializedLexicalNode } from "@frontend/lexical-editor";
 import * as React from "react";
 
 import { useSharedAutocompleteContext } from "../context/SharedAutocompleteContext";

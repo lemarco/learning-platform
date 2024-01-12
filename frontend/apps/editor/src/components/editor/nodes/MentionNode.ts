@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import type { Spread } from "lexical";
+import type { Spread } from "@frontend/lexical-editor";
 
 import {
   $applyNodeReplacement,
@@ -12,7 +12,7 @@ import {
   type NodeKey,
   type SerializedTextNode,
   TextNode,
-} from "lexical";
+} from "@frontend/lexical-editor";
 
 export type SerializedMentionNode = Spread<
   {

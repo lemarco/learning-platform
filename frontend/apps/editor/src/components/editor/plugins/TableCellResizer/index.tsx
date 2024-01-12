@@ -1,11 +1,11 @@
 /** @jsxImportSource react */
-import type { Cell } from "@lexical/table";
-import type { LexicalEditor } from "lexical";
+import type { Cell } from "@frontend/lexical-editor";
+import type { LexicalEditor } from "@frontend/lexical-editor";
 
 import "./index.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import useLexicalEditable from "@lexical/react/useLexicalEditable";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { useLexicalEditable } from "@frontend/lexical-react";
 import {
   $getTableColumnIndexFromTableCellNode,
   $getTableNodeFromLexicalNodeOrThrow,
@@ -15,8 +15,8 @@ import {
   $isTableRowNode,
   TableCellNode,
   getCellFromTarget,
-} from "@lexical/table";
-import { $getNearestNodeFromDOMNode, $getSelection, COMMAND_PRIORITY_HIGH, SELECTION_CHANGE_COMMAND } from "lexical";
+} from "@frontend/lexical-editor";
+import { $getNearestNodeFromDOMNode, $getSelection, COMMAND_PRIORITY_HIGH, SELECTION_CHANGE_COMMAND } from "@frontend/lexical-editor";
 import * as React from "react";
 import { MouseEventHandler, ReactPortal, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";

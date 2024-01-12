@@ -10,8 +10,8 @@ import {
   TEXT_MATCH_TRANSFORMERS,
   TextMatchTransformer,
   Transformer,
-} from "@lexical/markdown";
-import { $createHorizontalRuleNode, $isHorizontalRuleNode, HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
+} from "@frontend/lexical-editor";
+import { $createHorizontalRuleNode, $isHorizontalRuleNode, HorizontalRuleNode } from "@frontend/lexical-react";
 import {
   $createTableCellNode,
   $createTableNode,
@@ -23,8 +23,8 @@ import {
   TableCellNode,
   TableNode,
   TableRowNode,
-} from "@lexical/table";
-import { $createTextNode, $isParagraphNode, $isTextNode, LexicalNode } from "lexical";
+} from "@frontend/lexical-editor";
+import { $createTextNode, $isParagraphNode, $isTextNode, LexicalNode } from "@frontend/lexical-editor";
 
 import { $createEquationNode, $isEquationNode, EquationNode } from "../../nodes/EquationNode";
 import { $createImageNode, $isImageNode, ImageNode } from "../../nodes/ImageNode";

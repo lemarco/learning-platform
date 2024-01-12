@@ -1,20 +1,40 @@
 /** @jsxImportSource react */
-import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { CharacterLimitPlugin } from "@lexical/react/LexicalCharacterLimitPlugin";
-import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
-import { ClearEditorPlugin } from "@lexical/react/LexicalClearEditorPlugin";
-import LexicalClickableLinkPlugin from "@lexical/react/LexicalClickableLinkPlugin";
-import { CollaborationPlugin } from "@lexical/react/LexicalCollaborationPlugin";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { HashtagPlugin } from "@lexical/react/LexicalHashtagPlugin";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { HorizontalRulePlugin } from "@lexical/react/LexicalHorizontalRulePlugin";
-import { ListPlugin } from "@lexical/react/LexicalListPlugin";
-import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
-import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
-import useLexicalEditable from "@lexical/react/useLexicalEditable";
+// import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
+// import { CharacterLimitPlugin } from "@lexical/react/LexicalCharacterLimitPlugin";
+// import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
+// import { ClearEditorPlugin } from "@lexical/react/LexicalClearEditorPlugin";
+// import LexicalClickableLinkPlugin from "@lexical/react/LexicalClickableLinkPlugin";
+// import { CollaborationPlugin } from "@lexical/react/LexicalCollaborationPlugin";
+// import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+// import { HashtagPlugin } from "@lexical/react/LexicalHashtagPlugin";
+// import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+// import { HorizontalRulePlugin } from "@lexical/react/LexicalHorizontalRulePlugin";
+// import { ListPlugin } from "@lexical/react/LexicalListPlugin";
+// import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
+// import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+// import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
+// import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
+// import useLexicalEditable from "@lexical/react/useLexicalEditable";
+
+import { LexicalReact } from "@frontend/lexical-editor";
+const {
+  HistoryPlugin,
+  HashtagPlugin,
+  LexicalErrorBoundary,
+  CollaborationPlugin,
+  LexicalClickableLinkPlugin,
+  ClearEditorPlugin,
+  HorizontalRulePlugin,
+  CheckListPlugin,
+  CharacterLimitPlugin,
+  AutoFocusPlugin,
+  ListPlugin,
+  useLexicalEditable,
+  TablePlugin,
+  TabIndentationPlugin,
+  RichTextPlugin,
+  PlainTextPlugin,
+} = LexicalReact;
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { CAN_USE_DOM } from "./utils/can-use-dom";

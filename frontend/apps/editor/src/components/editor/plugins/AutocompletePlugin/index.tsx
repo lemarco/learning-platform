@@ -1,10 +1,12 @@
 /** @jsxImportSource react */
 
-import type { BaseSelection, NodeKey } from "lexical";
+import type { BaseSelection, NodeKey } from "@frontend/lexical-editor";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $isAtNodeEnd } from "@lexical/selection";
-import { mergeRegister } from "@lexical/utils";
+import { LexicalSelection } from "@frontend/lexical-editor";
+
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+const { $isAtNodeEnd } = LexicalSelection;
+import { mergeRegister } from "@frontend/lexical-editor";
 import {
   $createTextNode,
   $getNodeByKey,
@@ -15,7 +17,7 @@ import {
   COMMAND_PRIORITY_LOW,
   KEY_ARROW_RIGHT_COMMAND,
   KEY_TAB_COMMAND,
-} from "lexical";
+} from "@frontend/lexical-editor";
 import { useCallback, useEffect } from "react";
 
 import { useSharedAutocompleteContext } from "../../context/SharedAutocompleteContext";

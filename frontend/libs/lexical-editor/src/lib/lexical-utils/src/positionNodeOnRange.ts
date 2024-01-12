@@ -3,7 +3,7 @@ import type { LexicalEditor } from "../../lexical/Lexical";
 import { createRectsFromDOMRange } from "../../lexical-selection/LexicalSelection";
 import { invariant } from "../../shared/src/invariant";
 
-import px from "./px";
+import { px } from "./px";
 
 const mutationObserverConfig = {
   attributes: true,
@@ -12,11 +12,7 @@ const mutationObserverConfig = {
   subtree: true,
 };
 
-export default function positionNodeOnRange(
-  editor: LexicalEditor,
-  range: Range,
-  onReposition: (node: Array<HTMLElement>) => void,
-): () => void {
+export function positionNodeOnRange(editor: LexicalEditor, range: Range, onReposition: (node: Array<HTMLElement>) => void): () => void {
   let rootDOMNode: null | HTMLElement = null;
   let parentDOMNode: null | HTMLElement = null;
   let observer: null | MutationObserver = null;

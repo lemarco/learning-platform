@@ -22,7 +22,7 @@ type Func = () => void;
  * @param func - An array of functions meant to be executed by the returned function.
  * @returns the function which executes all the passed register command functions.
  */
-export default function mergeRegister(...func: Array<Func>): () => void {
+export function mergeRegister(...func: Array<Func>): () => void {
   return () => {
     // biome-ignore lint/complexity/noForEach: <explanation>
     func.forEach((f) => f());

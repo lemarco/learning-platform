@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $insertNodeToNearestRoot, mergeRegister } from "@lexical/utils";
-import { $getSelection, $isRangeSelection, COMMAND_PRIORITY_EDITOR, LexicalCommand, createCommand } from "lexical";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { $insertNodeToNearestRoot, mergeRegister } from "@frontend/lexical-editor";
+import { $getSelection, $isRangeSelection, COMMAND_PRIORITY_EDITOR, LexicalCommand, createCommand } from "@frontend/lexical-editor";
 import { useEffect } from "react";
 
 import { $createPageBreakNode, PageBreakNode } from "../../nodes/PageBreakNode";

@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { LexicalContextMenuPlugin, MenuOption } from "@lexical/react/LexicalContextMenuPlugin";
-import { $getSelection, $isRangeSelection, COPY_COMMAND, CUT_COMMAND, type LexicalNode, PASTE_COMMAND } from "lexical";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { LexicalContextMenuPlugin, MenuOption } from "@frontend/lexical-react";
+import { $getSelection, $isRangeSelection, COPY_COMMAND, CUT_COMMAND, type LexicalNode, PASTE_COMMAND } from "@frontend/lexical-editor";
 import { useCallback, useMemo } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";

@@ -3,8 +3,8 @@ import type { Position } from "../../nodes/InlineImageNode";
 
 import "../../ui/Checkbox.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $wrapNodeInElement, mergeRegister } from "@lexical/utils";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { $wrapNodeInElement, mergeRegister } from "@frontend/lexical-editor";
 import {
   $createParagraphNode,
   $createRangeSelection,
@@ -22,7 +22,7 @@ import {
   LexicalCommand,
   LexicalEditor,
   createCommand,
-} from "lexical";
+} from "@frontend/lexical-editor";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { CAN_USE_DOM } from "../../utils/can-use-dom";

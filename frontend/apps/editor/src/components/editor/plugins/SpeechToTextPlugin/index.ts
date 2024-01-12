@@ -1,9 +1,16 @@
 /** @jsxImportSource react */
 
-import type { LexicalCommand, LexicalEditor, RangeSelection } from "lexical";
+import type { LexicalCommand, LexicalEditor, RangeSelection } from "@frontend/lexical-editor";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $getSelection, $isRangeSelection, COMMAND_PRIORITY_EDITOR, REDO_COMMAND, UNDO_COMMAND, createCommand } from "lexical";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import {
+  $getSelection,
+  $isRangeSelection,
+  COMMAND_PRIORITY_EDITOR,
+  REDO_COMMAND,
+  UNDO_COMMAND,
+  createCommand,
+} from "@frontend/lexical-editor";
 import { useEffect, useRef, useState } from "react";
 
 import useReport from "../../hooks/useReport";

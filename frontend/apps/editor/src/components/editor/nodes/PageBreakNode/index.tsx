@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 import "./index.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
-import { mergeRegister } from "@lexical/utils";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { useLexicalNodeSelection } from "@frontend/lexical-react";
+import { mergeRegister } from "@frontend/lexical-editor";
 import {
   $getNodeByKey,
   $getSelection,
@@ -19,7 +19,7 @@ import {
   LexicalNode,
   NodeKey,
   SerializedLexicalNode,
-} from "lexical";
+} from "@frontend/lexical-editor";
 import * as React from "react";
 import { useCallback, useEffect } from "react";
 

@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import { LinkPlugin as LexicalLinkPlugin } from "@lexical/react/LexicalLinkPlugin";
+import { LinkPlugin as LexicalLinkPlugin } from "@frontend/lexical-react";
 import * as React from "react";
 
 import { validateUrl } from "../../utils/url";

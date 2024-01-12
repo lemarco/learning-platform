@@ -1,11 +1,11 @@
 import { $getSelection, $isRangeSelection, type EditorState, ElementNode, type LexicalEditor, TextNode } from "../../lexical/Lexical";
 import { invariant } from "../../shared/src/invariant";
 
-import mergeRegister from "./mergeRegister";
+import { mergeRegister } from "./mergeRegister";
 import positionNodeOnRange from "./positionNodeOnRange";
-import px from "./px";
+import { px } from "./px";
 
-export default function markSelection(editor: LexicalEditor, onReposition?: (node: Array<HTMLElement>) => void): () => void {
+export function markSelection(editor: LexicalEditor, onReposition?: (node: Array<HTMLElement>) => void): () => void {
   let previousAnchorNode: null | TextNode | ElementNode = null;
   let previousAnchorOffset: null | number = null;
   let previousFocusNode: null | TextNode | ElementNode = null;

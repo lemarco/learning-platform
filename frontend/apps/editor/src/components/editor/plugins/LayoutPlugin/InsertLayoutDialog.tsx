@@ -1,5 +1,5 @@
 /** @jsxImportSource react */
-import { LexicalEditor } from "lexical";
+import { LexicalEditor } from "@frontend/lexical-editor";
 import * as React from "react";
 import { useState } from "react";
 

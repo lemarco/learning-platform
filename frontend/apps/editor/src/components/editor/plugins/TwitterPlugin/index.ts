@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $insertNodeToNearestRoot } from "@lexical/utils";
-import { COMMAND_PRIORITY_EDITOR, LexicalCommand, createCommand } from "lexical";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { $insertNodeToNearestRoot } from "@frontend/lexical-editor";
+import { COMMAND_PRIORITY_EDITOR, LexicalCommand, createCommand } from "@frontend/lexical-editor";
 import { useEffect } from "react";
 
 import { $createTweetNode, TweetNode } from "../../nodes/TweetNode";

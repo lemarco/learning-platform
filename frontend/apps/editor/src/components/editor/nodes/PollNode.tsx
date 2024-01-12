@@ -9,7 +9,7 @@ import {
   NodeKey,
   SerializedLexicalNode,
   Spread,
-} from "lexical";
+} from "@frontend/lexical-editor";
 import * as React from "react";
 import { Suspense } from "react";
 

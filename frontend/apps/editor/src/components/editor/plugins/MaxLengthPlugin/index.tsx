@@ -1,9 +1,10 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { trimTextContentFromAnchor } from "@lexical/selection";
-import { $restoreEditorState } from "@lexical/utils";
-import { $getSelection, $isRangeSelection, EditorState, RootNode } from "lexical";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+
+import { $restoreEditorState, LexicalSelection } from "@frontend/lexical-editor";
+const { trimTextContentFromAnchor } = LexicalSelection;
+import { $getSelection, $isRangeSelection, EditorState, RootNode } from "@frontend/lexical-editor";
 import { useEffect } from "react";
 
 export function MaxLengthPlugin({ maxLength }: { maxLength: number }): null {

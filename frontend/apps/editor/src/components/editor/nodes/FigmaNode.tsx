@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import type { EditorConfig, ElementFormatType, LexicalEditor, LexicalNode, NodeKey, Spread } from "lexical";
+import type { EditorConfig, ElementFormatType, LexicalEditor, LexicalNode, NodeKey, Spread } from "@frontend/lexical-editor";
 
 import { BlockWithAlignableContents } from "@lexical/react/LexicalBlockWithAlignableContents";
 import { DecoratorBlockNode, SerializedDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";

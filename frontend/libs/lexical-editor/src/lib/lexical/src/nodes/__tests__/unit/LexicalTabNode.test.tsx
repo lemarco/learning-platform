@@ -15,7 +15,7 @@ import {
   $isTextNode,
   $setSelection,
   KEY_TAB_COMMAND,
-} from "lexical";
+} from "@frontend/lexical-editor";
 
 import { DataTransferMock, initializeUnitTest, invariant } from "../../../__tests__/utils";
 

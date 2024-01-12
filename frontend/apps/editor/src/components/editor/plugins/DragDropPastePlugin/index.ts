@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { DRAG_DROP_PASTE } from "@lexical/rich-text";
-import { isMimeType, mediaFileReader } from "@lexical/utils";
-import { COMMAND_PRIORITY_LOW } from "lexical";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+
+import { isMimeType, mediaFileReader, DRAG_DROP_PASTE } from "@frontend/lexical-editor";
+import { COMMAND_PRIORITY_LOW } from "@frontend/lexical-editor";
 import { useEffect } from "react";
 
 import { INSERT_IMAGE_COMMAND } from "../ImagesPlugin";

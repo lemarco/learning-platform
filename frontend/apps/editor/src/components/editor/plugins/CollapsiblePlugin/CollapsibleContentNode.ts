@@ -8,7 +8,7 @@ import {
   ElementNode,
   LexicalNode,
   SerializedElementNode,
-} from "lexical";
+} from "@frontend/lexical-editor";
 
 type SerializedCollapsibleContentNode = SerializedElementNode;
 

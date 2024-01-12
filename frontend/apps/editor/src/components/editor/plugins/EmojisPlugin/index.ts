@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import type { LexicalEditor } from "lexical";
+import type { LexicalEditor } from "@frontend/lexical-editor";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { TextNode } from "lexical";
+import { useLexicalComposerContext } from "@frontend/lexical-react";
+import { TextNode } from "@frontend/lexical-editor";
 import { useEffect } from "react";
 
 import { $createEmojiNode, EmojiNode } from "../../nodes/EmojiNode";

@@ -12,7 +12,7 @@ import {
   LexicalNode,
   RangeSelection,
   SerializedElementNode,
-} from "lexical";
+} from "@frontend/lexical-editor";
 
 import { $isCollapsibleContainerNode } from "./CollapsibleContainerNode";
 import { $isCollapsibleContentNode } from "./CollapsibleContentNode";

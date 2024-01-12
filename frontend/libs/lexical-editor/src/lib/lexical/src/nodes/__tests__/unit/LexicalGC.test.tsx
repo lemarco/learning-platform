@@ -1,4 +1,4 @@
-import { $createParagraphNode, $createTextNode, $getNodeByKey, $getRoot, $isElementNode } from "lexical";
+import { $createParagraphNode, $createTextNode, $getNodeByKey, $getRoot, $isElementNode } from "@frontend/lexical-editor";
 
 import { $createTestElementNode, generatePermutations, initializeUnitTest, invariant } from "../../../__tests__/utils";
 

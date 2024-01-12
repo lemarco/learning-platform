@@ -8,7 +8,7 @@ import {
   ElementNode,
   RootNode,
   TextNode,
-} from "lexical";
+} from "@frontend/lexical-editor";
 
 import {
   $createTestDecoratorNode,
