@@ -82,7 +82,7 @@ import {
   createCommand,
   isSelectionCapturedInDecoratorInput,
 } from "../../lexical/Lexical";
-import caretFromPoint from "../../shared/src/caretFromPoint";
+import { caretFromPoint } from "../../shared/src/caretFromPoint";
 import { CAN_USE_BEFORE_INPUT, IS_APPLE_WEBKIT, IS_IOS, IS_SAFARI } from "../../shared/src/environment";
 
 export type SerializedHeadingNode = Spread<

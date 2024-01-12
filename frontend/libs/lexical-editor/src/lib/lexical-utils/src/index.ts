@@ -1,6 +1,6 @@
 /** @module @lexical/utils */
 
-import { $cloneWithProperties } from "@lexical/selection";
+import { $cloneWithProperties } from "../../lexical-selection/LexicalSelection";
 import {
   $createParagraphNode,
   $getPreviousSelection,
@@ -17,13 +17,13 @@ import {
   Klass,
   LexicalEditor,
   LexicalNode,
-} from "lexical";
-import invariant from "../../shared/src/invariant";
+} from "../../lexical/Lexical";
+import { invariant } from "../../shared/src/invariant";
 
 export { default as markSelection } from "./markSelection";
 export { default as mergeRegister } from "./mergeRegister";
 export { default as positionNodeOnRange } from "./positionNodeOnRange";
-export { $splitNode, isHTMLAnchorElement, isHTMLElement } from "lexical";
+export { $splitNode, isHTMLAnchorElement, isHTMLElement } from "../../lexical/Lexical";
 
 export type DFSNode = Readonly<{
   depth: number;

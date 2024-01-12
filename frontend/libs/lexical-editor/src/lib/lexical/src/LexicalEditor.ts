@@ -1,7 +1,7 @@
 import type { EditorState, SerializedEditorState } from "./LexicalEditorState";
 import type { DOMConversion, DOMConversionMap, DOMExportOutput, NodeKey } from "./LexicalNode";
 
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src";
 
 import { $getRoot, $getSelection, TextNode } from ".";
 import { FULL_RECONCILE, NO_DIRTY_NODES } from "./LexicalConstants";

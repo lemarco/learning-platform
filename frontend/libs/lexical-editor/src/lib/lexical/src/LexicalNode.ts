@@ -3,7 +3,7 @@ import type { Klass, KlassConstructor } from "../../lexical/Lexical";
 import type { EditorConfig, LexicalEditor } from "./LexicalEditor";
 import type { BaseSelection, RangeSelection } from "./LexicalSelection";
 
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { $createParagraphNode, $isElementNode, $isRootNode, $isTextNode, ElementNode } from ".";
 import {

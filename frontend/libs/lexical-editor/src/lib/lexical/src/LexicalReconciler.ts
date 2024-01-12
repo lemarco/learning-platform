@@ -2,7 +2,7 @@ import type { EditorConfig, LexicalEditor, MutatedNodes, MutationListeners, Regi
 import type { NodeKey, NodeMap } from "./LexicalNode";
 import type { ElementNode } from "./nodes/LexicalElementNode";
 
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { $isDecoratorNode, $isElementNode, $isLineBreakNode, $isRootNode, $isTextNode } from ".";
 import {

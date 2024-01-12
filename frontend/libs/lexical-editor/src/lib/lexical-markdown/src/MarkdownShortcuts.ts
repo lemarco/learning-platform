@@ -11,7 +11,7 @@ import {
   $isTextNode,
   $setSelection,
 } from "../../lexical/Lexical";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { TRANSFORMERS } from ".";
 import { PUNCTUATION_OR_SPACE, indexBy, transformersByType } from "./utils";

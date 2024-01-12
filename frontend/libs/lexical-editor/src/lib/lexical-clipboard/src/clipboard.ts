@@ -20,7 +20,7 @@ import {
   isSelectionWithinEditor,
 } from "../../lexical/Lexical";
 import { CAN_USE_DOM } from "../../shared/src/canUseDOM";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 const getDOMSelection = (targetWindow: Window | null): Selection | null => (CAN_USE_DOM ? (targetWindow || window).getSelection() : null);
 

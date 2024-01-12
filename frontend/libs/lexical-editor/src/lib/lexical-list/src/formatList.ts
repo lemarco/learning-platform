@@ -14,7 +14,7 @@ import {
   NodeKey,
   ParagraphNode,
 } from "../../lexical/Lexical";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { $createListItemNode, $createListNode, $isListItemNode, $isListNode, ListItemNode, ListNode } from "./";
 import { ListType } from "./LexicalListNode";

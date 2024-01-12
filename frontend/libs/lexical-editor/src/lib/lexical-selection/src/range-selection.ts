@@ -24,7 +24,7 @@ import {
   $isTextNode,
   $setSelection,
 } from "../../lexical/Lexical";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { getStyleObjectFromCSS } from "./utils";
 

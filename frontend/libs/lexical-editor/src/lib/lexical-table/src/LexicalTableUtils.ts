@@ -13,7 +13,7 @@ import {
   DEPRECATED_GridCellNode,
   LexicalNode,
 } from "../../lexical/Lexical";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { InsertTableCommandPayloadHeaders } from ".";
 import { $createTableCellNode, $isTableCellNode, TableCellHeaderStates, TableCellNode } from "./LexicalTableCellNode";

@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import type { LexicalEditor } from "lexical";
+import type { LexicalEditor } from "@frontend/lexical-editor/src";
 
 import { Provider, TOGGLE_CONNECT_COMMAND } from "@lexical/yjs";
 import { COMMAND_PRIORITY_LOW } from "lexical";

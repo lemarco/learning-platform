@@ -3,7 +3,7 @@
 import type { EditorState, ElementNode, LexicalEditor, NodeKey, NodeMap, RangeSelection, RootNode } from "../../lexical/Lexical";
 
 import { $createRangeSelection, $getNodeByKey, $isElementNode, $isTextNode } from "../../lexical/Lexical";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 type OffsetElementNode = {
   child: null | OffsetNode;

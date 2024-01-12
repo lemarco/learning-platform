@@ -1,8 +1,16 @@
 /** @module @lexical/text */
 
-import type { Klass, LexicalEditor, LexicalNode, RootNode } from "lexical";
+import type { Klass, LexicalEditor, LexicalNode, RootNode } from "../../lexical/Lexical";
 
-import { $createTextNode, $getRoot, $isDecoratorNode, $isElementNode, $isParagraphNode, $isTextNode, TextNode } from "lexical";
+import {
+  $createTextNode,
+  $getRoot,
+  $isDecoratorNode,
+  $isElementNode,
+  $isParagraphNode,
+  $isTextNode,
+  TextNode,
+} from "../../lexical/Lexical";
 
 export type TextNodeWithOffset = {
   node: TextNode;

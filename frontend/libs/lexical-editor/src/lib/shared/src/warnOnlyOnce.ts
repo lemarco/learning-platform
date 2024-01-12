@@ -1,4 +1,4 @@
-export default function warnOnlyOnce(message: string) {
+export function warnOnlyOnce(message: string) {
   if (!__DEV__) {
     return;
   }

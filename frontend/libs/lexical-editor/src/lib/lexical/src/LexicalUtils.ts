@@ -19,7 +19,7 @@ import type { TextFormatType, TextNode } from "./nodes/LexicalTextNode";
 
 import { CAN_USE_DOM } from "../../shared/src/canUseDOM";
 import { IS_APPLE, IS_APPLE_WEBKIT, IS_IOS, IS_SAFARI } from "../../shared/src/environment";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import {
   $createTextNode,

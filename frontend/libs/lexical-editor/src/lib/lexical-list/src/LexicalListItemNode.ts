@@ -24,7 +24,7 @@ import {
   ElementNode,
   LexicalEditor,
 } from "../../lexical/Lexical";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { $createListNode, $isListNode } from "./";
 import { $handleIndent, $handleOutdent, mergeLists, updateChildrenListItemValue } from "./formatList";

@@ -1,7 +1,7 @@
 import type { LexicalNode, Spread } from "../../lexical/Lexical";
 
 import { $findMatchingParent } from "../../lexical-utils/LexicalUtils";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { $createListItemNode, $isListItemNode, $isListNode, ListItemNode, ListNode } from "./";
 

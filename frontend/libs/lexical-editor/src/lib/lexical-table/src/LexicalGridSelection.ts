@@ -17,7 +17,7 @@ import {
   PointType,
   isCurrentlyReadOnlyMode,
 } from "../../lexical/Lexical";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 export type GridSelectionShape = {
   fromX: number;

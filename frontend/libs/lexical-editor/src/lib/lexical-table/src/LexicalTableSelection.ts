@@ -14,7 +14,7 @@ import {
   SELECTION_CHANGE_COMMAND,
 } from "../../lexical/Lexical";
 import { CAN_USE_DOM } from "../../shared/src/canUseDOM";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { $createGridSelection, $isGridSelection, type GridSelection } from "./LexicalGridSelection";
 import { $isTableCellNode } from "./LexicalTableCellNode";

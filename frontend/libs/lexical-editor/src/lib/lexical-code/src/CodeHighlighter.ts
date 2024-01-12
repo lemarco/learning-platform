@@ -60,7 +60,7 @@ import {
   getLastCodeNodeOfLine,
 } from "./CodeHighlightNode";
 
-import invariant from "shared/invariant";
+import { invariant } from "../../shared/src";
 import { $isCodeNode, CodeNode } from "./CodeNode";
 
 type TokenContent = string | Token | (string | Token)[];

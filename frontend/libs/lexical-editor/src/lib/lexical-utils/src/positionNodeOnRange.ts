@@ -1,7 +1,7 @@
-import type { LexicalEditor } from "lexical";
+import type { LexicalEditor } from "../../lexical/Lexical";
 
-import { createRectsFromDOMRange } from "@lexical/selection";
-import invariant from "../../shared/src/invariant";
+import { createRectsFromDOMRange } from "../../lexical-selection/LexicalSelection";
+import { invariant } from "../../shared/src/invariant";
 
 import px from "./px";
 

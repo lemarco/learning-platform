@@ -4,7 +4,7 @@ import type { ElementNode } from "./nodes/LexicalElementNode";
 import type { TextNode } from "./nodes/LexicalTextNode";
 
 import { CAN_USE_BEFORE_INPUT, IS_ANDROID, IS_APPLE_WEBKIT, IS_FIREFOX, IS_IOS, IS_SAFARI } from "../../shared/src/environment";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import {
   $getPreviousSelection,

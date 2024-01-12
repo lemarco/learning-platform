@@ -1,4 +1,4 @@
-export default function caretFromPoint(
+export function caretFromPoint(
   x: number,
   y: number,
 ): null | {

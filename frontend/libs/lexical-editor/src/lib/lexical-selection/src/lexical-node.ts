@@ -20,7 +20,7 @@ import {
   RangeSelection,
   TextNode,
 } from "../../lexical/Lexical";
-import invariant from "../../shared/src/invariant";
+import { invariant } from "../../shared/src/invariant";
 
 import { CSS_TO_STYLES } from "./constants";
 import { getCSSFromStyleObject, getStyleObjectFromCSS, getStyleObjectFromRawCSS } from "./utils";

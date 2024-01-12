@@ -44,8 +44,8 @@ import {
   KEY_TAB_COMMAND,
   SELECTION_CHANGE_COMMAND,
   SELECTION_INSERT_CLIPBOARD_NODES_COMMAND,
-} from "lexical";
-import invariant from "shared/invariant";
+} from "../../lexical/Lexical";
+import { invariant } from "../../shared/src";
 
 import { $createGridSelection, $isGridSelection } from "./LexicalGridSelection";
 import { $isTableCellNode } from "./LexicalTableCellNode";

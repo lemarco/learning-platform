@@ -1,5 +1,5 @@
-import { $getSelection, $isRangeSelection, type EditorState, ElementNode, type LexicalEditor, TextNode } from "lexical";
-import invariant from "../../shared/src/invariant";
+import { $getSelection, $isRangeSelection, type EditorState, ElementNode, type LexicalEditor, TextNode } from "../../lexical/Lexical";
+import { invariant } from "../../shared/src/invariant";
 
 import mergeRegister from "./mergeRegister";
 import positionNodeOnRange from "./positionNodeOnRange";
