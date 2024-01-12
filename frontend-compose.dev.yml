@@ -13,7 +13,18 @@ services:
       - "./frontend/package.json:/app/package.json"
       # - "./frontend/libs:/app/libs"
       - "./frontend/apps/info:/app/apps/info"
-
+  editor-app:
+    container_name: ${PUBLIC_FRONTEND_EDITOR_HOST}
+    build:
+      dockerfile: ./frontend/apps/editor/Dockerfile
+    ports:
+      - "${PUBLIC_FRONTEND_EDITOR_PORT}:${PUBLIC_FRONTEND_EDITOR_PORT}"
+    volumes:
+      - "./frontend/nx.json:/app/nx.json"
+      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
+      - "./frontend/package.json:/app/package.json"
+      # - "./frontend/libs:/app/libs"
+      - "./frontend/apps/editor:/app/apps/editor"
   blog-admin-app:
     container_name: ${PUBLIC_FRONTEND_BLOG_ADMIN_HOST}
     build:

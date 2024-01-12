@@ -1,6 +1,6 @@
 import { component$, useStore, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
-import { qwikify$ } from "@builder.io/qwik-react";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { qwikify$ } from "@builder.io/qwik-react";
 // import Editor from "@toast-ui/editor";
 
 // import { $getRoot, $getSelection, $createParagraphNode, $createTextNode } from "lexical";

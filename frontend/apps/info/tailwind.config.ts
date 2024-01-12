@@ -6,7 +6,7 @@ import flowbite from "flowbite/plugin";
 
 import colors from "tailwindcss/colors";
 
-export default {
+export default ({
   content: [
     join(__dirname, "src/**/*!(*.stories|*.spec).{ts,tsx,html}"),
     "/app/apps/info/src/**/*!(*.stories|*.spec).{ts,tsx,html}",
@@ -65,4 +65,4 @@ export default {
   },
 
   plugins: [flowbite],
-} satisfies Config;
+} satisfies Config);
