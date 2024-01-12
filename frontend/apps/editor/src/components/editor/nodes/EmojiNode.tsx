@@ -1,14 +1,8 @@
 /** @jsxImportSource react */
 
-import type {
-  EditorConfig,
-  LexicalNode,
-  NodeKey,
-  SerializedTextNode,
-  Spread,
-} from 'lexical';
+import type { EditorConfig, LexicalNode, NodeKey, SerializedTextNode, Spread } from "lexical";
 
-import {$applyNodeReplacement, TextNode} from 'lexical';
+import { $applyNodeReplacement, TextNode } from "lexical";
 
 export type SerializedEmojiNode = Spread<
   {
@@ -21,7 +15,7 @@ export class EmojiNode extends TextNode {
   __className: string;
 
   static getType(): string {
-    return 'emoji';
+    return "emoji";
   }
 
   static clone(node: EmojiNode): EmojiNode {
@@ -34,19 +28,15 @@ export class EmojiNode extends TextNode {
   }
 
   createDOM(config: EditorConfig): HTMLElement {
-    const dom = document.createElement('span');
+    const dom = document.createElement("span");
     const inner = super.createDOM(config);
     dom.className = this.__className;
-    inner.className = 'emoji-inner';
+    inner.className = "emoji-inner";
     dom.appendChild(inner);
     return dom;
   }
 
-  updateDOM(
-    prevNode: TextNode,
-    dom: HTMLElement,
-    config: EditorConfig,
-  ): boolean {
+  updateDOM(prevNode: TextNode, dom: HTMLElement, config: EditorConfig): boolean {
     const inner = dom.firstChild;
     if (inner === null) {
       return true;
@@ -56,10 +46,7 @@ export class EmojiNode extends TextNode {
   }
 
   static importJSON(serializedNode: SerializedEmojiNode): EmojiNode {
-    const node = $createEmojiNode(
-      serializedNode.className,
-      serializedNode.text,
-    );
+    const node = $createEmojiNode(serializedNode.className, serializedNode.text);
     node.setFormat(serializedNode.format);
     node.setDetail(serializedNode.detail);
     node.setMode(serializedNode.mode);
@@ -71,7 +58,7 @@ export class EmojiNode extends TextNode {
     return {
       ...super.exportJSON(),
       className: this.getClassName(),
-      type: 'emoji',
+      type: "emoji",
     };
   }
 
@@ -81,16 +68,11 @@ export class EmojiNode extends TextNode {
   }
 }
 
-export function $isEmojiNode(
-  node: LexicalNode | null | undefined,
-): node is EmojiNode {
+export function $isEmojiNode(node: LexicalNode | null | undefined): node is EmojiNode {
   return node instanceof EmojiNode;
 }
 
-export function $createEmojiNode(
-  className: string,
-  emojiText: string,
-): EmojiNode {
-  const node = new EmojiNode(className, emojiText).setMode('token');
+export function $createEmojiNode(className: string, emojiText: string): EmojiNode {
+  const node = new EmojiNode(className, emojiText).setMode("token");
   return $applyNodeReplacement(node);
 }

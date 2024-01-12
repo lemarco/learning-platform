@@ -14,7 +14,10 @@
     "jsxImportSource": "@builder.io/qwik",
     "strict": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+
     "esModuleInterop": true,
     "skipLibCheck": true,
     "incremental": true,

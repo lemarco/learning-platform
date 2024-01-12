@@ -1,10 +1,10 @@
 /** @jsxImportSource react */
-import type {Position} from '../../nodes/InlineImageNode';
+import type { Position } from "../../nodes/InlineImageNode";
 
-import '../../ui/Checkbox.css';
+import "../../ui/Checkbox.css";
 
-import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import {$wrapNodeInElement, mergeRegister} from '@lexical/utils';
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { $wrapNodeInElement, mergeRegister } from "@lexical/utils";
 import {
   $createParagraphNode,
   $createRangeSelection,
@@ -16,36 +16,29 @@ import {
   COMMAND_PRIORITY_EDITOR,
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
-  createCommand,
   DRAGOVER_COMMAND,
   DRAGSTART_COMMAND,
   DROP_COMMAND,
   LexicalCommand,
   LexicalEditor,
-} from 'lexical';
-import * as React from 'react';
-import {useEffect, useRef, useState} from 'react';
-import { CAN_USE_DOM } from '../../utils/can-use-dom';
+  createCommand,
+} from "lexical";
+import * as React from "react";
+import { useEffect, useRef, useState } from "react";
+import { CAN_USE_DOM } from "../../utils/can-use-dom";
 
-import {
-  $createInlineImageNode,
-  $isInlineImageNode,
-  InlineImageNode,
-  InlineImagePayload,
-} from '../../nodes/InlineImageNode';
-import Button from '../../ui/Button';
-import {DialogActions} from '../../ui/Dialog';
-import FileInput from '../../ui/FileInput';
-import Select from '../../ui/Select';
-import TextInput from '../../ui/TextInput';
+import { $createInlineImageNode, $isInlineImageNode, InlineImageNode, InlineImagePayload } from "../../nodes/InlineImageNode";
+import Button from "../../ui/Button";
+import { DialogActions } from "../../ui/Dialog";
+import FileInput from "../../ui/FileInput";
+import Select from "../../ui/Select";
+import TextInput from "../../ui/TextInput";
 
 export type InsertInlineImagePayload = Readonly<InlineImagePayload>;
 
-const getDOMSelection = (targetWindow: Window | null): Selection | null =>
-  CAN_USE_DOM ? (targetWindow || window).getSelection() : null;
+const getDOMSelection = (targetWindow: Window | null): Selection | null => (CAN_USE_DOM ? (targetWindow || window).getSelection() : null);
 
-export const INSERT_INLINE_IMAGE_COMMAND: LexicalCommand<InlineImagePayload> =
-  createCommand('INSERT_INLINE_IMAGE_COMMAND');
+export const INSERT_INLINE_IMAGE_COMMAND: LexicalCommand<InlineImagePayload> = createCommand("INSERT_INLINE_IMAGE_COMMAND");
 
 export function InsertInlineImageDialog({
   activeEditor,
@@ -56,12 +49,12 @@ export function InsertInlineImageDialog({
 }): JSX.Element {
   const hasModifier = useRef(false);
 
-  const [src, setSrc] = useState('');
-  const [altText, setAltText] = useState('');
+  const [src, setSrc] = useState("");
+  const [altText, setAltText] = useState("");
   const [showCaption, setShowCaption] = useState(false);
-  const [position, setPosition] = useState<Position>('left');
+  const [position, setPosition] = useState<Position>("left");
 
-  const isDisabled = src === '';
+  const isDisabled = src === "";
 
   const handleShowCaptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setShowCaption(e.target.checked);
@@ -73,11 +66,11 @@ export function InsertInlineImageDialog({
 
   const loadImage = (files: FileList | null) => {
     const reader = new FileReader();
-    reader.onload = function () {
-      if (typeof reader.result === 'string') {
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
         setSrc(reader.result);
       }
-      return '';
+      return "";
     };
     if (files !== null) {
       reader.readAsDataURL(files[0]);
@@ -89,29 +82,24 @@ export function InsertInlineImageDialog({
     const handler = (e: KeyboardEvent) => {
       hasModifier.current = e.altKey;
     };
-    document.addEventListener('keydown', handler);
+    document.addEventListener("keydown", handler);
     return () => {
-      document.removeEventListener('keydown', handler);
+      document.removeEventListener("keydown", handler);
     };
   }, [activeEditor]);
 
   const handleOnClick = () => {
-    const payload = {altText, position, showCaption, src};
+    const payload = { altText, position, showCaption, src };
     activeEditor.dispatchCommand(INSERT_INLINE_IMAGE_COMMAND, payload);
     onClose();
   };
 
   return (
     <>
-      <div style={{marginBottom: '1em'}}>
-        <FileInput
-          label="Image Upload"
-          onChange={loadImage}
-          accept="image/*"
-          data-test-id="image-modal-file-upload"
-        />
+      <div style={{ marginBottom: "1em" }}>
+        <FileInput label="Image Upload" onChange={loadImage} accept="image/*" data-test-id="image-modal-file-upload" />
       </div>
-      <div style={{marginBottom: '1em'}}>
+      <div style={{ marginBottom: "1em" }}>
         <TextInput
           label="Alt Text"
           placeholder="Descriptive alternative text"
@@ -122,31 +110,24 @@ export function InsertInlineImageDialog({
       </div>
 
       <Select
-        style={{marginBottom: '1em', width: '290px'}}
+        style={{ marginBottom: "1em", width: "290px" }}
         label="Position"
         name="position"
         id="position-select"
-        onChange={handlePositionChange}>
+        onChange={handlePositionChange}
+      >
         <option value="left">Left</option>
         <option value="right">Right</option>
         <option value="full">Full Width</option>
       </Select>
 
       <div className="Input__wrapper">
-        <input
-          id="caption"
-          type="checkbox"
-          checked={showCaption}
-          onChange={handleShowCaptionChange}
-        />
+        <input id="caption" type="checkbox" checked={showCaption} onChange={handleShowCaptionChange} />
         <label htmlFor="caption">Show Caption</label>
       </div>
 
       <DialogActions>
-        <Button
-          data-test-id="image-modal-file-upload-btn"
-          disabled={isDisabled}
-          onClick={() => handleOnClick()}>
+        <Button data-test-id="image-modal-file-upload-btn" disabled={isDisabled} onClick={() => handleOnClick()}>
           Confirm
         </Button>
       </DialogActions>
@@ -159,7 +140,7 @@ export default function InlineImagePlugin(): JSX.Element | null {
 
   useEffect(() => {
     if (!editor.hasNodes([InlineImageNode])) {
-      throw new Error('ImagesPlugin: ImageNode not registered on editor');
+      throw new Error("ImagesPlugin: ImageNode not registered on editor");
     }
 
     return mergeRegister(
@@ -203,9 +184,8 @@ export default function InlineImagePlugin(): JSX.Element | null {
   return null;
 }
 
-const TRANSPARENT_IMAGE =
-  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-const img = document.createElement('img');
+const TRANSPARENT_IMAGE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+const img = document.createElement("img");
 img.src = TRANSPARENT_IMAGE;
 
 function onDragStart(event: DragEvent): boolean {
@@ -217,10 +197,10 @@ function onDragStart(event: DragEvent): boolean {
   if (!dataTransfer) {
     return false;
   }
-  dataTransfer.setData('text/plain', '_');
+  dataTransfer.setData("text/plain", "_");
   dataTransfer.setDragImage(img, 0, 0);
   dataTransfer.setData(
-    'application/x-lexical-drag',
+    "application/x-lexical-drag",
     JSON.stringify({
       data: {
         altText: node.__altText,
@@ -231,7 +211,7 @@ function onDragStart(event: DragEvent): boolean {
         src: node.__src,
         width: node.__width,
       },
-      type: 'image',
+      type: "image",
     }),
   );
 
@@ -283,12 +263,12 @@ function getImageNodeInSelection(): InlineImageNode | null {
 }
 
 function getDragImageData(event: DragEvent): null | InsertInlineImagePayload {
-  const dragData = event.dataTransfer?.getData('application/x-lexical-drag');
+  const dragData = event.dataTransfer?.getData("application/x-lexical-drag");
   if (!dragData) {
     return null;
   }
-  const {type, data} = JSON.parse(dragData);
-  if (type !== 'image') {
+  const { type, data } = JSON.parse(dragData);
+  if (type !== "image") {
     return null;
   }
 
@@ -307,9 +287,9 @@ function canDropImage(event: DragEvent): boolean {
   return !!(
     target &&
     target instanceof HTMLElement &&
-    !target.closest('code, span.editor-image') &&
+    !target.closest("code, span.editor-image") &&
     target.parentElement &&
-    target.parentElement.closest('div.ContentEditable__root')
+    target.parentElement.closest("div.ContentEditable__root")
   );
 }
 
@@ -317,11 +297,7 @@ function getDragSelection(event: DragEvent): Range | null | undefined {
   let range;
   const target = event.target as null | Element | Document;
   const targetWindow =
-    target == null
-      ? null
-      : target.nodeType === 9
-      ? (target as Document).defaultView
-      : (target as Element).ownerDocument.defaultView;
+    target == null ? null : target.nodeType === 9 ? (target as Document).defaultView : (target as Element).ownerDocument.defaultView;
   const domSelection = getDOMSelection(targetWindow);
   if (document.caretRangeFromPoint) {
     range = document.caretRangeFromPoint(event.clientX, event.clientY);
@@ -329,7 +305,7 @@ function getDragSelection(event: DragEvent): Range | null | undefined {
     domSelection.collapse(event.rangeParent, event.rangeOffset || 0);
     range = domSelection.getRangeAt(0);
   } else {
-    throw Error('Cannot get the selection when dragging');
+    throw Error("Cannot get the selection when dragging");
   }
 
   return range;

@@ -1,8 +1,5 @@
 /** @jsxImportSource react */
-export function getDOMRangeRect(
-  nativeSelection: Selection,
-  rootElement: HTMLElement,
-): DOMRect {
+export function getDOMRangeRect(nativeSelection: Selection, rootElement: HTMLElement): DOMRect {
   const domRange = nativeSelection.getRangeAt(0);
 
   let rect;
@@ -19,4 +16,3 @@ export function getDOMRangeRect(
 
   return rect;
 }
-

@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import * as React from 'react';
+import * as React from "react";
 
-import ColorPicker from './ColorPicker';
-import DropDown from './DropDown';
+import ColorPicker from "./ColorPicker";
+import DropDown from "./DropDown";
 
 type Props = {
   disabled?: boolean;
@@ -17,18 +17,9 @@ type Props = {
   onChange?: (color: string, skipHistoryStack: boolean) => void;
 };
 
-export default function DropdownColorPicker({
-  disabled = false,
-  stopCloseOnClickSelf = true,
-  color,
-  onChange,
-  ...rest
-}: Props) {
+export default function DropdownColorPicker({ disabled = false, stopCloseOnClickSelf = true, color, onChange, ...rest }: Props) {
   return (
-    <DropDown
-      {...rest}
-      disabled={disabled}
-      stopCloseOnClickSelf={stopCloseOnClickSelf}>
+    <DropDown {...rest} disabled={disabled} stopCloseOnClickSelf={stopCloseOnClickSelf}>
       <ColorPicker color={color} onChange={onChange} />
     </DropDown>
   );

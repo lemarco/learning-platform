@@ -38,7 +38,7 @@
       "executor": "@nx/vite:preview-server",
       "options": {
         "buildTarget": "editor:build",
-        "port": 4173
+     
       }
     },
     "test": {
@@ -54,7 +54,7 @@
       "options": {
         "buildTarget": "editor:build.client",
         "mode": "ssr",
-        "port": 5173
+   
       }
     },
     "serve.debug": {

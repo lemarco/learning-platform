@@ -1,26 +1,26 @@
 /** @jsxImportSource react */
 
-import {useEffect} from 'react';
+import { useEffect } from "react";
 
-import useReport from '../../hooks/useReport';
+import useReport from "../../hooks/useReport";
 
 const validInputTypes = new Set([
-  'insertText',
-  'insertCompositionText',
-  'insertFromComposition',
-  'insertLineBreak',
-  'insertParagraph',
-  'deleteCompositionText',
-  'deleteContentBackward',
-  'deleteByComposition',
-  'deleteContent',
-  'deleteContentForward',
-  'deleteWordBackward',
-  'deleteWordForward',
-  'deleteHardLineBackward',
-  'deleteSoftLineBackward',
-  'deleteHardLineForward',
-  'deleteSoftLineForward',
+  "insertText",
+  "insertCompositionText",
+  "insertFromComposition",
+  "insertLineBreak",
+  "insertParagraph",
+  "deleteCompositionText",
+  "deleteContentBackward",
+  "deleteByComposition",
+  "deleteContent",
+  "deleteContentForward",
+  "deleteWordBackward",
+  "deleteWordForward",
+  "deleteHardLineBackward",
+  "deleteSoftLineBackward",
+  "deleteHardLineForward",
+  "deleteSoftLineForward",
 ]);
 
 export default function TypingPerfPlugin(): JSX.Element | null {
@@ -57,8 +57,7 @@ export default function TypingPerfPlugin(): JSX.Element | null {
       // Schedule a timer to report the results.
       timerId = setTimeout(() => {
         const total = log.reduce((a, b) => a + b, 0);
-        const reportedText =
-          'Typing Perf: ' + Math.round((total / log.length) * 100) / 100 + 'ms';
+        const reportedText = "Typing Perf: " + Math.round((total / log.length) * 100) / 100 + "ms";
         report(reportedText);
         log = [];
       }, 2000);
@@ -92,18 +91,18 @@ export default function TypingPerfPlugin(): JSX.Element | null {
       invalidatingEvent = true;
     };
 
-    window.addEventListener('keydown', keyDownHandler, true);
-    window.addEventListener('selectionchange', measureEventEnd, true);
-    window.addEventListener('beforeinput', beforeInputHandler, true);
-    window.addEventListener('paste', pasteHandler, true);
-    window.addEventListener('cut', cutHandler, true);
+    window.addEventListener("keydown", keyDownHandler, true);
+    window.addEventListener("selectionchange", measureEventEnd, true);
+    window.addEventListener("beforeinput", beforeInputHandler, true);
+    window.addEventListener("paste", pasteHandler, true);
+    window.addEventListener("cut", cutHandler, true);
 
     return () => {
-      window.removeEventListener('keydown', keyDownHandler, true);
-      window.removeEventListener('selectionchange', measureEventEnd, true);
-      window.removeEventListener('beforeinput', beforeInputHandler, true);
-      window.removeEventListener('paste', pasteHandler, true);
-      window.removeEventListener('cut', cutHandler, true);
+      window.removeEventListener("keydown", keyDownHandler, true);
+      window.removeEventListener("selectionchange", measureEventEnd, true);
+      window.removeEventListener("beforeinput", beforeInputHandler, true);
+      window.removeEventListener("paste", pasteHandler, true);
+      window.removeEventListener("cut", cutHandler, true);
     };
   }, [report]);
 

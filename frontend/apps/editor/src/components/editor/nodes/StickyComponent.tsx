@@ -1,27 +1,27 @@
 /** @jsxImportSource react */
 
-import type {LexicalEditor, NodeKey} from 'lexical';
+import type { LexicalEditor, NodeKey } from "lexical";
 
-import './StickyNode.css';
+import "./StickyNode.css";
 
-import {useCollaborationContext} from '@lexical/react/LexicalCollaborationContext';
-import {CollaborationPlugin} from '@lexical/react/LexicalCollaborationPlugin';
-import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
-import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
-import {LexicalNestedComposer} from '@lexical/react/LexicalNestedComposer';
-import {PlainTextPlugin} from '@lexical/react/LexicalPlainTextPlugin';
-import {$getNodeByKey} from 'lexical';
-import * as React from 'react';
-import {useEffect, useRef} from 'react';
+import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
+import { CollaborationPlugin } from "@lexical/react/LexicalCollaborationPlugin";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
+import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
+import { $getNodeByKey } from "lexical";
+import * as React from "react";
+import { useEffect, useRef } from "react";
 
-import {useLayoutEffectImpl as useLayoutEffect} from '../utils/can-use-dom'
-import {createWebsocketProvider} from '../collaboration';
-import {useSharedHistoryContext} from '../context/SharedHistoryContext';
-import StickyEditorTheme from '../themes/StickyEditorTheme';
-import ContentEditable from '../ui/ContentEditable';
-import Placeholder from '../ui/Placeholder';
-import {$isStickyNode} from './StickyNode';
+import { createWebsocketProvider } from "../collaboration";
+import { useSharedHistoryContext } from "../context/SharedHistoryContext";
+import StickyEditorTheme from "../themes/StickyEditorTheme";
+import ContentEditable from "../ui/ContentEditable";
+import Placeholder from "../ui/Placeholder";
+import { useLayoutEffectImpl as useLayoutEffect } from "../utils/can-use-dom";
+import { $isStickyNode } from "./StickyNode";
 
 type Positioning = {
   isDragging: boolean;
@@ -32,16 +32,13 @@ type Positioning = {
   y: number;
 };
 
-function positionSticky(
-  stickyElem: HTMLElement,
-  positioning: Positioning,
-): void {
+function positionSticky(stickyElem: HTMLElement, positioning: Positioning): void {
   const style = stickyElem.style;
   const rootElementRect = positioning.rootElementRect;
   const rectLeft = rootElementRect !== null ? rootElementRect.left : 0;
   const rectTop = rootElementRect !== null ? rootElementRect.top : 0;
-  style.top = rectTop + positioning.y + 'px';
-  style.left = rectLeft + positioning.x + 'px';
+  style.top = rectTop + positioning.y + "px";
+  style.left = rectLeft + positioning.x + "px";
 }
 
 export default function StickyComponent({
@@ -52,7 +49,7 @@ export default function StickyComponent({
   caption,
 }: {
   caption: LexicalEditor;
-  color: 'pink' | 'yellow';
+  color: "pink" | "yellow";
   nodeKey: NodeKey;
   x: number;
   y: number;
@@ -67,7 +64,7 @@ export default function StickyComponent({
     x: 0,
     y: 0,
   });
-  const {isCollabActive} = useCollaborationContext();
+  const { isCollabActive } = useCollaborationContext();
 
   useEffect(() => {
     const position = positioningRef.current;
@@ -85,7 +82,7 @@ export default function StickyComponent({
     const resizeObserver = new ResizeObserver((entries) => {
       for (let i = 0; i < entries.length; i++) {
         const entry = entries[i];
-        const {target} = entry;
+        const { target } = entry;
         position.rootElementRect = target.getBoundingClientRect();
         const stickyContainer = stickyContainerRef.current;
         if (stickyContainer !== null) {
@@ -94,16 +91,14 @@ export default function StickyComponent({
       }
     });
 
-    const removeRootListener = editor.registerRootListener(
-      (nextRootElem, prevRootElem) => {
-        if (prevRootElem !== null) {
-          resizeObserver.unobserve(prevRootElem);
-        }
-        if (nextRootElem !== null) {
-          resizeObserver.observe(nextRootElem);
-        }
-      },
-    );
+    const removeRootListener = editor.registerRootListener((nextRootElem, prevRootElem) => {
+      if (prevRootElem !== null) {
+        resizeObserver.unobserve(prevRootElem);
+      }
+      if (nextRootElem !== null) {
+        resizeObserver.observe(nextRootElem);
+      }
+    });
 
     const handleWindowResize = () => {
       const rootElement = editor.getRootElement();
@@ -114,10 +109,10 @@ export default function StickyComponent({
       }
     };
 
-    window.addEventListener('resize', handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
 
     return () => {
-      window.removeEventListener('resize', handleWindowResize);
+      window.removeEventListener("resize", handleWindowResize);
       removeRootListener();
     };
   }, [editor]);
@@ -128,10 +123,7 @@ export default function StickyComponent({
       // Delay adding transition so we don't trigger the
       // transition on load of the sticky.
       setTimeout(() => {
-        stickyContainer.style.setProperty(
-          'transition',
-          'top 0.3s ease 0s, left 0.3s ease 0s',
-        );
+        stickyContainer.style.setProperty("transition", "top 0.3s ease 0s, left 0.3s ease 0s");
       }, 500);
     }
   }, []);
@@ -140,11 +132,7 @@ export default function StickyComponent({
     const stickyContainer = stickyContainerRef.current;
     const positioning = positioningRef.current;
     const rootElementRect = positioning.rootElementRect;
-    if (
-      stickyContainer !== null &&
-      positioning.isDragging &&
-      rootElementRect !== null
-    ) {
+    if (stickyContainer !== null && positioning.isDragging && rootElementRect !== null) {
       positioning.x = event.pageX - positioning.offsetX - rootElementRect.left;
       positioning.y = event.pageY - positioning.offsetY - rootElementRect.top;
       positionSticky(stickyContainer, positioning);
@@ -156,7 +144,7 @@ export default function StickyComponent({
     const positioning = positioningRef.current;
     if (stickyContainer !== null) {
       positioning.isDragging = false;
-      stickyContainer.classList.remove('dragging');
+      stickyContainer.classList.remove("dragging");
       editor.update(() => {
         const node = $getNodeByKey(nodeKey);
         if ($isStickyNode(node)) {
@@ -164,8 +152,8 @@ export default function StickyComponent({
         }
       });
     }
-    document.removeEventListener('pointermove', handlePointerMove);
-    document.removeEventListener('pointerup', handlePointerUp);
+    document.removeEventListener("pointermove", handlePointerMove);
+    document.removeEventListener("pointerup", handlePointerUp);
   };
 
   const handleDelete = () => {
@@ -186,7 +174,7 @@ export default function StickyComponent({
     });
   };
 
-  const {historyState} = useSharedHistoryContext();
+  const { historyState } = useSharedHistoryContext();
 
   return (
     <div ref={stickyContainerRef} className="sticky-note-container">
@@ -194,62 +182,39 @@ export default function StickyComponent({
         className={`sticky-note ${color}`}
         onPointerDown={(event) => {
           const stickyContainer = stickyContainerRef.current;
-          if (
-            stickyContainer == null ||
-            event.button === 2 ||
-            event.target !== stickyContainer.firstChild
-          ) {
+          if (stickyContainer == null || event.button === 2 || event.target !== stickyContainer.firstChild) {
             // Right click or click on editor should not work
             return;
           }
           const stickContainer = stickyContainer;
           const positioning = positioningRef.current;
           if (stickContainer !== null) {
-            const {top, left} = stickContainer.getBoundingClientRect();
+            const { top, left } = stickContainer.getBoundingClientRect();
             positioning.offsetX = event.clientX - left;
             positioning.offsetY = event.clientY - top;
             positioning.isDragging = true;
-            stickContainer.classList.add('dragging');
-            document.addEventListener('pointermove', handlePointerMove);
-            document.addEventListener('pointerup', handlePointerUp);
+            stickContainer.classList.add("dragging");
+            document.addEventListener("pointermove", handlePointerMove);
+            document.addEventListener("pointerup", handlePointerUp);
             event.preventDefault();
           }
-        }}>
-        <button
-          onClick={handleDelete}
-          className="delete"
-          aria-label="Delete sticky note"
-          title="Delete">
+        }}
+      >
+        <button onClick={handleDelete} className="delete" aria-label="Delete sticky note" title="Delete">
           X
         </button>
-        <button
-          onClick={handleColorChange}
-          className="color"
-          aria-label="Change sticky note color"
-          title="Color">
+        <button onClick={handleColorChange} className="color" aria-label="Change sticky note color" title="Color">
           <i className="bucket" />
         </button>
-        <LexicalNestedComposer
-          initialEditor={caption}
-          initialTheme={StickyEditorTheme}>
+        <LexicalNestedComposer initialEditor={caption} initialTheme={StickyEditorTheme}>
           {isCollabActive ? (
-            <CollaborationPlugin
-              id={caption.getKey()}
-              providerFactory={createWebsocketProvider}
-              shouldBootstrap={true}
-            />
+            <CollaborationPlugin id={caption.getKey()} providerFactory={createWebsocketProvider} shouldBootstrap={true} />
           ) : (
             <HistoryPlugin externalHistoryState={historyState} />
           )}
           <PlainTextPlugin
-            contentEditable={
-              <ContentEditable className="StickyNode__contentEditable" />
-            }
-            placeholder={
-              <Placeholder className="StickyNode__placeholder">
-                What's up?
-              </Placeholder>
-            }
+            contentEditable={<ContentEditable className="StickyNode__contentEditable" />}
+            placeholder={<Placeholder className="StickyNode__placeholder">What's up?</Placeholder>}
             ErrorBoundary={LexicalErrorBoundary}
           />
         </LexicalNestedComposer>

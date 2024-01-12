@@ -40,8 +40,7 @@
     "preview": {
       "executor": "@nx/vite:preview-server",
       "options": {
-        "buildTarget": "host:build",
-        "port": 4173
+        "buildTarget": "host:build"
       }
     },
     "test": {

@@ -1,36 +1,36 @@
 /** @jsxImportSource react */
-import {$createLinkNode} from '@lexical/link';
-import {$createListItemNode, $createListNode} from '@lexical/list';
-import {LexicalComposer} from '@lexical/react/LexicalComposer';
-import {$createHeadingNode, $createQuoteNode} from '@lexical/rich-text';
-import {$createParagraphNode, $createTextNode, $getRoot} from 'lexical';
-import * as React from 'react';
+import { $createLinkNode } from "@lexical/link";
+import { $createListItemNode, $createListNode } from "@lexical/list";
+import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { $createHeadingNode, $createQuoteNode } from "@lexical/rich-text";
+import { $createParagraphNode, $createTextNode, $getRoot } from "lexical";
+import * as React from "react";
 
-import {isDevPlayground} from './appSettings';
-import {SettingsContext, useSettings} from './context/SettingsContext';
-import {SharedAutocompleteContext} from './context/SharedAutocompleteContext';
-import {SharedHistoryContext} from './context/SharedHistoryContext';
-import Editor from './Editor';
-import logo from './images/logo.svg';
-import PlaygroundNodes from './nodes/PlaygroundNodes';
-import DocsPlugin from './plugins/DocsPlugin';
-import PasteLogPlugin from './plugins/PasteLogPlugin';
-import {TableContext} from './plugins/TablePlugin';
-import TestRecorderPlugin from './plugins/TestRecorderPlugin';
-import TypingPerfPlugin from './plugins/TypingPerfPlugin';
-import Settings from './Settings';
-import PlaygroundEditorTheme from './themes/PlaygroundEditorTheme';
-import { qwikify$ } from '@builder.io/qwik-react';
+import { qwikify$ } from "@builder.io/qwik-react";
+import Editor from "./Editor";
+import Settings from "./Settings";
+import { isDevPlayground } from "./appSettings";
+import { SettingsContext, useSettings } from "./context/SettingsContext";
+import { SharedAutocompleteContext } from "./context/SharedAutocompleteContext";
+import { SharedHistoryContext } from "./context/SharedHistoryContext";
+import logo from "./images/logo.svg";
+import PlaygroundNodes from "./nodes/PlaygroundNodes";
+import DocsPlugin from "./plugins/DocsPlugin";
+import PasteLogPlugin from "./plugins/PasteLogPlugin";
+import { TableContext } from "./plugins/TablePlugin";
+import TestRecorderPlugin from "./plugins/TestRecorderPlugin";
+import TypingPerfPlugin from "./plugins/TypingPerfPlugin";
+import PlaygroundEditorTheme from "./themes/PlaygroundEditorTheme";
 
 console.warn(
-  'If you are profiling the playground app, please ensure you turn off the debug view. You can disable it by pressing on the settings control in the bottom-left of your screen and toggling the debug view setting.',
+  "If you are profiling the playground app, please ensure you turn off the debug view. You can disable it by pressing on the settings control in the bottom-left of your screen and toggling the debug view setting.",
 );
 
 function prepopulatedRichText() {
   const root = $getRoot();
   if (root.getFirstChild() === null) {
-    const heading = $createHeadingNode('h1');
-    heading.append($createTextNode('Welcome to the playground'));
+    const heading = $createHeadingNode("h1");
+    heading.append($createTextNode("Welcome to the playground"));
     root.append(heading);
     const quote = $createQuoteNode();
     quote.append(
@@ -42,56 +42,44 @@ function prepopulatedRichText() {
     root.append(quote);
     const paragraph = $createParagraphNode();
     paragraph.append(
-      $createTextNode('The playground is a demo environment built with '),
-      $createTextNode('@lexical/react').toggleFormat('code'),
-      $createTextNode('.'),
-      $createTextNode(' Try typing in '),
-      $createTextNode('some text').toggleFormat('bold'),
-      $createTextNode(' with '),
-      $createTextNode('different').toggleFormat('italic'),
-      $createTextNode(' formats.'),
+      $createTextNode("The playground is a demo environment built with "),
+      $createTextNode("@lexical/react").toggleFormat("code"),
+      $createTextNode("."),
+      $createTextNode(" Try typing in "),
+      $createTextNode("some text").toggleFormat("bold"),
+      $createTextNode(" with "),
+      $createTextNode("different").toggleFormat("italic"),
+      $createTextNode(" formats."),
     );
     root.append(paragraph);
     const paragraph2 = $createParagraphNode();
     paragraph2.append(
-      $createTextNode(
-        'Make sure to check out the various plugins in the toolbar. You can also use #hashtags or @-mentions too!',
-      ),
+      $createTextNode("Make sure to check out the various plugins in the toolbar. You can also use #hashtags or @-mentions too!"),
     );
     root.append(paragraph2);
     const paragraph3 = $createParagraphNode();
-    paragraph3.append(
-      $createTextNode(`If you'd like to find out more about Lexical, you can:`),
-    );
+    paragraph3.append($createTextNode(`If you'd like to find out more about Lexical, you can:`));
     root.append(paragraph3);
-    const list = $createListNode('bullet');
+    const list = $createListNode("bullet");
     list.append(
       $createListItemNode().append(
         $createTextNode(`Visit the `),
-        $createLinkNode('https://lexical.dev/').append(
-          $createTextNode('Lexical website'),
-        ),
+        $createLinkNode("https://lexical.dev/").append($createTextNode("Lexical website")),
         $createTextNode(` for documentation and more information.`),
       ),
       $createListItemNode().append(
         $createTextNode(`Check out the code on our `),
-        $createLinkNode('https://github.com/facebook/lexical').append(
-          $createTextNode('GitHub repository'),
-        ),
+        $createLinkNode("https://github.com/facebook/lexical").append($createTextNode("GitHub repository")),
         $createTextNode(`.`),
       ),
       $createListItemNode().append(
         $createTextNode(`Playground code can be found `),
-        $createLinkNode(
-          'https://github.com/facebook/lexical/tree/main/packages/lexical-playground',
-        ).append($createTextNode('here')),
+        $createLinkNode("https://github.com/facebook/lexical/tree/main/packages/lexical-playground").append($createTextNode("here")),
         $createTextNode(`.`),
       ),
       $createListItemNode().append(
         $createTextNode(`Join our `),
-        $createLinkNode('https://discord.com/invite/KmG4wQnnD9').append(
-          $createTextNode('Discord Server'),
-        ),
+        $createLinkNode("https://discord.com/invite/KmG4wQnnD9").append($createTextNode("Discord Server")),
         $createTextNode(` and chat with the team.`),
       ),
     );
@@ -108,16 +96,12 @@ function prepopulatedRichText() {
 
 function App(): JSX.Element {
   const {
-    settings: {isCollab, emptyEditor, measureTypingPerf},
+    settings: { isCollab, emptyEditor, measureTypingPerf },
   } = useSettings();
 
   const initialConfig = {
-    editorState: isCollab
-      ? null
-      : emptyEditor
-      ? undefined
-      : prepopulatedRichText,
-    namespace: 'Playground',
+    editorState: isCollab ? null : emptyEditor ? undefined : prepopulatedRichText,
+    namespace: "Playground",
     nodes: [...PlaygroundNodes],
     onError: (error: Error) => {
       throw error;
@@ -152,6 +136,11 @@ function App(): JSX.Element {
 }
 // auth in different microfrontends
 // granularity events
-// 
+//
 
-export const Editors = qwikify$(()=><SettingsContext> <App /></SettingsContext>)
+export const Editors = qwikify$(() => (
+  <SettingsContext>
+    {" "}
+    <App />
+  </SettingsContext>
+));

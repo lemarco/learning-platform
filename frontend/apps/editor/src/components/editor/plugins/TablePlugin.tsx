@@ -1,28 +1,24 @@
 /** @jsxImportSource react */
 
-import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import {
-  $createTableNodeWithDimensions,
-  INSERT_TABLE_COMMAND,
-  TableNode,
-} from '@lexical/table';
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { $createTableNodeWithDimensions, INSERT_TABLE_COMMAND, TableNode } from "@lexical/table";
 import {
   $insertNodes,
   COMMAND_PRIORITY_EDITOR,
-  createCommand,
   EditorThemeClasses,
   Klass,
   LexicalCommand,
   LexicalEditor,
   LexicalNode,
-} from 'lexical';
-import {createContext, useContext, useEffect, useMemo, useState} from 'react';
-import * as React from 'react';
-import {invariant} from '../utils/can-use-dom'
+  createCommand,
+} from "lexical";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import * as React from "react";
+import { invariant } from "../utils/can-use-dom";
 
-import Button from '../ui/Button';
-import {DialogActions} from '../ui/Dialog';
-import TextInput from '../ui/TextInput';
+import Button from "../ui/Button";
+import { DialogActions } from "../ui/Dialog";
+import TextInput from "../ui/TextInput";
 
 export type InsertTableCommandPayload = Readonly<{
   columns: string;
@@ -33,10 +29,7 @@ export type InsertTableCommandPayload = Readonly<{
 export type CellContextShape = {
   cellEditorConfig: null | CellEditorConfig;
   cellEditorPlugins: null | JSX.Element | Array<JSX.Element>;
-  set: (
-    cellEditorConfig: null | CellEditorConfig,
-    cellEditorPlugins: null | JSX.Element | Array<JSX.Element>,
-  ) => void;
+  set: (cellEditorConfig: null | CellEditorConfig, cellEditorPlugins: null | JSX.Element | Array<JSX.Element>) => void;
 };
 
 export type CellEditorConfig = Readonly<{
@@ -47,8 +40,7 @@ export type CellEditorConfig = Readonly<{
   theme?: EditorThemeClasses;
 }>;
 
-export const INSERT_NEW_TABLE_COMMAND: LexicalCommand<InsertTableCommandPayload> =
-  createCommand('INSERT_NEW_TABLE_COMMAND');
+export const INSERT_NEW_TABLE_COMMAND: LexicalCommand<InsertTableCommandPayload> = createCommand("INSERT_NEW_TABLE_COMMAND");
 
 export const CellContext = createContext<CellContextShape>({
   cellEditorConfig: null,
@@ -58,7 +50,7 @@ export const CellContext = createContext<CellContextShape>({
   },
 });
 
-export function TableContext({children}: {children: JSX.Element}) {
+export function TableContext({ children }: { children: JSX.Element }) {
   const [contextValue, setContextValue] = useState<{
     cellEditorConfig: null | CellEditorConfig;
     cellEditorPlugins: null | JSX.Element | Array<JSX.Element>;
@@ -73,11 +65,12 @@ export function TableContext({children}: {children: JSX.Element}) {
           cellEditorConfig: contextValue.cellEditorConfig,
           cellEditorPlugins: contextValue.cellEditorPlugins,
           set: (cellEditorConfig, cellEditorPlugins) => {
-            setContextValue({cellEditorConfig, cellEditorPlugins});
+            setContextValue({ cellEditorConfig, cellEditorPlugins });
           },
         }),
         [contextValue.cellEditorConfig, contextValue.cellEditorPlugins],
-      )}>
+      )}
+    >
       {children}
     </CellContext.Provider>
   );
@@ -90,8 +83,8 @@ export function InsertTableDialog({
   activeEditor: LexicalEditor;
   onClose: () => void;
 }): JSX.Element {
-  const [rows, setRows] = useState('5');
-  const [columns, setColumns] = useState('5');
+  const [rows, setRows] = useState("5");
+  const [columns, setColumns] = useState("5");
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
@@ -116,7 +109,7 @@ export function InsertTableDialog({
   return (
     <>
       <TextInput
-        placeholder={'# of rows (1-500)'}
+        placeholder={"# of rows (1-500)"}
         label="Rows"
         onChange={setRows}
         value={rows}
@@ -124,7 +117,7 @@ export function InsertTableDialog({
         type="number"
       />
       <TextInput
-        placeholder={'# of columns (1-50)'}
+        placeholder={"# of columns (1-50)"}
         label="Columns"
         onChange={setColumns}
         value={columns}
@@ -152,19 +145,15 @@ export function TablePlugin({
 
   useEffect(() => {
     if (!editor.hasNodes([TableNode])) {
-      invariant(false, 'TablePlugin: TableNode is not registered on editor');
+      invariant(false, "TablePlugin: TableNode is not registered on editor");
     }
 
     cellContext.set(cellEditorConfig, children);
 
     return editor.registerCommand<InsertTableCommandPayload>(
       INSERT_NEW_TABLE_COMMAND,
-      ({columns, rows, includeHeaders}) => {
-        const tableNode = $createTableNodeWithDimensions(
-          Number(rows),
-          Number(columns),
-          includeHeaders,
-        );
+      ({ columns, rows, includeHeaders }) => {
+        const tableNode = $createTableNodeWithDimensions(Number(rows), Number(columns), includeHeaders);
         $insertNodes([tableNode]);
         return true;
       },

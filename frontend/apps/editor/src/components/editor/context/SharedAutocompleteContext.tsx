@@ -1,14 +1,7 @@
 /** @jsxImportSource react */
 
-import * as React from 'react';
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import * as React from "react";
+import { ReactNode, createContext, useContext, useEffect, useMemo, useState } from "react";
 
 type Suggestion = null | string;
 type CallbackFn = (newSuggestion: Suggestion) => void;

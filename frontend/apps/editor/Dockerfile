@@ -8,4 +8,4 @@ COPY .env /app/.env
 RUN pnpm i 
 ENV PUBLIC_FRONTEND_INFO_PORT $PUBLIC_FRONTEND_INFO_PORT
 # EXPOSE $PUBLIC_FRONTEND_HOST_APP_PORT
-CMD ["pnpm", "run", "dev:host"]
+CMD ["pnpm", "run", "dev:editor"]

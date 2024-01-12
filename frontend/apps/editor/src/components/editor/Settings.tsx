@@ -1,10 +1,10 @@
 /** @jsxImportSource react */
-import * as React from 'react';
-import {useMemo, useState} from 'react';
+import * as React from "react";
+import { useMemo, useState } from "react";
 
-import {isDevPlayground} from './appSettings';
-import {useSettings} from './context/SettingsContext';
-import Switch from './ui/Switch';
+import { isDevPlayground } from "./appSettings";
+import { useSettings } from "./context/SettingsContext";
+import Switch from "./ui/Switch";
 
 export default function Settings(): JSX.Element {
   const windowLocation = window.location;
@@ -29,8 +29,7 @@ export default function Settings(): JSX.Element {
   const [isSplitScreen, search] = useMemo(() => {
     const parentWindow = window.parent;
     const _search = windowLocation.search;
-    const _isSplitScreen =
-      parentWindow && parentWindow.location.pathname === '/split/';
+    const _isSplitScreen = parentWindow && parentWindow.location.pathname === "/split/";
     return [_isSplitScreen, _search];
   }, [windowLocation]);
 
@@ -38,7 +37,7 @@ export default function Settings(): JSX.Element {
     <>
       <button
         id="options-button"
-        className={`editor-dev-button ${showSettings ? 'active' : ''}`}
+        className={`editor-dev-button ${showSettings ? "active" : ""}`}
         onClick={() => setShowSettings(!showSettings)}
       />
       {showSettings ? (
@@ -46,7 +45,7 @@ export default function Settings(): JSX.Element {
           {isRichText && isDevPlayground && (
             <Switch
               onClick={() => {
-                setOption('isCollab', !isCollab);
+                setOption("isCollab", !isCollab);
                 window.location.reload();
               }}
               checked={isCollab}
@@ -66,54 +65,28 @@ export default function Settings(): JSX.Element {
               text="Split Screen"
             />
           )}
+          <Switch onClick={() => setOption("measureTypingPerf", !measureTypingPerf)} checked={measureTypingPerf} text="Measure Perf" />
+          <Switch onClick={() => setOption("showTreeView", !showTreeView)} checked={showTreeView} text="Debug View" />
           <Switch
-            onClick={() => setOption('measureTypingPerf', !measureTypingPerf)}
-            checked={measureTypingPerf}
-            text="Measure Perf"
-          />
-          <Switch
-            onClick={() => setOption('showTreeView', !showTreeView)}
-            checked={showTreeView}
-            text="Debug View"
-          />
-          <Switch
-            onClick={() =>
-              setOption('showNestedEditorTreeView', !showNestedEditorTreeView)
-            }
+            onClick={() => setOption("showNestedEditorTreeView", !showNestedEditorTreeView)}
             checked={showNestedEditorTreeView}
             text="Nested Editors Debug View"
           />
           <Switch
             onClick={() => {
-              setOption('isRichText', !isRichText);
-              setOption('isCollab', false);
+              setOption("isRichText", !isRichText);
+              setOption("isCollab", false);
             }}
             checked={isRichText}
             text="Rich Text"
           />
-          <Switch
-            onClick={() => setOption('isCharLimit', !isCharLimit)}
-            checked={isCharLimit}
-            text="Char Limit"
-          />
-          <Switch
-            onClick={() => setOption('isCharLimitUtf8', !isCharLimitUtf8)}
-            checked={isCharLimitUtf8}
-            text="Char Limit (UTF-8)"
-          />
-          <Switch
-            onClick={() => setOption('isMaxLength', !isMaxLength)}
-            checked={isMaxLength}
-            text="Max Length"
-          />
-          <Switch
-            onClick={() => setOption('isAutocomplete', !isAutocomplete)}
-            checked={isAutocomplete}
-            text="Autocomplete"
-          />
+          <Switch onClick={() => setOption("isCharLimit", !isCharLimit)} checked={isCharLimit} text="Char Limit" />
+          <Switch onClick={() => setOption("isCharLimitUtf8", !isCharLimitUtf8)} checked={isCharLimitUtf8} text="Char Limit (UTF-8)" />
+          <Switch onClick={() => setOption("isMaxLength", !isMaxLength)} checked={isMaxLength} text="Max Length" />
+          <Switch onClick={() => setOption("isAutocomplete", !isAutocomplete)} checked={isAutocomplete} text="Autocomplete" />
           <Switch
             onClick={() => {
-              setOption('disableBeforeInput', !disableBeforeInput);
+              setOption("disableBeforeInput", !disableBeforeInput);
               setTimeout(() => window.location.reload(), 500);
             }}
             checked={disableBeforeInput}
@@ -121,17 +94,14 @@ export default function Settings(): JSX.Element {
           />
           <Switch
             onClick={() => {
-              setOption('showTableOfContents', !showTableOfContents);
+              setOption("showTableOfContents", !showTableOfContents);
             }}
             checked={showTableOfContents}
             text="Table Of Contents"
           />
           <Switch
             onClick={() => {
-              setOption(
-                'shouldUseLexicalContextMenu',
-                !shouldUseLexicalContextMenu,
-              );
+              setOption("shouldUseLexicalContextMenu", !shouldUseLexicalContextMenu);
             }}
             checked={shouldUseLexicalContextMenu}
             text="Use Lexical Context Menu"

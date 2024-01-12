@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@frontend/icons": ["libs/icons/src/index.ts"],
+      "@frontend/lexical-editor": ["libs/lexical-editor/src/index.ts"],
       "@frontend/modal": ["libs/modal/src/index.ts"],
       "@frontend/styling-config": ["libs/styling-config/src/index.ts"]
     }

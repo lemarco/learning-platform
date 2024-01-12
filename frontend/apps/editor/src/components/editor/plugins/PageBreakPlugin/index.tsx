@@ -1,16 +1,10 @@
 /** @jsxImportSource react */
-import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import {$insertNodeToNearestRoot, mergeRegister} from '@lexical/utils';
-import {
-  $getSelection,
-  $isRangeSelection,
-  COMMAND_PRIORITY_EDITOR,
-  createCommand,
-  LexicalCommand,
-} from 'lexical';
-import {useEffect} from 'react';
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { $insertNodeToNearestRoot, mergeRegister } from "@lexical/utils";
+import { $getSelection, $isRangeSelection, COMMAND_PRIORITY_EDITOR, LexicalCommand, createCommand } from "lexical";
+import { useEffect } from "react";
 
-import {$createPageBreakNode, PageBreakNode} from '../../nodes/PageBreakNode';
+import { $createPageBreakNode, PageBreakNode } from "../../nodes/PageBreakNode";
 
 export const INSERT_PAGE_BREAK: LexicalCommand<undefined> = createCommand();
 
@@ -18,10 +12,7 @@ export default function PageBreakPlugin(): JSX.Element | null {
   const [editor] = useLexicalComposerContext();
 
   useEffect(() => {
-    if (!editor.hasNodes([PageBreakNode]))
-      throw new Error(
-        'PageBreakPlugin: PageBreakNode is not registered on editor',
-      );
+    if (!editor.hasNodes([PageBreakNode])) throw new Error("PageBreakPlugin: PageBreakNode is not registered on editor");
 
     return mergeRegister(
       editor.registerCommand(

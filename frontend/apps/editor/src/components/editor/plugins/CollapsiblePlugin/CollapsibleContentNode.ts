@@ -8,13 +8,11 @@ import {
   ElementNode,
   LexicalNode,
   SerializedElementNode,
-} from 'lexical';
+} from "lexical";
 
 type SerializedCollapsibleContentNode = SerializedElementNode;
 
-export function convertCollapsibleContentElement(
-  domNode: HTMLElement,
-): DOMConversionOutput | null {
+export function convertCollapsibleContentElement(domNode: HTMLElement): DOMConversionOutput | null {
   const node = $createCollapsibleContentNode();
   return {
     node,
@@ -23,7 +21,7 @@ export function convertCollapsibleContentElement(
 
 export class CollapsibleContentNode extends ElementNode {
   static getType(): string {
-    return 'collapsible-content';
+    return "collapsible-content";
   }
 
   static clone(node: CollapsibleContentNode): CollapsibleContentNode {
@@ -31,8 +29,8 @@ export class CollapsibleContentNode extends ElementNode {
   }
 
   createDOM(config: EditorConfig): HTMLElement {
-    const dom = document.createElement('div');
-    dom.classList.add('Collapsible__content');
+    const dom = document.createElement("div");
+    dom.classList.add("Collapsible__content");
     return dom;
   }
 
@@ -43,7 +41,7 @@ export class CollapsibleContentNode extends ElementNode {
   static importDOM(): DOMConversionMap | null {
     return {
       div: (domNode: HTMLElement) => {
-        if (!domNode.hasAttribute('data-lexical-collapsible-content')) {
+        if (!domNode.hasAttribute("data-lexical-collapsible-content")) {
           return null;
         }
         return {
@@ -55,14 +53,12 @@ export class CollapsibleContentNode extends ElementNode {
   }
 
   exportDOM(): DOMExportOutput {
-    const element = document.createElement('div');
-    element.setAttribute('data-lexical-collapsible-content', 'true');
-    return {element};
+    const element = document.createElement("div");
+    element.setAttribute("data-lexical-collapsible-content", "true");
+    return { element };
   }
 
-  static importJSON(
-    serializedNode: SerializedCollapsibleContentNode,
-  ): CollapsibleContentNode {
+  static importJSON(serializedNode: SerializedCollapsibleContentNode): CollapsibleContentNode {
     return $createCollapsibleContentNode();
   }
 
@@ -73,7 +69,7 @@ export class CollapsibleContentNode extends ElementNode {
   exportJSON(): SerializedCollapsibleContentNode {
     return {
       ...super.exportJSON(),
-      type: 'collapsible-content',
+      type: "collapsible-content",
       version: 1,
     };
   }
@@ -83,8 +79,6 @@ export function $createCollapsibleContentNode(): CollapsibleContentNode {
   return new CollapsibleContentNode();
 }
 
-export function $isCollapsibleContentNode(
-  node: LexicalNode | null | undefined,
-): node is CollapsibleContentNode {
+export function $isCollapsibleContentNode(node: LexicalNode | null | undefined): node is CollapsibleContentNode {
   return node instanceof CollapsibleContentNode;
 }

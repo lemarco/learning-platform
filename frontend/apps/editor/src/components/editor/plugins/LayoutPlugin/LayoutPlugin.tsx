@@ -1,43 +1,27 @@
 /** @jsxImportSource react */
 
-import type {ElementNode, LexicalCommand, LexicalNode, NodeKey} from 'lexical';
+import type { ElementNode, LexicalCommand, LexicalNode, NodeKey } from "lexical";
 
-import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import {$insertNodeToNearestRoot, mergeRegister} from '@lexical/utils';
-import {
-  $createParagraphNode,
-  $getNodeByKey,
-  COMMAND_PRIORITY_EDITOR,
-  createCommand,
-} from 'lexical';
-import {useEffect} from 'react';
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { $insertNodeToNearestRoot, mergeRegister } from "@lexical/utils";
+import { $createParagraphNode, $getNodeByKey, COMMAND_PRIORITY_EDITOR, createCommand } from "lexical";
+import { useEffect } from "react";
 
-import {
-  $createLayoutContainerNode,
-  $isLayoutContainerNode,
-  LayoutContainerNode,
-} from '../../nodes/LayoutContainerNode';
-import {
-  $createLayoutItemNode,
-  $isLayoutItemNode,
-  LayoutItemNode,
-} from '../../nodes/LayoutItemNode';
+import { $createLayoutContainerNode, $isLayoutContainerNode, LayoutContainerNode } from "../../nodes/LayoutContainerNode";
+import { $createLayoutItemNode, $isLayoutItemNode, LayoutItemNode } from "../../nodes/LayoutItemNode";
 
-export const INSERT_LAYOUT_COMMAND: LexicalCommand<string> =
-  createCommand<string>();
+export const INSERT_LAYOUT_COMMAND: LexicalCommand<string> = createCommand<string>();
 
 export const UPDATE_LAYOUT_COMMAND: LexicalCommand<{
   template: string;
   nodeKey: NodeKey;
-}> = createCommand<{template: string; nodeKey: NodeKey}>();
+}> = createCommand<{ template: string; nodeKey: NodeKey }>();
 
 export function LayoutPlugin(): null {
   const [editor] = useLexicalComposerContext();
   useEffect(() => {
     if (!editor.hasNodes([LayoutContainerNode, LayoutItemNode])) {
-      throw new Error(
-        'LayoutPlugin: LayoutContainerNode, or LayoutItemNode not registered on editor',
-      );
+      throw new Error("LayoutPlugin: LayoutContainerNode, or LayoutItemNode not registered on editor");
     }
 
     return mergeRegister(
@@ -49,9 +33,7 @@ export function LayoutPlugin(): null {
             const itemsCount = getItemsCountFromTemplate(template);
 
             for (let i = 0; i < itemsCount; i++) {
-              container.append(
-                $createLayoutItemNode().append($createParagraphNode()),
-              );
+              container.append($createLayoutItemNode().append($createParagraphNode()));
             }
 
             $insertNodeToNearestRoot(container);
@@ -64,7 +46,7 @@ export function LayoutPlugin(): null {
       ),
       editor.registerCommand(
         UPDATE_LAYOUT_COMMAND,
-        ({template, nodeKey}) => {
+        ({ template, nodeKey }) => {
           editor.update(() => {
             const container = $getNodeByKey<LexicalNode>(nodeKey);
 
@@ -73,16 +55,12 @@ export function LayoutPlugin(): null {
             }
 
             const itemsCount = getItemsCountFromTemplate(template);
-            const prevItemsCount = getItemsCountFromTemplate(
-              container.getTemplateColumns(),
-            );
+            const prevItemsCount = getItemsCountFromTemplate(container.getTemplateColumns());
 
             // Add or remove extra columns if new template does not match existing one
             if (itemsCount > prevItemsCount) {
               for (let i = prevItemsCount; i < itemsCount; i++) {
-                container.append(
-                  $createLayoutItemNode().append($createParagraphNode()),
-                );
+                container.append($createLayoutItemNode().append($createParagraphNode()));
               }
             } else if (itemsCount < prevItemsCount) {
               for (let i = prevItemsCount; i < itemsCount; i++) {

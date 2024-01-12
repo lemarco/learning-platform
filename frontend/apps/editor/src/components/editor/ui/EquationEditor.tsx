@@ -1,11 +1,11 @@
 /** @jsxImportSource react */
 
-import type {Ref, RefObject} from 'react';
+import type { Ref, RefObject } from "react";
 
-import './EquationEditor.css';
+import "./EquationEditor.css";
 
-import * as React from 'react';
-import {ChangeEvent, forwardRef} from 'react';
+import * as React from "react";
+import { ChangeEvent, forwardRef } from "react";
 
 type BaseEquationEditorProps = {
   equation: string;
@@ -14,7 +14,7 @@ type BaseEquationEditorProps = {
 };
 
 function EquationEditor(
-  {equation, setEquation, inline}: BaseEquationEditorProps,
+  { equation, setEquation, inline }: BaseEquationEditorProps,
   forwardedRef: Ref<HTMLInputElement | HTMLTextAreaElement>,
 ): JSX.Element {
   const onChange = (event: ChangeEvent) => {
@@ -35,14 +35,14 @@ function EquationEditor(
     </span>
   ) : (
     <div className="EquationEditor_inputBackground">
-      <span className="EquationEditor_dollarSign">{'$$\n'}</span>
+      <span className="EquationEditor_dollarSign">{"$$\n"}</span>
       <textarea
         className="EquationEditor_blockEditor"
         value={equation}
         onChange={onChange}
         ref={forwardedRef as RefObject<HTMLTextAreaElement>}
       />
-      <span className="EquationEditor_dollarSign">{'\n$$'}</span>
+      <span className="EquationEditor_dollarSign">{"\n$$"}</span>
     </div>
   );
 }

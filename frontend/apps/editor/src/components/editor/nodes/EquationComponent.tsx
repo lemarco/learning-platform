@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
-import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
-import {mergeRegister} from '@lexical/utils';
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { mergeRegister } from "@lexical/utils";
 import {
   $getNodeByKey,
   $getSelection,
@@ -10,14 +10,14 @@ import {
   KEY_ESCAPE_COMMAND,
   NodeKey,
   SELECTION_CHANGE_COMMAND,
-} from 'lexical';
-import * as React from 'react';
-import {useCallback, useEffect, useRef, useState} from 'react';
-import {ErrorBoundary} from 'react-error-boundary';
+} from "lexical";
+import * as React from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
-import EquationEditor from '../ui/EquationEditor';
-import KatexRenderer from '../ui/KatexRenderer';
-import {$isEquationNode} from './EquationNode';
+import EquationEditor from "../ui/EquationEditor";
+import KatexRenderer from "../ui/KatexRenderer";
+import { $isEquationNode } from "./EquationNode";
 
 type EquationComponentProps = {
   equation: string;
@@ -25,11 +25,7 @@ type EquationComponentProps = {
   nodeKey: NodeKey;
 };
 
-export default function EquationComponent({
-  equation,
-  inline,
-  nodeKey,
-}: EquationComponentProps): JSX.Element {
+export default function EquationComponent({ equation, inline, nodeKey }: EquationComponentProps): JSX.Element {
   const [editor] = useLexicalComposerContext();
   const [equationValue, setEquationValue] = useState(equation);
   const [showEquationEditor, setShowEquationEditor] = useState<boolean>(false);
@@ -87,14 +83,10 @@ export default function EquationComponent({
         ),
       );
     } else {
-      return editor.registerUpdateListener(({editorState}) => {
+      return editor.registerUpdateListener(({ editorState }) => {
         const isSelected = editorState.read(() => {
           const selection = $getSelection();
-          return (
-            $isNodeSelection(selection) &&
-            selection.has(nodeKey) &&
-            selection.getNodes().length === 1
-          );
+          return $isNodeSelection(selection) && selection.has(nodeKey) && selection.getNodes().length === 1;
         });
         if (isSelected) {
           setShowEquationEditor(true);
@@ -106,19 +98,10 @@ export default function EquationComponent({
   return (
     <>
       {showEquationEditor ? (
-        <EquationEditor
-          equation={equationValue}
-          setEquation={setEquationValue}
-          inline={inline}
-          ref={inputRef}
-        />
+        <EquationEditor equation={equationValue} setEquation={setEquationValue} inline={inline} ref={inputRef} />
       ) : (
         <ErrorBoundary onError={(e) => editor._onError(e)} fallback={null}>
-          <KatexRenderer
-            equation={equationValue}
-            inline={inline}
-            onDoubleClick={() => setShowEquationEditor(true)}
-          />
+          <KatexRenderer equation={equationValue} inline={inline} onDoubleClick={() => setShowEquationEditor(true)} />
         </ErrorBoundary>
       )}
     </>

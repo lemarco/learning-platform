@@ -12,16 +12,14 @@ import {
   LexicalNode,
   RangeSelection,
   SerializedElementNode,
-} from 'lexical';
+} from "lexical";
 
-import {$isCollapsibleContainerNode} from './CollapsibleContainerNode';
-import {$isCollapsibleContentNode} from './CollapsibleContentNode';
+import { $isCollapsibleContainerNode } from "./CollapsibleContainerNode";
+import { $isCollapsibleContentNode } from "./CollapsibleContentNode";
 
 type SerializedCollapsibleTitleNode = SerializedElementNode;
 
-export function convertSummaryElement(
-  domNode: HTMLElement,
-): DOMConversionOutput | null {
+export function convertSummaryElement(domNode: HTMLElement): DOMConversionOutput | null {
   const node = $createCollapsibleTitleNode();
   return {
     node,
@@ -30,7 +28,7 @@ export function convertSummaryElement(
 
 export class CollapsibleTitleNode extends ElementNode {
   static getType(): string {
-    return 'collapsible-title';
+    return "collapsible-title";
   }
 
   static clone(node: CollapsibleTitleNode): CollapsibleTitleNode {
@@ -38,8 +36,8 @@ export class CollapsibleTitleNode extends ElementNode {
   }
 
   createDOM(config: EditorConfig, editor: LexicalEditor): HTMLElement {
-    const dom = document.createElement('summary');
-    dom.classList.add('Collapsible__title');
+    const dom = document.createElement("summary");
+    dom.classList.add("Collapsible__title");
     return dom;
   }
 
@@ -58,21 +56,19 @@ export class CollapsibleTitleNode extends ElementNode {
     };
   }
 
-  static importJSON(
-    serializedNode: SerializedCollapsibleTitleNode,
-  ): CollapsibleTitleNode {
+  static importJSON(serializedNode: SerializedCollapsibleTitleNode): CollapsibleTitleNode {
     return $createCollapsibleTitleNode();
   }
 
   exportDOM(): DOMExportOutput {
-    const element = document.createElement('summary');
-    return {element};
+    const element = document.createElement("summary");
+    return { element };
   }
 
   exportJSON(): SerializedCollapsibleTitleNode {
     return {
       ...super.exportJSON(),
-      type: 'collapsible-title',
+      type: "collapsible-title",
       version: 1,
     };
   }
@@ -86,17 +82,13 @@ export class CollapsibleTitleNode extends ElementNode {
     const containerNode = this.getParentOrThrow();
 
     if (!$isCollapsibleContainerNode(containerNode)) {
-      throw new Error(
-        'CollapsibleTitleNode expects to be child of CollapsibleContainerNode',
-      );
+      throw new Error("CollapsibleTitleNode expects to be child of CollapsibleContainerNode");
     }
 
     if (containerNode.getOpen()) {
       const contentNode = this.getNextSibling();
       if (!$isCollapsibleContentNode(contentNode)) {
-        throw new Error(
-          'CollapsibleTitleNode expects to have CollapsibleContentNode sibling',
-        );
+        throw new Error("CollapsibleTitleNode expects to have CollapsibleContentNode sibling");
       }
 
       const firstChild = contentNode.getFirstChild();
@@ -119,8 +111,6 @@ export function $createCollapsibleTitleNode(): CollapsibleTitleNode {
   return new CollapsibleTitleNode();
 }
 
-export function $isCollapsibleTitleNode(
-  node: LexicalNode | null | undefined,
-): node is CollapsibleTitleNode {
+export function $isCollapsibleTitleNode(node: LexicalNode | null | undefined): node is CollapsibleTitleNode {
   return node instanceof CollapsibleTitleNode;
 }
