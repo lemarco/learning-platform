@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import type { EditorConfig, ElementFormatType, LexicalEditor, LexicalNode, NodeKey, Spread } from "@frontend/lexical-editor";
+import type { EditorConfig, ElementFormatType, LexicalEditor, LexicalNode, NodeKey, Spread } from "../lib/lexical-editor";
 
-import { BlockWithAlignableContents } from "@lexical/react/LexicalBlockWithAlignableContents";
-import { DecoratorBlockNode, SerializedDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
+import { BlockWithAlignableContents } from "../lib/lexical-react";
+import { DecoratorBlockNode, SerializedDecoratorBlockNode } from "../lib/lexical-react";
 import * as React from "react";
 
 type FigmaComponentProps = Readonly<{

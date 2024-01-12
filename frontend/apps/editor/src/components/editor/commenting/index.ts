@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import type { LexicalEditor } from "@frontend/lexical-editor";
+import type { LexicalEditor } from "../lib/lexical-editor";
 
-import { Provider, TOGGLE_CONNECT_COMMAND } from "@frontend/lexical-editor";
-import { COMMAND_PRIORITY_LOW } from "@frontend/lexical-editor";
+import { Provider, TOGGLE_CONNECT_COMMAND } from "../lib/lexical-editor";
+import { COMMAND_PRIORITY_LOW } from "../lib/lexical-editor";
 import { useEffect, useState } from "react";
 import { Array as YArray, Map as YMap, Transaction, YArrayEvent, YEvent } from "yjs";
 

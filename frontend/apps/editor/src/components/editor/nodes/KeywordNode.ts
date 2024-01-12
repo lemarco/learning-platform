@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import type { EditorConfig, LexicalNode, SerializedTextNode } from "@frontend/lexical-editor";
+import type { EditorConfig, LexicalNode, SerializedTextNode } from "../lib/lexical-editor";
 
-import { TextNode } from "@frontend/lexical-editor";
+import { TextNode } from "../lib/lexical-editor";
 
 export type SerializedKeywordNode = SerializedTextNode;
 

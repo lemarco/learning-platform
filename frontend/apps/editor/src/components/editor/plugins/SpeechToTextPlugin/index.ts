@@ -29,8 +29,8 @@ const VOICE_COMMANDS: Readonly<Record<string, (arg0: { editor: LexicalEditor; se
   },
 };
 
-export const SUPPORT_SPEECH_RECOGNITION: boolean = "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
-
+// export const SUPPORT_SPEECH_RECOGNITION: boolean = "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
+export const SUPPORT_SPEECH_RECOGNITION: boolean = true;
 function SpeechToTextPlugin(): null {
   const [editor] = useLexicalComposerContext();
   const [isEnabled, setIsEnabled] = useState<boolean>(false);

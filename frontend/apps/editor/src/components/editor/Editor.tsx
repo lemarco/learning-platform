@@ -39,7 +39,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { CAN_USE_DOM } from "./utils/can-use-dom";
 
-import { createWebsocketProvider } from "./collaboration";
+// import { createWebsocketProvider } from "./collaboration";
 import { useSettings } from "./context/SettingsContext";
 import { useSharedHistoryContext } from "./context/SharedHistoryContext";
 import ActionsPlugin from "./plugins/ActionsPlugin";
@@ -84,9 +84,9 @@ import YouTubePlugin from "./plugins/YouTubePlugin";
 import ContentEditable from "./ui/ContentEditable";
 import Placeholder from "./ui/Placeholder";
 
-const skipCollaborationInit =
-  // @ts-expect-error
-  window.parent != null && window.parent.frames.right === window;
+// const skipCollaborationInit =
+//   // @ts-expect-error
+//   window.parent != null && window.parent.frames.right === window;
 
 export default function Editor(): JSX.Element {
   const { historyState } = useSharedHistoryContext();
@@ -152,14 +152,15 @@ export default function Editor(): JSX.Element {
         <KeywordsPlugin />
         <SpeechToTextPlugin />
         <AutoLinkPlugin />
-        <CommentPlugin providerFactory={isCollab ? createWebsocketProvider : undefined} />
+        {/* <CommentPlugin providerFactory={isCollab ? createWebsocketProvider : undefined} /> */}
+        <CommentPlugin providerFactory={undefined} />
         {isRichText ? (
           <>
-            {isCollab ? (
+            {/* {isCollab ? (
               <CollaborationPlugin id="main" providerFactory={createWebsocketProvider} shouldBootstrap={!skipCollaborationInit} />
-            ) : (
-              <HistoryPlugin externalHistoryState={historyState} />
-            )}
+            ) : ( */}
+            <HistoryPlugin externalHistoryState={historyState} />
+            {/* )} */}
             <RichTextPlugin
               contentEditable={
                 <div className="editor-scroller">

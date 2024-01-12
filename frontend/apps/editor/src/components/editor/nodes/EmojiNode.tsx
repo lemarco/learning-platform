@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import type { EditorConfig, LexicalNode, NodeKey, SerializedTextNode, Spread } from "@frontend/lexical-editor";
+import type { EditorConfig, LexicalNode, NodeKey, SerializedTextNode, Spread } from "../lib/lexical-editor";
 
-import { $applyNodeReplacement, TextNode } from "@frontend/lexical-editor";
+import { $applyNodeReplacement, TextNode } from "../lib/lexical-editor";
 
 export type SerializedEmojiNode = Spread<
   {

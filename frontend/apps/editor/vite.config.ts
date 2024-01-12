@@ -19,13 +19,13 @@ export default defineConfig({
     qwikNxVite(),
     qwikCity(),
     qwikVite({
-      // client: {
-      //   outDir: '../../dist/apps/editor/client',
-      // },
-      // ssr: {
-      //   outDir: '../../dist/apps/editor/server',
-      // },
-      csr: true,
+      client: {
+        outDir: '../../dist/apps/editor/client',
+      },
+      ssr: {
+        outDir: '../../dist/apps/editor/server',
+      },
+      // csr: true,
       tsconfigFileNames: ['tsconfig.app.json'],
     }),
     tsconfigPaths({ root: '../../' }),

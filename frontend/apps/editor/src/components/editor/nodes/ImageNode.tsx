@@ -11,9 +11,9 @@ import type {
   SerializedEditor,
   SerializedLexicalNode,
   Spread,
-} from "@frontend/lexical-editor";
+} from "../lib/lexical-editor";
 
-import { $applyNodeReplacement, DecoratorNode, createEditor } from "@frontend/lexical-editor";
+import { $applyNodeReplacement, DecoratorNode, createEditor } from "../lib/lexical-editor";
 import * as React from "react";
 import { Suspense } from "react";
 

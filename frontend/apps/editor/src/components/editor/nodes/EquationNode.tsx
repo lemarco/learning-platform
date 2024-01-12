@@ -8,10 +8,10 @@ import type {
   NodeKey,
   SerializedLexicalNode,
   Spread,
-} from "@frontend/lexical-editor";
+} from "../lib/lexical-editor";
 
 import katex from "katex";
-import { $applyNodeReplacement, DOMExportOutput, DecoratorNode } from "@frontend/lexical-editor";
+import { $applyNodeReplacement, DOMExportOutput, DecoratorNode } from "../lib/lexical-editor";
 import * as React from "react";
 import { Suspense } from "react";
 

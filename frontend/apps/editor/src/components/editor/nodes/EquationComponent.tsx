@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { mergeRegister } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "../lib/lexical-react";
+import { mergeRegister } from "../lib/lexical-editor";
 import {
   $getNodeByKey,
   $getSelection,
@@ -10,7 +10,7 @@ import {
   KEY_ESCAPE_COMMAND,
   NodeKey,
   SELECTION_CHANGE_COMMAND,
-} from "@frontend/lexical-editor";
+} from "../lib/lexical-editor";
 import * as React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";

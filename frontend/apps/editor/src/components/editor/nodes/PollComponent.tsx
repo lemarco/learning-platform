@@ -4,10 +4,11 @@ import type { Option, Options, PollNode } from "./PollNode";
 
 import "./PollNode.css";
 
-import { useCollaborationContext } from "@frontend/lexical-react";
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { useLexicalNodeSelection } from "@frontend/lexical-react";
-import { mergeRegister } from "@frontend/lexical-editor";
+import { useCollaborationContext } from "../lib/lexical-react";
+import { useLexicalComposerContext } from "../lib/lexical-react";
+import { useLexicalNodeSelection } from "../lib/lexical-react";
+import { mergeRegister } from "../lib/lexical-editor";
+
 import {
   $getNodeByKey,
   $getSelection,
@@ -18,7 +19,7 @@ import {
   KEY_BACKSPACE_COMMAND,
   KEY_DELETE_COMMAND,
   NodeKey,
-} from "@frontend/lexical-editor";
+} from "../lib/lexical-editor";
 import * as React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 

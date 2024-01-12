@@ -1,20 +1,20 @@
 /** @jsxImportSource react */
 
-import type { BaseSelection, LexicalCommand, LexicalEditor, NodeKey } from "@frontend/lexical-editor";
+import type { BaseSelection, LexicalCommand, LexicalEditor, NodeKey } from "../lib/lexical-editor";
 
 import "./ImageNode.css";
 
-import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
-import { CollaborationPlugin } from "@lexical/react/LexicalCollaborationPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { HashtagPlugin } from "@lexical/react/LexicalHashtagPlugin";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
-import { mergeRegister } from "@frontend/lexical-editor";
+import { AutoFocusPlugin } from "../lib/lexical-react";
+import { useCollaborationContext } from "../lib/lexical-react";
+import { CollaborationPlugin } from "../lib/lexical-react";
+import { useLexicalComposerContext } from "../lib/lexical-react";
+import { LexicalErrorBoundary } from "../lib/lexical-react";
+import { HashtagPlugin } from "../lib/lexical-react";
+import { HistoryPlugin } from "../lib/lexical-react";
+import { LexicalNestedComposer } from "../lib/lexical-react";
+import { RichTextPlugin } from "../lib/lexical-react";
+import { useLexicalNodeSelection } from "../lib/lexical-react";
+import { mergeRegister } from "../lib/lexical-editor";
 import {
   $getNodeByKey,
   $getSelection,
@@ -30,7 +30,7 @@ import {
   KEY_ESCAPE_COMMAND,
   SELECTION_CHANGE_COMMAND,
   createCommand,
-} from "@frontend/lexical-editor";
+} from "../lib/lexical-editor";
 import * as React from "react";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 

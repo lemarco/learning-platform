@@ -1,8 +1,7 @@
 /** @jsxImportSource react */
-import { $isAtNodeEnd } from
-from;
-("@frontend/lexical-editor");
-import { ElementNode, RangeSelection, TextNode } from "@frontend/lexical-editor";
+import { LexicalSelection } from "../lib/lexical-editor";
+const { $isAtNodeEnd } = LexicalSelection;
+import { ElementNode, RangeSelection, TextNode } from "../lib/lexical-editor";
 
 export function getSelectedNode(selection: RangeSelection): TextNode | ElementNode {
   const anchor = selection.anchor;
@@ -15,7 +14,6 @@ export function getSelectedNode(selection: RangeSelection): TextNode | ElementNo
   const isBackward = selection.isBackward();
   if (isBackward) {
     return $isAtNodeEnd(focus) ? anchorNode : focusNode;
-  } else {
-    return $isAtNodeEnd(anchor) ? anchorNode : focusNode;
   }
+  return $isAtNodeEnd(anchor) ? anchorNode : focusNode;
 }

@@ -1,12 +1,12 @@
 /** @jsxImportSource react */
 
-import type { NodeKey } from "@frontend/lexical-editor";
+import type { NodeKey } from"../../lib/lexical-editor";
 import type { ExcalidrawElementFragment } from "./ExcalidrawModal";
 
 import { AppState, BinaryFiles } from "@excalidraw/excalidraw/types/types";
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { useLexicalNodeSelection } from "@frontend/lexical-react";
-import { mergeRegister } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from"../../lib/lexical-react";
+import { useLexicalNodeSelection } from "../../lib/lexical-react";
+import { mergeRegister } from "../../lib/lexical-editor";
 import {
   $getNodeByKey,
   $getSelection,
@@ -15,7 +15,7 @@ import {
   COMMAND_PRIORITY_LOW,
   KEY_BACKSPACE_COMMAND,
   KEY_DELETE_COMMAND,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as React from "react";
 

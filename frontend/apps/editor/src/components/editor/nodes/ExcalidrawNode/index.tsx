@@ -10,9 +10,8 @@ import type {
   NodeKey,
   SerializedLexicalNode,
   Spread,
-} from  "@frontend/lexical-editor";
-
-import { DecoratorNode } from  "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
+import { DecoratorNode } from "../../lib/lexical-editor";
 import * as React from "react";
 import { Suspense } from "react";
 
