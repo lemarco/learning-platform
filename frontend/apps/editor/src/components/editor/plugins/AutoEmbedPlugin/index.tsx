@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import type { LexicalEditor } from "@frontend/lexical-editor";
+import type { LexicalEditor } from "../../lib/lexical-editor";
 
 import {
   useLexicalComposerContext,
@@ -9,7 +9,7 @@ import {
   URL_MATCHER,
   EmbedMatchResult,
   EmbedConfig,
-} from "@frontend/lexical-react";
+} from "../../lib/lexical-react";
 import { useMemo, useState } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";

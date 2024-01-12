@@ -16,8 +16,7 @@
 // import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 // import useLexicalEditable from "@lexical/react/useLexicalEditable";
 
-import { LexicalReact } from "@frontend/lexical-editor";
-const {
+import {
   HistoryPlugin,
   HashtagPlugin,
   LexicalErrorBoundary,
@@ -34,7 +33,8 @@ const {
   TabIndentationPlugin,
   RichTextPlugin,
   PlainTextPlugin,
-} = LexicalReact;
+} from "./lib/lexical-react";
+
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { CAN_USE_DOM } from "./utils/can-use-dom";

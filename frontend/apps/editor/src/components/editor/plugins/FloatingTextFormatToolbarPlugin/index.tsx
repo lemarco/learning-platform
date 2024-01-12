@@ -2,10 +2,10 @@
 
 import "./index.css";
 
-import { $isCodeHighlightNode } from "@frontend/lexical-editor";
-import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@frontend/lexical-editor";
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { mergeRegister } from "@frontend/lexical-editor";
+import { $isCodeHighlightNode } from "../../lib/lexical-editor";
+import { $isLinkNode, TOGGLE_LINK_COMMAND } from "../../lib/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { mergeRegister } from "../../lib/lexical-editor";
 import {
   $getSelection,
   $isParagraphNode,
@@ -15,7 +15,7 @@ import {
   FORMAT_TEXT_COMMAND,
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import { useCallback, useEffect, useRef, useState } from "react";
 import * as React from "react";
 import { createPortal } from "react-dom";

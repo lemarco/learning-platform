@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { $wrapNodeInElement, mergeRegister } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { $wrapNodeInElement, mergeRegister } from "../../lib/lexical-editor";
 import {
   $createParagraphNode,
   $createRangeSelection,
@@ -18,7 +18,7 @@ import {
   LexicalCommand,
   LexicalEditor,
   createCommand,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import { useEffect, useRef, useState } from "react";
 import * as React from "react";
 import { CAN_USE_DOM } from "../../utils/can-use-dom";

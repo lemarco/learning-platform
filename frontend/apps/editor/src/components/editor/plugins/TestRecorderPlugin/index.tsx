@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import type { BaseSelection, LexicalEditor } from "@frontend/lexical-editor";
+import type { BaseSelection, LexicalEditor } from "../../lib/lexical-editor";
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { $createParagraphNode, $createTextNode, $getRoot } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { $createParagraphNode, $createTextNode, $getRoot } from "../../lib/lexical-editor";
 import * as React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IS_APPLE, useLayoutEffectImpl as useLayoutEffect } from "../../utils/can-use-dom";

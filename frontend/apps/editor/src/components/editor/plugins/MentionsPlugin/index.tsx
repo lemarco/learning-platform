@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { LexicalTypeaheadMenuPlugin, MenuOption, MenuTextMatch, useBasicTypeaheadTriggerMatch } from "@frontend/lexical-react";
-import { TextNode } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { LexicalTypeaheadMenuPlugin, MenuOption, MenuTextMatch, useBasicTypeaheadTriggerMatch } from "../../lib/lexical-react";
+import { TextNode } from "../../lib/lexical-editor";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";

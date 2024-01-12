@@ -2,8 +2,8 @@
 
 import "katex/dist/katex.css";
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { $wrapNodeInElement } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { $wrapNodeInElement } from "../../lib/lexical-editor";
 import {
   $createParagraphNode,
   $insertNodes,
@@ -12,7 +12,7 @@ import {
   LexicalCommand,
   LexicalEditor,
   createCommand,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import { useCallback, useEffect } from "react";
 import * as React from "react";
 

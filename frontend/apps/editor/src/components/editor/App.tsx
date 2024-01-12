@@ -1,11 +1,10 @@
 /** @jsxImportSource react */
-import { $createLinkNode } from "@frontend/lexical-editor";
-import { $createListItemNode, $createListNode } from "@frontend/lexical-editor";
-import { LexicalReact } from "@frontend/lexical-editor";
-const { LexicalComposer } = LexicalReact;
+import { $createLinkNode } from "./lib/lexical-editor";
+import { $createListItemNode, $createListNode } from "./lib/lexical-editor";
+import { LexicalComposer } from "./lib/lexical-react";
 
-import { $createHeadingNode, $createQuoteNode } from "@frontend/lexical-editor";
-import { $createParagraphNode, $createTextNode, $getRoot } from "@frontend/lexical-editor";
+import { $createHeadingNode, $createQuoteNode } from "./lib/lexical-editor";
+import { $createParagraphNode, $createTextNode, $getRoot } from "./lib/lexical-editor";
 import * as React from "react";
 
 import { qwikify$ } from "@builder.io/qwik-react";

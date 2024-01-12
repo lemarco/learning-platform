@@ -1,16 +1,16 @@
 /** @jsxImportSource react */
 
-import type { Klass, LexicalNode } from "@frontend/lexical-editor";
+import type { Klass, LexicalNode } from "../lib/lexical-editor";
 
-import { CodeHighlightNode, CodeNode } from "@frontend/lexical-editor";
-import { HashtagNode } from "@frontend/lexical-editor";
-import { AutoLinkNode, LinkNode } from "@frontend/lexical-editor";
-import { ListItemNode, ListNode } from "@frontend/lexical-editor";
-import { MarkNode } from "@frontend/lexical-editor";
-import { OverflowNode } from "@frontend/lexical-editor";
-import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
-import { HeadingNode, QuoteNode } from "@frontend/lexical-editor";
-import { TableCellNode, TableNode, TableRowNode } from "@frontend/lexical-editor";
+import { CodeHighlightNode, CodeNode } from "../lib/lexical-editor";
+import { HashtagNode } from "../lib/lexical-editor";
+import { AutoLinkNode, LinkNode } from "../lib/lexical-editor";
+import { ListItemNode, ListNode } from "../lib/lexical-editor";
+import { MarkNode } from "../lib/lexical-editor";
+import { OverflowNode } from "../lib/lexical-editor";
+import { HorizontalRuleNode } from "../lib/lexical-react";
+import { HeadingNode, QuoteNode } from "../lib/lexical-editor";
+import { TableCellNode, TableNode, TableRowNode } from "../lib/lexical-editor";
 
 import { CollapsibleContainerNode } from "../plugins/CollapsiblePlugin/CollapsibleContainerNode";
 import { CollapsibleContentNode } from "../plugins/CollapsiblePlugin/CollapsibleContentNode";

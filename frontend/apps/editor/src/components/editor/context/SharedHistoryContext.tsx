@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import type { HistoryState } from "@frontend/lexical-editor";
+import type { HistoryState } from "../lib/lexical-editor";
 
-import { createEmptyHistoryState } from "@frontend/lexical-editor";
+import { createEmptyHistoryState } from "../lib/lexical-editor";
 import * as React from "react";
 import { ReactNode, createContext, useContext, useMemo } from "react";
 

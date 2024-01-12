@@ -1,10 +1,10 @@
 /** @jsxImportSource react */
 
-import type { ElementNode, LexicalCommand, LexicalNode, NodeKey } from "@frontend/lexical-editor";
+import type { ElementNode, LexicalCommand, LexicalNode, NodeKey } from "../../lib/lexical-editor";
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { $insertNodeToNearestRoot, mergeRegister } from "@frontend/lexical-editor";
-import { $createParagraphNode, $getNodeByKey, COMMAND_PRIORITY_EDITOR, createCommand } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { $insertNodeToNearestRoot, mergeRegister } from "../../lib/lexical-editor";
+import { $createParagraphNode, $getNodeByKey, COMMAND_PRIORITY_EDITOR, createCommand } from "../../lib/lexical-editor";
 import { useEffect } from "react";
 
 import { $createLayoutContainerNode, $isLayoutContainerNode, LayoutContainerNode } from "../../nodes/LayoutContainerNode";

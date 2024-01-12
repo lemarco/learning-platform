@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
-import type { Provider } from "@frontend/lexical-editor";
-import type { EditorState, LexicalCommand, LexicalEditor, NodeKey, RangeSelection } from "@frontend/lexical-editor";
+import type { Provider } from "../../lib/lexical-editor";
+import type { EditorState, LexicalCommand, LexicalEditor, NodeKey, RangeSelection } from "../../lib/lexical-editor";
 import type { Doc } from "yjs";
 
 import "./index.css";
@@ -14,21 +14,21 @@ import {
   $wrapSelectionInMarkNode,
   MarkNode,
   LexicalSelection,
-} from "@frontend/lexical-editor";
-import { AutoFocusPlugin } from "@frontend/lexical-react";
-import { ClearEditorPlugin } from "@frontend/lexical-react";
-import { useCollaborationContext } from "@frontend/lexical-react";
-import { LexicalComposer } from "@frontend/lexical-react";
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { EditorRefPlugin } from "@frontend/lexical-react";
-import { LexicalErrorBoundary } from "@frontend/lexical-react";
-import { HistoryPlugin } from "@frontend/lexical-react";
-import { OnChangePlugin } from "@frontend/lexical-react";
-import { PlainTextPlugin } from "@frontend/lexical-react";
+} from "../../lib/lexical-editor";
+import { AutoFocusPlugin } from "../../lib/lexical-react";
+import { ClearEditorPlugin } from "../../lib/lexical-react";
+import { useCollaborationContext } from "../../lib/lexical-react";
+import { LexicalComposer } from "../../lib/lexical-react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { EditorRefPlugin } from "../../lib/lexical-react";
+import { LexicalErrorBoundary } from "../../lib/lexical-react";
+import { HistoryPlugin } from "../../lib/lexical-react";
+import { OnChangePlugin } from "../../lib/lexical-react";
+import { PlainTextPlugin } from "../../lib/lexical-react";
 const { createDOMRange, createRectsFromDOMRange } = LexicalSelection;
 
-import { $isRootTextContentEmpty, $rootTextContent } from "@frontend/lexical-editor";
-import { mergeRegister, registerNestedElementResolver } from "@frontend/lexical-editor";
+import { $isRootTextContentEmpty, $rootTextContent } from "../../lib/lexical-editor";
+import { mergeRegister, registerNestedElementResolver } from "../../lib/lexical-editor";
 import {
   $getNodeByKey,
   $getSelection,
@@ -38,7 +38,7 @@ import {
   COMMAND_PRIORITY_EDITOR,
   KEY_ESCAPE_COMMAND,
   createCommand,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as React from "react";
 import { createPortal } from "react-dom";

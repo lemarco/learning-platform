@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import { Provider } from "@frontend/lexical-editor";
+import { Provider } from "./lib/lexical-editor";
 import { WebsocketProvider } from "y-websocket";
 import { Doc } from "yjs";
 

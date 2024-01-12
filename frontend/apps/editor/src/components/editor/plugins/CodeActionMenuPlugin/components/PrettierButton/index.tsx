@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 import "./index.css";
 
-import { $isCodeNode } from "@frontend/lexical-editor";
-import { $getNearestNodeFromDOMNode, LexicalEditor } from "@frontend/lexical-editor";
+import { $isCodeNode } from "../../../../lib/lexical-editor";
+import { $getNearestNodeFromDOMNode, LexicalEditor } from "../../../../lib/lexical-editor";
 import { Options } from "prettier";
 import * as React from "react";
 import { useState } from "react";

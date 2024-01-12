@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { $getSelection, $isRangeSelection, $setSelection, FOCUS_COMMAND } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { $getSelection, $isRangeSelection, $setSelection, FOCUS_COMMAND } from "../../lib/lexical-editor";
 import { useEffect } from "react";
 
 const COMMAND_PRIORITY_LOW = 1;

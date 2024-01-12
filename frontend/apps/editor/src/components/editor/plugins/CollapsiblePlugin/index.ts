@@ -2,8 +2,8 @@
 
 import "./Collapsible.css";
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { $findMatchingParent, $insertNodeToNearestRoot, mergeRegister } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { $findMatchingParent, $insertNodeToNearestRoot, mergeRegister } from "../../lib/lexical-editor";
 import {
   $createParagraphNode,
   $getPreviousSelection,
@@ -22,7 +22,7 @@ import {
   LexicalNode,
   NodeKey,
   createCommand,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import { useEffect } from "react";
 
 import { $createCollapsibleContainerNode, $isCollapsibleContainerNode, CollapsibleContainerNode } from "./CollapsibleContainerNode";

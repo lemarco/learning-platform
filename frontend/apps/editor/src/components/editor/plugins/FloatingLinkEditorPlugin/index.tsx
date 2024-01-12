@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 import "./index.css";
 
-import { $isAutoLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } from "@frontend/lexical-editor";
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { $findMatchingParent, mergeRegister } from "@frontend/lexical-editor";
+import { $isAutoLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } from "../../lib/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { $findMatchingParent, mergeRegister } from "../../lib/lexical-editor";
 import {
   $getSelection,
   $isRangeSelection,
@@ -15,7 +15,7 @@ import {
   KEY_ESCAPE_COMMAND,
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import { Dispatch, useCallback, useEffect, useRef, useState } from "react";
 import * as React from "react";
 import { createPortal } from "react-dom";

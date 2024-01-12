@@ -6,8 +6,8 @@ import {
   CODE_LANGUAGE_FRIENDLY_NAME_MAP,
   CODE_LANGUAGE_MAP,
   getLanguageFriendlyName,
-} from "@frontend/lexical-editor";
-import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
+import { $isLinkNode, TOGGLE_LINK_COMMAND } from "../../lib/lexical-editor";
 import {
   $isListNode,
   INSERT_CHECK_LIST_COMMAND,
@@ -15,21 +15,21 @@ import {
   INSERT_UNORDERED_LIST_COMMAND,
   ListNode,
   REMOVE_LIST_COMMAND,
-} from "@frontend/lexical-editor";
-import { INSERT_EMBED_COMMAND } from "@frontend/lexical-react";
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { $isDecoratorBlockNode } from "@frontend/lexical-react";
-import { INSERT_HORIZONTAL_RULE_COMMAND } from "@frontend/lexical-react";
-import { $createHeadingNode, $createQuoteNode, $isHeadingNode, $isQuoteNode, HeadingTagType } from "@frontend/lexical-editor";
-import { $getSelectionStyleValueForProperty, $isParentElementRTL, $patchStyleText, $setBlocksType } from
-
-import { $isTableNode } from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
+import { INSERT_EMBED_COMMAND } from "../../lib/lexical-react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { $isDecoratorBlockNode } from "../../lib/lexical-react";
+import { INSERT_HORIZONTAL_RULE_COMMAND } from "../../lib/lexical-react";
+import { $createHeadingNode, $createQuoteNode, $isHeadingNode, $isQuoteNode, HeadingTagType } from "../../lib/lexical-editor";
+import { LexicalSelection } from "../../lib/lexical-editor";
+const { $getSelectionStyleValueForProperty, $isParentElementRTL, $patchStyleText, $setBlocksType } = LexicalSelection;
+import { $isTableNode } from "../../lib/lexical-editor";
 import {
   $findMatchingParent,
   $getNearestBlockElementAncestorOrThrow,
   $getNearestNodeOfType,
   mergeRegister,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import {
   $INTERNAL_isPointSelection,
   $createParagraphNode,
@@ -55,7 +55,7 @@ import {
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import { Dispatch, useCallback, useEffect, useState } from "react";
 import * as React from "react";
 import useModal from "../../hooks/useModal";

@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import type { DEPRECATED_GridCellNode, ElementNode, LexicalEditor } from "@frontend/lexical-editor";
+import type { DEPRECATED_GridCellNode, ElementNode, LexicalEditor } from "../../lib/lexical-editor";
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import useLexicalEditable from "@frontend/lexical-react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { useLexicalEditable } from "../../lib/lexical-react";
 import {
   $deleteTableColumn__EXPERIMENTAL,
   $deleteTableRow__EXPERIMENTAL,
@@ -23,7 +23,7 @@ import {
   TableCellNode,
   TableRowNode,
   getTableSelectionFromTableElement,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import {
   $createParagraphNode,
   $getRoot,
@@ -34,7 +34,7 @@ import {
   $isTextNode,
   DEPRECATED_$getNodeTriplet,
   DEPRECATED_$isGridCellNode,
-} from "@frontend/lexical-editor";
+} from "../../lib/lexical-editor";
 import * as React from "react";
 import { ReactPortal, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";

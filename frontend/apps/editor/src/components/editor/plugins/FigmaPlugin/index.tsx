@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { $insertNodeToNearestRoot } from "@frontend/lexical-editor";
-import { COMMAND_PRIORITY_EDITOR, LexicalCommand, createCommand } from "@frontend/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { $insertNodeToNearestRoot } from "../../lib/lexical-editor";
+import { COMMAND_PRIORITY_EDITOR, LexicalCommand, createCommand } from "../../lib/lexical-editor";
 import { useEffect } from "react";
 
 import { $createFigmaNode, FigmaNode } from "../../nodes/FigmaNode";

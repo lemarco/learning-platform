@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 
-import type { TextNode } from "@frontend/lexical-editor";
+import type { TextNode } from "../../lib/lexical-editor";
 
-import { useLexicalComposerContext } from "@frontend/lexical-react";
-import { useLexicalTextEntity } from "@frontend/lexical-react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { useLexicalTextEntity } from "../../lib/lexical-react";
 import { useCallback, useEffect } from "react";
 
 import { $createKeywordNode, KeywordNode } from "../../nodes/KeywordNode";
