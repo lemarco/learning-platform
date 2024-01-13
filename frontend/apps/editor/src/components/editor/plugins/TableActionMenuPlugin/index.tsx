@@ -2,8 +2,9 @@
 
 import type { DEPRECATED_GridCellNode, ElementNode, LexicalEditor } from "../../lib/lexical-editor";
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
-import { useLexicalEditable } from "../../lib/lexical-react";
+import * as React from "react";
+import { ReactPortal, useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   $deleteTableColumn__EXPERIMENTAL,
   $deleteTableRow__EXPERIMENTAL,
@@ -35,9 +36,8 @@ import {
   DEPRECATED_$getNodeTriplet,
   DEPRECATED_$isGridCellNode,
 } from "../../lib/lexical-editor";
-import * as React from "react";
-import { ReactPortal, useCallback, useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { useLexicalEditable } from "../../lib/lexical-react";
 import { invariant } from "../../utils/can-use-dom";
 
 import useModal from "../../hooks/useModal";

@@ -1,10 +1,10 @@
 /** @jsxImportSource react */
 import type { MenuRenderFn, MenuResolution } from "./shared/LexicalMenu";
 
-import { useLexicalComposerContext } from "./LexicalComposerContext";
-import { $getNodeByKey, COMMAND_PRIORITY_LOW, CommandListenerPriority, NodeKey, TextNode } from "../lexical-editor";
 import { useCallback, useEffect, useState } from "react";
 import * as React from "react";
+import { $getNodeByKey, COMMAND_PRIORITY_LOW, CommandListenerPriority, NodeKey, TextNode } from "../lexical-editor";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 import { LexicalMenu, MenuOption, useMenuAnchorRef } from "./shared/LexicalMenu";
 

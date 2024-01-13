@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 import "./index.css";
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
-import { useLexicalNodeSelection } from "../../lib/lexical-react";
+import * as React from "react";
+import { useCallback, useEffect } from "react";
 import { mergeRegister } from "../../lib/lexical-editor";
 import {
   $getNodeByKey,
@@ -20,8 +20,8 @@ import {
   NodeKey,
   SerializedLexicalNode,
 } from "../../lib/lexical-editor";
-import * as React from "react";
-import { useCallback, useEffect } from "react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { useLexicalNodeSelection } from "../../lib/lexical-react";
 
 export type SerializedPageBreakNode = SerializedLexicalNode;
 

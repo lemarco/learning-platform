@@ -1,7 +1,7 @@
 import type { EditorState, LexicalEditor } from "../lexical-editor";
 
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { useLayoutEffectImpl as useLayoutEffect } from "../lexical-editor";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 export function OnChangePlugin({
   ignoreHistoryMergeTagChange = true,

@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 
-import type { EditorThemeClasses } from "@frontend/lexical-editor";
+import type { EditorThemeClasses } from "../lib/lexical-editor";
 import "./StickyEditorTheme.css";
 
 import baseTheme from "./PlaygroundEditorTheme";

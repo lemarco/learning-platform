@@ -8,9 +8,9 @@ import { AutoLinkNode, LinkNode } from "../lib/lexical-editor";
 import { ListItemNode, ListNode } from "../lib/lexical-editor";
 import { MarkNode } from "../lib/lexical-editor";
 import { OverflowNode } from "../lib/lexical-editor";
-import { HorizontalRuleNode } from "../lib/lexical-react";
 import { HeadingNode, QuoteNode } from "../lib/lexical-editor";
 import { TableCellNode, TableNode, TableRowNode } from "../lib/lexical-editor";
+import { HorizontalRuleNode } from "../lib/lexical-react";
 
 import { CollapsibleContainerNode } from "../plugins/CollapsiblePlugin/CollapsibleContainerNode";
 import { CollapsibleContentNode } from "../plugins/CollapsiblePlugin/CollapsibleContentNode";

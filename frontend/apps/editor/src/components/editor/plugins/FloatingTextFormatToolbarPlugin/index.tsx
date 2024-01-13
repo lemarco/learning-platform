@@ -2,9 +2,11 @@
 
 import "./index.css";
 
+import { useCallback, useEffect, useRef, useState } from "react";
+import * as React from "react";
+import { createPortal } from "react-dom";
 import { $isCodeHighlightNode } from "../../lib/lexical-editor";
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from "../../lib/lexical-editor";
-import { useLexicalComposerContext } from "../../lib/lexical-react";
 import { mergeRegister } from "../../lib/lexical-editor";
 import {
   $getSelection,
@@ -16,9 +18,7 @@ import {
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from "../../lib/lexical-editor";
-import { useCallback, useEffect, useRef, useState } from "react";
-import * as React from "react";
-import { createPortal } from "react-dom";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 
 import { getDOMRangeRect } from "../../utils/getDOMRangeRect";
 import { getSelectedNode } from "../../utils/getSelectedNode";

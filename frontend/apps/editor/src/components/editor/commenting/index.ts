@@ -2,10 +2,10 @@
 
 import type { LexicalEditor } from "../lib/lexical-editor";
 
-import { Provider, TOGGLE_CONNECT_COMMAND } from "../lib/lexical-editor";
-import { COMMAND_PRIORITY_LOW } from "../lib/lexical-editor";
 import { useEffect, useState } from "react";
 import { Array as YArray, Map as YMap, Transaction, YArrayEvent, YEvent } from "yjs";
+import { Provider, TOGGLE_CONNECT_COMMAND } from "../lib/lexical-editor";
+import { COMMAND_PRIORITY_LOW } from "../lib/lexical-editor";
 
 export type Comment = {
   author: string;
@@ -322,36 +322,24 @@ export class CommentStore {
                     const type = map.get("type");
 
                     const commentOrThread =
-                      type === 'thread'
+                      type === "thread"
                         ? createThread(
-                            map.get('quote'),
+                            map.get("quote"),
                             map
-                              .get('comments')
+                              .get("comments")
                               .toArray()
-                              .map(
-                                (
-                                  innerComment: Map<
-                                    string,
-                                    string | number | boolean
-                                  >,
-                                ) =>
-                                  createComment(
-                                    innerComment.get('content') as string,
-                                    innerComment.get('author') as string,
-                                    innerComment.get('id') as string,
-                                    innerComment.get('timeStamp') as number,
-                                    innerComment.get('deleted') as boolean,
-                                  ),
+                              .map((innerComment: Map<string, string | number | boolean>) =>
+                                createComment(
+                                  innerComment.get("content") as string,
+                                  innerComment.get("author") as string,
+                                  innerComment.get("id") as string,
+                                  innerComment.get("timeStamp") as number,
+                                  innerComment.get("deleted") as boolean,
+                                ),
                               ),
                             id,
                           )
-                        : createComment(
-                            map.get('content'),
-                            map.get('author'),
-                            id,
-                            map.get('timeStamp'),
-                            map.get('deleted'),
-                          );
+                        : createComment(map.get("content"), map.get("author"), id, map.get("timeStamp"), map.get("deleted"));
                     this._withLocalTransaction(() => {
                       this.addComment(commentOrThread, parentThread as Thread, offset);
                     });

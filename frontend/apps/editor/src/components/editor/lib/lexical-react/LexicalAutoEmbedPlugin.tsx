@@ -1,23 +1,23 @@
 /** @jsxImportSource react */
 import type { CommandListenerPriority, LexicalNode, MutationListener } from "../lexical-editor";
 
+import { useCallback, useEffect, useMemo, useState } from "react";
+import * as React from "react";
 import { $isLinkNode, AutoLinkNode, LinkNode } from "../lexical-editor";
-import { useLexicalComposerContext } from "./LexicalComposerContext";
-import { LexicalNodeMenuPlugin, MenuOption, MenuRenderFn } from "./LexicalNodeMenuPlugin";
 import { mergeRegister } from "../lexical-editor";
 import {
   $getNodeByKey,
   $getSelection,
   COMMAND_PRIORITY_EDITOR,
   COMMAND_PRIORITY_LOW,
-  createCommand,
   LexicalCommand,
   LexicalEditor,
   NodeKey,
   TextNode,
+  createCommand,
 } from "../lexical-editor";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import * as React from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
+import { LexicalNodeMenuPlugin, MenuOption, MenuRenderFn } from "./LexicalNodeMenuPlugin";
 
 export type EmbedMatchResult<TEmbedMatchResult = unknown> = {
   url: string;

@@ -1,10 +1,10 @@
 /** @jsxImportSource react */
 import type { LexicalEditor, NodeKey, NodeMutation } from "../lexical-editor";
 
-import { useLexicalComposerContext } from "./LexicalComposerContext";
+import { useEffect, useState } from "react";
 import { $isHeadingNode, HeadingNode, HeadingTagType } from "../lexical-editor";
 import { $getNodeByKey, $getRoot, TextNode } from "../lexical-editor";
-import { useEffect, useState } from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 export type TableOfContentsEntry = [key: NodeKey, text: string, tag: HeadingTagType];
 

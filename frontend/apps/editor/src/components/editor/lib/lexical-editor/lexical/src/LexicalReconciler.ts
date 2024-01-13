@@ -202,10 +202,10 @@ function createNode(key: NodeKey, parentDOM: null | HTMLElement, insertDOM: null
     }
   }
 
-  if (__DEV__) {
-    // Freeze the node in DEV to prevent accidental mutations
-    Object.freeze(node);
-  }
+  // if (__DEV__) {
+  //   // Freeze the node in DEV to prevent accidental mutations
+  Object.freeze(node);
+  // }
 
   setMutatedNode(mutatedNodes, activeEditorNodes, activeMutationListeners, node, "created");
   return dom;
@@ -521,10 +521,10 @@ function reconcileNode(key: NodeKey, parentDOM: HTMLElement | null): HTMLElement
     nextNode = nextRootNode;
   }
 
-  if (__DEV__) {
-    // Freeze the node in DEV to prevent accidental mutations
-    Object.freeze(nextNode);
-  }
+  // if (__DEV__) {
+  // Freeze the node in DEV to prevent accidental mutations
+  Object.freeze(nextNode);
+  // }
 
   return dom;
 }

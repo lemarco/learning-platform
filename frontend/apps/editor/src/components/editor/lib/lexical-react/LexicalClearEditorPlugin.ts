@@ -1,6 +1,6 @@
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { $createParagraphNode, $getRoot, $getSelection, CLEAR_EDITOR_COMMAND, COMMAND_PRIORITY_EDITOR } from "../lexical-editor";
 import { useLayoutEffectImpl as useLayoutEffect } from "../lexical-editor";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 type Props = Readonly<{
   onClear?: () => void;

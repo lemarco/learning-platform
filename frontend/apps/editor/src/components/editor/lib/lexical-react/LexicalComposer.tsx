@@ -1,12 +1,12 @@
 /** @jsxImportSource react */
 import type { LexicalComposerContextType } from "./LexicalComposerContext";
 
-import { createLexicalComposerContext, LexicalComposerContext } from "./LexicalComposerContext";
+import { useMemo } from "react";
+import * as React from "react";
 import {
   $createParagraphNode,
   $getRoot,
   $getSelection,
-  createEditor,
   EditorState,
   EditorThemeClasses,
   HTMLConfig,
@@ -14,11 +14,11 @@ import {
   LexicalEditor,
   LexicalNode,
   LexicalNodeReplacement,
+  createEditor,
 } from "../lexical-editor";
-import { useMemo } from "react";
-import * as React from "react";
 import { CAN_USE_DOM } from "../lexical-editor";
 import { useLayoutEffectImpl as useLayoutEffect } from "../lexical-editor";
+import { LexicalComposerContext, createLexicalComposerContext } from "./LexicalComposerContext";
 
 const HISTORY_MERGE_OPTIONS = { tag: "history-merge" };
 

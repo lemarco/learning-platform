@@ -2,7 +2,7 @@
 
 import "./Collapsible.css";
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { useEffect } from "react";
 import { $findMatchingParent, $insertNodeToNearestRoot, mergeRegister } from "../../lib/lexical-editor";
 import {
   $createParagraphNode,
@@ -23,7 +23,7 @@ import {
   NodeKey,
   createCommand,
 } from "../../lib/lexical-editor";
-import { useEffect } from "react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 
 import { $createCollapsibleContainerNode, $isCollapsibleContainerNode, CollapsibleContainerNode } from "./CollapsibleContainerNode";
 import { $createCollapsibleContentNode, $isCollapsibleContentNode, CollapsibleContentNode } from "./CollapsibleContentNode";

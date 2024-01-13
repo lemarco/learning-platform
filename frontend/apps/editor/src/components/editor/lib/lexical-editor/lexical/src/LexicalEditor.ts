@@ -370,7 +370,8 @@ export function createEditor(editorConfig?: CreateEditorArgs): LexicalEditor {
         replaceWithKlass = options.withKlass || null;
       }
       // Ensure custom nodes implement required methods.
-      if (__DEV__) {
+      const why = true;
+      if (why) {
         const name = klass.name;
         if (name !== "RootNode") {
           const proto = klass.prototype;

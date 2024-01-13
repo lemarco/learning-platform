@@ -1,9 +1,8 @@
 /** @jsxImportSource react */
 import type { ElementFormatType, NodeKey } from "../lexical-editor";
 
-import { useLexicalComposerContext } from "./LexicalComposerContext";
-import { $isDecoratorBlockNode } from "./LexicalDecoratorBlockNode";
-import { useLexicalNodeSelection } from "./useLexicalNodeSelection";
+import * as React from "react";
+import { ReactNode, useCallback, useEffect, useRef } from "react";
 import { $getNearestBlockElementAncestorOrThrow, mergeRegister } from "../lexical-editor";
 import {
   $getNodeByKey,
@@ -17,8 +16,9 @@ import {
   KEY_BACKSPACE_COMMAND,
   KEY_DELETE_COMMAND,
 } from "../lexical-editor";
-import * as React from "react";
-import { ReactNode, useCallback, useEffect, useRef } from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
+import { $isDecoratorBlockNode } from "./LexicalDecoratorBlockNode";
+import { useLexicalNodeSelection } from "./useLexicalNodeSelection";
 
 type Props = Readonly<{
   children: ReactNode;

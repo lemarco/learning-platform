@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
-import { $getSelection, $isRangeSelection, $setSelection, FOCUS_COMMAND } from "../../lib/lexical-editor";
 import { useEffect } from "react";
+import { $getSelection, $isRangeSelection, $setSelection, FOCUS_COMMAND } from "../../lib/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 
 const COMMAND_PRIORITY_LOW = 1;
 const TAB_TO_FOCUS_INTERVAL = 100;

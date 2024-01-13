@@ -3,7 +3,7 @@ import type { DOMConversionMap, DOMConversionOutput, DOMExportOutput, NodeKey, S
 import type { BaseSelection, RangeSelection } from "../LexicalSelection";
 
 import { IS_FIREFOX } from "../../../shared/src/environment";
-import invariant from "../../../shared/src/invariant";
+import { invariant } from "../../../shared/src/invariant";
 
 import {
   COMPOSITION_SUFFIX,

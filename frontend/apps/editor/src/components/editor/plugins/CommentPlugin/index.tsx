@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
+import type { Doc } from "yjs";
 import type { Provider } from "../../lib/lexical-editor";
 import type { EditorState, LexicalCommand, LexicalEditor, NodeKey, RangeSelection } from "../../lib/lexical-editor";
-import type { Doc } from "yjs";
 
 import "./index.css";
 
@@ -12,8 +12,8 @@ import {
   $isMarkNode,
   $unwrapMarkNode,
   $wrapSelectionInMarkNode,
-  MarkNode,
   LexicalSelection,
+  MarkNode,
 } from "../../lib/lexical-editor";
 import { AutoFocusPlugin } from "../../lib/lexical-react";
 import { ClearEditorPlugin } from "../../lib/lexical-react";
@@ -27,6 +27,9 @@ import { OnChangePlugin } from "../../lib/lexical-react";
 import { PlainTextPlugin } from "../../lib/lexical-react";
 const { createDOMRange, createRectsFromDOMRange } = LexicalSelection;
 
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import * as React from "react";
+import { createPortal } from "react-dom";
 import { $isRootTextContentEmpty, $rootTextContent } from "../../lib/lexical-editor";
 import { mergeRegister, registerNestedElementResolver } from "../../lib/lexical-editor";
 import {
@@ -39,9 +42,6 @@ import {
   KEY_ESCAPE_COMMAND,
   createCommand,
 } from "../../lib/lexical-editor";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import * as React from "react";
-import { createPortal } from "react-dom";
 
 import { Comment, CommentStore, Comments, Thread, createComment, createThread, useCommentStore } from "../../commenting";
 import useModal from "../../hooks/useModal";

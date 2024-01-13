@@ -11,9 +11,9 @@ import type {
 } from "../lib/lexical-editor";
 
 import katex from "katex";
-import { $applyNodeReplacement, DOMExportOutput, DecoratorNode } from "../lib/lexical-editor";
 import * as React from "react";
 import { Suspense } from "react";
+import { $applyNodeReplacement, DOMExportOutput, DecoratorNode } from "../lib/lexical-editor";
 
 const EquationComponent = React.lazy(() => import("./EquationComponent"));
 

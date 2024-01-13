@@ -1,10 +1,10 @@
 import type { LexicalEditor, LexicalNode } from "../../lexical-editor";
 
+import { useEffect } from "react";
 import { $createOverflowNode, $isOverflowNode, OverflowNode } from "../../lexical-editor";
 import { $rootTextContent } from "../../lexical-editor";
 import { $dfs, mergeRegister } from "../../lexical-editor";
 import { $getSelection, $isLeafNode, $isRangeSelection, $isTextNode, $setSelection } from "../../lexical-editor";
-import { useEffect } from "react";
 import { invariant } from "../../lexical-editor/shared/src/invariant";
 
 type OptionalProps = {

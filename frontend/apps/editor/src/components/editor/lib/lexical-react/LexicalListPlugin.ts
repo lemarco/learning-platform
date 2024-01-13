@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { ListItemNode, ListNode } from "../lexical-editor";
 import { useLexicalComposerContext } from "./LexicalComposerContext";
-import { useEffect } from "react";
 
 import { useList } from "./shared/useList";
 

@@ -6,6 +6,7 @@ import { LexicalSelection } from "../../lib/lexical-editor";
 
 import { useLexicalComposerContext } from "../../lib/lexical-react";
 const { $isAtNodeEnd } = LexicalSelection;
+import { useCallback, useEffect } from "react";
 import { mergeRegister } from "../../lib/lexical-editor";
 import {
   $createTextNode,
@@ -18,7 +19,6 @@ import {
   KEY_ARROW_RIGHT_COMMAND,
   KEY_TAB_COMMAND,
 } from "../../lib/lexical-editor";
-import { useCallback, useEffect } from "react";
 
 import { useSharedAutocompleteContext } from "../../context/SharedAutocompleteContext";
 import { $createAutocompleteNode, AutocompleteNode } from "../../nodes/AutocompleteNode";

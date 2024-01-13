@@ -4,12 +4,8 @@ import type { Position } from "./InlineImageNode";
 
 import "./InlineImageNode.css";
 
-import { AutoFocusPlugin } from "../lib/lexical-react";
-import { useLexicalComposerContext } from "../lib/lexical-react";
-import { LexicalErrorBoundary } from "../lib/lexical-react";
-import { LexicalNestedComposer } from "../lib/lexical-react";
-import { RichTextPlugin } from "../lib/lexical-react";
-import { useLexicalNodeSelection } from "../lib/lexical-react";
+import * as React from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { mergeRegister } from "../lib/lexical-editor";
 import {
   $getNodeByKey,
@@ -25,8 +21,12 @@ import {
   KEY_ESCAPE_COMMAND,
   SELECTION_CHANGE_COMMAND,
 } from "../lib/lexical-editor";
-import * as React from "react";
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { AutoFocusPlugin } from "../lib/lexical-react";
+import { useLexicalComposerContext } from "../lib/lexical-react";
+import { LexicalErrorBoundary } from "../lib/lexical-react";
+import { LexicalNestedComposer } from "../lib/lexical-react";
+import { RichTextPlugin } from "../lib/lexical-react";
+import { useLexicalNodeSelection } from "../lib/lexical-react";
 
 import useModal from "../hooks/useModal";
 import FloatingTextFormatToolbarPlugin from "../plugins/FloatingTextFormatToolbarPlugin/index";

@@ -1,7 +1,7 @@
+import * as React from "react";
 /** @jsxImportSource react */
 import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { useLexicalEditable } from "./useLexicalEditable";
-import * as React from "react";
 
 import { useCanShowPlaceholder } from "./shared/useCanShowPlaceholder";
 import { ErrorBoundaryType, useDecorators } from "./shared/useDecorators";

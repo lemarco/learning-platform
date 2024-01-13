@@ -16,13 +16,17 @@ import {
   ListNode,
   REMOVE_LIST_COMMAND,
 } from "../../lib/lexical-editor";
+import { $createHeadingNode, $createQuoteNode, $isHeadingNode, $isQuoteNode, HeadingTagType } from "../../lib/lexical-editor";
+import { LexicalSelection } from "../../lib/lexical-editor";
 import { INSERT_EMBED_COMMAND } from "../../lib/lexical-react";
 import { useLexicalComposerContext } from "../../lib/lexical-react";
 import { $isDecoratorBlockNode } from "../../lib/lexical-react";
 import { INSERT_HORIZONTAL_RULE_COMMAND } from "../../lib/lexical-react";
-import { $createHeadingNode, $createQuoteNode, $isHeadingNode, $isQuoteNode, HeadingTagType } from "../../lib/lexical-editor";
-import { LexicalSelection } from "../../lib/lexical-editor";
 const { $getSelectionStyleValueForProperty, $isParentElementRTL, $patchStyleText, $setBlocksType } = LexicalSelection;
+import { Dispatch, useCallback, useEffect, useState } from "react";
+import * as React from "react";
+import useModal from "../../hooks/useModal";
+import catTypingGif from "../../images/cat-typing.gif";
 import { $isTableNode } from "../../lib/lexical-editor";
 import {
   $findMatchingParent,
@@ -56,10 +60,6 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
 } from "../../lib/lexical-editor";
-import { Dispatch, useCallback, useEffect, useState } from "react";
-import * as React from "react";
-import useModal from "../../hooks/useModal";
-import catTypingGif from "../../images/cat-typing.gif";
 import { $createStickyNode } from "../../nodes/StickyNode";
 import DropDown, { DropDownItem } from "../../ui/DropDown";
 import DropdownColorPicker from "../../ui/DropdownColorPicker";

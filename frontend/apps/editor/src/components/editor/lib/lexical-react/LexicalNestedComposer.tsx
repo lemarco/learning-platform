@@ -1,12 +1,12 @@
 /** @jsxImportSource react */
 import type { LexicalComposerContextType } from "./LexicalComposerContext";
 
-import { useCollaborationContext } from "./LexicalCollaborationContext";
-import { createLexicalComposerContext, LexicalComposerContext } from "./LexicalComposerContext";
-import { EditorThemeClasses, Klass, LexicalEditor, LexicalNode, LexicalNodeReplacement } from "../lexical-editor";
 import * as React from "react";
 import { ReactNode, useContext, useEffect, useMemo, useRef } from "react";
+import { EditorThemeClasses, Klass, LexicalEditor, LexicalNode, LexicalNodeReplacement } from "../lexical-editor";
 import { invariant } from "../lexical-editor";
+import { useCollaborationContext } from "./LexicalCollaborationContext";
+import { LexicalComposerContext, createLexicalComposerContext } from "./LexicalComposerContext";
 
 export function LexicalNestedComposer({
   initialEditor,

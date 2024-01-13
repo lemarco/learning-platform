@@ -2,17 +2,17 @@
 
 import type { LexicalEditor } from "../../lib/lexical-editor";
 
-import {
-  useLexicalComposerContext,
-  AutoEmbedOption,
-  LexicalAutoEmbedPlugin,
-  URL_MATCHER,
-  EmbedMatchResult,
-  EmbedConfig,
-} from "../../lib/lexical-react";
 import { useMemo, useState } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {
+  AutoEmbedOption,
+  EmbedConfig,
+  EmbedMatchResult,
+  LexicalAutoEmbedPlugin,
+  URL_MATCHER,
+  useLexicalComposerContext,
+} from "../../lib/lexical-react";
 
 import useModal from "../../hooks/useModal";
 import Button from "../../ui/Button";

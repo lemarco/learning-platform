@@ -1,8 +1,8 @@
-/** @jsxImportSource react */
-import { useLexicalComposerContext } from "./LexicalComposerContext";
-import { LexicalEditor } from "../lexical-editor";
 import { MutableRefObject } from "react";
 import * as React from "react";
+import { LexicalEditor } from "../lexical-editor";
+/** @jsxImportSource react */
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 /**
  *

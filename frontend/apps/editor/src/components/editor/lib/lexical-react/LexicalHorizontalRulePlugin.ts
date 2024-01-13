@@ -1,8 +1,8 @@
-import { useLexicalComposerContext } from "./LexicalComposerContext";
-import { $createHorizontalRuleNode, INSERT_HORIZONTAL_RULE_COMMAND } from "./LexicalHorizontalRuleNode";
+import { useEffect } from "react";
 import { $insertNodeToNearestRoot } from "../lexical-editor";
 import { $getSelection, $isRangeSelection, COMMAND_PRIORITY_EDITOR } from "../lexical-editor";
-import { useEffect } from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
+import { $createHorizontalRuleNode, INSERT_HORIZONTAL_RULE_COMMAND } from "./LexicalHorizontalRuleNode";
 
 export function HorizontalRulePlugin(): null {
   const [editor] = useLexicalComposerContext();

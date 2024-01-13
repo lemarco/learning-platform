@@ -1,6 +1,8 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "../lib/lexical-react";
+import * as React from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { mergeRegister } from "../lib/lexical-editor";
 import {
   $getNodeByKey,
@@ -11,9 +13,7 @@ import {
   NodeKey,
   SELECTION_CHANGE_COMMAND,
 } from "../lib/lexical-editor";
-import * as React from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import { useLexicalComposerContext } from "../lib/lexical-react";
 
 import EquationEditor from "../ui/EquationEditor";
 import KatexRenderer from "../ui/KatexRenderer";

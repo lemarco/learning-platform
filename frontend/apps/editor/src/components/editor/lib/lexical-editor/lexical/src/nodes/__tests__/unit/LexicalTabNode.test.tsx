@@ -1,7 +1,3 @@
-import { $insertDataTransferForPlainText, $insertDataTransferForRichText } from "@lexical/clipboard";
-import { $createListItemNode, $createListNode } from "@lexical/list";
-import { registerTabIndentation } from "@lexical/react/LexicalTabIndentationPlugin";
-import { $createHeadingNode, registerRichText } from "@lexical/rich-text";
 import {
   $createParagraphNode,
   $createRangeSelection,
@@ -16,6 +12,10 @@ import {
   $setSelection,
   KEY_TAB_COMMAND,
 } from "@frontend/lexical-editor";
+import { $insertDataTransferForPlainText, $insertDataTransferForRichText } from "@lexical/clipboard";
+import { $createListItemNode, $createListNode } from "@lexical/list";
+import { registerTabIndentation } from "@lexical/react/LexicalTabIndentationPlugin";
+import { $createHeadingNode, registerRichText } from "@lexical/rich-text";
 
 import { DataTransferMock, initializeUnitTest, invariant } from "../../../__tests__/utils";
 

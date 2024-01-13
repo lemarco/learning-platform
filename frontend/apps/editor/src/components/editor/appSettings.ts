@@ -1,10 +1,10 @@
 /** @jsxImportSource react */
 // const hostName = window.location.hostname;
-export const isDevPlayground: boolean = true;
+// export const isDevPlayground: boolean = true;
 
 export const DEFAULT_SETTINGS = {
   disableBeforeInput: false,
-  emptyEditor: isDevPlayground,
+  emptyEditor: true,
   isAutocomplete: false,
   isCharLimit: false,
   isCharLimitUtf8: false,

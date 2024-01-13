@@ -29,6 +29,7 @@ import "prismjs/components/prism-sql";
 import "prismjs/components/prism-swift";
 import "prismjs/components/prism-typescript";
 
+import * as Prism from "prismjs";
 import { addClassNamesToElement, isHTMLElement } from "../../lexical-utils/LexicalUtils";
 import {
   $applyNodeReplacement,
@@ -39,7 +40,6 @@ import {
   $isTextNode,
   ElementNode,
 } from "../../lexical/Lexical";
-import * as Prism from "prismjs";
 import { $createCodeHighlightNode, $isCodeHighlightNode, getFirstCodeNodeOfLine } from "./CodeHighlightNode";
 
 export type SerializedCodeNode = Spread<

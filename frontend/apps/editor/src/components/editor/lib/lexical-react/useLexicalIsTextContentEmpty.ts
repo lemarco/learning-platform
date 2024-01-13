@@ -1,7 +1,7 @@
 import type { LexicalEditor } from "../lexical-editor";
 
-import { $isRootTextContentEmptyCurry } from "../lexical-editor";
 import { useState } from "react";
+import { $isRootTextContentEmptyCurry } from "../lexical-editor";
 import { useLayoutEffectImpl as useLayoutEffect } from "../lexical-editor";
 
 export function useLexicalIsTextContentEmpty(editor: LexicalEditor, trim?: boolean): boolean {

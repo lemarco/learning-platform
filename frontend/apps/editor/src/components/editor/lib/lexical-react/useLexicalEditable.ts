@@ -1,5 +1,5 @@
-import type { LexicalSubscription } from "./useLexicalSubscription";
 import type { LexicalEditor } from "../lexical-editor";
+import type { LexicalSubscription } from "./useLexicalSubscription";
 
 import { useLexicalSubscription } from "./useLexicalSubscription";
 

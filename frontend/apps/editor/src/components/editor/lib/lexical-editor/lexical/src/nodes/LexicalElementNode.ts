@@ -2,7 +2,7 @@ import type { KlassConstructor, Spread } from "../../../lexical/Lexical";
 import type { NodeKey, SerializedLexicalNode } from "../LexicalNode";
 import type { BaseSelection, PointType, RangeSelection } from "../LexicalSelection";
 
-import invariant from "../../../shared/src/invariant";
+import { invariant } from "../../../shared/src/invariant";
 
 import { $isTextNode, TextNode } from "../";
 import { DOUBLE_LINE_BREAK, ELEMENT_FORMAT_TO_TYPE, ELEMENT_TYPE_TO_FORMAT } from "../LexicalConstants";

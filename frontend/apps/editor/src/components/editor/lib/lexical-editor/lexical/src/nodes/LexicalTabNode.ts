@@ -1,6 +1,6 @@
 import type { DOMConversionMap, NodeKey } from "../LexicalNode";
 
-import invariant from "../../../shared/src/invariant";
+import { invariant } from "../../../shared/src/invariant";
 
 import { IS_UNMERGEABLE } from "../LexicalConstants";
 import { LexicalNode } from "../LexicalNode";

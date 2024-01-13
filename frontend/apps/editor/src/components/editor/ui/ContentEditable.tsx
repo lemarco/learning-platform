@@ -2,8 +2,8 @@
 
 import "./ContentEditable.css";
 
-import { ContentEditable } from "../../editor/lib/lexical-react/LexicalContentEditable";
 import * as React from "react";
+import { ContentEditable } from "../../editor/lib/lexical-react/LexicalContentEditable";
 
 export default function LexicalContentEditable({
   className,

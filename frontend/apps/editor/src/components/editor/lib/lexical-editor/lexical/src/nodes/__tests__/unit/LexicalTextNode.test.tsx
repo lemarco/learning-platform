@@ -368,27 +368,21 @@ describe("LexicalTextNode tests", () => {
         [undefined, undefined],
         [11, 11],
       ],
-    ])(
-      'select(...%p)',
-      async (
-        [anchorOffset, focusOffset],
-        [expectedAnchorOffset, expectedFocusOffset],
-      ) => {
-        await update(() => {
-          const paragraphNode = $createParagraphNode();
-          const textNode = $createTextNode('Hello World');
-          paragraphNode.append(textNode);
-          $getRoot().append(paragraphNode);
+    ])("select(...%p)", async ([anchorOffset, focusOffset], [expectedAnchorOffset, expectedFocusOffset]) => {
+      await update(() => {
+        const paragraphNode = $createParagraphNode();
+        const textNode = $createTextNode("Hello World");
+        paragraphNode.append(textNode);
+        $getRoot().append(paragraphNode);
 
-          const selection = textNode.select(anchorOffset, focusOffset);
+        const selection = textNode.select(anchorOffset, focusOffset);
 
-          expect(selection.focus.getNode()).toBe(textNode);
-          expect(selection.anchor.offset).toBe(expectedAnchorOffset);
-          expect(selection.focus.getNode()).toBe(textNode);
-          expect(selection.focus.offset).toBe(expectedFocusOffset);
-        });
-      },
-    );
+        expect(selection.focus.getNode()).toBe(textNode);
+        expect(selection.anchor.offset).toBe(expectedAnchorOffset);
+        expect(selection.focus.getNode()).toBe(textNode);
+        expect(selection.focus.offset).toBe(expectedFocusOffset);
+      });
+    });
   });
 
   describe("splitText()", () => {
@@ -445,7 +439,7 @@ describe("LexicalTextNode tests", () => {
 
     test.each([
       [
-        'Hello',
+        "Hello",
         [4],
         [3, 3],
         {
@@ -456,7 +450,7 @@ describe("LexicalTextNode tests", () => {
         },
       ],
       [
-        'Hello',
+        "Hello",
         [4],
         [5, 5],
         {
@@ -467,7 +461,7 @@ describe("LexicalTextNode tests", () => {
         },
       ],
       [
-        'Hello World',
+        "Hello World",
         [4],
         [2, 7],
         {
@@ -478,7 +472,7 @@ describe("LexicalTextNode tests", () => {
         },
       ],
       [
-        'Hello World',
+        "Hello World",
         [4],
         [2, 4],
         {
@@ -489,7 +483,7 @@ describe("LexicalTextNode tests", () => {
         },
       ],
       [
-        'Hello World',
+        "Hello World",
         [4],
         [7, 2],
         {
@@ -500,7 +494,7 @@ describe("LexicalTextNode tests", () => {
         },
       ],
       [
-        'Hello World',
+        "Hello World",
         [4, 6],
         [2, 9],
         {
@@ -511,7 +505,7 @@ describe("LexicalTextNode tests", () => {
         },
       ],
       [
-        'Hello World',
+        "Hello World",
         [4, 6],
         [9, 2],
         {
@@ -522,7 +516,7 @@ describe("LexicalTextNode tests", () => {
         },
       ],
       [
-        'Hello World',
+        "Hello World",
         [4, 6],
         [9, 9],
         {
@@ -534,12 +528,7 @@ describe("LexicalTextNode tests", () => {
       ],
     ])(
       '"%s" splitText(...%p) with select(...%p)',
-      async (
-        initialString,
-        splitOffsets,
-        selectionOffsets,
-        {anchorNodeIndex, anchorOffset, focusNodeIndex, focusOffset},
-      ) => {
+      async (initialString, splitOffsets, selectionOffsets, { anchorNodeIndex, anchorOffset, focusNodeIndex, focusOffset }) => {
         await update(() => {
           const paragraphNode = $createParagraphNode();
           const textNode = $createTextNode(initialString);
@@ -549,9 +538,7 @@ describe("LexicalTextNode tests", () => {
           const selection = textNode.select(...selectionOffsets);
           const childrenNodes = textNode.splitText(...splitOffsets);
 
-          expect(selection.anchor.getNode()).toBe(
-            childrenNodes[anchorNodeIndex],
-          );
+          expect(selection.anchor.getNode()).toBe(childrenNodes[anchorNodeIndex]);
           expect(selection.anchor.offset).toBe(anchorOffset);
           expect(selection.focus.getNode()).toBe(childrenNodes[focusNodeIndex]);
           expect(selection.focus.offset).toBe(focusOffset);
@@ -637,16 +624,16 @@ describe("LexicalTextNode tests", () => {
   describe("updateDOM()", () => {
     test.each([
       [
-        'different tags',
+        "different tags",
         {
           format: IS_BOLD,
-          mode: 'normal',
-          text: 'My text node',
+          mode: "normal",
+          text: "My text node",
         },
         {
           format: IS_ITALIC,
-          mode: 'normal',
-          text: 'My text node',
+          mode: "normal",
+          text: "My text node",
         },
         {
           expectedHTML: null,
@@ -654,16 +641,16 @@ describe("LexicalTextNode tests", () => {
         },
       ],
       [
-        'no change in tags',
+        "no change in tags",
         {
           format: IS_BOLD,
-          mode: 'normal',
-          text: 'My text node',
+          mode: "normal",
+          text: "My text node",
         },
         {
           format: IS_BOLD,
-          mode: 'normal',
-          text: 'My text node',
+          mode: "normal",
+          text: "My text node",
         },
         {
           expectedHTML: '<strong class="my-bold-class">My text node</strong>',
@@ -671,34 +658,33 @@ describe("LexicalTextNode tests", () => {
         },
       ],
       [
-        'change in text',
+        "change in text",
         {
           format: IS_BOLD,
-          mode: 'normal',
-          text: 'My text node',
+          mode: "normal",
+          text: "My text node",
         },
         {
           format: IS_BOLD,
-          mode: 'normal',
-          text: 'My new text node',
+          mode: "normal",
+          text: "My new text node",
         },
         {
-          expectedHTML:
-            '<strong class="my-bold-class">My new text node</strong>',
+          expectedHTML: '<strong class="my-bold-class">My new text node</strong>',
           result: false,
         },
       ],
       [
-        'removing code block',
+        "removing code block",
         {
           format: IS_CODE | IS_BOLD,
-          mode: 'normal',
-          text: 'My text node',
+          mode: "normal",
+          text: "My text node",
         },
         {
           format: IS_BOLD,
-          mode: 'normal',
-          text: 'My new text node',
+          mode: "normal",
+          text: "My new text node",
         },
         {
           expectedHTML: null,
@@ -706,12 +692,12 @@ describe("LexicalTextNode tests", () => {
         },
       ],
     ])(
-      '%s',
+      "%s",
       async (
         _desc,
-        {text: prevText, mode: prevMode, format: prevFormat},
-        {text: nextText, mode: nextMode, format: nextFormat},
-        {result, expectedHTML},
+        { text: prevText, mode: prevMode, format: prevFormat },
+        { text: nextText, mode: nextMode, format: nextFormat },
+        { result, expectedHTML },
       ) => {
         await update(() => {
           const prevTextNode = $createTextNode(prevText);
@@ -722,9 +708,7 @@ describe("LexicalTextNode tests", () => {
           textNode.setMode(nextMode as TextModeType);
           textNode.setFormat(nextFormat);
 
-          expect(textNode.updateDOM(prevTextNode, element, editorConfig)).toBe(
-            result,
-          );
+          expect(textNode.updateDOM(prevTextNode, element, editorConfig)).toBe(result);
           // Only need to bother about DOM element contents if updateDOM()
           // returns false.
           if (!result) {

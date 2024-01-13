@@ -2,8 +2,8 @@
 
 import type { Spread } from "../lib/lexical-editor";
 
-import { DecoratorNode, EditorConfig, NodeKey, SerializedLexicalNode } from "../lib/lexical-editor";
 import * as React from "react";
+import { DecoratorNode, EditorConfig, NodeKey, SerializedLexicalNode } from "../lib/lexical-editor";
 
 import { useSharedAutocompleteContext } from "../context/SharedAutocompleteContext";
 import { uuid as UUID } from "../plugins/AutocompletePlugin";

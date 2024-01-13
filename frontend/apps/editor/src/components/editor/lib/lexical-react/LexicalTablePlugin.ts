@@ -1,17 +1,17 @@
 import type { HTMLTableElementWithWithTableSelectionState, InsertTableCommandPayload, TableSelection } from "../lexical-editor";
 import type { DEPRECATED_GridCellNode, NodeKey } from "../lexical-editor";
 
-import { useLexicalComposerContext } from "./LexicalComposerContext";
+import { useEffect } from "react";
 import {
   $createTableCellNode,
   $createTableNodeWithDimensions,
   $isTableCellNode,
   $isTableNode,
-  applyTableHandlers,
   INSERT_TABLE_COMMAND,
   TableCellNode,
   TableNode,
   TableRowNode,
+  applyTableHandlers,
 } from "../lexical-editor";
 import { $insertFirst, $insertNodeToNearestRoot } from "../lexical-editor";
 import {
@@ -23,8 +23,8 @@ import {
   DEPRECATED_$getNodeTriplet,
   DEPRECATED_$isGridRowNode,
 } from "../lexical-editor";
-import { useEffect } from "react";
 import { invariant } from "../lexical-editor";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 export function TablePlugin({
   hasCellMerge = true,

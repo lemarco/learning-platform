@@ -2,7 +2,7 @@ import type { KlassConstructor, LexicalEditor } from "../LexicalEditor";
 import type { NodeKey } from "../LexicalNode";
 
 import { EditorConfig } from "../../../lexical/Lexical";
-import invariant from "../../../shared/src/invariant";
+import { invariant } from "../../../shared/src/invariant";
 
 import { LexicalNode } from "../LexicalNode";
 

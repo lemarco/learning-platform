@@ -2,13 +2,16 @@
 
 import { $createCodeNode, LexicalSelection } from "../../lib/lexical-editor";
 import { INSERT_CHECK_LIST_COMMAND, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND } from "../../lib/lexical-editor";
+import { $createHeadingNode, $createQuoteNode } from "../../lib/lexical-editor";
 import { INSERT_EMBED_COMMAND } from "../../lib/lexical-react";
 import { useLexicalComposerContext } from "../../lib/lexical-react";
 import { INSERT_HORIZONTAL_RULE_COMMAND } from "../../lib/lexical-react";
 import { LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch } from "../../lib/lexical-react";
-import { $createHeadingNode, $createQuoteNode } from "../../lib/lexical-editor";
 // import { $setBlocksType } from "../../lib/lexical-editor"
 const { $setBlocksType } = LexicalSelection;
+import { useCallback, useMemo, useState } from "react";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import { INSERT_TABLE_COMMAND } from "../../lib/lexical-editor";
 import {
   $createParagraphNode,
@@ -18,9 +21,6 @@ import {
   LexicalEditor,
   TextNode,
 } from "../../lib/lexical-editor";
-import { useCallback, useMemo, useState } from "react";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import useModal from "../../hooks/useModal";
 import catTypingGif from "../../images/cat-typing.gif";

@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 import type { LexicalCommand, LexicalEditor, RangeSelection } from "../lexical-editor";
 
-import { useLexicalComposerContext } from "./LexicalComposerContext";
+import { useEffect } from "react";
 import { $filter, $getNearestBlockElementAncestorOrThrow } from "../lexical-editor";
 import {
   $createRangeSelection,
@@ -15,7 +15,7 @@ import {
   KEY_TAB_COMMAND,
   OUTDENT_CONTENT_COMMAND,
 } from "../lexical-editor";
-import { useEffect } from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 function indentOverTab(selection: RangeSelection): boolean {
   // const handled = new Set();

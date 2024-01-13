@@ -107,7 +107,7 @@ export type NodeKey = string;
 
 export class LexicalNode {
   // Allow us to look up the type including static props
-  ["constructor"]!: KlassConstructor<typeof LexicalNode>;
+  ["constructor"]: KlassConstructor<typeof LexicalNode>;
   /** @internal */
   __type: string;
   /** @internal */
@@ -155,12 +155,12 @@ export class LexicalNode {
     this.__next = null;
     $setNodeKey(this, key);
 
-    if (__DEV__) {
-      if (this.__type !== "root") {
-        errorOnReadOnly();
-        errorOnTypeKlassMismatch(this.__type, this.constructor);
-      }
-    }
+    // if (false) {
+    //   if (this.__type !== "root") {
+    //     errorOnReadOnly();
+    //     errorOnTypeKlassMismatch(this.__type, this.constructor);
+    //   }
+    // }
   }
   // Getters and Traversers
 

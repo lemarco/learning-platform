@@ -2,7 +2,8 @@
 
 import "katex/dist/katex.css";
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { useCallback, useEffect } from "react";
+import * as React from "react";
 import { $wrapNodeInElement } from "../../lib/lexical-editor";
 import {
   $createParagraphNode,
@@ -13,8 +14,7 @@ import {
   LexicalEditor,
   createCommand,
 } from "../../lib/lexical-editor";
-import { useCallback, useEffect } from "react";
-import * as React from "react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 
 import { $createEquationNode, EquationNode } from "../../nodes/EquationNode";
 import KatexEquationAlterer from "../../ui/KatexEquationAlterer";

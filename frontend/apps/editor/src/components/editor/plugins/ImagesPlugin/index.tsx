@@ -1,5 +1,5 @@
-/** @jsxImportSource react */
-import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { useEffect, useRef, useState } from "react";
+import * as React from "react";
 import { $wrapNodeInElement, mergeRegister } from "../../lib/lexical-editor";
 import {
   $createParagraphNode,
@@ -19,8 +19,8 @@ import {
   LexicalEditor,
   createCommand,
 } from "../../lib/lexical-editor";
-import { useEffect, useRef, useState } from "react";
-import * as React from "react";
+/** @jsxImportSource react */
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 import { CAN_USE_DOM } from "../../utils/can-use-dom";
 
 import landscapeImage from "../../images/landscape.jpg";

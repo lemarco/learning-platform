@@ -1,14 +1,14 @@
-/** @jsxImportSource react */
-import type { TableOfContentsEntry } from "../../lib/lexical-react";
 import type { HeadingTagType } from "../../lib/lexical-editor";
 import type { NodeKey } from "../../lib/lexical-editor";
+/** @jsxImportSource react */
+import type { TableOfContentsEntry } from "../../lib/lexical-react";
 
 import "./index.css";
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
-import { LexicalTableOfContentsPlugin as LexicalTableOfContents } from "../../lib/lexical-react";
 import { useEffect, useRef, useState } from "react";
 import * as React from "react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { LexicalTableOfContentsPlugin as LexicalTableOfContents } from "../../lib/lexical-react";
 
 const MARGIN_ABOVE_EDITOR = 624;
 const HEADING_WIDTH = 9;

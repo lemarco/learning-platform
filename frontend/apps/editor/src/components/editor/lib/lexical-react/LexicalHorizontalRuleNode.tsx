@@ -9,8 +9,8 @@ import type {
   SerializedLexicalNode,
 } from "../lexical-editor";
 
-import { useLexicalComposerContext } from "./LexicalComposerContext";
-import { useLexicalNodeSelection } from "./useLexicalNodeSelection";
+import * as React from "react";
+import { useCallback, useEffect } from "react";
 import { mergeRegister } from "../lexical-editor";
 import {
   $applyNodeReplacement,
@@ -19,13 +19,13 @@ import {
   $isNodeSelection,
   CLICK_COMMAND,
   COMMAND_PRIORITY_LOW,
-  createCommand,
   DecoratorNode,
   KEY_BACKSPACE_COMMAND,
   KEY_DELETE_COMMAND,
+  createCommand,
 } from "../lexical-editor";
-import * as React from "react";
-import { useCallback, useEffect } from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
+import { useLexicalNodeSelection } from "./useLexicalNodeSelection";
 
 export type SerializedHorizontalRuleNode = SerializedLexicalNode;
 

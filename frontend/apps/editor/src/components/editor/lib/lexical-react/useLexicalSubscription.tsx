@@ -1,9 +1,9 @@
 /** @jsxImportSource react */
 import type { LexicalEditor } from "../lexical-editor";
 
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { useMemo, useRef, useState } from "react";
 import { useLayoutEffectImpl as useLayoutEffect } from "../lexical-editor";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 export type LexicalSubscription<T> = {
   initialValueFn: () => T;

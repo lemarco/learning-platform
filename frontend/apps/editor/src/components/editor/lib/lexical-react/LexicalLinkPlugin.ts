@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import { LinkNode, TOGGLE_LINK_COMMAND, toggleLink } from "../lexical-editor";
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { mergeRegister } from "../lexical-editor";
 import { $getSelection, $isElementNode, $isRangeSelection, COMMAND_PRIORITY_LOW, PASTE_COMMAND } from "../lexical-editor";
-import { useEffect } from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 type Props = {
   validateUrl?: (url: string) => boolean;

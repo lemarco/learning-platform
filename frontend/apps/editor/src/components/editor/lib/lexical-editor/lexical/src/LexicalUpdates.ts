@@ -300,9 +300,9 @@ export function parseEditorState(
     // Make the editorState immutable
     editorState._readOnly = true;
 
-    if (__DEV__) {
-      handleDEVOnlyPendingUpdateGuarantees(editorState);
-    }
+    // if (__DEV__) {
+    handleDEVOnlyPendingUpdateGuarantees(editorState);
+    // }
   } catch (error) {
     if (error instanceof Error) {
       editor._onError(error);
@@ -430,14 +430,14 @@ export function commitPendingUpdates(editor: LexicalEditor, recoveryEditorState?
 
   if (!pendingEditorState._readOnly) {
     pendingEditorState._readOnly = true;
-    if (__DEV__) {
-      handleDEVOnlyPendingUpdateGuarantees(pendingEditorState);
-      if ($isRangeSelection(pendingSelection)) {
-        Object.freeze(pendingSelection.anchor);
-        Object.freeze(pendingSelection.focus);
-      }
-      Object.freeze(pendingSelection);
+    // if (__DEV__) {
+    handleDEVOnlyPendingUpdateGuarantees(pendingEditorState);
+    if ($isRangeSelection(pendingSelection)) {
+      Object.freeze(pendingSelection.anchor);
+      Object.freeze(pendingSelection.focus);
     }
+    Object.freeze(pendingSelection);
+    // }
   }
 
   const dirtyLeaves = editor._dirtyLeaves;

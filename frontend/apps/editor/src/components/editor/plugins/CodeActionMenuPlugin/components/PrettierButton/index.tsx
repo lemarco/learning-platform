@@ -1,11 +1,11 @@
 /** @jsxImportSource react */
 import "./index.css";
 
-import { $isCodeNode } from "../../../../lib/lexical-editor";
-import { $getNearestNodeFromDOMNode, LexicalEditor } from "../../../../lib/lexical-editor";
 import { Options } from "prettier";
 import * as React from "react";
 import { useState } from "react";
+import { $isCodeNode } from "../../../../lib/lexical-editor";
+import { $getNearestNodeFromDOMNode, LexicalEditor } from "../../../../lib/lexical-editor";
 
 interface Props {
   lang: string;

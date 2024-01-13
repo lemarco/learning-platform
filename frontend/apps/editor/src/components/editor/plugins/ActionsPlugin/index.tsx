@@ -8,11 +8,11 @@ import { $convertFromMarkdownString, $convertToMarkdownString } from "../../lib/
 
 import { useCollaborationContext, useLexicalComposerContext } from "../../lib/lexical-react";
 
+import * as React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { mergeRegister } from "../../lib/lexical-editor";
 import { CONNECTED_COMMAND, TOGGLE_CONNECT_COMMAND } from "../../lib/lexical-editor";
 import { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND, COMMAND_PRIORITY_EDITOR } from "../../lib/lexical-editor";
-import * as React from "react";
-import { useCallback, useEffect, useState } from "react";
 
 import useModal from "../../hooks/useModal";
 import Button from "../../ui/Button";

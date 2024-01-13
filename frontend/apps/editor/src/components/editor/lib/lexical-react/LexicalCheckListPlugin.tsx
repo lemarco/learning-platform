@@ -2,8 +2,8 @@
 import type { ListItemNode } from "../lexical-editor";
 import type { LexicalEditor } from "../lexical-editor";
 
+import { useEffect } from "react";
 import { $isListItemNode, $isListNode, INSERT_CHECK_LIST_COMMAND, insertList } from "../lexical-editor";
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { $findMatchingParent, isHTMLElement, mergeRegister } from "../lexical-editor";
 import {
   $getNearestNodeFromDOMNode,
@@ -17,7 +17,7 @@ import {
   KEY_ESCAPE_COMMAND,
   KEY_SPACE_COMMAND,
 } from "../lexical-editor";
-import { useEffect } from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 export function CheckListPlugin(): null {
   const [editor] = useLexicalComposerContext();

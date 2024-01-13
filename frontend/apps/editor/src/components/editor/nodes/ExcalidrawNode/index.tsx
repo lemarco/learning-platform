@@ -1,5 +1,7 @@
 /** @jsxImportSource react */
 
+import * as React from "react";
+import { Suspense } from "react";
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -12,8 +14,6 @@ import type {
   Spread,
 } from "../../lib/lexical-editor";
 import { DecoratorNode } from "../../lib/lexical-editor";
-import * as React from "react";
-import { Suspense } from "react";
 
 const ExcalidrawComponent = React.lazy(() => import("./ExcalidrawComponent"));
 

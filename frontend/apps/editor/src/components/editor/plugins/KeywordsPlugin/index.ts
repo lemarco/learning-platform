@@ -2,9 +2,9 @@
 
 import type { TextNode } from "../../lib/lexical-editor";
 
+import { useCallback, useEffect } from "react";
 import { useLexicalComposerContext } from "../../lib/lexical-react";
 import { useLexicalTextEntity } from "../../lib/lexical-react";
-import { useCallback, useEffect } from "react";
 
 import { $createKeywordNode, KeywordNode } from "../../nodes/KeywordNode";
 

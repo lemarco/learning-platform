@@ -24,9 +24,9 @@ import "prismjs/components/prism-sql";
 import "prismjs/components/prism-swift";
 import "prismjs/components/prism-typescript";
 
+import * as Prism from "prismjs";
 import { addClassNamesToElement, removeClassNamesFromElement } from "../../lexical-utils/LexicalUtils";
 import { $applyNodeReplacement, $isTabNode, ElementNode, TextNode } from "../../lexical/Lexical";
-import * as Prism from "prismjs";
 
 import { $createCodeNode } from "./CodeNode";
 

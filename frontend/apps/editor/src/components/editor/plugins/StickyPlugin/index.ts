@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
 import { useEffect } from "react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 
 import { StickyNode } from "../../nodes/StickyNode";
 

@@ -175,10 +175,10 @@ export function getStyleObjectFromCSS(css: string): Record<string, string> {
     CSS_TO_STYLES.set(css, value);
   }
 
-  if (__DEV__) {
-    // Freeze the value in DEV to prevent accidental mutations
-    Object.freeze(value);
-  }
+  // if (__DEV__) {
+  //   // Freeze the value in DEV to prevent accidental mutations
+  Object.freeze(value);
+  // }
 
   return value;
 }

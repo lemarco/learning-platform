@@ -2,7 +2,7 @@
 
 import type { LexicalCommand, LexicalEditor, RangeSelection } from "../../lib/lexical-editor";
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { useEffect, useRef, useState } from "react";
 import {
   $getSelection,
   $isRangeSelection,
@@ -11,7 +11,7 @@ import {
   UNDO_COMMAND,
   createCommand,
 } from "../../lib/lexical-editor";
-import { useEffect, useRef, useState } from "react";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 
 import useReport from "../../hooks/useReport";
 
@@ -103,4 +103,4 @@ function SpeechToTextPlugin(): null {
   return null;
 }
 
-export default ((SUPPORT_SPEECH_RECOGNITION ? SpeechToTextPlugin : () => null) as () => null);
+export default (SUPPORT_SPEECH_RECOGNITION ? SpeechToTextPlugin : () => null) as () => null;

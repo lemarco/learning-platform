@@ -4,6 +4,9 @@ import type { LexicalEditor, NodeKey } from "../lib/lexical-editor";
 
 import "./StickyNode.css";
 
+import * as React from "react";
+import { useEffect, useRef } from "react";
+import { $getNodeByKey } from "../lib/lexical-editor";
 import { useCollaborationContext } from "../lib/lexical-react";
 import { CollaborationPlugin } from "../lib/lexical-react";
 import { useLexicalComposerContext } from "../lib/lexical-react";
@@ -11,9 +14,6 @@ import { LexicalErrorBoundary } from "../lib/lexical-react";
 import { HistoryPlugin } from "../lib/lexical-react";
 import { LexicalNestedComposer } from "../lib/lexical-react";
 import { PlainTextPlugin } from "../lib/lexical-react";
-import { $getNodeByKey } from "../lib/lexical-editor";
-import * as React from "react";
-import { useEffect, useRef } from "react";
 
 import { createWebsocketProvider } from "../collaboration";
 import { useSharedHistoryContext } from "../context/SharedHistoryContext";

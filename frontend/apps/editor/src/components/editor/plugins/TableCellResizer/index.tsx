@@ -4,8 +4,9 @@ import type { LexicalEditor } from "../../lib/lexical-editor";
 
 import "./index.css";
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
-import { useLexicalEditable } from "../../lib/lexical-react";
+import * as React from "react";
+import { MouseEventHandler, ReactPortal, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   $getTableColumnIndexFromTableCellNode,
   $getTableNodeFromLexicalNodeOrThrow,
@@ -17,9 +18,8 @@ import {
   getCellFromTarget,
 } from "../../lib/lexical-editor";
 import { $getNearestNodeFromDOMNode, $getSelection, COMMAND_PRIORITY_HIGH, SELECTION_CHANGE_COMMAND } from "../../lib/lexical-editor";
-import * as React from "react";
-import { MouseEventHandler, ReactPortal, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { useLexicalEditable } from "../../lib/lexical-react";
 
 type MousePosition = {
   x: number;

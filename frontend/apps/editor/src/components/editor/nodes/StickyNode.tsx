@@ -10,10 +10,10 @@ import type {
   Spread,
 } from "../lib/lexical-editor";
 
-import { $setSelection, DecoratorNode, createEditor } from "../lib/lexical-editor";
 import * as React from "react";
 import { Suspense } from "react";
 import { createPortal } from "react-dom";
+import { $setSelection, DecoratorNode, createEditor } from "../lib/lexical-editor";
 
 const StickyComponent = React.lazy(() => import("./StickyComponent"));
 

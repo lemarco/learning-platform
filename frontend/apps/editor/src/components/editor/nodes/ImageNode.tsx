@@ -13,9 +13,9 @@ import type {
   Spread,
 } from "../lib/lexical-editor";
 
-import { $applyNodeReplacement, DecoratorNode, createEditor } from "../lib/lexical-editor";
 import * as React from "react";
 import { Suspense } from "react";
+import { $applyNodeReplacement, DecoratorNode, createEditor } from "../lib/lexical-editor";
 
 const ImageComponent = React.lazy(() => import("./ImageComponent"));
 

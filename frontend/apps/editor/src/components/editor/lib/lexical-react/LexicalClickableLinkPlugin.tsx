@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 /** @jsxImportSource react */
 import { $isLinkNode } from "../lexical-editor";
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { $findMatchingParent, isHTMLAnchorElement } from "../lexical-editor";
 import {
   $getNearestNodeFromDOMNode,
@@ -9,7 +9,7 @@ import {
   $isRangeSelection,
   getNearestEditorFromDOMNode,
 } from "../lexical-editor";
-import { useEffect } from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 function findMatchingDOM<T extends Node>(startNode: Node, predicate: (node: Node) => node is T): T | null {
   let node: Node | null = startNode;

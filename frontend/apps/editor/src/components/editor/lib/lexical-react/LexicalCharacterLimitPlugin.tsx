@@ -1,7 +1,7 @@
-/** @jsxImportSource react */
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import * as React from "react";
 import { useMemo, useState } from "react";
+/** @jsxImportSource react */
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 import { useCharacterLimit } from "./shared/useCharacterLimit";
 

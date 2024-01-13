@@ -1,5 +1,5 @@
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { useEffect } from "react";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 type Props = {
   defaultSelection?: "rootStart" | "rootEnd";

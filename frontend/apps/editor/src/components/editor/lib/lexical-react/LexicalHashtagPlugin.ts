@@ -1,9 +1,9 @@
 import type { TextNode } from "../lexical-editor";
 
+import { useCallback, useEffect } from "react";
 import { $createHashtagNode, HashtagNode } from "../lexical-editor";
 import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { useLexicalTextEntity } from "./useLexicalTextEntity";
-import { useCallback, useEffect } from "react";
 
 function getHashtagRegexStringChars(): Readonly<{
   alpha: string;

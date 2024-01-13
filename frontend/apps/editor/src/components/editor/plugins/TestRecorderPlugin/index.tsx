@@ -2,10 +2,10 @@
 
 import type { BaseSelection, LexicalEditor } from "../../lib/lexical-editor";
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
-import { $createParagraphNode, $createTextNode, $getRoot } from "../../lib/lexical-editor";
 import * as React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { $createParagraphNode, $createTextNode, $getRoot } from "../../lib/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 import { IS_APPLE, useLayoutEffectImpl as useLayoutEffect } from "../../utils/can-use-dom";
 
 const copy = (text: string | null) => {
@@ -232,21 +232,16 @@ ${steps.map(formatStep).join(`\n`)}
       }
     };
 
-    return editor.registerRootListener(
-      (
-        rootElement: null | HTMLElement,
-        prevRootElement: null | HTMLElement,
-      ) => {
-        if (prevRootElement !== null) {
-          prevRootElement.removeEventListener('keydown', onKeyDown);
-          prevRootElement.removeEventListener('keyup', onKeyUp);
-        }
-        if (rootElement !== null) {
-          rootElement.addEventListener('keydown', onKeyDown);
-          rootElement.addEventListener('keyup', onKeyUp);
-        }
-      },
-    );
+    return editor.registerRootListener((rootElement: null | HTMLElement, prevRootElement: null | HTMLElement) => {
+      if (prevRootElement !== null) {
+        prevRootElement.removeEventListener("keydown", onKeyDown);
+        prevRootElement.removeEventListener("keyup", onKeyUp);
+      }
+      if (rootElement !== null) {
+        rootElement.addEventListener("keydown", onKeyDown);
+        rootElement.addEventListener("keyup", onKeyUp);
+      }
+    });
   }, [editor, isRecording, pushStep]);
 
   useLayoutEffect(() => {

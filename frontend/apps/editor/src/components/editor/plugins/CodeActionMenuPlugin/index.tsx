@@ -2,16 +2,16 @@
 
 import "./index.css";
 
-import { $isCodeNode, CodeNode, getLanguageFriendlyName, normalizeCodeLang } from "../../lib/lexical-editor";
-import { $getNearestNodeFromDOMNode } from "../../lib/lexical-editor";
 import { useEffect, useRef, useState } from "react";
 import * as React from "react";
 import { createPortal } from "react-dom";
+import { $isCodeNode, CodeNode, getLanguageFriendlyName, normalizeCodeLang } from "../../lib/lexical-editor";
+import { $getNearestNodeFromDOMNode } from "../../lib/lexical-editor";
 
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 import { CopyButton } from "./components/CopyButton";
 import { PrettierButton, canBePrettier } from "./components/PrettierButton";
 import { useDebounce } from "./utils";
-import { useLexicalComposerContext } from "../../lib/lexical-react";
 
 const CODE_PADDING = 8;
 

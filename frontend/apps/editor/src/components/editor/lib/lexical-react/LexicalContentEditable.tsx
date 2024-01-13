@@ -1,8 +1,8 @@
-/** @jsxImportSource react */
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import * as React from "react";
 import { useCallback, useState } from "react";
 import { useLayoutEffectImpl as useLayoutEffect } from "../lexical-editor";
+/** @jsxImportSource react */
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 export type Props = {
   ariaActiveDescendant?: React.AriaAttributes["aria-activedescendant"];

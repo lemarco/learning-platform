@@ -1,7 +1,9 @@
 /** @jsxImportSource react */
 import "./index.css";
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
+import * as React from "react";
+import { DragEvent as ReactDragEvent, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { eventFiles } from "../../lib/lexical-editor";
 import { mergeRegister } from "../../lib/lexical-editor";
 import {
@@ -14,9 +16,7 @@ import {
   DROP_COMMAND,
   LexicalEditor,
 } from "../../lib/lexical-editor";
-import * as React from "react";
-import { DragEvent as ReactDragEvent, useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
 
 import { isHTMLElement } from "../../utils/guard";
 import { Point } from "../../utils/point";

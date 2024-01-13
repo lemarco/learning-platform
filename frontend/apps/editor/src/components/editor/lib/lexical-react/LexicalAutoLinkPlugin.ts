@@ -1,8 +1,8 @@
 import type { LinkAttributes } from "../lexical-editor";
 import type { ElementNode, LexicalEditor, LexicalNode } from "../lexical-editor";
 
+import { useEffect } from "react";
 import { $createAutoLinkNode, $isAutoLinkNode, $isLinkNode, AutoLinkNode } from "../lexical-editor";
-import { useLexicalComposerContext } from "./LexicalComposerContext";
 import { mergeRegister } from "../lexical-editor";
 import {
   $createTextNode,
@@ -14,8 +14,8 @@ import {
   $isTextNode,
   TextNode,
 } from "../lexical-editor";
-import { useEffect } from "react";
 import { invariant } from "../lexical-editor";
+import { useLexicalComposerContext } from "./LexicalComposerContext";
 
 type ChangeHandler = (url: string | null, prevUrl: string | null) => void;
 

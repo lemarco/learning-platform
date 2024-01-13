@@ -1,7 +1,7 @@
 import type { LexicalNode, SerializedLexicalNode } from "../LexicalNode";
 import type { SerializedElementNode } from "./LexicalElementNode";
 
-import invariant from "../../../shared/src/invariant";
+import { invariant } from "../../../shared/src/invariant";
 
 import { NO_DIRTY_NODES } from "../LexicalConstants";
 import { getActiveEditor, isCurrentlyReadOnlyMode } from "../LexicalUpdates";

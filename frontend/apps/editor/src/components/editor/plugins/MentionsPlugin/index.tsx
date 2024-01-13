@@ -1,11 +1,11 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "../../lib/lexical-react";
-import { LexicalTypeaheadMenuPlugin, MenuOption, MenuTextMatch, useBasicTypeaheadTriggerMatch } from "../../lib/lexical-react";
-import { TextNode } from "../../lib/lexical-editor";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { TextNode } from "../../lib/lexical-editor";
+import { useLexicalComposerContext } from "../../lib/lexical-react";
+import { LexicalTypeaheadMenuPlugin, MenuOption, MenuTextMatch, useBasicTypeaheadTriggerMatch } from "../../lib/lexical-react";
 
 import { $createMentionNode } from "../../nodes/MentionNode";
 

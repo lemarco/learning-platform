@@ -1,11 +1,10 @@
-import { useLexicalComposerContext } from "../LexicalComposerContext";
+import { MutableRefObject, ReactPortal, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { mergeRegister } from "../../lexical-editor";
 import {
   $getSelection,
   $isRangeSelection,
   COMMAND_PRIORITY_LOW,
   CommandListenerPriority,
-  createCommand,
   KEY_ARROW_DOWN_COMMAND,
   KEY_ARROW_UP_COMMAND,
   KEY_ENTER_COMMAND,
@@ -14,9 +13,10 @@ import {
   LexicalCommand,
   LexicalEditor,
   TextNode,
+  createCommand,
 } from "../../lexical-editor";
-import { MutableRefObject, ReactPortal, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLayoutEffectImpl as useLayoutEffect } from "../../lexical-editor/shared/src/useLayoutEffect";
+import { useLexicalComposerContext } from "../LexicalComposerContext";
 
 export type MenuTextMatch = {
   leadOffset: number;
@@ -167,9 +167,9 @@ export function useDynamicPositioning(
       const rootScrollParent = rootElement != null ? getScrollParent(rootElement, false) : document.body;
       let ticking = false;
       let previousIsInView = isTriggerVisibleInNearestScrollContainer(targetElement, rootScrollParent);
-      const handleScroll = function () {
+      const handleScroll = () => {
         if (!ticking) {
-          window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(() => {
             onReposition();
             ticking = false;
           });

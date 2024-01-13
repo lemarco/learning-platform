@@ -1,6 +1,5 @@
 /** @jsxImportSource react */
 
-import { useLexicalComposerContext } from "../lib/lexical-react";
 import { $createTableNodeWithDimensions, INSERT_TABLE_COMMAND, TableNode } from "../lib/lexical-editor";
 import {
   $insertNodes,
@@ -12,6 +11,7 @@ import {
   LexicalNode,
   createCommand,
 } from "../lib/lexical-editor";
+import { useLexicalComposerContext } from "../lib/lexical-react";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import * as React from "react";

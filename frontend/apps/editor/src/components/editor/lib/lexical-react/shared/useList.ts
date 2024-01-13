@@ -1,16 +1,16 @@
 import type { LexicalEditor } from "../../lexical-editor";
 
+import { useEffect } from "react";
 import {
   $handleListInsertParagraph,
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,
-  insertList,
   REMOVE_LIST_COMMAND,
+  insertList,
   removeList,
 } from "../../lexical-editor";
 import { mergeRegister } from "../../lexical-editor";
 import { COMMAND_PRIORITY_LOW, INSERT_PARAGRAPH_COMMAND } from "../../lexical-editor";
-import { useEffect } from "react";
 
 export function useList(editor: LexicalEditor): void {
   useEffect(() => {
