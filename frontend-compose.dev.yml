@@ -8,11 +8,11 @@ services:
     ports:
       - "${PUBLIC_FRONTEND_INFO_PORT}:${PUBLIC_FRONTEND_INFO_PORT}"
     volumes:
-      - "./frontend/nx.json:/app/nx.json"
-      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
-      - "./frontend/package.json:/app/package.json"
-      # - "./frontend/libs:/app/libs"
-      - "./frontend/apps/info:/app/apps/info"
+      - "./frontend/apps/info/src:/app/apps/info/src"
+      - "./frontend/apps/info/vite.config.ts:/app/apps/info/vite.config.ts"
+      - "./frontend/apps/info/tsconfig.ts:/app/apps/info/tsconfig.ts"
+      - "./frontend/apps/info/tailwind.config.js:/app/apps/info/tailwind.config.js"
+      - "./frontend/apps/info/postcss.config.cjs:/app/apps/info/postcss.config.cjs"
   editor-app:
     container_name: ${PUBLIC_FRONTEND_EDITOR_HOST}
     build:
@@ -20,23 +20,23 @@ services:
     ports:
       - "${PUBLIC_FRONTEND_EDITOR_PORT}:${PUBLIC_FRONTEND_EDITOR_PORT}"
     volumes:
-      - "./frontend/nx.json:/app/nx.json"
-      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
-      - "./frontend/package.json:/app/package.json"
-      # - "./frontend/libs:/app/libs"
-      - "./frontend/apps/editor:/app/apps/editor"
-  blog-admin-app:
-    container_name: ${PUBLIC_FRONTEND_BLOG_ADMIN_HOST}
-    build:
-      dockerfile: ./frontend/apps/blog-admin/Dockerfile
-    ports:
-      - "${PUBLIC_FRONTEND_BLOG_ADMIN_PORT}:${PUBLIC_FRONTEND_BLOG_ADMIN_PORT}"
-    volumes:
-      - "./frontend/nx.json:/app/nx.json"
-      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
-      - "./frontend/package.json:/app/package.json"
-      # - "./frontend/libs:/app/libs"
-      - "./frontend/apps/blog-admin:/app/apps/blog-admin"
+      - "./frontend/apps/editor/src:/app/apps/editor/src"
+      - "./frontend/apps/editor/vite.config.ts:/app/apps/editor/vite.config.ts"
+      - "./frontend/apps/editor/tsconfig.ts:/app/apps/editor/tsconfig.ts"
+      - "./frontend/apps/editor/tailwind.config.js:/app/apps/editor/tailwind.config.js"
+      - "./frontend/apps/editor/postcss.config.cjs:/app/apps/editor/postcss.config.cjs"
+  # blog-admin-app:
+  #   container_name: ${PUBLIC_FRONTEND_BLOG_ADMIN_HOST}
+  #   build:
+  #     dockerfile: ./frontend/apps/blog-admin/Dockerfile
+  #   ports:
+  #     - "${PUBLIC_FRONTEND_BLOG_ADMIN_PORT}:${PUBLIC_FRONTEND_BLOG_ADMIN_PORT}"
+  #   volumes:
+  #     - "./frontend/nx.json:/app/nx.json"
+  #     - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
+  #     - "./frontend/package.json:/app/package.json"
+  #     # - "./frontend/libs:/app/libs"
+  #     - "./frontend/apps/blog-admin:/app/apps/blog-admin"
 
   host-app:
     container_name: ${PUBLIC_FRONTEND_HOST_APP_HOST}
@@ -45,62 +45,70 @@ services:
     ports:
       - "${PUBLIC_FRONTEND_HOST_APP_PORT}:${PUBLIC_FRONTEND_HOST_APP_PORT}"
     volumes:
-      - "./frontend/nx.json:/app/nx.json"
-      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
-      - "./frontend/package.json:/app/package.json"
-      - "./frontend/libs:/app/libs"
-      - "./frontend/apps/host:/app/apps/host"
+      - "./frontend/apps/host/src:/app/apps/host/src"
+      - "./frontend/apps/host/vite.config.ts:/app/apps/host/vite.config.ts"
+      - "./frontend/apps/host/tsconfig.ts:/app/apps/host/tsconfig.ts"
+      - "./frontend/apps/host/tailwind.config.js:/app/apps/host/tailwind.config.js"
+      - "./frontend/apps/host/postcss.config.cjs:/app/apps/host/postcss.config.cjs"
 
   article-app:
     container_name: ${FRONTEND_ARTICLE_APP_HOST}
     build:
       dockerfile: ./frontend/apps/article/Dockerfile
     volumes:
-      - "./frontend/nx.json:/app/nx.json"
-      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
-      - "./frontend/package.json:/app/package.json"
-      - "./frontend/libs:/app/libs"
-      - "./frontend/apps/article:/app/apps/article"
+      - "./frontend/apps/article/src:/app/apps/article/src"
+      - "./frontend/apps/article/vite.config.ts:/app/apps/article/vite.config.ts"
+      - "./frontend/apps/article/tsconfig.ts:/app/apps/article/tsconfig.ts"
+      - "./frontend/apps/article/tailwind.config.js:/app/apps/article/tailwind.config.js"
+      - "./frontend/apps/article/postcss.config.cjs:/app/apps/article/postcss.config.cjs"
   blog-app:
     container_name: ${FRONTEND_BLOG_APP_HOST}
     build:
       dockerfile: ./frontend/apps/blog/Dockerfile
     volumes:
-      - "./frontend/nx.json:/app/nx.json"
-      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
-      - "./frontend/package.json:/app/package.json"
-      - "./frontend/libs:/app/libs"
-      - "./frontend/apps/blog:/app/apps/blog"
+      - "./frontend/apps/blog/src:/app/apps/blog/src"
+      - "./frontend/apps/blog/vite.config.ts:/app/apps/blog/vite.config.ts"
+      - "./frontend/apps/blog/tsconfig.ts:/app/apps/blog/tsconfig.ts"
+      - "./frontend/apps/blog/tailwind.config.js:/app/apps/blog/tailwind.config.js"
+      - "./frontend/apps/blog/postcss.config.cjs:/app/apps/blog/postcss.config.cjs"
 
   footer-app:
     container_name: ${FRONTEND_FOOTER_APP_HOST}
     build:
       dockerfile: ./frontend/apps/footer/Dockerfile
     volumes:
-      - "./frontend/nx.json:/app/nx.json"
-      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
-      - "./frontend/package.json:/app/package.json"
-      - "./frontend/libs:/app/libs"
-      - "./frontend/apps/footer:/app/apps/footer"
+      - "./frontend/apps/footer/src:/app/apps/footer/src"
+      - "./frontend/apps/footer/vite.config.ts:/app/apps/footer/vite.config.ts"
+      - "./frontend/apps/footer/tsconfig.ts:/app/apps/footer/tsconfig.ts"
+      - "./frontend/apps/footer/tailwind.config.js:/app/apps/footer/tailwind.config.js"
+      - "./frontend/apps/footer/postcss.config.cjs:/app/apps/footer/postcss.config.cjs"
 
   header-app:
     container_name: ${FRONTEND_HEADER_APP_HOST}
     build:
       dockerfile: ./frontend/apps/header/Dockerfile
     volumes:
-      - "./frontend/nx.json:/app/nx.json"
-      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
-      - "./frontend/package.json:/app/package.json"
-      - "./frontend/libs:/app/libs"
-      - "./frontend/apps/header:/app/apps/header"
+      - "./frontend/apps/header/src:/app/apps/header/src"
+      - "./frontend/apps/header/vite.config.ts:/app/apps/header/vite.config.ts"
+      - "./frontend/apps/header/tsconfig.ts:/app/apps/header/tsconfig.ts"
+      - "./frontend/apps/header/tailwind.config.js:/app/apps/header/tailwind.config.js"
+      - "./frontend/apps/header/postcss.config.cjs:/app/apps/header/postcss.config.cjs"
+      - "./frontend/libs/modal/index.ts:/app/libs/modal/index.ts"
+      - "./frontend/libs/modal/src:/app/libs/modal/src"
+      - "./frontend/libs/modal/vite.config.ts:/app/libs/modal/vite.config.ts"
+      - "./frontend/libs/modal/tsconfig.ts:/app/libs/modal/tsconfig.ts"
 
+      - "./frontend/libs/icons/index.ts:/app/libs/icons/index.ts"
+      - "./frontend/libs/icons/src:/app/libs/icons/src"
+      - "./frontend/libs/icons/vite.config.ts:/app/libs/icons/vite.config.ts"
+      - "./frontend/libs/icons/tsconfig.ts:/app/libs/icons/tsconfig.ts"
   home-app:
     container_name: ${FRONTEND_HOME_APP_HOST}
     build:
       dockerfile: ./frontend/apps/home/Dockerfile
     volumes:
-      - "./frontend/nx.json:/app/nx.json"
-      - "./frontend/tsconfig.base.json:/app/tsconfig.base.json"
-      - "./frontend/package.json:/app/package.json"
-      - "./frontend/libs:/app/libs"
-      - "./frontend/apps/home:/app/apps/home"
+      - "./frontend/apps/home/src:/app/apps/home/src"
+      - "./frontend/apps/home/vite.config.ts:/app/apps/home/vite.config.ts"
+      - "./frontend/apps/home/tsconfig.ts:/app/apps/home/tsconfig.ts"
+      - "./frontend/apps/home/tailwind.config.js:/app/apps/home/tailwind.config.js"
+      - "./frontend/apps/home/postcss.config.cjs:/app/apps/home/postcss.config.cjs"

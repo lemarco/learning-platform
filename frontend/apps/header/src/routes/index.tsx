@@ -3,11 +3,10 @@ import { type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
-import { Image } from "qwik-image";
+// import { Image } from "qwik-image";
 import LoginButton from "./login-popup";
 
 const EnglishIcon = component$(() => {
-  1;
   return (
     <svg class="h-3.5 w-3.5 rounded-full mr-2" xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us" viewBox="0 0 512 512">
       <title>EnglishIcon</title>
@@ -46,13 +45,13 @@ const UserMenu = component$(() => {
         data-dropdown-toggle="user-profile-dropdown"
       >
         <span class="sr-only">Open user menu</span>
-        <Image
+        {/* <Image
           layout="fixed"
           src={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
           class="w-8 h-8 rounded-full"
           alt="user"
-        />
-        {/* <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user " /> */}
+        /> */}
+        <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user " />
       </button>
 
       <div
@@ -190,8 +189,8 @@ const LangMenu = component$(() => {
 const Logo = component$(() => {
   return (
     <a href="/" class="flex items-center">
-      <Image layout="fixed" src={"https://flowbite.com/docs/images/logo.svg"} class="mr-3 h-6 sm:h-9" alt="logo" />
-      {/* <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" /> */}
+      {/* <Image layout="fixed" src={"https://flowbite.com/docs/images/logo.svg"} class="mr-3 h-6 sm:h-9" alt="logo" /> */}
+      <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
       <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
     </a>
   );

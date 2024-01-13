@@ -1,0 +1,51 @@
+{
+  "name": "modal",
+  "version": "0.0.1",
+  "description": "Create a reusable Qwik component library",
+  "main": "./lib/index.qwik.mjs",
+  "qwik": "./lib/index.qwik.mjs",
+  "types": "./lib-types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.qwik.mjs",
+      "require": "./lib/index.qwik.cjs",
+      "types": "./lib-types/index.d.ts"
+    }
+  },
+  "files": ["lib", "lib-types"],
+  "engines": {
+    "node": ">=15.0.0"
+  },
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "qwik build",
+    "build.lib": "vite build --mode lib --watch",
+    "build.types": "tsc --emitDeclarationOnly",
+    "dev": "vite --mode ssr",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+
+    "release": "np",
+    "start": "vite --open --mode ssr",
+
+    "qwik": "qwik"
+  },
+  "devDependencies": {
+    "@builder.io/qwik": "1.3.5",
+    "@types/eslint": "^8.56.1",
+    "@types/node": "^20.10.8",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-qwik": "latest",
+    "np": "^8.0.4",
+    "prettier": "^3.1.1",
+    "typescript": "5.3.3",
+    "undici": "*",
+    "vite": "^5.0.11",
+    "vite-tsconfig-paths": "^4.2.1"
+  },
+  "dependencies": {
+    "flowbite": "^2.2.1"
+  }
+}

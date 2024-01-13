@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.base.json",
+
   "compilerOptions": {
     "allowJs": true,
     "target": "ES2017",
@@ -20,15 +20,7 @@
     "outDir": "tmp",
     "noEmit": true,
     "types": ["node", "vite/client", "vitest"]
-  },
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ]
+  }
+
+
 }

@@ -1,6 +1,5 @@
 import { component$ } from "@builder.io/qwik";
 import { $ } from "@builder.io/qwik";
-import { Image, type ImageTransformerProps, useImageProvider } from "qwik-image";
 
 const ArticlePreview = component$(() => {
   return (
@@ -96,7 +95,7 @@ const ArticlePreview = component$(() => {
         </div>
       </div>
       <figure>
-        <Image layout="fixed" src={"https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png"} alt="" />
+        <img src={"https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png"} alt="" />
 
         <figcaption>Digital art by Anonymous</figcaption>
       </figure>
@@ -209,12 +208,7 @@ const AsideProfileCard = component$(() => {
     <div class="p-6 mb-6 text-gray-500 rounded-lg border border-gray-200 dark:border-gray-700 dark:text-gray-400">
       <a href="/" class="flex items-center mb-4">
         <div class="mr-3 shrink-0">
-          <Image
-            class="mt-1 w-8 h-8 rounded-full"
-            layout="fixed"
-            src={"https://flowbite.com/docs/images/people/profile-picture-1.jpg"}
-            alt="Jese Leos"
-          />
+          <img class="mt-1 w-8 h-8 rounded-full" src={"https://flowbite.com/docs/images/people/profile-picture-1.jpg"} alt="Jese Leos" />
         </div>
         <div class="mr-3">
           <span class="block font-medium text-gray-900 dark:text-white">Jese Leos</span>

@@ -1,6 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 
 export const ArrowIcon = component$(() => {
+  console.log(123);
   return (
     <svg class="ml-1 w-5 h-5 lg:w-4 lg:h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <title>Arrow</title>

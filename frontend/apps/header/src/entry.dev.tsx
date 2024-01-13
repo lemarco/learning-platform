@@ -15,3 +15,4 @@ import Root from "./root";
 export default function (opts: RenderOptions) {
   return render(document, <Root />, opts);
 }
+darkMode: "media",
