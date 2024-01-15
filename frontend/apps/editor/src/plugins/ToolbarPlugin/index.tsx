@@ -47,8 +47,7 @@ import { Dispatch, useCallback, useEffect, useState } from "react";
 import { IS_APPLE } from "../../shared/src/environment";
 
 import useModal from "../../hooks/useModal";
-// import catTypingGif from "../../images/cat-typing.gif";
-// import { $createStickyNode } from "../../nodes/StickyNode";
+
 import DropDown, { DropDownItem } from "../../ui/DropDown";
 import DropdownColorPicker from "../../ui/DropdownColorPicker";
 import { getSelectedNode } from "../../utils/getSelectedNode";
@@ -56,12 +55,12 @@ import { sanitizeUrl } from "../../utils/url";
 import { EmbedConfigs } from "../AutoEmbedPlugin";
 import { INSERT_COLLAPSIBLE_COMMAND } from "../CollapsiblePlugin";
 import { InsertEquationDialog } from "../EquationsPlugin";
-// import { INSERT_EXCALIDRAW_COMMAND } from "../ExcalidrawPlugin";
+
 import { INSERT_IMAGE_COMMAND, InsertImageDialog, InsertImagePayload } from "../ImagesPlugin";
 import { InsertInlineImageDialog } from "../InlineImagePlugin";
-import InsertLayoutDialog from "../LayoutPlugin/InsertLayoutDialog";
+
 import { INSERT_PAGE_BREAK } from "../PageBreakPlugin";
-// import { InsertPollDialog } from "../PollPlugin";
+
 import { InsertTableDialog } from "../TablePlugin";
 
 const blockTypeToBlockName = {
@@ -981,15 +980,7 @@ export default function ToolbarPlugin({
               <i className="icon gif" />
               <span className="text">GIF</span>
             </DropDownItem>
-            {/* <DropDownItem
-              onClick={() => {
-                activeEditor.dispatchCommand(INSERT_EXCALIDRAW_COMMAND, undefined);
-              }}
-              className="item"
-            >
-              <i className="icon diagram-2" />
-              <span className="text">Excalidraw</span>
-            </DropDownItem> */}
+
             <DropDownItem
               onClick={() => {
                 showModal("Insert Table", (onClose) => <InsertTableDialog activeEditor={activeEditor} onClose={onClose} />);
@@ -998,24 +989,6 @@ export default function ToolbarPlugin({
             >
               <i className="icon table" />
               <span className="text">Table</span>
-            </DropDownItem>
-            {/* <DropDownItem
-              onClick={() => {
-                showModal("Insert Poll", (onClose) => <InsertPollDialog activeEditor={activeEditor} onClose={onClose} />);
-              }}
-              className="item"
-            >
-              <i className="icon poll" />
-              <span className="text">Poll</span>
-            </DropDownItem> */}
-            <DropDownItem
-              onClick={() => {
-                showModal("Insert Columns Layout", (onClose) => <InsertLayoutDialog activeEditor={activeEditor} onClose={onClose} />);
-              }}
-              className="item"
-            >
-              <i className="icon columns" />
-              <span className="text">Columns Layout</span>
             </DropDownItem>
 
             <DropDownItem
@@ -1027,19 +1000,7 @@ export default function ToolbarPlugin({
               <i className="icon equation" />
               <span className="text">Equation</span>
             </DropDownItem>
-            {/* <DropDownItem
-              onClick={() => {
-                editor.update(() => {
-                  const root = $getRoot();
-                  const stickyNode = $createStickyNode(0, 0);
-                  root.append(stickyNode);
-                });
-              }}
-              className="item"
-            >
-              <i className="icon sticky" />
-              <span className="text">Sticky Note</span>
-            </DropDownItem> */}
+
             <DropDownItem
               onClick={() => {
                 editor.dispatchCommand(INSERT_COLLAPSIBLE_COMMAND, undefined);

@@ -1,11 +1,3 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 import { $createCodeNode } from "@lexical/code";
 import { INSERT_CHECK_LIST_COMMAND, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND } from "@lexical/list";
 // import { INSERT_EMBED_COMMAND } from "@lexical/react/LexicalAutoEmbedPlugin";
@@ -27,7 +19,7 @@ import { INSERT_COLLAPSIBLE_COMMAND } from "../CollapsiblePlugin";
 import { InsertEquationDialog } from "../EquationsPlugin";
 // import { INSERT_EXCALIDRAW_COMMAND } from "../ExcalidrawPlugin";
 import { INSERT_IMAGE_COMMAND, InsertImageDialog } from "../ImagesPlugin";
-import InsertLayoutDialog from "../LayoutPlugin/InsertLayoutDialog";
+// import InsertLayoutDialog from "../LayoutPlugin/InsertLayoutDialog";
 import { INSERT_PAGE_BREAK } from "../PageBreakPlugin";
 // import { InsertPollDialog } from "../PollPlugin";
 import { InsertTableDialog } from "../TablePlugin";
@@ -259,11 +251,11 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
       keywords: ["collapse", "collapsible", "toggle"],
       onSelect: () => editor.dispatchCommand(INSERT_COLLAPSIBLE_COMMAND, undefined),
     }),
-    new ComponentPickerOption("Columns Layout", {
-      icon: <i className="icon columns" />,
-      keywords: ["columns", "layout", "grid"],
-      onSelect: () => showModal("Insert Columns Layout", (onClose) => <InsertLayoutDialog activeEditor={editor} onClose={onClose} />),
-    }),
+    // new ComponentPickerOption("Columns Layout", {
+    //   icon: <i className="icon columns" />,
+    //   keywords: ["columns", "layout", "grid"],
+    //   onSelect: () => showModal("Insert Columns Layout", (onClose) => <InsertLayoutDialog activeEditor={editor} onClose={onClose} />),
+    // }),
     ...(["left", "center", "right", "justify"] as const).map(
       (alignment) =>
         new ComponentPickerOption(`Align ${alignment}`, {

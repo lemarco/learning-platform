@@ -2,8 +2,8 @@ import react from "@vitejs/plugin-react-swc";
 import { config } from "dotenv";
 import { defineConfig } from "vite";
 
-import { replaceCodePlugin } from "vite-plugin-replace";
 import babel from "@rollup/plugin-babel";
+import { replaceCodePlugin } from "vite-plugin-replace";
 const { parsed, error } = config();
 if (error) {
   process.exit();

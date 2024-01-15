@@ -1,13 +1,3 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-'use strict';
-
 declare var __DEV__: boolean;
 
 declare var queueMicrotask: (fn: () => void) => void;
@@ -33,10 +23,11 @@ declare class InputEvent extends UIEvent {
 }
 
 declare type Segment = {
-  +index: number,
++index;
+: number,
   +isWordLike: boolean,
   +segment: string,
-};
+}
 
 declare var Intl: {
   Collator: Class<Intl$Collator>,
@@ -53,5 +44,5 @@ declare var Intl: {
     containing(index: number): void | Segment,
     segment(string: string): Iterable<Segment>,
   },
-  ...
-};
+...
+}

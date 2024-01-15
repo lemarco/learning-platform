@@ -1,15 +1,5 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-'use strict';
-
 declare module 'yjs' {
-  declare interface Snapshot {}
+  declare type Snapshot = {}
 
   declare export interface Transaction {
     origin: mixed;
@@ -166,7 +156,7 @@ declare module 'yjs' {
     type: ?ID;
   }
 
-  declare export interface YAbstractType {
+  declare export type YAbstractType = {}
     +doc: ?YDoc;
     observe((event: YEvent, transaction?: Transaction) => void): void;
     parent: null | XmlText | XmlElement;
@@ -174,7 +164,7 @@ declare module 'yjs' {
     unobserve((event: YEvent, transaction?: Transaction) => void): void;
   }
 
-  declare type YDocEvents = {
+declare type YDocEvents = {
     afterTransaction: [Transaction, YDoc],
     beforeAllTransactions: [YDoc],
     beforeObserverCalls: [Transaction, YDoc],
@@ -192,7 +182,7 @@ declare module 'yjs' {
     updateV2: [Uint8Array, mixed, YDoc, Transaction],
   };
 
-  declare class YDoc {
+declare class YDoc {
     /**
      * A unique id that identifies a client for a session. It should not be reused
      * across sessions - see FAQ.
@@ -272,10 +262,10 @@ declare module 'yjs' {
     transact((transaction: Transaction) => void, origin?: mixed): void;
   }
 
-  /**
-   * A shared type to store data in a sequence-like data structure
-   */
-  declare class YArray<T> implements YAbstractType {
+/**
+ * A shared type to store data in a sequence-like data structure
+ */
+declare class YArray<T> implements YAbstractType {
     /**
      * Returns an Iterator of values for the Y.Array. This allows you to iterate
      * over the yarray using a for..of loop: for (const value of yarray) { .. }
