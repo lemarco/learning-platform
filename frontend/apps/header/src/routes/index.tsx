@@ -1,5 +1,5 @@
 import { Slot, component$, useSignal } from "@builder.io/qwik";
-import { type DocumentHead, routeLoader$, Link } from "@builder.io/qwik-city";
+import { type DocumentHead, Link, routeLoader$ } from "@builder.io/qwik-city";
 
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";

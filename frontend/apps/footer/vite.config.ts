@@ -10,8 +10,9 @@ if (error) {
 export default defineConfig((): UserConfig => {
   return {
     plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
-    server: {      host: "0.0.0.0",
-    port: Number(parsed?.FRONTEND_FOOTER_APP_PORT),
+    server: {
+      host: "0.0.0.0",
+      port: Number(parsed?.FRONTEND_FOOTER_APP_PORT),
       headers: {
         "Cache-Control": "public, max-age=0",
       },
