@@ -1,5 +1,5 @@
 import { Slot, component$, useSignal } from "@builder.io/qwik";
-import { type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
+import { type DocumentHead, routeLoader$, Link } from "@builder.io/qwik-city";
 
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
@@ -174,6 +174,7 @@ const LangMenu = component$(() => {
       class="hidden z-50 my-4 w-48 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
       id="language-dropdown"
     >
+      {/* biome-ignore lint/a11y/useValidAriaRole: <explanation> */}
       <ul class="py-1" role="none">
         <li>
           <EnglishItem />
@@ -433,6 +434,14 @@ const BottomHeader = component$(() => {
             <li>
               <a href="/blog" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-500">
                 Blog
+              </a>
+            </li>
+            <li>
+              {/* <a href="/editor" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-500">
+                Editor
+              </a>{" "} */}
+              <a href="/editor" class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-500">
+                Editor
               </a>
             </li>
             {/* <li>

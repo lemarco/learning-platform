@@ -1,55 +1,58 @@
-import { qwikCity } from "@builder.io/qwik-city/vite";
-import { qwikReact } from '@builder.io/qwik-react/vite';
-import { qwikVite } from "@builder.io/qwik/optimizer";
+import react from "@vitejs/plugin-react-swc";
 import { config } from "dotenv";
-import { type UserConfig, defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from "vite";
+
+import { replaceCodePlugin } from "vite-plugin-replace";
+import babel from "@rollup/plugin-babel";
 const { parsed, error } = config();
 if (error) {
   process.exit();
 }
-export default defineConfig((): UserConfig => {
-  return {
-    plugins: [qwikCity(), qwikVite(), tsconfigPaths(),    qwikReact()],
-    server: {
-     host: "0.0.0.0",
+export default defineConfig({
+  plugins: [
+    replaceCodePlugin({
+      replacements: [
+        {
+          from: /__DEV__/g,
+          to: "true",
+        },
+      ],
+    }),
+    ,
+    // babel({
+    //   babelHelpers: 'bundled',
+    //   babelrc: false,
+    //   configFile: false,
+    //   exclude: '/**/node_modules/**',
+    //   extensions: ['jsx', 'js', 'ts', 'tsx', 'mjs'],
+    //   plugins: ['@babel/plugin-transform-flow-strip-types'],
+    //   presets: ['@babel/preset-react'],
+    // })
 
-      port: Number(parsed?.PUBLIC_FRONTEND_EDITOR_PORT),
-      headers: {
-        "Cache-Control": "public, max-age=0",
-      },
-    },
-    preview: {
-      headers: {
-        "Cache-Control": "public, max-age=600",
-      },
-    },
-  };
+    react(),
+  ],
+  // build: {
+  //   manifest: true
+  // },
+  base: "/editor",
+  server: {
+    port: 10008,
+    host: true,
+  },
+  build: {
+    outDir: "build",
+    // rollupOptions: {
+    //   input: {
+    //     main: new URL('./index.html', import.meta.url).pathname,
+
+    //   },
+    // },
+    // commonjsOptions: {include: []},
+    minify: "terser",
+    // terserOptions: {
+    //   compress: {
+    //     toplevel: true,
+    //   }
+    // },
+  },
 });
-
-// import { qwikCity } from "@builder.io/qwik-city/vite";
-// import { qwikVite } from "@builder.io/qwik/optimizer";
-// import { config } from "dotenv";
-// import { type UserConfig, defineConfig } from "vite";
-// import tsconfigPaths from "vite-tsconfig-paths";
-// const { parsed, error } = config();
-// if (error) {
-//   process.exit();
-// }
-// export default defineConfig((): UserConfig => {
-//   return {
-//     plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
-//     server: {    host: "0.0.0.0",
-
-//     port: Number(parsed?.FRONTEND_BLOG_APP_PORT),
-//       headers: {
-//         "Cache-Control": "public, max-age=0",
-//       },
-//     },
-//     preview: {
-//       headers: {
-//         "Cache-Control": "public, max-age=600",
-//       },
-//     },
-//   };
-// });

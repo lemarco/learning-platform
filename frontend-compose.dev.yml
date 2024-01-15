@@ -20,11 +20,14 @@ services:
     ports:
       - "${PUBLIC_FRONTEND_EDITOR_PORT}:${PUBLIC_FRONTEND_EDITOR_PORT}"
     volumes:
+      - "./frontend/apps/editor/public:/app/apps/editor/public"
       - "./frontend/apps/editor/src:/app/apps/editor/src"
       - "./frontend/apps/editor/vite.config.ts:/app/apps/editor/vite.config.ts"
-      - "./frontend/apps/editor/tsconfig.ts:/app/apps/editor/tsconfig.ts"
-      - "./frontend/apps/editor/tailwind.config.js:/app/apps/editor/tailwind.config.js"
-      - "./frontend/apps/editor/postcss.config.cjs:/app/apps/editor/postcss.config.cjs"
+      - "./frontend/apps/editor/tsconfig.json:/app/apps/editor/tsconfig.json"
+      - "./frontend/apps/editor/tsconfig.node.json:/app/apps/editor/tsconfig.node.json"
+      - "./frontend/apps/editor/index.html:/app/apps/editor/index.html"
+      # - "./frontend/apps/editor/tailwind.config.js:/app/apps/editor/tailwind.config.js"
+      # - "./frontend/apps/editor/postcss.config.cjs:/app/apps/editor/postcss.config.cjs"
   # blog-admin-app:
   #   container_name: ${PUBLIC_FRONTEND_BLOG_ADMIN_HOST}
   #   build:

@@ -8,6 +8,8 @@ export default component$(() => {
 
 export const head: DocumentHead = {
   title: "Welcome to Qwik",
+  links: [{ href: "/editor", rel: "prefetch" }],
+
   meta: [
     {
       name: "description",
