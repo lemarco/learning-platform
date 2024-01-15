@@ -8,8 +8,5 @@
   },
   "permissions": ["scripting", "tabs", "activeTab"],
   "host_permissions": ["https://*/*", "http://*/*"],
-  "icons": {
-    "16": "images/16x16.png",
-    "32": "images/32x32.png"
-  }
+
 }
