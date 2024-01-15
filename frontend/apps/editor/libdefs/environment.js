@@ -3,7 +3,7 @@ declare var __DEV__: boolean;
 declare var queueMicrotask: (fn: () => void) => void;
 
 declare class CompositionEvent extends UIEvent {
-  +data: string | null;
+  data: string | null;
 }
 
 declare class StaticRange {
@@ -15,18 +15,17 @@ declare class StaticRange {
 }
 
 declare class InputEvent extends UIEvent {
-  +data: string | null;
-  +dataTransfer?: DataTransfer;
-  +getTargetRanges?: () => Array<StaticRange>;
-  +inputType: string;
-  +isComposing: boolean;
+  data: string | null;
+  dataTransfer?: DataTransfer;
+  getTargetRanges?: () => Array<StaticRange>;
+  inputType: string;
+  isComposing: boolean;
 }
 
 declare type Segment = {
-+index;
-: number,
-  +isWordLike: boolean,
-  +segment: string,
+index: number,
+  isWordLike: boolean,
+  segment: string,
 }
 
 declare var Intl: {
@@ -44,5 +43,5 @@ declare var Intl: {
     containing(index: number): void | Segment,
     segment(string: string): Iterable<Segment>,
   },
-...
+
 }
