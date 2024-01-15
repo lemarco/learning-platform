@@ -3,20 +3,13 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 import RemoteMfe from "../../components/remote-mfe";
 
 export default component$(() => {
-  return (
-    <RemoteMfe
-      remote={{
-        name: "home",
-        url: `http://${process.env.FRONTEND_HOME_APP_HOST}:${process.env.FRONTEND_HOME_APP_PORT}/`,
-        _url: `http://${process.env.FRONTEND_HOME_APP_HOST}:${process.env.FRONTEND_HOME_APP_PORT}/`,
-        secondsOfDelay: 0,
-      }}
-    />
-  );
+  return <RemoteMfe url={`http://${process.env.FRONTEND_HOME_APP_HOST}:${process.env.FRONTEND_HOME_APP_PORT}/`} />;
 });
 
 export const head: DocumentHead = {
   title: "Welcome to Qwik",
+  links: [{ href: "/editor", rel: "prefetch" }],
+
   meta: [
     {
       name: "description",

@@ -4,11 +4,11 @@ import type { Config } from "drizzle-kit";
 const schemaPath = resolve("./libs/schemas/articles-events.ts");
 const connectionString = process.env.ARTICLE_EVENTS_DB_URL as string;
 
-export default ({
+export default {
   schema: schemaPath,
   out: "./apps/articles-command-service/database/migrations",
   driver: "pg",
   dbCredentials: {
     connectionString,
   },
-} satisfies Config);
+} satisfies Config;

@@ -29,7 +29,14 @@ clean-docker:
 
 .PHONY: copy-env-to-frontend
 copy-env-to-frontend:
-	cp .env ./frontend
+	cp .env ./frontend/apps/info/
+	cp .env ./frontend/apps/host/
+	cp .env ./frontend/apps/home/
+	cp .env ./frontend/apps/header/
+	cp .env ./frontend/apps/footer/
+	cp .env ./frontend/apps/editor/
+	cp .env ./frontend/apps/blog/
+	cp .env ./frontend/apps/article/
 
 .PHONY: dev-frontend-up
 dev-frontend-up: copy-env-to-frontend

@@ -1,50 +1,27 @@
-import { qwikCity } from '@builder.io/qwik-city/vite';
-import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikCity } from "@builder.io/qwik-city/vite";
+import { qwikVite } from "@builder.io/qwik/optimizer";
 import { config } from "dotenv";
-import { qwikNxVite } from 'qwik-nx/plugins';
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
-const { parsed, error } = config()
+import { type UserConfig, defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+const { parsed, error } = config();
 if (error) {
-
-  process.exit()
+  process.exit();
 }
-export default defineConfig({
-  cacheDir: '../../node_modules/.vite/apps/blog',
-  plugins: [
-    qwikNxVite(),
-    qwikCity(),
-    qwikVite({
-      client: {
-        outDir: '../../dist/apps/blog/client',
-      },
-      ssr: {
-        outDir: '../../dist/apps/blog/server',
-      },
-      tsconfigFileNames: ['tsconfig.app.json'],
-    }),
-    tsconfigPaths({ root: '../../' }),
-  ],
-  server: {
-    host: "0.0.0.0",
+export default defineConfig((): UserConfig => {
+  return {
+    plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
+    server: {
+      host: "0.0.0.0",
 
-    port: Number(parsed?.FRONTEND_BLOG_APP_PORT),
-    fs: {
-      // Allow serving files from the project root
-      allow: ['../../'],
+      port: Number(parsed?.FRONTEND_BLOG_APP_PORT),
+      headers: {
+        "Cache-Control": "public, max-age=0",
+      },
     },
-  },
-  preview: {
-    headers: {
-      'Cache-Control': 'public, max-age=600',
+    preview: {
+      headers: {
+        "Cache-Control": "public, max-age=600",
+      },
     },
-  },
-  test: {
-    globals: true,
-    cache: {
-      dir: '../../node_modules/.vitest',
-    },
-    environment: 'node',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-  },
+  };
 });
