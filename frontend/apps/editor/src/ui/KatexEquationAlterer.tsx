@@ -22,6 +22,7 @@ export default function KatexEquationAlterer({ onConfirm, initialEquation = "" }
     onConfirm(equation, inline);
   }, [onConfirm, equation, inline]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const onCheckboxChange = useCallback(() => {
     setInline(!inline);
   }, [setInline, inline]);

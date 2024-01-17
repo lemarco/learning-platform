@@ -181,6 +181,7 @@ export const TABLE: ElementTransformer = {
       }
 
       // Add header state to row cells
+      // biome-ignore lint/complexity/noForEach: <explanation>
       lastRow.getChildren().forEach((cell) => {
         if (!$isTableCellNode(cell)) {
           return;
@@ -261,6 +262,7 @@ function getTableColumnsSize(table: TableNode) {
 }
 
 const createTableCell = (textContent: string): TableCellNode => {
+  // biome-ignore lint/style/noParameterAssign: <explanation>
   textContent = textContent.replace(/\\n/g, "\n");
   const cell = $createTableCellNode(TableCellHeaderStates.NO_STATUS);
   $convertFromMarkdownString(textContent, PLAYGROUND_TRANSFORMERS, cell);

@@ -27,7 +27,6 @@ import { $createCollapsibleContainerNode, $isCollapsibleContainerNode, Collapsib
 import { $createCollapsibleContentNode, $isCollapsibleContentNode, CollapsibleContentNode } from "./CollapsibleContentNode";
 import { $createCollapsibleTitleNode, $isCollapsibleTitleNode, CollapsibleTitleNode } from "./CollapsibleTitleNode";
 
-// biome-ignore lint/suspicious/noConfusingVoidType: <explanation>
 export const INSERT_COLLAPSIBLE_COMMAND = createCommand<void>();
 export const TOGGLE_COLLAPSIBLE_COMMAND = createCommand<NodeKey>();
 

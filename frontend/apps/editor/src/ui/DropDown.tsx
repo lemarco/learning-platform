@@ -31,8 +31,9 @@ export function DropDownItem({
 
   const { registerItem } = dropDownContext;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (ref && ref.current) {
+    if (ref?.current) {
       registerItem(ref);
     }
   }, [ref, registerItem]);
@@ -56,6 +57,7 @@ function DropDownItems({
   const [items, setItems] = useState<React.RefObject<HTMLButtonElement>[]>();
   const [highlightedItem, setHighlightedItem] = useState<React.RefObject<HTMLButtonElement>>();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const registerItem = useCallback(
     (itemRef: React.RefObject<HTMLButtonElement>) => {
       setItems((prev) => (prev ? [...prev, itemRef] : [itemRef]));
@@ -100,7 +102,7 @@ function DropDownItems({
       setHighlightedItem(items[0]);
     }
 
-    if (highlightedItem && highlightedItem.current) {
+    if (highlightedItem?.current) {
       highlightedItem.current.focus();
     }
   }, [items, highlightedItem]);
@@ -137,11 +139,12 @@ export default function DropDown({
 
   const handleClose = () => {
     setShowDropDown(false);
-    if (buttonRef && buttonRef.current) {
+    if (buttonRef?.current) {
       buttonRef.current.focus();
     }
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const button = buttonRef.current;
     const dropDown = dropDownRef.current;
@@ -153,6 +156,7 @@ export default function DropDown({
     }
   }, [dropDownRef, buttonRef, showDropDown]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const button = buttonRef.current;
 
@@ -160,7 +164,7 @@ export default function DropDown({
       const handle = (event: MouseEvent) => {
         const target = event.target;
         if (stopCloseOnClickSelf) {
-          if (dropDownRef.current && dropDownRef.current.contains(target as Node)) return;
+          if (dropDownRef.current?.contains(target as Node)) return;
         }
         if (!button.contains(target as Node)) {
           setShowDropDown(false);
@@ -174,6 +178,7 @@ export default function DropDown({
     }
   }, [dropDownRef, buttonRef, showDropDown, stopCloseOnClickSelf]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const handleButtonPositionUpdate = () => {
       if (showDropDown) {

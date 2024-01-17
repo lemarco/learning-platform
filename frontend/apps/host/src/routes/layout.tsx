@@ -1,6 +1,10 @@
-import { $, Slot, component$, useContextProvider, useStore } from "@builder.io/qwik";
-import { RequestHandler, routeLoader$, useLocation, useNavigate } from "@builder.io/qwik-city";
+import { $, Slot, component$, useContextProvider, useStore, useVisibleTask$ } from "@builder.io/qwik";
+import { RequestHandler, routeLoader$ } from "@builder.io/qwik-city";
 import { AppState, GlobalAppState } from "../components/remote-mfe";
+
+// import { worker$ } from "@builder.io/qwik-worker";
+// import SharedWorker from "./worker?sharedworker";
+// import SharedWorker from "./worker.js?sharedworker&inline";
 // import { setCookie } from "../utils/cookie";
 export const setCookie = (name: string, value: string) => {
   let expires = "";
@@ -51,7 +55,38 @@ export default component$(() => {
     newUrl.searchParams.append("t", new Date().getTime().toString());
     location.href = newUrl.href;
   });
+  useVisibleTask$(
+    () => {
+      // const sharedWorker = new SharedWorker();
+      const isSharedWorkerSupported = "SharedWorker" in globalThis;
+      console.log("isSharedWorkerSupported = ", isSharedWorkerSupported);
+      // register("/worker.js");
 
+      // const modules = {
+      //   './dir/foo.js': () => import('./dir/foo.js'),
+      // }
+      // const myWorker = worker$(() => {
+      //   self.addEventListener("custom", function handler(e) {
+      //     port.start();
+      //     port.addEventListener("custom", () => {
+      //       console.log("CUSTOM WORKER");
+      //     });
+      //   });
+      // });
+      const myWorker = new SharedWorker(new URL("./worker.js", "http://learning-platform.com"), { name: "lp shared worker" });
+
+      myWorker.port.start();
+      myWorker.port.postMessage({});
+      myWorker.port.onmessage = (event) => {
+        console.log("Main Script Received Message:", event.data);
+      };
+      // worker$(() => {
+      //   console.log("IN DISPATCH");
+      //   document.dispatchEvent(new CustomEvent("custom"));
+      // });
+    },
+    { strategy: "document-ready" },
+  );
   return <Slot />;
   // <div data-seams={store.showSeams}>
   {

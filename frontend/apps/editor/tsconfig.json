@@ -13,15 +13,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
+"paths": {"react": [ "./node_modules/@types/react" ]},
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-     "types": [ "node" ],
-    //"typeRoots": [ "./node_modules/@types", "../node_modules/@types", "../../node_modules/@types" ]
+    "noFallthroughCasesInSwitch": true
   },
-   "include": ["src","./libdefs"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

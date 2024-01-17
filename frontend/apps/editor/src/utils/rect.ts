@@ -77,20 +77,19 @@ export class Rect {
         },
         result,
       };
-    } else {
-      const { top, left, bottom, right } = target;
-
-      return (
-        top >= this._top &&
-        top <= this._bottom &&
-        bottom >= this._top &&
-        bottom <= this._bottom &&
-        left >= this._left &&
-        left <= this._right &&
-        right >= this._left &&
-        right <= this._right
-      );
     }
+    const { top, left, bottom, right } = target;
+
+    return (
+      top >= this._top &&
+      top <= this._bottom &&
+      bottom >= this._top &&
+      bottom <= this._bottom &&
+      left >= this._left &&
+      left <= this._right &&
+      right >= this._left &&
+      right <= this._right
+    );
   }
 
   public intersectsWith(rect: Rect): boolean {

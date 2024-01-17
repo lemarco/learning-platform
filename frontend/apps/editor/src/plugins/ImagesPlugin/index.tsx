@@ -341,6 +341,7 @@ function canDropImage(event: DragEvent): boolean {
 }
 
 function getDragSelection(event: DragEvent): Range | null | undefined {
+  // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
   let range;
   const target = event.target as null | Element | Document;
   const targetWindow =

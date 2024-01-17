@@ -198,6 +198,7 @@ function FloatingLinkEditor({
             }}
           />
           <div>
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
             <div
               className="link-cancel"
               role="button"
@@ -208,6 +209,7 @@ function FloatingLinkEditor({
               }}
             />
 
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
             <div
               className="link-confirm"
               role="button"
@@ -222,6 +224,7 @@ function FloatingLinkEditor({
           <a href={sanitizeUrl(linkUrl)} target="_blank" rel="noopener noreferrer">
             {linkUrl}
           </a>
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
           <div
             className="link-edit"
             role="button"
@@ -232,6 +235,7 @@ function FloatingLinkEditor({
               setIsLinkEditMode(true);
             }}
           />
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
           <div
             className="link-trash"
             role="button"

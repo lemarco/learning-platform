@@ -25,6 +25,7 @@ function EquationEditor(
         className="EquationEditor_inlineEditor"
         value={equation}
         onChange={onChange}
+        // biome-ignore lint/a11y/noAutofocus: <explanation>
         autoFocus={true}
         ref={forwardedRef as RefObject<HTMLInputElement>}
       />

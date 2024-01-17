@@ -1,6 +1,22 @@
 version: "3.9"
 
 services:
+  shared-worker:
+    container_name: ${PUBLIC_SHARED_WORKER_HOST_NAME}
+    restart: on-failure
+    build:
+      dockerfile: ./frontend/apps/shared-worker/Dockerfile
+
+    expose:
+      - ${PUBLIC_SHARED_WORKER_PORT}
+    volumes:
+      - "./frontend/apps/shared-worker/index.ts:/app/apps/shared-worker/index.ts"
+      - "./frontend/apps/shared-worker/worker.ts:/app/apps/shared-worker/worker.ts"
+      - "./frontend/apps/shared-worker/out:/app/apps/shared-worker/out"
+      - "./frontend/apps/shared-worker/tsconfig.json:/app/apps/shared-worker/tsconfig.json"
+    environment:
+      - ${PUBLIC_SHARED_WORKER_PORT}
+
   info-app:
     container_name: ${PUBLIC_FRONTEND_INFO_HOST}
     build:

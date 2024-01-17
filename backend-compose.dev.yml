@@ -12,6 +12,9 @@ services:
     volumes:
       - ./backend:/app
       - ./logs/services:/app/logs
+
+
+
   articles-command-service:
     container_name: ${ARTICLES_COMMAND_SERVICE_HOST_NAME}
     restart: on-failure
