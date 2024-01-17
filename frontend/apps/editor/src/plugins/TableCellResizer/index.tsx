@@ -80,7 +80,7 @@ function TableCellResizer({ editor }: { editor: LexicalEditor }): JSX.Element {
           return;
         }
 
-        if (resizerRef.current && resizerRef.current.contains(target as Node)) {
+        if (resizerRef.current?.contains(target as Node)) {
           return;
         }
 
@@ -210,6 +210,7 @@ function TableCellResizer({ editor }: { editor: LexicalEditor }): JSX.Element {
     [activeCell, editor],
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const mouseUpHandler = useCallback(
     (direction: MouseDraggingDirection) => {
       const handler = (event: MouseEvent) => {
@@ -276,6 +277,7 @@ function TableCellResizer({ editor }: { editor: LexicalEditor }): JSX.Element {
     [activeCell, mouseUpHandler],
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const getResizers = useCallback(() => {
     if (activeCell) {
       const { height, width, top, left } = activeCell.elem.getBoundingClientRect();

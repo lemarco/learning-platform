@@ -120,21 +120,24 @@ export default function ActionsPlugin(): JSX.Element {
   return (
     <div className="actions">
       {SUPPORT_SPEECH_RECOGNITION && (
+        // biome-ignore lint/a11y/useButtonType: <explanation>
         <button
           onClick={() => {
             editor.dispatchCommand(SPEECH_TO_TEXT_COMMAND, !isSpeechToText);
             setIsSpeechToText(!isSpeechToText);
           }}
-          className={"action-button action-button-mic " + (isSpeechToText ? "active" : "")}
+          className={`action-button action-button-mic ${isSpeechToText ? "active" : ""}`}
           title="Speech To Text"
           aria-label={`${isSpeechToText ? "Enable" : "Disable"} speech to text`}
         >
           <i className="mic" />
         </button>
       )}
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="action-button import" onClick={() => importFile(editor)} title="Import" aria-label="Import editor state from JSON">
         <i className="import" />
       </button>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button
         className="action-button export"
         onClick={() =>
@@ -148,6 +151,7 @@ export default function ActionsPlugin(): JSX.Element {
       >
         <i className="export" />
       </button>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button
         className="action-button clear"
         disabled={isEditorEmpty}
@@ -159,6 +163,7 @@ export default function ActionsPlugin(): JSX.Element {
       >
         <i className="clear" />
       </button>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button
         className={`action-button ${!isEditable ? "unlock" : "lock"}`}
         onClick={() => {
@@ -173,10 +178,12 @@ export default function ActionsPlugin(): JSX.Element {
       >
         <i className={!isEditable ? "unlock" : "lock"} />
       </button>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="action-button" onClick={handleMarkdownToggle} title="Convert From Markdown" aria-label="Convert from markdown">
         <i className="markdown" />
       </button>
       {isCollabActive && (
+        // biome-ignore lint/a11y/useButtonType: <explanation>
         <button
           className="action-button connect"
           onClick={() => {

@@ -80,17 +80,16 @@ export default function EquationComponent({ equation, inline, nodeKey }: Equatio
           COMMAND_PRIORITY_HIGH,
         ),
       );
-    } else {
-      return editor.registerUpdateListener(({ editorState }) => {
-        const isSelected = editorState.read(() => {
-          const selection = $getSelection();
-          return $isNodeSelection(selection) && selection.has(nodeKey) && selection.getNodes().length === 1;
-        });
-        if (isSelected) {
-          setShowEquationEditor(true);
-        }
-      });
     }
+    return editor.registerUpdateListener(({ editorState }) => {
+      const isSelected = editorState.read(() => {
+        const selection = $getSelection();
+        return $isNodeSelection(selection) && selection.has(nodeKey) && selection.getNodes().length === 1;
+      });
+      if (isSelected) {
+        setShowEquationEditor(true);
+      }
+    });
   }, [editor, nodeKey, onHide, showEquationEditor]);
 
   return (

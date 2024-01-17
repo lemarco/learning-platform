@@ -191,6 +191,7 @@ function TableActionMenu({
     });
   }, [editor]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const menuButtonElement = contextRef.current;
     const dropDownElement = dropDownRef.current;
@@ -273,7 +274,9 @@ function TableActionMenu({
               node.setColSpan(columns).setRowSpan(rows);
               firstCell = node;
               const isEmpty = $cellContainsEmptyParagraph(node);
+              // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
               let firstChild;
+              // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
               if (isEmpty && $isParagraphNode((firstChild = node.getFirstChild()))) {
                 firstChild.remove();
               }
@@ -367,6 +370,7 @@ function TableActionMenu({
         throw new Error("Expected table row");
       }
 
+      // biome-ignore lint/complexity/noForEach: <explanation>
       tableRow.getChildren().forEach((tableCell) => {
         if (!$isTableCellNode(tableCell)) {
           throw new Error("Expected table cell");
@@ -450,12 +454,14 @@ function TableActionMenu({
   if (cellMerge) {
     if (canMergeCells) {
       mergeCellButton = (
+        // biome-ignore lint/a11y/useButtonType: <explanation>
         <button className="item" onClick={() => mergeTableCellsAtSelection()} data-test-id="table-merge-cells">
           Merge cells
         </button>
       );
     } else if (canUnmergeCell) {
       mergeCellButton = (
+        // biome-ignore lint/a11y/useButtonType: <explanation>
         <button className="item" onClick={() => unmergeTableCellsAtSelection()} data-test-id="table-unmerge-cells">
           Unmerge cells
         </button>
@@ -465,6 +471,7 @@ function TableActionMenu({
 
   return createPortal(
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
     <div
       className="dropdown"
       ref={dropDownRef}
@@ -473,6 +480,7 @@ function TableActionMenu({
       }}
     >
       {mergeCellButton}
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button
         className="item"
         onClick={() =>
@@ -483,35 +491,44 @@ function TableActionMenu({
         <span className="text">Background color</span>
       </button>
       <hr />
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="item" onClick={() => insertTableRowAtSelection(false)} data-test-id="table-insert-row-above">
         <span className="text">Insert {selectionCounts.rows === 1 ? "row" : `${selectionCounts.rows} rows`} above</span>
       </button>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="item" onClick={() => insertTableRowAtSelection(true)} data-test-id="table-insert-row-below">
         <span className="text">Insert {selectionCounts.rows === 1 ? "row" : `${selectionCounts.rows} rows`} below</span>
       </button>
       <hr />
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="item" onClick={() => insertTableColumnAtSelection(false)} data-test-id="table-insert-column-before">
         <span className="text">Insert {selectionCounts.columns === 1 ? "column" : `${selectionCounts.columns} columns`} left</span>
       </button>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="item" onClick={() => insertTableColumnAtSelection(true)} data-test-id="table-insert-column-after">
         <span className="text">Insert {selectionCounts.columns === 1 ? "column" : `${selectionCounts.columns} columns`} right</span>
       </button>
       <hr />
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="item" onClick={() => deleteTableColumnAtSelection()} data-test-id="table-delete-columns">
         <span className="text">Delete column</span>
       </button>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="item" onClick={() => deleteTableRowAtSelection()} data-test-id="table-delete-rows">
         <span className="text">Delete row</span>
       </button>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="item" onClick={() => deleteTableAtSelection()} data-test-id="table-delete">
         <span className="text">Delete table</span>
       </button>
       <hr />
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="item" onClick={() => toggleTableRowIsHeader()}>
         <span className="text">
           {(tableCellNode.__headerState & TableCellHeaderStates.ROW) === TableCellHeaderStates.ROW ? "Remove" : "Add"} row header
         </span>
       </button>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="item" onClick={() => toggleTableColumnIsHeader()} data-test-id="table-column-header">
         <span className="text">
           {(tableCellNode.__headerState & TableCellHeaderStates.COLUMN) === TableCellHeaderStates.COLUMN ? "Remove" : "Add"} column header
@@ -586,6 +603,7 @@ function TableCellActionMenuContainer({
     });
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const menuButtonDOM = menuButtonRef.current as HTMLButtonElement | null;
 
@@ -611,6 +629,7 @@ function TableCellActionMenuContainer({
 
   const prevTableCellDOM = useRef(tableCellNode);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (prevTableCellDOM.current !== tableCellNode) {
       setIsMenuOpen(false);
@@ -623,6 +642,7 @@ function TableCellActionMenuContainer({
     <div className="table-cell-action-button-container" ref={menuButtonRef}>
       {tableCellNode != null && (
         <>
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
             className="table-cell-action-button chevron-down"
             onClick={(e) => {

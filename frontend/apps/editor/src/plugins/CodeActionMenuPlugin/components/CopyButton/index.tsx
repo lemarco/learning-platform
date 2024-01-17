@@ -47,6 +47,7 @@ export function CopyButton({ editor, getCodeDOMNode }: Props) {
   }
 
   return (
+    // biome-ignore lint/a11y/useButtonType: <explanation>
     <button className="menu-item" onClick={handleClick} aria-label="copy">
       {isCopyCompleted ? <i className="format success" /> : <i className="format copy" />}
     </button>

@@ -214,7 +214,8 @@ export default function InlineImageComponent({
           event.preventDefault();
           caption.focus();
           return true;
-        } else if (buttonElem !== null && buttonElem !== document.activeElement) {
+        }
+        if (buttonElem !== null && buttonElem !== document.activeElement) {
           event.preventDefault();
           buttonElem.focus();
           return true;
@@ -243,6 +244,7 @@ export default function InlineImageComponent({
     [caption, editor, setSelected],
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     let isMounted = true;
     const unregister = mergeRegister(
@@ -307,6 +309,7 @@ export default function InlineImageComponent({
     <Suspense fallback={null}>
       <>
         <div draggable={draggable}>
+          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
             className="image-edit-button"
             ref={buttonRef}

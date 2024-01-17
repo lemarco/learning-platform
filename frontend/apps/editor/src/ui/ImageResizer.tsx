@@ -83,7 +83,7 @@ export default function ImageResizer({
       document.body.style.setProperty("cursor", `${cursorDir}-resize`, "important");
       userSelect.current.value = document.body.style.getPropertyValue("-webkit-user-select");
       userSelect.current.priority = document.body.style.getPropertyPriority("-webkit-user-select");
-      document.body.style.setProperty("-webkit-user-select", `none`, "important");
+      document.body.style.setProperty("-webkit-user-select", "none", "important");
     }
   };
 
@@ -197,6 +197,7 @@ export default function ImageResizer({
   return (
     <div ref={controlWrapperRef}>
       {!showCaption && captionsEnabled && (
+        // biome-ignore lint/a11y/useButtonType: <explanation>
         <button
           className="image-caption-button"
           ref={buttonRef}

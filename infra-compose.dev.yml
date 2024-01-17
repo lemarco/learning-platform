@@ -9,6 +9,7 @@ services:
       - ${PWD}/configs/nginx/nginx.dev.server.conf.template:/etc/nginx/templates/nginx.dev.server.conf.template:rw,cached
       - ${PWD}/configs/nginx/nginx.dev.http.conf:/etc/nginx/nginx.conf
       - ${PWD}/logs/nginx/:/var/log/nginx
+      - ${PWD}/configs/nginx/worker.js:/usr/share/nginx/html/worker.js
     ports:
       - 80:80
       - 443:443

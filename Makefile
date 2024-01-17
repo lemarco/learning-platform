@@ -16,8 +16,8 @@ prepare:
 
 .PHONY: install
 pretty:
-	bunx @biomejs/biome check --apply .
-	
+	bunx @biomejs/biome check --apply ./frontend
+	bunx @biomejs/biome check --apply ./backend
 .PHONY: install
 install:
 	cd frontend && pnpm i
@@ -37,6 +37,7 @@ copy-env-to-frontend:
 	cp .env ./frontend/apps/editor/
 	cp .env ./frontend/apps/blog/
 	cp .env ./frontend/apps/article/
+	cp .env ./frontend/apps/shared-worker/
 
 .PHONY: dev-frontend-up
 dev-frontend-up: copy-env-to-frontend
@@ -97,5 +98,6 @@ re: clean all
 
 start: copy-env-to-backend copy-env-to-frontend
 	cd backend && bun run mirgation:generate:all
-	docker compose -f ./elk-compose.dev.yml -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d
+	#docker compose -f ./elk-compose.dev.yml -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d
+	docker compose -f ./infra-compose.dev.yml -f ./backend-compose.dev.yml -f ./frontend-compose.dev.yml up -d
 

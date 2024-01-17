@@ -66,6 +66,7 @@ function AddCommentBox({
     }
   }, [anchorKey, editor]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     window.addEventListener("resize", updatePosition);
 
@@ -80,6 +81,7 @@ function AddCommentBox({
 
   return (
     <div className="CommentPlugin_AddCommentBox" ref={boxRef}>
+      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="CommentPlugin_AddCommentBox_button" onClick={onAddComment}>
         <i className="icon add-comment" />
       </button>
@@ -272,7 +274,7 @@ function CommentInputBox({
         return selection ? selection.getTextContent() : "";
       });
       if (quote.length > 100) {
-        quote = quote.slice(0, 99) + "…";
+        quote = `${quote.slice(0, 99)}…`;
       }
       submitAddComment(createThread(quote, [createComment(content, author)]), true, undefined, selectionRef.current);
       selectionRef.current = null;
@@ -510,6 +512,7 @@ function CommentsPanelList({
 
           return (
             // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
             <li
               key={id}
               onClick={handleClickThread}
@@ -728,6 +731,7 @@ export default function CommentPlugin({
         (from: MarkNode, to: MarkNode) => {
           // Merge the IDs
           const ids = from.getIDs();
+          // biome-ignore lint/complexity/noForEach: <explanation>
           ids.forEach((id) => {
             to.addID(id);
           });

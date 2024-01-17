@@ -16,5 +16,6 @@ for (const param of Object.keys(DEFAULT_SETTINGS)) {
 
 if (DEFAULT_SETTINGS.disableBeforeInput) {
   // @ts-expect-error
+  // biome-ignore lint/performance/noDelete: <explanation>
   delete window.InputEvent.prototype.getTargetRanges;
 }

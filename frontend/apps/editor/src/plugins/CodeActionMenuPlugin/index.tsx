@@ -141,9 +141,8 @@ function getMouseInfo(event: MouseEvent): {
     const isOutside = !(codeDOMNode || target.closest<HTMLElement>("div.code-action-menu-container"));
 
     return { codeDOMNode, isOutside };
-  } else {
-    return { codeDOMNode: null, isOutside: true };
   }
+  return { codeDOMNode: null, isOutside: true };
 }
 
 export default function CodeActionMenuPlugin({

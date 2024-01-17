@@ -79,7 +79,6 @@ export default function ColorPicker({ color, onChange }: Readonly<ColorPickerPro
     setInputColor(newColor.hex);
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     // Check if the dropdown is actually active
     if (innerDivRef.current !== null && onChange) {

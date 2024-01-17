@@ -172,7 +172,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
             }}
-            className={"popup-item spaced " + (isBold ? "active" : "")}
+            className={`popup-item spaced ${isBold ? "active" : ""}`}
             aria-label="Format text as bold"
           >
             <i className="format bold" />
@@ -182,7 +182,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic");
             }}
-            className={"popup-item spaced " + (isItalic ? "active" : "")}
+            className={`popup-item spaced ${isItalic ? "active" : ""}`}
             aria-label="Format text as italics"
           >
             <i className="format italic" />
@@ -192,7 +192,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
             }}
-            className={"popup-item spaced " + (isUnderline ? "active" : "")}
+            className={`popup-item spaced ${isUnderline ? "active" : ""}`}
             aria-label="Format text to underlined"
           >
             <i className="format underline" />
@@ -202,7 +202,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, "strikethrough");
             }}
-            className={"popup-item spaced " + (isStrikethrough ? "active" : "")}
+            className={`popup-item spaced ${isStrikethrough ? "active" : ""}`}
             aria-label="Format text with a strikethrough"
           >
             <i className="format strikethrough" />
@@ -212,7 +212,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, "subscript");
             }}
-            className={"popup-item spaced " + (isSubscript ? "active" : "")}
+            className={`popup-item spaced ${isSubscript ? "active" : ""}`}
             title="Subscript"
             aria-label="Format Subscript"
           >
@@ -223,7 +223,7 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, "superscript");
             }}
-            className={"popup-item spaced " + (isSuperscript ? "active" : "")}
+            className={`popup-item spaced ${isSuperscript ? "active" : ""}`}
             title="Superscript"
             aria-label="Format Superscript"
           >
@@ -234,12 +234,12 @@ function TextFormatFloatingToolbar({
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, "code");
             }}
-            className={"popup-item spaced " + (isCode ? "active" : "")}
+            className={`popup-item spaced ${isCode ? "active" : ""}`}
             aria-label="Insert code block"
           >
             <i className="format code" />
           </button>
-          <button type="button" onClick={insertLink} className={"popup-item spaced " + (isLink ? "active" : "")} aria-label="Insert link">
+          <button type="button" onClick={insertLink} className={`popup-item spaced ${isLink ? "active" : ""}`} aria-label="Insert link">
             <i className="format link" />
           </button>
         </>

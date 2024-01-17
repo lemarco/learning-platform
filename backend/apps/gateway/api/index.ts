@@ -15,18 +15,18 @@ const ArticlesGroupHandler = (app: App) => {
         return fetch(`${servicesBaseUrls.authQuery}${query.id}`);
       })
       .get("/related", ({ logger }) => {
-        console.log(`api/articles/related`);
-        logger.info(`api/articles/related`);
+        // console.log(`api/articles/related`);
+        // logger.info(`api/articles/related`);
         return fetch(`${servicesBaseUrls.authQuery}related`);
       })
       .get("/latest", ({ logger }) => {
-        console.log(`api/articles/related`);
-        logger.info(`api/articles/related`);
+        // console.log(`api/articles/related`);
+        // logger.info(`api/articles/related`);
         return fetch(`${servicesBaseUrls.authQuery}latest`);
       })
       .get("/tags/recomeded", ({ logger }) => {
-        console.log(`api/tags/recomeded`);
-        logger.info(`api/tags/recomeded`);
+        // console.log(`api/tags/recomeded`);
+        // logger.info(`api/tags/recomeded`);
         return fetch(`${servicesBaseUrls.authQuery}/tags/recommended`);
       });
   });

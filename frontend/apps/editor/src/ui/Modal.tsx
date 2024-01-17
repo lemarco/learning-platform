@@ -78,6 +78,7 @@ export default function Modal({
   title: string;
 }): JSX.Element {
   return createPortal(
+    /*@ts-ignore*/
     <PortalImpl onClose={onClose} title={title} closeOnClickOutside={closeOnClickOutside}>
       {children}
     </PortalImpl>,

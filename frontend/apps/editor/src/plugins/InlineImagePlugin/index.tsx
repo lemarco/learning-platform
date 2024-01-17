@@ -76,6 +76,7 @@ export function InsertInlineImageDialog({
     }
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     hasModifier.current = false;
     const handler = (e: KeyboardEvent) => {
@@ -293,6 +294,7 @@ function canDropImage(event: DragEvent): boolean {
 }
 
 function getDragSelection(event: DragEvent): Range | null | undefined {
+  // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
   let range;
   const target = event.target as null | Element | Document;
   const targetWindow =

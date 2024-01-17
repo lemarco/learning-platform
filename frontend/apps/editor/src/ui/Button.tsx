@@ -22,6 +22,7 @@ export default function Button({
   title?: string;
 }): JSX.Element {
   return (
+    // biome-ignore lint/a11y/useButtonType: <explanation>
     <button
       disabled={disabled}
       className={joinClasses("Button__root", disabled && "Button__disabled", small && "Button__small", className)}

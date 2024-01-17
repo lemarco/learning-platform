@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { Elysia, ListenCallback, TraceHandler } from "elysia";
 import { KafkaConsumer, KafkaProducer, Logger, createEnvStore, httpApiCall } from "framework";
 import z from "zod";
@@ -48,16 +49,22 @@ const app = new Elysia()
   .trace(tracer)
   .ws("/ws", {
     async open(ws) {
+      // console.log("ws =", ws);
       const data = await httpApiCall(`${servicesBaseUrls.authQuery}/auth/verify`);
-      if (!data) {
-        ws.close();
-      }
-      const { id, role } = data as { id: string; role: string };
-      logger.info("WS connection ID = ", ws.id);
+      console.log("data =", data);
+      // if (!data) {
+      //   ws.close();
+      // }
+      // const { id, role } = data as { id: string; role: string };
+      //logger.info("WS connection ID = ", ws.id);
+      const id = randomUUID();
       connections.set(id, ws);
     },
     message(ws, message) {
+      console.log("message= ", message);
+
       const msg = message as AnyEvent;
+      ws.send("message back");
     },
   })
   .listen(ListenConfig);

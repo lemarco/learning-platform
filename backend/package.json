@@ -24,6 +24,7 @@
   "type": "module",
   "dependencies": {
     "@elysiajs/cron": "^0.8.0",
+    "@yomo/webtransport-polyfill": "^1.0.18",
     "drizzle-kit": "^0.20.10",
     "drizzle-orm": "^0.29.3",
     "elysia": "^0.8.8",
