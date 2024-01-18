@@ -1,6 +1,6 @@
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import { routeLoader$, server$ } from "@builder.io/qwik-city";
-import { GithubIcon, GoogleIcon } from "../../../../libs/icons";
+import { GithubIcon, GoogleIcon } from "components";
 import { Modal } from "../../../../libs/modal";
 
 // import { ArrowIcon, BurgerIcon, ExploreDesignWorkIcon } from "@frontend/icons";

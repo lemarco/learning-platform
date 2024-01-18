@@ -1,3 +1,19 @@
+# Build
+/dist
+/lib
+/lib-types
+/server
+
+# Development
+node_modules
+*.local
+
+# Cache
+.cache
+.mf
+.rollup.cache
+tsconfig.tsbuildinfo
+
 # Logs
 logs
 *.log
@@ -7,14 +23,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# Editor
 .vscode/*
-!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/*.code-snippets
+
 .idea
 .DS_Store
 *.suo
@@ -22,4 +35,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-build
+
+# Yarn
+.yarn/*
+!.yarn/releases

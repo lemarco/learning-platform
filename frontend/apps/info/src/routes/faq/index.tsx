@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-
+import { QuestionMarkIcon } from "components";
 export default component$(() => {
   return (
     <section class="bg-white dark:bg-gray-900">
@@ -9,19 +9,7 @@ export default component$(() => {
           <div>
             <div class="mb-10">
               <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                <svg
-                  class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>X</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <QuestionMarkIcon className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" />
                 What do you mean by "Figma assets"?
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
@@ -31,19 +19,7 @@ export default component$(() => {
             </div>
             <div class="mb-10">
               <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                <svg
-                  class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>X</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <QuestionMarkIcon className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" />
                 What does "lifetime access" exactly mean?
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
@@ -53,19 +29,7 @@ export default component$(() => {
             </div>
             <div class="mb-10">
               <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                <svg
-                  class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>X</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <QuestionMarkIcon className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" />
                 How does support work?
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
@@ -87,21 +51,8 @@ export default component$(() => {
             </div>
             <div class="mb-10">
               <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                <svg
-                  class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {" "}
-                  <title>X</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                I want to build more than one project. Is that allowed?
+                <QuestionMarkIcon className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" />I want to build more than one
+                project. Is that allowed?
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
                 You can use Windster for an unlimited amount of projects, whether it's a personal website, a SaaS app, or a website for a
@@ -120,20 +71,7 @@ export default component$(() => {
           <div>
             <div class="mb-10">
               <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                <svg
-                  class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {" "}
-                  <title>X</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <QuestionMarkIcon className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" />
                 What does "free updates" include?
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
@@ -147,20 +85,7 @@ export default component$(() => {
             </div>
             <div class="mb-10">
               <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                <svg
-                  class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {" "}
-                  <title>X</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <QuestionMarkIcon className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" />
                 What does the free version include?
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
@@ -177,20 +102,7 @@ export default component$(() => {
             </div>
             <div class="mb-10">
               <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                <svg
-                  class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {" "}
-                  <title>X</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <QuestionMarkIcon className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" />
                 What is the difference between Windster and Tailwind UI?
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
@@ -204,20 +116,7 @@ export default component$(() => {
             </div>
             <div class="mb-10">
               <h3 class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">
-                <svg
-                  class="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {" "}
-                  <title>X</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <QuestionMarkIcon className="flex-shrink-0 mr-2 w-5 h-5 text-gray-500 dark:text-gray-400" />
                 Can I use Windster in open-source projects?
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
