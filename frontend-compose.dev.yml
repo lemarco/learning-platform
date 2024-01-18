@@ -138,10 +138,6 @@ services:
       - "./frontend/libs/modal/vite.config.ts:/app/libs/modal/vite.config.ts"
       - "./frontend/libs/modal/tsconfig.ts:/app/libs/modal/tsconfig.ts"
 
-      - "./frontend/libs/icons/index.ts:/app/libs/icons/index.ts"
-      - "./frontend/libs/icons/src:/app/libs/icons/src"
-      - "./frontend/libs/icons/vite.config.ts:/app/libs/icons/vite.config.ts"
-      - "./frontend/libs/icons/tsconfig.ts:/app/libs/icons/tsconfig.ts"
   home-app:
     container_name: ${FRONTEND_HOME_APP_HOST}
     build:

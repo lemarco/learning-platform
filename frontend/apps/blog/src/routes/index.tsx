@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { $ } from "@builder.io/qwik";
-
+import { FacebookShareIcon, TwitterShareIcon, CopyLinkIcon, BookMarkIcon } from "components";
 const ArticlePreview = component$(() => {
   return (
     <article class="w-full max-w-4xl">
@@ -21,10 +21,7 @@ const ArticlePreview = component$(() => {
           <a href="/" class="text-gray-900 no-underline dark:text-white hover:underline">
             Design
           </a>
-          on{" "}
-          {/* <time pubdate class="uppercase" datetime="2022-02-08" title="February 8th, 2022">
-        Feb. 8, 2022
-      </time> */}
+          on
         </div>
       </header>
       <div class="flex justify-between items-center mb-4">
@@ -33,40 +30,21 @@ const ArticlePreview = component$(() => {
             href="/"
             class="inline-flex items-center py-2 px-3 mr-2 text-xs font-medium text-gray-900 no-underline bg-white rounded-lg border border-gray-200 focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           >
-            <svg class="mr-2 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-              <path
-                fill-rule="evenodd"
-                d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            <FacebookShareIcon className="mr-2 w-3 h-3" />
             Share
           </a>
           <a
             href="/"
             class="inline-flex items-center py-2 px-3 mr-2 text-xs font-medium text-gray-900 no-underline bg-white rounded-lg border border-gray-200 focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           >
-            <svg class="mr-2 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path
-                fill="currentColor"
-                d="M12.186 8.672 18.743.947h-2.927l-5.005 5.9-4.44-5.9H0l7.434 9.876-6.986 8.23h2.927l5.434-6.4 4.82 6.4H20L12.186 8.672Zm-2.267 2.671L8.544 9.515 3.2 2.42h2.2l4.312 5.719 1.375 1.828 5.731 7.613h-2.2l-4.699-6.237Z"
-              />
-            </svg>
+            <TwitterShareIcon className="mr-2 w-3 h-3" />
             Tweet
           </a>
           <a
             href="/"
             class="inline-flex items-center py-2 px-3 text-xs font-medium text-gray-900 no-underline bg-white rounded-lg border border-gray-200 focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           >
-            <svg class="mr-2 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19 19">
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M11.013 7.962a3.519 3.519 0 0 0-4.975 0l-3.554 3.554a3.518 3.518 0 0 0 4.975 4.975l.461-.46m-.461-4.515a3.518 3.518 0 0 0 4.975 0l3.553-3.554a3.518 3.518 0 0 0-4.974-4.975L10.3 3.7"
-              />
-            </svg>
+            <CopyLinkIcon className="mr-2 w-3 h-3" />
             Copy link
           </a>
         </aside>
@@ -75,15 +53,7 @@ const ArticlePreview = component$(() => {
           class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-gray-400 focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           type="button"
         >
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 20">
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m13 19-6-5-6 5V2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17Z"
-            />
-          </svg>
+          <BookMarkIcon className="w-5 h-5" />
         </button>
         <div
           id="tooltip-save"
@@ -124,37 +94,6 @@ const ArticlePreview = component$(() => {
 const RecommendedTopics = component$(() => {
   return (
     <div class="p-6 mb-6 font-medium text-gray-500 rounded-lg border border-gray-200 dark:border-gray-700 dark:text-gray-400">
-      {/* <form class="mb-6">
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">
-      Search
-    </label>
-    <div class="relative">
-      <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-        <svg
-          class="w-4 h-4 text-gray-500 dark:text-gray-400"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 20 20"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-          />
-        </svg>
-      </div>
-      <input
-        type="search"
-        id="default-search"
-        class="block py-2.5 pl-9 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-        placeholder="Search..."
-        required
-      />
-    </div>
-  </form> */}
       <h4 class="mb-6 font-bold text-gray-900 uppercase dark:text-white">Recommended topics</h4>
       <div class="flex flex-wrap">
         <a
