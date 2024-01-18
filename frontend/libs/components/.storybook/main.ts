@@ -14,6 +14,7 @@ const config: StorybookConfig = {
     "../src/components/**/*.stories.@(js|jsx|ts|tsx)",
   ],
 
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   viteFinal: async (config: any) => {
     return config;
   },

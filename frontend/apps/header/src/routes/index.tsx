@@ -1,8 +1,8 @@
 import { Slot, component$, useSignal } from "@builder.io/qwik";
-import { type DocumentHead, Link, routeLoader$ } from "@builder.io/qwik-city";
-import { Button } from "components";
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
+import { type DocumentHead, Link, routeLoader$ } from "@builder.io/qwik-city";
+import { Button } from "components";
 // import { Image } from "qwik-image";
 import LoginButton from "./login-popup";
 

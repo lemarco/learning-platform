@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
-import pkg from "./package.json";
 import { qwikVite } from "@builder.io/qwik/optimizer";
+import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import pkg from "./package.json";
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const { dependencies = {}, peerDependencies = {} } = pkg as any;
