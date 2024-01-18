@@ -1,6 +1,20 @@
 version: "3.9"
 
 services:
+  components:
+    container_name: components-library
+    restart: on-failure
+    build:
+      dockerfile: ./frontend/libs/components/Dockerfile
+    volumes:
+      - "./frontend/libs/components/lib:/app/libs/components/lib"
+      - "./frontend/libs/components/lib-types:/app/libs/components/lib-types"
+      - "./frontend/libs/components/src:/app/libs/components/src"
+      - "./frontend/libs/components/tsconfig.ts:/app/libs/components/tsconfig.ts"
+      - "./frontend/libs/components/vite.config.ts:/app/libs/components/vite.config.ts"
+      - "./frontend/libs/components/tailwind.config.js:/app/libs/components/tailwind.config.js"
+      - "./frontend/libs/components/postcss.config.cjs:/app/libs/components/postcss.config.cjs"
+
   shared-worker:
     container_name: ${PUBLIC_SHARED_WORKER_HOST_NAME}
     restart: on-failure
@@ -25,6 +39,7 @@ services:
       - "${PUBLIC_FRONTEND_INFO_PORT}:${PUBLIC_FRONTEND_INFO_PORT}"
     volumes:
       - "./frontend/apps/info/src:/app/apps/info/src"
+      - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/info/vite.config.ts:/app/apps/info/vite.config.ts"
       - "./frontend/apps/info/tsconfig.ts:/app/apps/info/tsconfig.ts"
       - "./frontend/apps/info/tailwind.config.js:/app/apps/info/tailwind.config.js"
@@ -36,6 +51,7 @@ services:
     ports:
       - "${PUBLIC_FRONTEND_EDITOR_PORT}:${PUBLIC_FRONTEND_EDITOR_PORT}"
     volumes:
+      - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/editor/public:/app/apps/editor/public"
       - "./frontend/apps/editor/src:/app/apps/editor/src"
       - "./frontend/apps/editor/vite.config.ts:/app/apps/editor/vite.config.ts"
@@ -64,6 +80,7 @@ services:
     ports:
       - "${PUBLIC_FRONTEND_HOST_APP_PORT}:${PUBLIC_FRONTEND_HOST_APP_PORT}"
     volumes:
+      - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/host/src:/app/apps/host/src"
       - "./frontend/apps/host/vite.config.ts:/app/apps/host/vite.config.ts"
       - "./frontend/apps/host/tsconfig.ts:/app/apps/host/tsconfig.ts"
@@ -75,6 +92,7 @@ services:
     build:
       dockerfile: ./frontend/apps/article/Dockerfile
     volumes:
+      - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/article/src:/app/apps/article/src"
       - "./frontend/apps/article/vite.config.ts:/app/apps/article/vite.config.ts"
       - "./frontend/apps/article/tsconfig.ts:/app/apps/article/tsconfig.ts"
@@ -85,6 +103,7 @@ services:
     build:
       dockerfile: ./frontend/apps/blog/Dockerfile
     volumes:
+      - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/blog/src:/app/apps/blog/src"
       - "./frontend/apps/blog/vite.config.ts:/app/apps/blog/vite.config.ts"
       - "./frontend/apps/blog/tsconfig.ts:/app/apps/blog/tsconfig.ts"
@@ -96,6 +115,7 @@ services:
     build:
       dockerfile: ./frontend/apps/footer/Dockerfile
     volumes:
+      - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/footer/src:/app/apps/footer/src"
       - "./frontend/apps/footer/vite.config.ts:/app/apps/footer/vite.config.ts"
       - "./frontend/apps/footer/tsconfig.ts:/app/apps/footer/tsconfig.ts"
@@ -107,6 +127,7 @@ services:
     build:
       dockerfile: ./frontend/apps/header/Dockerfile
     volumes:
+      - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/header/src:/app/apps/header/src"
       - "./frontend/apps/header/vite.config.ts:/app/apps/header/vite.config.ts"
       - "./frontend/apps/header/tsconfig.ts:/app/apps/header/tsconfig.ts"
@@ -126,6 +147,7 @@ services:
     build:
       dockerfile: ./frontend/apps/home/Dockerfile
     volumes:
+      - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/home/src:/app/apps/home/src"
       - "./frontend/apps/home/vite.config.ts:/app/apps/home/vite.config.ts"
       - "./frontend/apps/home/tsconfig.ts:/app/apps/home/tsconfig.ts"

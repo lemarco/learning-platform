@@ -2,6 +2,8 @@ FROM node:alpine as builder
 RUN npm i -g pnpm 
 
 WORKDIR /app
+COPY ./frontend/libs/components/package*.json /app/libs/components/
+COPY ./frontend/tailwind.config.base.js /app/tailwind.config.base.js
 COPY ./frontend/apps/header/package*.json /app/apps/header/
 COPY ./frontend/libs/modal/package*.json /app/libs/modal/
 COPY ./frontend/libs/icons/package*.json /app/libs/icons/

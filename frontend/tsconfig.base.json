@@ -1,0 +1,36 @@
+{
+	"compilerOptions": {
+		"target": "es2022",
+		"module": "es2022",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+
+		"jsx": "react-jsx",
+		"lib": ["dom", "es2022"],
+		"types": ["vite/client", "@testing-library/jest-dom"],
+
+		"allowJs": false,
+		"checkJs": false,
+
+		"experimentalDecorators": false,
+		"emitDecoratorMetadata": false,
+
+		"incremental": true,
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true,
+		"removeComments": true,
+
+		"isolatedModules": true,
+		"esModuleInterop": false,
+		"importHelpers": false,
+		"allowSyntheticDefaultImports": true,
+
+		"strict": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"strictPropertyInitialization": false,
+
+		"skipLibCheck": true
+	}
+}

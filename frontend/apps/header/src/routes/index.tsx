@@ -1,6 +1,6 @@
 import { Slot, component$, useSignal } from "@builder.io/qwik";
 import { type DocumentHead, Link, routeLoader$ } from "@builder.io/qwik-city";
-
+import { Button } from "components";
 import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
 // import { Image } from "qwik-image";
@@ -253,6 +253,7 @@ const Logo = component$(() => {
 //   document.dispatchEvent(event);
 
 // });
+
 const UpperHeader = component$(({ googleLink }: { googleLink: string }) => {
   return (
     <nav class=" bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-800">
