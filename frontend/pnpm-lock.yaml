@@ -99,6 +99,13 @@ importers:
         version: 4.2.3(typescript@5.3.3)(vite@5.0.11)
 
   apps/editor:
+    dependencies:
+      components:
+        specifier: workspace:*
+        version: link:../../libs/components
+      lexical:
+        specifier: ^0.12.6
+        version: 0.12.6
     devDependencies:
       '@builder.io/qwik':
         specifier: ^1.4.0
@@ -112,21 +119,18 @@ importers:
       '@types/node':
         specifier: ^20.11.0
         version: 20.11.4
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^6.18.1
-        version: 6.18.1(@typescript-eslint/parser@6.18.1)(eslint@8.56.0)(typescript@5.3.3)
-      '@typescript-eslint/parser':
-        specifier: ^6.18.1
-        version: 6.18.1(eslint@8.56.0)(typescript@5.3.3)
-      eslint:
-        specifier: ^8.56.0
-        version: 8.56.0
-      eslint-plugin-qwik:
-        specifier: ^1.4.0
-        version: 1.4.0(eslint@8.56.0)
-      prettier:
-        specifier: ^3.1.1
-        version: 3.2.2
+      autoprefixer:
+        specifier: ^10.4.14
+        version: 10.4.16(postcss@8.4.33)
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
+      postcss:
+        specifier: ^8.4.31
+        version: 8.4.33
+      tailwindcss:
+        specifier: 3.3.3
+        version: 3.3.3
       typescript:
         specifier: 5.3.3
         version: 5.3.3
@@ -9044,16 +9048,6 @@ packages:
 
   /eslint-plugin-qwik@1.3.5(eslint@8.56.0):
     resolution: {integrity: sha512-0OG/YDrFImIXi8+EP6tEBS7LMQvrVvv8WGaBk9poLpMVb9tlhWmEYSkNjKWs14eaSJwCnmt/n5ORsMDOJGoKpA==}
-    engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
-    peerDependencies:
-      eslint: ^8.56.0
-    dependencies:
-      eslint: 8.56.0
-      jsx-ast-utils: 3.3.5
-    dev: true
-
-  /eslint-plugin-qwik@1.4.0(eslint@8.56.0):
-    resolution: {integrity: sha512-xp9TiNnROUq+DwL3FLmlNoMrVRuJvuQbCDyC0YBVADVXl1vVOk35WRw2q8INJAqu6YOpp59SseLKy1XOSmImIg==}
     engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
     peerDependencies:
       eslint: ^8.56.0

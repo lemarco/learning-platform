@@ -37,6 +37,7 @@
     "dotenv": "^16.3.1"
   },
   "dependencies": {
-    "components": "workspace:*"
+    "components": "workspace:*",
+    "lexical": "^0.12.6"
   }
 }
