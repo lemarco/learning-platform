@@ -5,9 +5,7 @@
     "node": ">=15.0.0"
   },
   "private": true,
-  "trustedDependencies": [
-    "sharp"
-  ],
+  "trustedDependencies": ["sharp"],
   "type": "module",
   "scripts": {
     "build": "qwik build",
@@ -36,6 +34,7 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "flowbite": "^2.2.1",
-    "qwik-image": "^0.0.8"
+    "qwik-image": "^0.0.8",
+    "components": "workspace:*"
   }
 }

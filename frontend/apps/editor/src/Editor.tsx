@@ -95,7 +95,7 @@ export default function Editor(): JSX.Element {
     <>
       <ToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
       <div className={"editor-container "}>
-        <MaxLengthPlugin maxLength={30} />
+        {/* <MaxLengthPlugin maxLength={30} /> */}
         <DragDropPaste />
         <AutoFocusPlugin />
         <ClearEditorPlugin />
@@ -161,7 +161,7 @@ export default function Editor(): JSX.Element {
           </>
         )}
 
-        <CharacterLimitPlugin charset={"UTF-8"} maxLength={5} />
+        {/* <CharacterLimitPlugin charset={"UTF-8"} maxLength={10050} /> */}
 
         <ActionsPlugin />
       </div>
