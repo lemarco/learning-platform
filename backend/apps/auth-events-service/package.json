@@ -11,5 +11,7 @@
     "framework": "workspace:*",
     "utils": "workspace:*",
     "schemas": "workspace:*"
-  }
+  },
+
+  "scripts": { "dev": "bun ./src/index.ts --watch" }
 }

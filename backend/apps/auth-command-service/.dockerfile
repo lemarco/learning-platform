@@ -1,11 +1,20 @@
 FROM oven/bun:slim
 WORKDIR /app
-COPY . /app/
-# RUN mkdir -p src/front-apps src/front-libs src/shared-libs src/server-apps src/server-libs
 
-# COPY src/front-apps/blog-app/package.json /app/src/front-apps/blog-app/
-# COPY src/front-libs/styling-config/package.json /app/src/front-libs/styling-config/
-VOLUME /app
 
-# RUN bun i sharp
-RUN bun i 
+RUN mkdir -p ./frontend/apps
+RUN mkdir -p ./frontend/libs
+RUN mkdir -p ./backend/apps
+RUN mkdir -p ./backend/libs
+COPY ./package.json /app/
+COPY ./backend/libs/framework/package.json /app/backend/libs/framework/
+COPY ./backend/libs/schemas/package.json /app/backend/libs/schemas/
+COPY ./backend/libs/utils/package.json /app/backend/libs/utils/
+COPY .env /app/backend/apps/auth-command-service/.env
+COPY ./backend/apps/auth-command-service/package.json /app/backend/apps/auth-command-service/
+COPY ./backend/apps/auth-command-service/tsconfig.json /app/backend/apps/auth-command-service/
+
+
+RUN bun i
+WORKDIR /app
+CMD ["bun","run","dev"]

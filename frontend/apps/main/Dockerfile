@@ -1,16 +1,36 @@
-FROM node:alpine as builder
-RUN npm i -g pnpm 
-
+FROM oven/bun:slim
 WORKDIR /app
-COPY ./frontend/libs/components/package*.json /app/libs/components/
-COPY ./frontend/tailwind.config.base.js /app/tailwind.config.base.js
-COPY ./frontend/apps/host/package*.json /app/apps/host/
-COPY ./frontend/pnpm-lock.yaml /app/
-COPY ./frontend/package.json /app/
-COPY ./frontend/pnpm-workspace.yaml /app/
-COPY .env /app/apps/host/.env
 
-RUN pnpm i 
-ENV PUBLIC_FRONTEND_HOST_APP_PORT $PUBLIC_FRONTEND_HOST_APP_PORT
-# EXPOSE $PUBLIC_FRONTEND_HOST_APP_PORT
-CMD ["pnpm", "run", "host:dev"]
+
+RUN mkdir -p ./frontend/apps
+RUN mkdir -p ./frontend/libs
+RUN mkdir -p ./backend/apps
+RUN mkdir -p ./backend/libs
+
+COPY ./frontend/tailwind.config.base.js /app/frontend/tailwind.config.base.js
+COPY ./frontend/apps/main/package*.json /app/frontend/apps/main/
+COPY ./frontend/apps/main/tsconfig.json /app/frontend/apps/main/
+COPY ./frontend/apps/main/vite.config.ts /app/frontend/apps/main/
+COPY ./frontend/apps/main/tailwind.config.js /app/frontend/apps/main/
+COPY ./frontend/apps/main/postcss.config.cjs /app/frontend/apps/main/
+
+
+
+COPY ./package.json /app/
+
+
+
+
+# components lib staff
+COPY ./frontend/libs/components/package.json /app/frontend/libs/components/
+COPY ./frontend/libs/components/tsconfig.json /app/frontend/libs/components/
+COPY ./frontend/libs/components/vite.config.ts /app/frontend/libs/components/
+COPY ./frontend/libs/components/tailwind.config.js /app/frontend/libs/components/
+COPY ./frontend/libs/components/postcss.config.cjs /app/frontend/libs/components/
+
+COPY .env /app/.env
+
+RUN bun i 
+ENV PUBLIC_FRONTEND_MAIN_APP_PORT $PUBLIC_FRONTEND_MAIN_APP_PORT
+
+CMD ["bun", "run", "front-with-components:dev"]

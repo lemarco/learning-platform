@@ -3,14 +3,14 @@ import { QRL } from "@builder.io/qwik";
 import { $, useStore } from "@builder.io/qwik";
 import { type DocumentHead, Link, routeLoader$ } from "@builder.io/qwik-city";
 import {
-  EnglishFlagIcon,
-  StatisticsIcon,
-  SearchIcon,
-  DownArrowIcon,
-  LikeIcon,
   CollectionsIcon,
+  DownArrowIcon,
+  EnglishFlagIcon,
   FireIcon,
+  LikeIcon,
   RightArrowIcon,
+  SearchIcon,
+  StatisticsIcon,
 } from "components";
 import LoginButton from "./login-popup";
 
@@ -267,15 +267,8 @@ const BottomHeader = component$(() => {
     </nav>
   );
 });
-export const useGetGoogleLink = routeLoader$(async () => {
-  return await fetch("http://0.0.0.0:6004/auth/google/link")
-    .then((data) => data.json())
-    .then((data) => data.link || "")
-    .catch(() => "");
-});
-export const Header = component$(() => {
-  const googleLink = useGetGoogleLink();
-  const link = String(googleLink.value);
+
+export const Header = component$(({ link = "" }: { link: string }) => {
   return (
     <header class="shadow-md z-[99] sticky top-0 ">
       <UpperHeader googleLink={link} />

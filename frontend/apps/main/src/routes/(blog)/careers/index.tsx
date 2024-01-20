@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { FingerprintIcon, NoteIcon, CheckMarkIcon } from "components";
+import { CheckMarkIcon, FingerprintIcon, NoteIcon } from "components";
 
 export default component$(() => {
   return (

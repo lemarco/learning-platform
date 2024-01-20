@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { GithubLinkIcon, TwitterLinkIcon, FacebookLinkIcon } from "components";
+import { FacebookLinkIcon, GithubLinkIcon, TwitterLinkIcon } from "components";
 export const Footer = component$(() => {
   const date = new Date();
 

@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { TwitterLinkIcon, GithubLinkIcon } from "components";
+import { GithubLinkIcon, TwitterLinkIcon } from "components";
 
 export default component$(() => {
   const members = [

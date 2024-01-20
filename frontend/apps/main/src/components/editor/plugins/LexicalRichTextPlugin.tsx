@@ -6,8 +6,8 @@
 // import { ErrorBoundaryType, useDecorators } from "./shared/useDecorators";
 // import { useRichTextSetup } from "./shared/useRichTextSetup";
 import { Slot, component$, useContext, useStore, useVisibleTask$ } from "@builder.io/qwik";
-import { LexicalComposerContext } from "..";
 import type { LexicalEditor } from "lexical";
+import { LexicalComposerContext } from "..";
 
 // import { registerDragonSupport } from "@lexical/dragon";
 import { registerRichText } from "@lexical/rich-text";

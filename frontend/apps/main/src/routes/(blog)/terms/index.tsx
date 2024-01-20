@@ -94,7 +94,6 @@ export default component$(() => {
   );
 });
 
-
 export const head: DocumentHead = {
   title: "Term and Conditions",
   meta: [

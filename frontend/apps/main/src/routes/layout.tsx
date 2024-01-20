@@ -92,5 +92,6 @@ export default component$(() => {
     },
     { strategy: "document-ready" },
   );
+
   return <Slot />;
 });

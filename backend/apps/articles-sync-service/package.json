@@ -10,5 +10,6 @@
   "dependencies": {
     "framework": "workspace:*",
     "schemas": "workspace:*"
-  }
+  },
+  "scripts": { "dev": "bun ./src/index.ts --watch" }
 }

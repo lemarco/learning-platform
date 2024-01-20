@@ -1,7 +1,6 @@
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import { routeLoader$, server$ } from "@builder.io/qwik-city";
-import { GithubIcon, GoogleIcon } from "components";
-import { Modal } from "../../../../libs/modal";
+import { GithubIcon, GoogleIcon, Modal } from "components";
 
 // import { ArrowIcon, BurgerIcon, ExploreDesignWorkIcon } from "@frontend/icons";
 
@@ -54,15 +53,17 @@ const Form = component$(({ googleLink }: { googleLink: string }) => {
   );
 });
 
-const LoginTriggerAndPopup = component$(({ googleLink }: { googleLink: string }) => {
+const LoginTriggerAndPopup = component$(({ googleLink = "" }: { googleLink: string }) => {
   return (
-    <Modal
-      modalId="signin-popup"
-      triggerStyle="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 lg:px-5 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-      triggerText="Signin"
-    >
-      <Form q:slot="content" googleLink={googleLink} />
-    </Modal>
+    <>
+      <Modal
+        modalId="signin-popup"
+        triggerStyle="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 lg:px-5 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+        triggerText="Signin"
+      >
+        <Form q:slot="content" googleLink={googleLink} />
+      </Modal>
+    </>
   );
 });
 

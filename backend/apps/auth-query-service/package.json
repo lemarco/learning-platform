@@ -1,6 +1,6 @@
 {
   "name": "auth-query-service",
-  "module": "./src/main.ts",
+  "module": "./index.ts",
   "type": "module",
   "devDependencies": {
     "bun-types": "latest",
@@ -12,5 +12,7 @@
     "framework": "workspace:*",
     "schemas": "workspace:*",
     "jsonwebtoken": "^9.0.2"
-  }
+  },
+
+  "scripts": { "dev": "bun ./src/index.ts --watch" }
 }

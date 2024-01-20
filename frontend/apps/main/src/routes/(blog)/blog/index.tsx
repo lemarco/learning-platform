@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 
 import { DocumentHead } from "@builder.io/qwik-city";
-import { FacebookShareIcon, TwitterShareIcon, CopyLinkIcon, BookMarkIcon } from "components";
+import { BookMarkIcon, CopyLinkIcon, FacebookShareIcon, TwitterShareIcon } from "components";
 const ArticlePreview = component$(() => {
   return (
     <article class="w-full max-w-4xl">

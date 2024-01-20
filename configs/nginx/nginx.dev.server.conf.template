@@ -4,29 +4,19 @@ server {
       server_name learning-platform.com;
 
 
-       location /worker.js  {
-            proxy_pass http://${PUBLIC_SHARED_WORKER_HOST_NAME}:${PUBLIC_SHARED_WORKER_PORT};
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Original-URI $request_uri;
-            types {
-            application/javascript js;
-        }
-      }
+   #    location /worker.js  {
+   #         proxy_pass http://${PUBLIC_SHARED_WORKER_HOST_NAME}:${PUBLIC_SHARED_WORKER_PORT};
+   #         proxy_set_header Host $host;
+   #         proxy_set_header X-Real-IP $remote_addr;
+   #         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   #         proxy_set_header X-Forwarded-Proto $scheme;
+   #         proxy_set_header X-Original-URI $request_uri;
+   #         types {
+   #         application/javascript js;
+   #     }
+   #   }
 
-      location /header {
-            proxy_pass http://${FRONTEND_HEADER_APP_HOST}:${FRONTEND_HEADER_APP_PORT};
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Original-URI $request_uri;
-                types {
-            application/javascript js;
-        }
-      }
+
       location /api {
             proxy_pass http://${GATEWAY_HOST_NAME}:${GATEWAY_PORT};
             proxy_set_header Host $host;
@@ -54,7 +44,7 @@ server {
       }
       location / {
 
-            proxy_pass http://${PUBLIC_FRONTEND_HOST_APP_HOST}:${PUBLIC_FRONTEND_HOST_APP_PORT};
+            proxy_pass http://${PUBLIC_FRONTEND_MAIN_APP_HOST}:${PUBLIC_FRONTEND_MAIN_APP_PORT};
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

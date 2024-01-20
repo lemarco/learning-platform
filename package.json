@@ -1,34 +1,33 @@
 {
   "name": "learning-platform",
-
   "workspaces": ["./frontend/apps/*", "./frontend/libs/*", "./backend/apps/*", "./backend/libs/*"],
-
+  "devDependencies": {
+    "bun-types": "latest",
+    "typescript": "^5.3.3"
+  },
   "scripts": {
+    "re": "bun ./automation re",
+    "components:dev": "cd ./frontend/libs/components && bun run build.lib",
+    "front:dev": "cp .env ./frontend/apps/main/.env && cd ./frontend/apps/main && bun run dev",
+    "front-with-components:dev": "bun run concurrently \"bun run components:dev\" \"bun run front:dev\" ",
+    "articles-command-service:dev": "cd ./backend/apps/articles-command-service && bun run dev",
+    "articles-query-service:dev": "cd ./backend/apps/articles-query-service && bun run dev",
+    "articles-sync-service:dev": "cd ./backend/apps/articles-sync-service && bun run dev",
+    "auth-command-service:dev": "cd ./backend/apps/auth-command-service && bun run dev",
+    "auth-query-service:dev": "cd ./backend/apps/auth-query-service && bun run dev",
+    "auth-events-service:dev": "cd ./backend/apps/auth-events-service && bun run dev",
+    "gateway:dev": "cd ./backend/apps/gateway && bun run dev",
+    "docker:dev": "docker-compose -f ./frontend-compose.dev.yml -f ./infra-compose.dev.yml up -d",
+
     "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./apps/auth-query-service/database/config.ts",
     "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./apps/auth-command-service/database/config.ts",
     "migration:generate:articles": "bunx drizzle-kit  generate:pg --config=./apps/articles-query-service/database/config.ts",
     "mirgation:generate:all": "bun run migration:generate:auth-users && bun run migration:generate:auth-events && bun run migration:generate:articles",
-    "deps-install": "bun i ",
-    "dev:env-up": "bun run deps-install && bun run mirgation:generate:all && docker compose -f ./docker-compose.dev.yml up -d",
-    "dev:auth-query": " bun --watch ./apps/auth-query-service/",
-    "dev:auth-command": "bun --watch ./apps/auth-command-service/",
-    "dev:auth-events": "bun ./apps/auth-events-service/",
-    "dev:articles-query": "bun ./apps/articles-query-service/",
-    "dev:articles-command": "bun ./apps/articles-command-service/",
-    "dev:articles-sync": "bun ./apps/articles-sync-service/",
-    "dev:gateway": "bun --watch ./apps/gateway",
-    "orm:studio": "bunx drizzle-kit studio",
-    "article:dev": "pnpm --filter ./apps/article run dev",
-    "blog:dev": "pnpm --filter ./apps/blog run dev",
-    "footer:dev": "pnpm --filter ./apps/footer run dev",
-    "header:dev": "pnpm --filter ./apps/header run dev",
-    "header-with-libs:dev": "npm-run-all --parallel  header:dev icons:dev modal:dev",
-    "editor:dev": "pnpm --filter ./apps/editor run dev",
-    "home:dev": "pnpm --filter ./apps/home run dev",
-    "host:dev": "pnpm --filter ./apps/host run dev",
-    "info:dev": " pnpm --filter ./apps/info run dev ",
-    "icons:dev": "pnpm --filter ./libs/icons run build.lib",
-    "modal:dev": "pnpm --filter ./libs/modal run build.lib",
-    "components:dev": "pnpm --filter ./libs/components run dev"
+
+    "orm:studio": "bunx drizzle-kit studio"
+  },
+  "dependencies": {
+    "vite-plugin-dts": "^3.7.1",
+    "concurrently": "8.2.2"
   }
 }

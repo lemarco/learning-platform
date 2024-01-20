@@ -67,3 +67,13 @@ export const trimLines = (s: string) => {
   const chunks = s.split("\n").map((d: string) => d.trim());
   return chunks.filter((d) => d !== "").join("\n");
 };
+
+export const slugify = (text: string) =>
+  text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^w-]+/g, "")
+    .replace(/--+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");

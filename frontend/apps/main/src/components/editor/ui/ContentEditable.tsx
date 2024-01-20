@@ -2,14 +2,14 @@ import {
   AriaAttributes,
   HtmlHTMLAttributes,
   component$,
+  noSerialize,
   useContext,
   useSignal,
-  useVisibleTask$,
-  noSerialize,
   useStyles$,
+  useVisibleTask$,
 } from "@builder.io/qwik";
-import styles from "./ContentEditable.css?inline";
 import { LexicalComposerContext } from "..";
+import styles from "./ContentEditable.css?inline";
 
 export type Props = {
   ariaActiveDescendant?: AriaAttributes["aria-activedescendant"];

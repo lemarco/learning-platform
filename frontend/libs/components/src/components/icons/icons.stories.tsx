@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "storybook-framework-qwik";
 import {
-  MetamaskIcon,
-  DownArrowIcon,
   BurgerIcon,
+  DownArrowIcon,
   EnglishFlagIcon,
   ExploreDesignWorkIcon,
   GithubIcon,
   GoogleIcon,
-  SearchIcon,
   LikeIcon,
+  MetamaskIcon,
+  SearchIcon,
 } from "./";
 
 const meta: Meta = {
