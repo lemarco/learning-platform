@@ -17,6 +17,18 @@
     "dev:articles-command": "bun ./apps/articles-command-service/",
     "dev:articles-sync": "bun ./apps/articles-sync-service/",
     "dev:gateway": "bun --watch ./apps/gateway",
-    "orm:studio": "bunx drizzle-kit studio"
+    "orm:studio": "bunx drizzle-kit studio",
+    "article:dev": "pnpm --filter ./apps/article run dev",
+    "blog:dev": "pnpm --filter ./apps/blog run dev",
+    "footer:dev": "pnpm --filter ./apps/footer run dev",
+    "header:dev": "pnpm --filter ./apps/header run dev",
+    "header-with-libs:dev": "npm-run-all --parallel  header:dev icons:dev modal:dev",
+    "editor:dev": "pnpm --filter ./apps/editor run dev",
+    "home:dev": "pnpm --filter ./apps/home run dev",
+    "host:dev": "pnpm --filter ./apps/host run dev",
+    "info:dev": " pnpm --filter ./apps/info run dev ",
+    "icons:dev": "pnpm --filter ./libs/icons run build.lib",
+    "modal:dev": "pnpm --filter ./libs/modal run build.lib",
+    "components:dev": "pnpm --filter ./libs/components run dev"
   }
 }

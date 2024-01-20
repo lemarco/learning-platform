@@ -1,9 +1,7 @@
 {
-  "name": "my-qwik-empty-starter",
-  "description": "App with Routing built-in ready to create your app",
-  "engines": {
-    "node": ">=15.0.0"
-  },
+  "name": "main-app",
+  "description": "Entry point to learning platform",
+
   "private": true,
   "trustedDependencies": ["sharp"],
   "type": "module",
