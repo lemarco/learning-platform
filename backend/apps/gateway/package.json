@@ -6,6 +6,10 @@
     "bun-types": "latest",
     "typescript": "^5.3.3"
   },
-
-  "scripts": { "dev": "bun ./src/index.ts --watch" }
+  "scripts": { "dev": "bun ./src/index.ts --watch" },
+  "dependencies": {
+    "elysia": "^0.8.9",
+    "kafkajs": "^2.2.4",
+    "zod": "^3.22.4"
+  }
 }

@@ -17,7 +17,7 @@
     "auth-query-service:dev": "cd ./backend/apps/auth-query-service && bun run dev",
     "auth-events-service:dev": "cd ./backend/apps/auth-events-service && bun run dev",
     "gateway:dev": "cd ./backend/apps/gateway && bun run dev",
-    "docker:dev": "docker-compose -f ./frontend-compose.dev.yml -f ./infra-compose.dev.yml up -d",
+    "docker:dev": "docker-compose -f ./frontend-compose.dev.yml -f ./backend-compose.dev.yml -f ./infra-compose.dev.yml up -d",
 
     "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./apps/auth-query-service/database/config.ts",
     "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./apps/auth-command-service/database/config.ts",
