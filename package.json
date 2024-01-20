@@ -1,0 +1,22 @@
+{
+  "name": "learning-platform",
+
+  "workspaces": ["./frontend/apps/*", "./frontend/libs/*", "./backend/apps/*", "./backend/libs/*"],
+
+  "scripts": {
+    "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./apps/auth-query-service/database/config.ts",
+    "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./apps/auth-command-service/database/config.ts",
+    "migration:generate:articles": "bunx drizzle-kit  generate:pg --config=./apps/articles-query-service/database/config.ts",
+    "mirgation:generate:all": "bun run migration:generate:auth-users && bun run migration:generate:auth-events && bun run migration:generate:articles",
+    "deps-install": "bun i ",
+    "dev:env-up": "bun run deps-install && bun run mirgation:generate:all && docker compose -f ./docker-compose.dev.yml up -d",
+    "dev:auth-query": " bun --watch ./apps/auth-query-service/",
+    "dev:auth-command": "bun --watch ./apps/auth-command-service/",
+    "dev:auth-events": "bun ./apps/auth-events-service/",
+    "dev:articles-query": "bun ./apps/articles-query-service/",
+    "dev:articles-command": "bun ./apps/articles-command-service/",
+    "dev:articles-sync": "bun ./apps/articles-sync-service/",
+    "dev:gateway": "bun --watch ./apps/gateway",
+    "orm:studio": "bunx drizzle-kit studio"
+  }
+}

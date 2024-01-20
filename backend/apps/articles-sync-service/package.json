@@ -3,11 +3,10 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "typescript": "^5.3.3"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
+
   "dependencies": {
     "framework": "workspace:*",
     "schemas": "workspace:*"

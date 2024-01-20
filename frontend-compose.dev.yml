@@ -79,6 +79,7 @@ services:
     ports:
       - "${PUBLIC_FRONTEND_HOST_APP_PORT}:${PUBLIC_FRONTEND_HOST_APP_PORT}"
     volumes:
+      - "./frontend/dist:/app/dist"
       - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/host/src:/app/apps/host/src"
       - "./frontend/apps/host/vite.config.ts:/app/apps/host/vite.config.ts"
@@ -126,6 +127,7 @@ services:
     build:
       dockerfile: ./frontend/apps/header/Dockerfile
     volumes:
+      - "./frontend/dist:/app/dist"
       - "./frontend/libs/components:/app/libs/components"
       - "./frontend/apps/header/src:/app/apps/header/src"
       - "./frontend/apps/header/vite.config.ts:/app/apps/header/vite.config.ts"

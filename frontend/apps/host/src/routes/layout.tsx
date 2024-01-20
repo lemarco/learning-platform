@@ -1,7 +1,12 @@
-import { $, Slot, component$, useContextProvider, useStore, useVisibleTask$ } from "@builder.io/qwik";
+import { $, Slot, component$, createContextId, useContextProvider, useStore, useVisibleTask$ } from "@builder.io/qwik";
 import { RequestHandler, routeLoader$ } from "@builder.io/qwik-city";
-import { AppState, GlobalAppState } from "../components/remote-mfe";
 
+export interface AppState {
+  showSeams: boolean;
+  user: string;
+}
+
+export const GlobalAppState = createContextId<AppState>("AppState");
 // import { worker$ } from "@builder.io/qwik-worker";
 // import SharedWorker from "./worker?sharedworker";
 // import SharedWorker from "./worker.js?sharedworker&inline";
@@ -88,29 +93,4 @@ export default component$(() => {
     { strategy: "document-ready" },
   );
   return <Slot />;
-  // <div data-seams={store.showSeams}>
-  {
-    /* <div class="flex gap-3 mt-6 mb-4 ml-3">
-        <button
-          class="flex p-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
-          onClick$={() => (store.showSeams = !store.showSeams)}
-        >
-          Show Worker URLs
-        </button>
-        <button
-          class="flex p-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
-          onClick$={() => setUser("Giorgio")}
-        >
-          User Giorgio
-        </button>
-        <button
-          class="flex p-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
-          onClick$={() => setUser("Miško")}
-        >
-          User Miško
-        </button>
-      </div> */
-  }
-
-  // );
 });
