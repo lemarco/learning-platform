@@ -1,0 +1,115 @@
+{
+  "name": "Jese Leos",
+  "avatar": "/images/users/jese-leos.png",
+  "position": "Front-end Developer",
+  "location": "Newark, NJ, USA",
+  "email": "yourname@flowbite.com",
+  "address": "92 Miles Drive, Newark, NJ 07103",
+  "phone": "+10123456789",
+  "softwareSkills": [
+    {
+      "icon": "/images/skills/figma.svg",
+      "label": "Figma"
+    },
+    {
+      "icon": "/images/skills/html5.svg",
+      "label": "HTML5"
+    },
+    {
+      "icon": "/images/skills/adobe-xd.svg",
+      "label": "Adobe XD"
+    }
+  ],
+  "skills": [
+    "Brand Design",
+    "Logo Design",
+    "Mobile App Design",
+    "UI Design",
+    "React.js",
+    "WordPress",
+    "Sketch",
+    "Figma",
+    "Prototyping",
+    "Databases"
+  ],
+  "hobbies": [
+    "Football",
+    "Dogs",
+    "Gaming",
+    "Movies",
+    "Travelling",
+    "Surfing",
+    "Ice Skating",
+    "The Witcher"
+  ],
+  "aboutMe": "Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.\nEt vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.",
+  "education": [
+    {
+      "institution": "Stanford University",
+      "focus": "Computer Science and Engineering"
+    },
+    {
+      "institution": "Thomas Jefferson High School",
+      "focus": "Diploma"
+    }
+  ],
+  "experience": [
+    {
+      "organization": "Twitch",
+      "position": "Web Developer",
+      "location": "New York, NY, USA",
+      "logo": "/images/logos/twitch.svg"
+    },
+    {
+      "organization": "Apple",
+      "position": "React Developer",
+      "location": "Palo Alta, CA, USA",
+      "logo": "/images/logos/apple.svg"
+    },
+    {
+      "organization": "Google",
+      "position": "Front-end Developer",
+      "location": "Palo Alta, CA, USA",
+      "logo": "/images/logos/google.svg"
+    }
+  ],
+  "joinDate": "2021-12-09",
+  "languages": ["English", "German", "Italian", "Spanish"],
+  "organization": "Bergside SRL",
+  "department": "Marketing",
+  "birthday": "1990-08-15",
+  "skillProficiencies": [
+    {
+      "skill": "Figma",
+      "proficiency": 95
+    },
+    {
+      "skill": "Vue",
+      "proficiency": 40
+    },
+    {
+      "skill": "PHP",
+      "proficiency": 50
+    },
+    {
+      "skill": "Marketing",
+      "proficiency": 90
+    },
+    {
+      "skill": "HTML",
+      "proficiency": 85
+    },
+    {
+      "skill": "Product Design",
+      "proficiency": 100
+    },
+    {
+      "skill": "React",
+      "proficiency": 70
+    },
+    {
+      "skill": "Angular",
+      "proficiency": 40
+    }
+  ]
+}

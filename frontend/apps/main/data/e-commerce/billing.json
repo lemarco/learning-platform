@@ -1,0 +1,30 @@
+{
+  "nextPayment": {
+    "service": "Flowbite",
+    "logo": "/images/logo.svg",
+    "serviceDescription": "Switch your subscription to a different type, such as a monthly plan, annual plan, or student plan. And see a list of subscription plans that Flowbite offers.",
+    "amount": 36.0,
+    "interval": "yearly",
+    "date": "August 13, 2020"
+  },
+  "orderHistory": [
+    {
+      "transaction": "Payment from Bonnie Green",
+      "time": "April 23, 2021",
+      "amount": 2300.0,
+      "status": "Completed"
+    },
+    {
+      "transaction": "Payment refund to #00910",
+      "time": "April 23, 2021",
+      "amount": -670.0,
+      "status": "Completed"
+    },
+    {
+      "transaction": "Payment failed from #087651",
+      "time": "April 18, 2021",
+      "amount": 234.0,
+      "status": "Cancelled"
+    }
+  ]
+}
