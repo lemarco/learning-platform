@@ -66,15 +66,15 @@ export const LexicalContentEditable = component$(
     //   },
     //   [editor],
     // );
-    // useVisibleTask$(() => {
-    //   const currentIsEditable = editor?.isEditable() || true;
-    //   isEditable.value = true;
-    //   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    useVisibleTask$(() => {
+      const currentIsEditable = editor?.isEditable() || true;
+      isEditable.value = true;
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 
-    //   editor?.registerEditableListener((currentIsEditable) => {
-    //     isEditable.value = currentIsEditable;
-    //   });
-    // });
+      editor?.registerEditableListener((currentIsEditable) => {
+        isEditable.value = currentIsEditable;
+      });
+    });
     // useLayoutEffect(() => {
     //   setEditable(editor.isEditable());
     //   return editor.registerEditableListener((currentIsEditable) => {

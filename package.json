@@ -19,12 +19,13 @@
     "gateway:dev": "cd ./backend/apps/gateway && bun run dev",
     "docker:dev": "docker-compose -f ./frontend-compose.dev.yml -f ./backend-compose.dev.yml -f ./infra-compose.dev.yml up -d",
 
-    "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./apps/auth-query-service/database/config.ts",
-    "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./apps/auth-command-service/database/config.ts",
-    "migration:generate:articles": "bunx drizzle-kit  generate:pg --config=./apps/articles-query-service/database/config.ts",
+    "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./backend/apps/auth-query-service/src/database/config.ts",
+    "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./backend/apps/auth-command-service/src/database/config.ts",
+    "migration:generate:articles": "bunx drizzle-kit  generate:pg --config=./backend/apps/articles-query-service/src/database/config.ts",
     "mirgation:generate:all": "bun run migration:generate:auth-users && bun run migration:generate:auth-events && bun run migration:generate:articles",
 
-    "orm:studio": "bunx drizzle-kit studio"
+    "orm:studio": "bunx drizzle-kit studio",
+    "start:dev": "bun run mirgation:generate:all && bun run docker:dev"
   },
   "dependencies": {
     "vite-plugin-dts": "^3.7.1",
