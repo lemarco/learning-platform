@@ -12,13 +12,13 @@
     "drizzle-kit": "^0.20.13",
     "drizzle-orm": "^0.29.3",
     "elysia": "^0.8.9",
-    "framework": "workspace:*",
     "googleapis": "^131.0.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3",
+    "zod": "^3.22.4",
+    "framework": "workspace:*",
     "schemas": "workspace:*",
-    "utils": "workspace:*",
-    "zod": "^3.22.4"
+    "utils": "workspace:*"
   },
   "scripts": { "dev": "bun ./src/index.ts --watch" }
 }

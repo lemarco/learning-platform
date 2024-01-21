@@ -1,5 +1,6 @@
-import z, { UnknownKeysParam, ZodTypeAny } from "zod";
-import { L } from "./logger";
+import z from "zod";
+import type { UnknownKeysParam, ZodTypeAny } from "zod";
+import type { L } from "./logger";
 const data: Record<string, string> = {};
 
 type AnySchema = z.ZodObject<{ [k: string]: z.ZodTypeAny }, UnknownKeysParam, ZodTypeAny>;

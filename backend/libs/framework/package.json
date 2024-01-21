@@ -2,6 +2,7 @@
   "name": "framework",
   "module": "./src/index.ts",
   "type": "module",
+  "types": "./index.d.ts",
   "devDependencies": {
     "bun-types": "latest",
     "typescript": "^5.3.3"

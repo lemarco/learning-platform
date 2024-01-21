@@ -1,0 +1,52 @@
+{
+  "id": 472,
+  "issuer": {
+    "name": "Themesberg Inc.",
+    "logo": "/images/themesberg.svg",
+    "address": "291 N 4th St, San Jose, CA 95112, USA"
+  },
+  "date": "August 1, 2021",
+  "billTo": {
+    "name": "New Company LLC.",
+    "address": "3864 Johnson St, Louisville, KY 12345, USA",
+    "taxId": "AA-1234567890"
+  },
+  "services": [
+    {
+      "item": "Pixel Design System",
+      "category": "HTML Components",
+      "price": 128.0,
+      "quantity": 1,
+      "discount": 0.5,
+      "total": 64.0
+    },
+    {
+      "item": "Volt Dashboard Template",
+      "category": "Tailwind CSS Template",
+      "price": 69.0,
+      "quantity": 1,
+      "discount": 1.0,
+      "total": 69.0
+    },
+    {
+      "item": "Neumorphism UI",
+      "category": "HTML Template",
+      "price": 69.0,
+      "quantity": 1,
+      "discount": 1.0,
+      "total": 69.0
+    },
+    {
+      "item": "Glassmorphism UI",
+      "category": "Figma template",
+      "price": 149.0,
+      "quantity": 1,
+      "discount": 1.0,
+      "total": 149.0
+    }
+  ],
+  "subtotal": 415.0,
+  "taxRate": 0.05,
+  "discount": 64.0,
+  "total": 351.0
+}

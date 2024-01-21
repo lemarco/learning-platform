@@ -1,14 +1,14 @@
 import { Redis as R } from "ioredis";
-import { Logger } from "./logger";
+import type { L } from "./logger";
 
 type RedisArgs = {
   host: string;
   port: number;
-  logger: Logger;
+  logger: L;
 };
 export class Redis {
   private instance: R;
-  private logger: Logger;
+  private logger: L;
   constructor({ host, port, logger }: RedisArgs) {
     this.instance = new R({ host, port });
     this.logger = logger;

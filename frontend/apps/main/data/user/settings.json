@@ -1,0 +1,76 @@
+{
+  "language": "English (US)",
+  "timeZone": "GMT+0 Greenwich Mean Time (GMT)",
+  "socialAccounts": [
+    {
+      "social": "Facebook",
+      "account": "facebook.com/themesberg",
+      "icon": "/images/logos/facebook.svg"
+    },
+    {
+      "social": "Twitter",
+      "account": "twitter.com/themesberg",
+      "icon": "/images/logos/twitter.svg"
+    },
+    {
+      "social": "Github",
+      "account": "",
+      "icon": "/images/logos/github.svg"
+    },
+    {
+      "social": "Dribble",
+      "account": "",
+      "icon": "/images/logos/dribble.svg"
+    }
+  ],
+  "otherAccounts": [
+    {
+      "name": "Bonnie Green",
+      "avatar": "/images/users/bonnie-green.png",
+      "lastLocation": "New York, USA",
+      "lastSeen": 1
+    },
+    {
+      "name": "Jese Leos",
+      "avatar": "/images/users/jese-leos.png",
+      "lastLocation": "California, USA",
+      "lastSeen": 2
+    },
+    {
+      "name": "Thomas Lean",
+      "avatar": "/images/users/thomas-lean.png",
+      "lastLocation": "Texas, USA",
+      "lastSeen": 60
+    },
+    {
+      "name": "Lana Byrd",
+      "avatar": "/images/users/lana-byrd.png",
+      "lastLocation": "Texas, USA",
+      "lastSeen": 60
+    }
+  ],
+  "sessions": [
+    {
+      "location": "California, USA",
+      "ipAddress": "123.123.123.123",
+      "userAgent": "Chrome on macOS"
+    },
+    {
+      "location": "Rome, Italy",
+      "ipAddress": "123.123.123.123",
+      "userAgent": "Safari on iPhone"
+    }
+  ],
+  "alertsNotifications": {
+    "companyNews": true,
+    "accountActivity": true,
+    "meetups": true,
+    "newMessages": false
+  },
+  "emailNotifications": {
+    "ratingReminders": false,
+    "itemUpdates": true,
+    "itemComments": true,
+    "buyerReviews": true
+  }
+}

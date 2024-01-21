@@ -15,11 +15,10 @@
 
 # Repo:
 
-- [Pnpm](<(https://pnpm.io/)>): package manager
-- [Nx](<(https://nx.dev/)>): monorepo management tool(frontend)
+
 - [Bun](https://bun.sh/docs/install/workspaces) monorepo management tool(backend)
-- [Prettier](<(https://prettier.io/)>): code formatting tool
-- [Eslint](<(https://eslint.org/)>): code linting tool
+- [Biome](https://biomejs.dev/guides/getting-started/): code formatting/linting tool
+
 
 # Technologies and Libs:
 

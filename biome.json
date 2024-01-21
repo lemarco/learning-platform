@@ -2,32 +2,18 @@
   "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
   "organizeImports": {
     "enabled": true,
-    "ignore": ["node_modules", "temp", "./data", "./logs", "/dist/", ".nx", "migrations", "configs", "build/**/*", "/out/"]
+    "ignore": ["node_modules", "dist", "lib", "build", "out", "data", "logs", "temp", "configs", "migrations", "*.spec.ts", "*.spec.tsx"]
   },
   "formatter": {
     "enabled": true,
     "formatWithErrors": true,
-    "ignore": ["node_modules", "temp", "./data", "./logs", "/dist/", ".nx", "migrations", "configs", "build/**/*", "/out/"],
+    "ignore": ["node_modules", "dist", "lib", "build", "out", "data", "logs", "temp", "configs", "migrations", "*.spec.ts", "*.spec.tsx"],
     "indentStyle": "space",
     "indentWidth": 2,
     "lineWidth": 140
   },
   "linter": {
-    "ignore": [
-      "node_modules",
-      "./data",
-      "./logs",
-      "./temp",
-      "dist",
-      "*.spec.ts",
-      "*.spec.tsx",
-      ".nx",
-      "migrations",
-      "configs",
-      "build",
-      "out",
-      "build/**/*"
-    ],
+    "ignore": ["node_modules", "dist", "lib", "build", "out", "data", "logs", "temp", "configs", "migrations", "*.spec.ts", "*.spec.tsx"],
     "enabled": true,
     "rules": {
       "recommended": true

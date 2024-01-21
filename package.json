@@ -18,16 +18,22 @@
     "auth-events-service:dev": "cd ./backend/apps/auth-events-service && bun run dev",
     "gateway:dev": "cd ./backend/apps/gateway && bun run dev",
     "docker:dev": "docker-compose -f ./frontend-compose.dev.yml -f ./backend-compose.dev.yml -f ./infra-compose.dev.yml up -d",
-
-    "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./apps/auth-query-service/database/config.ts",
-    "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./apps/auth-command-service/database/config.ts",
-    "migration:generate:articles": "bunx drizzle-kit  generate:pg --config=./apps/articles-query-service/database/config.ts",
+    "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./backend/apps/auth-query-service/src/database/config.ts",
+    "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./backend/apps/auth-command-service/src/database/config.ts",
+    "migration:generate:articles": "bunx drizzle-kit  generate:pg --config=./backend/apps/articles-query-service/src/database/config.ts",
     "mirgation:generate:all": "bun run migration:generate:auth-users && bun run migration:generate:auth-events && bun run migration:generate:articles",
-
-    "orm:studio": "bunx drizzle-kit studio"
+    "frontend:pretty": "bunx @biomejs/biome check --apply ./frontend",
+    "backend:pretty": "bunx @biomejs/biome check --apply ./backend",
+    "automation:pretty": "bunx @biomejs/biome check --apply ./automation",
+    "all:pretty": "bun run frontend:pretty && bun run backend:pretty && bun run automation:pretty",
+    "orm:studio": "bunx drizzle-kit studio",
+    "start:dev": "bun run mirgation:generate:all && bun run docker:dev",
+    "storybook": "cd ./frontend/libs/components && bun run storybook"
   },
   "dependencies": {
-    "vite-plugin-dts": "^3.7.1",
-    "concurrently": "8.2.2"
+    "classnames": "^2.5.1",
+    "concurrently": "8.2.2",
+    "tailwind-merge": "^2.2.0",
+    "vite-plugin-dts": "^3.7.1"
   }
 }
