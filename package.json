@@ -18,12 +18,10 @@
     "auth-events-service:dev": "cd ./backend/apps/auth-events-service && bun run dev",
     "gateway:dev": "cd ./backend/apps/gateway && bun run dev",
     "docker:dev": "docker-compose -f ./frontend-compose.dev.yml -f ./backend-compose.dev.yml -f ./infra-compose.dev.yml up -d",
-
     "migration:generate:auth-users": "bunx drizzle-kit  generate:pg --config=./backend/apps/auth-query-service/src/database/config.ts",
     "migration:generate:auth-events": "bunx drizzle-kit generate:pg --config=./backend/apps/auth-command-service/src/database/config.ts",
     "migration:generate:articles": "bunx drizzle-kit  generate:pg --config=./backend/apps/articles-query-service/src/database/config.ts",
     "mirgation:generate:all": "bun run migration:generate:auth-users && bun run migration:generate:auth-events && bun run migration:generate:articles",
-
     "frontend:pretty": "bunx @biomejs/biome check --apply ./frontend",
     "backend:pretty": "bunx @biomejs/biome check --apply ./backend",
     "automation:pretty": "bunx @biomejs/biome check --apply ./automation",
