@@ -1,8 +1,13 @@
-import type { ElementProps, Placement, ReferenceType, UseRoleProps } from "@floating-ui/react";
-import { autoUpdate, safePolygon, useClick, useDismiss, useFloating, useHover, useInteractions, useRole } from "@floating-ui/react";
+// import type { ElementProps, Placement, ReferenceType, UseRoleProps } from "@floating-ui/react";
+import { autoUpdate, safePolygon, useClick, useDismiss, useFloating, useHover, useInteractions, useRole } from "./floating-hooks";
 import type { Dispatch, RefObject, SetStateAction } from "react";
 import { getMiddleware, getPlacement } from "../helpers/floating";
 
+// export declare interface ElementProps {
+//   reference?: HTMLProps<Element>;
+//   floating?: HTMLProps<HTMLElement>;
+//   item?: HTMLProps<HTMLElement> | ((props: ExtendedUserProps) => React_2.HTMLProps<HTMLElement>);
+// }
 export type UseBaseFloatingParams = {
   placement?: "auto" | Placement;
   open: boolean;
