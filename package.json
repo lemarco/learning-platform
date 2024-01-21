@@ -24,6 +24,10 @@
     "migration:generate:articles": "bunx drizzle-kit  generate:pg --config=./backend/apps/articles-query-service/src/database/config.ts",
     "mirgation:generate:all": "bun run migration:generate:auth-users && bun run migration:generate:auth-events && bun run migration:generate:articles",
 
+    "frontend:pretty": "bunx @biomejs/biome check --apply ./frontend",
+    "backend:pretty": "bunx @biomejs/biome check --apply ./backend",
+    "automation:pretty": "bunx @biomejs/biome check --apply ./automation",
+    "all:pretty": "bun run frontend:pretty && bun run backend:pretty && bun run automation:pretty",
     "orm:studio": "bunx drizzle-kit studio",
     "start:dev": "bun run mirgation:generate:all && bun run docker:dev"
   },

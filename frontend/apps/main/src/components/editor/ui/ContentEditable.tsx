@@ -69,7 +69,6 @@ export const LexicalContentEditable = component$(
     useVisibleTask$(() => {
       const currentIsEditable = editor?.isEditable() || true;
       isEditable.value = true;
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 
       editor?.registerEditableListener((currentIsEditable) => {
         isEditable.value = currentIsEditable;

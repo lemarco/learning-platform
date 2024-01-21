@@ -1,6 +1,7 @@
 {
   "name": "utils",
   "module": "./src/index.ts",
+  "types":"./index.d.ts",
   "type": "module",
   "devDependencies": {
     "bun-types": "latest",

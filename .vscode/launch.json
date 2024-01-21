@@ -1,0 +1,20 @@
+{
+  "version": "0.2.4",
+  "configurations": [
+    {
+      "type": "bun",
+      "request": "launch",
+      "name": "Debug Bun",
+      "runtime": "bun",
+      "program": "${file}",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "env": {},
+      "strictEnv": false,
+      "watchMode": false,
+      "stopOnEntry": false,
+      "noDebug": false,
+      "runtimeArgs": []
+    }
+  ]
+}

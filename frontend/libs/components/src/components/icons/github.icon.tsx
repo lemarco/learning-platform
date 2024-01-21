@@ -14,7 +14,6 @@ export const GithubIcon = component$(({ className }: { className?: string }) => 
 
 export const GithubLinkIcon = component$(({ className }: { className?: string }) => {
   return (
-    // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
     <svg class={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path
         fill-rule="evenodd"
