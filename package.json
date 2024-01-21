@@ -27,7 +27,8 @@
     "automation:pretty": "bunx @biomejs/biome check --apply ./automation",
     "all:pretty": "bun run frontend:pretty && bun run backend:pretty && bun run automation:pretty",
     "orm:studio": "bunx drizzle-kit studio",
-    "start:dev": "bun run mirgation:generate:all && bun run docker:dev"
+    "start:dev": "bun run mirgation:generate:all && bun run docker:dev",
+    "storybook": "cd ./frontend/libs/components && bun run storybook"
   },
   "dependencies": {
     "classnames": "^2.5.1",
