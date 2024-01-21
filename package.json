@@ -30,7 +30,9 @@
     "start:dev": "bun run mirgation:generate:all && bun run docker:dev"
   },
   "dependencies": {
-    "vite-plugin-dts": "^3.7.1",
-    "concurrently": "8.2.2"
+    "classnames": "^2.5.1",
+    "concurrently": "8.2.2",
+    "tailwind-merge": "^2.2.0",
+    "vite-plugin-dts": "^3.7.1"
   }
 }

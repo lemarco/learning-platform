@@ -805,7 +805,7 @@ export const onGet: RequestHandler<{ id: string }> = async ({ params }) => {
     });
   return article;
 };
-const Page = component$((article) => {
+export default component$((article) => {
   console.log(article);
   return (
     <>
