@@ -22,7 +22,13 @@ export * from "./check-mark.icon";
 export * from "./fingerprint.icon";
 import { NoteIcon } from "./note.icon";
 
-export const Icon = component$(({ className, name }: { className: string; name: string }) => {
+export type IconName = "NoteIcon"
+type IconProps = {
+  className: string;
+  name?: IconName
+}
+
+export const Icon = component$(({ className, name }: IconProps) => {
   switch (name) {
     case "NoteIcon":
       return <NoteIcon className={className} />;

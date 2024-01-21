@@ -1,7 +1,8 @@
 
 import { Meta, StoryFn, StoryObj } from 'storybook-framework-qwik/*';
 import { Badge } from './Badge';
-import { component$ } from '@builder.io/qwik';
+import { Slot, component$ } from '@builder.io/qwik';
+import { IconName } from '../icons';
 
 type Story = StoryObj;
 
@@ -10,13 +11,25 @@ export default {
   component: Badge,
 } as Meta;
 
-const Template = component$((args: { color?: string }) => (
-  <Badge {...args} />
+const Template = component$((args: { color?: string, iconName?: IconName, className?: string }) => (
+  <Badge {...args} ><Slot/></Badge>
 ));
 
-export const Defualt: Story = {
+export const GreenBadge: Story = {
   args: {
-    label: "Defualt",
+    label: "GreenBadge",
+    color: 'green',
+    iconName: 'NoteIcon',
+    className: 'w-1/5'
   },
-  render: (props) => <Template {...props} />,
+  render: (props) => <Template {...props} >Hello green</Template>,
+};
+
+export const IndigoBadge: Story = {
+  args: {
+    label: "IndigoBadge",
+    color: 'indigo',
+    iconName: 'NoteIcon'
+  },
+  render: (props) => <Template {...props} >Hello badge</Template>,
 };
