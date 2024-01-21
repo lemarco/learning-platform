@@ -1,6 +1,6 @@
 {
   "name": "framework",
-  "module": "index.ts",
+  "module": "./src/index.ts",
   "type": "module",
   "devDependencies": {
     "bun-types": "latest",
@@ -9,6 +9,7 @@
   "dependencies": {
     "drizzle-orm": "^0.29.3",
     "ioredis": "^5.3.2",
+    "kafkajs": "^2.2.4",
     "pino": "^8.17.2",
     "postgres": "^3.4.3",
     "zod": "^3.22.4"

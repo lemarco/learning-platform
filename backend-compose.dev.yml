@@ -22,6 +22,9 @@ services:
       - ${ARTICLES_COMMAND_SERVICE_PORT}
     volumes:
       - ./backend/apps/articles-command-service/src:/app/backend/apps/articles-command-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
   articles-sync-service:
     container_name: ${ARTICLES_SYNC_SERVICE_HOST_NAME}
@@ -33,6 +36,9 @@ services:
       - ${ARTICLES_SYNC_SERVICE_PORT}
     volumes:
       - ./backend/apps/articles-sync-service/src:/app/backend/apps/articles-sync-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
 
   auth_command_service:
@@ -45,6 +51,9 @@ services:
       - ${AUTH_COMMANDS_SERVICE_PORT}
     volumes:
       - ./backend/apps/auth-command-service/src:/app/backend/apps/auth-command-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
 
   auth_query_service:
@@ -56,6 +65,9 @@ services:
       - ${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}
     volumes:
       - ./backend/apps/auth-query-service/src:/app/backend/apps/auth-query-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
     expose:
       - ${AUTH_QUERY_SERVICE_PORT}
@@ -67,6 +79,9 @@ services:
 
     volumes:
       - ./backend/apps/auth-events-service/src:/app/backend/apps/auth-events-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
 
   gateway:
@@ -78,4 +93,7 @@ services:
       - ${GATEWAY_PORT}:${GATEWAY_PORT}
     volumes:
       - ./backend/apps/gateway/src:/app/backend/apps/gateway/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
