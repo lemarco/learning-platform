@@ -6,8 +6,8 @@ export type DeepPartial<T> = T extends object
 
 import type { FlowbiteAccordionTheme } from "./Accordion";
 // import type { FlowbiteAlertTheme } from "../Alert";
-// import type { FlowbiteAvatarTheme } from "../Avatar";
-// import type { FlowbiteBadgeTheme } from "../Badge";
+import type { FlowbiteAvatarTheme } from "./Avatar";
+import type { FlowbiteBadgeTheme } from "./Badge";
 // import type { FlowbiteBlockquoteTheme } from "../Blockquote";
 // import type { FlowbiteBreadcrumbTheme } from "../Breadcrumb";
 // import type { FlowbiteButtonGroupTheme, FlowbiteButtonTheme } from "../Button";
@@ -49,8 +49,8 @@ export type CustomFlowbiteTheme = DeepPartial<FlowbiteTheme>;
 export interface FlowbiteTheme {
   accordion: FlowbiteAccordionTheme;
   //   alert: FlowbiteAlertTheme;
-  //   avatar: FlowbiteAvatarTheme;
-  //   badge: FlowbiteBadgeTheme;
+    avatar: FlowbiteAvatarTheme;
+    badge: FlowbiteBadgeTheme;
   //   blockquote: FlowbiteBlockquoteTheme;
   //   breadcrumb: FlowbiteBreadcrumbTheme;
   //   button: FlowbiteButtonTheme;

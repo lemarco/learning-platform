@@ -1,7 +1,7 @@
 import { accordionTheme } from "./Accordion/theme";
 // import { alertTheme } from "./Alert/theme";
-// import { avatarTheme } from "./Avatar/theme";
-// import { badgeTheme } from "./Badge/theme";
+import { avatarTheme } from "./Avatar/theme";
+import { badgeTheme } from "./Badge/theme";
 // import { breadcrumbTheme } from "./Breadcrumb/theme";
 // import { buttonGroupTheme, buttonTheme } from "./Button/theme";
 // import { cardTheme } from "./Card/theme";
@@ -35,8 +35,8 @@ import { sidebarTheme } from "./Sidebar/theme";
 export const theme = {
   accordion: accordionTheme,
   //   alert: alertTheme,
-  //   avatar: avatarTheme,
-  //   badge: badgeTheme,
+    avatar: avatarTheme,
+    badge: badgeTheme,
   //   breadcrumb: breadcrumbTheme,
   //   button: buttonTheme,
   //   buttonGroup: buttonGroupTheme,
