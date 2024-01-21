@@ -1,3 +1,5 @@
+import { component$ } from "@builder.io/qwik";
+
 export * from "./burger.icon";
 export * from "./down-arrow.icon";
 export * from "./exploreDesignWork.icon";
@@ -18,4 +20,13 @@ export * from "./copy-link.icon";
 export * from "./question-mark.icon";
 export * from "./check-mark.icon";
 export * from "./fingerprint.icon";
-export * from "./note.icon";
+import { NoteIcon } from "./note.icon";
+
+export const Icon = component$(({ className, name }: { className: string; name: string }) => {
+  switch (name) {
+    case "NoteIcon":
+      return <NoteIcon className={className} />;
+    default:
+      return <></>;
+  }
+});

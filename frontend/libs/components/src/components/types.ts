@@ -33,7 +33,7 @@ import type { FlowbiteAccordionTheme } from "./Accordion";
 // import type { FlowbiteRangeSliderTheme } from "../RangeSlider";
 // import type { FlowbiteRatingAdvancedTheme, FlowbiteRatingTheme } from "../Rating";
 // import type { FlowbiteSelectTheme } from "../Select";
-// import type { FlowbiteSidebarTheme } from "../Sidebar";
+import type { FlowbiteSidebarTheme } from "../Sidebar";
 // import type { FlowbiteSpinnerTheme } from "../Spinner";
 // import type { FlowbiteTableTheme } from "../Table";
 // import type { FlowbiteTabsTheme } from "../Tabs";
@@ -68,7 +68,7 @@ export interface FlowbiteTheme {
   //   rating: FlowbiteRatingTheme;
   //   ratingAdvanced: FlowbiteRatingAdvancedTheme;
   //   pagination: FlowbitePaginationTheme;
-  //   sidebar: FlowbiteSidebarTheme;
+  sidebar: FlowbiteSidebarTheme;
   //   progress: FlowbiteProgressTheme;
   //   spinner: FlowbiteSpinnerTheme;
   //   tabs: FlowbiteTabsTheme;

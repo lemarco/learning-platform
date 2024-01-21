@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from "classnames";
-import { Dropdown, Sidebar, TextInput, Tooltip } from "flowbite-react";
-import type { FC } from "react";
-import { useEffect, useState } from "react";
+import { Dropdown, Sidebar as SidebarComponent, TextInput, Tooltip } from "components";
+
 import {
   HiAdjustments,
   HiChartPie,
@@ -19,12 +17,13 @@ import {
   HiViewGrid,
 } from "react-icons/hi";
 
-import { useSidebarContext } from "../context/SidebarContext";
-import isSmallScreen from "../helpers/is-small-screen";
+import { component$, useContext } from "@builder.io/qwik";
+import { isSmallScreen } from "~/utils/dom";
+import { SidebarContext } from "./context";
 
-const ExampleSidebar: FC = () => {
-  const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } = useSidebarContext();
-  console.log("isSidebarOpenOnSmallScreens = ", isSidebarOpenOnSmallScreens);
+export const Sidebar = component$(() => {
+  const { isOpenOnSmallScreens: isSidebarOpenOnSmallScreens } = useContext(SidebarContext);
+
   const [currentPage, setCurrentPage] = useState("");
   const [isEcommerceOpen, setEcommerceOpen] = useState(true);
   const [isUsersOpen, setUsersOpen] = useState(true);
@@ -43,97 +42,97 @@ const ExampleSidebar: FC = () => {
         hidden: !isSidebarOpenOnSmallScreens,
       })}
     >
-      <Sidebar aria-label="Sidebar with multi-level dropdown example" collapsed={isSidebarOpenOnSmallScreens && !isSmallScreen()}>
+      <SidebarComponent aria-label="Sidebar with multi-level dropdown example" collapsed={isSidebarOpenOnSmallScreens && !isSmallScreen()}>
         <div class="flex h-full flex-col justify-between py-2">
           <div>
             <form class="pb-3 md:hidden">
               <TextInput icon={HiSearch} type="search" placeholder="Search" required size={32} />
             </form>
-            <Sidebar.Items>
-              <Sidebar.ItemGroup>
-                <Sidebar.Item href="/" icon={HiChartPie} class={"/" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+            <SidebarItems>
+              <SidebarItemGroup>
+                <SidebarItem href="/" icon={HiChartPie} class={"/" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                   Dashboard
-                </Sidebar.Item>
-                <Sidebar.Item href="/kanban" icon={HiViewGrid} class={"/kanban" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                </SidebarItem>
+                <SidebarItem href="/kanban" icon={HiViewGrid} class={"/kanban" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                   Kanban
-                </Sidebar.Item>
-                <Sidebar.Item
+                </SidebarItem>
+                <SidebarItem
                   href="/mailing/inbox"
                   icon={HiInboxIn}
                   label="3"
                   class={"/mailing/inbox" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                 >
                   Inbox
-                </Sidebar.Item>
-                <Sidebar.Collapse icon={HiShoppingBag} label="E-commerce" open={isEcommerceOpen}>
-                  <Sidebar.Item
+                </SidebarItem>
+                <SidebarCollapse icon={HiShoppingBag} label="E-commerce" open={isEcommerceOpen}>
+                  <SidebarItem
                     href="/e-commerce/products"
                     class={"/e-commerce/products" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Products
-                  </Sidebar.Item>
-                  <Sidebar.Item
+                  </SidebarItem>
+                  <SidebarItem
                     href="/e-commerce/billing"
                     class={"/e-commerce/billing" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Billing
-                  </Sidebar.Item>
-                  <Sidebar.Item
+                  </SidebarItem>
+                  <SidebarItem
                     href="/e-commerce/invoice"
                     class={"/e-commerce/invoice" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}
                   >
                     Invoice
-                  </Sidebar.Item>
-                </Sidebar.Collapse>
-                <Sidebar.Collapse icon={HiUsers} label="Users" open={isUsersOpen}>
-                  <Sidebar.Item href="/users/list" class={"/users/list" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                  </SidebarItem>
+                </SidebarCollapse>
+                <SidebarCollapse icon={HiUsers} label="Users" open={isUsersOpen}>
+                  <SidebarItem href="/users/list" class={"/users/list" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                     Users list
-                  </Sidebar.Item>
-                  <Sidebar.Item href="/users/profile" class={"/users/profile" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                  </SidebarItem>
+                  <SidebarItem href="/users/profile" class={"/users/profile" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                     Profile
-                  </Sidebar.Item>
-                  <Sidebar.Item href="/users/feed" class={"/users/feed" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                  </SidebarItem>
+                  <SidebarItem href="/users/feed" class={"/users/feed" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                     Feed
-                  </Sidebar.Item>
-                  <Sidebar.Item href="/users/settings" class={"/users/settings" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
+                  </SidebarItem>
+                  <SidebarItem href="/users/settings" class={"/users/settings" === currentPage ? "bg-gray-100 dark:bg-gray-700" : ""}>
                     Settings
-                  </Sidebar.Item>
-                </Sidebar.Collapse>
-                <Sidebar.Collapse icon={HiChartSquareBar} label="Pages">
-                  <Sidebar.Item href="/pages/pricing">Pricing</Sidebar.Item>
-                  <Sidebar.Item href="/pages/maintenance">Maintenace</Sidebar.Item>
-                  <Sidebar.Item href="/pages/404">404 not found</Sidebar.Item>
-                  <Sidebar.Item href="/pages/500">500 server error</Sidebar.Item>
-                </Sidebar.Collapse>
-                <Sidebar.Collapse icon={HiLockClosed} label="Authentication">
-                  <Sidebar.Item href="/authentication/sign-in">Sign in</Sidebar.Item>
-                  <Sidebar.Item href="/authentication/sign-up">Sign up</Sidebar.Item>
-                  <Sidebar.Item href="/authentication/forgot-password">Forgot password</Sidebar.Item>
-                  <Sidebar.Item href="/authentication/reset-password">Reset password</Sidebar.Item>
-                  <Sidebar.Item href="/authentication/profile-lock">Profile lock</Sidebar.Item>
-                </Sidebar.Collapse>
-              </Sidebar.ItemGroup>
-              <Sidebar.ItemGroup>
-                <Sidebar.Item href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>
+                  </SidebarItem>
+                </SidebarCollapse>
+                <SidebarCollapse icon={HiChartSquareBar} label="Pages">
+                  <SidebarItem href="/pages/pricing">Pricing</SidebarItem>
+                  <SidebarItem href="/pages/maintenance">Maintenace</SidebarItem>
+                  <SidebarItem href="/pages/404">404 not found</SidebarItem>
+                  <SidebarItem href="/pages/500">500 server error</SidebarItem>
+                </SidebarCollapse>
+                <SidebarCollapse icon={HiLockClosed} label="Authentication">
+                  <SidebarItem href="/authentication/sign-in">Sign in</SidebarItem>
+                  <SidebarItem href="/authentication/sign-up">Sign up</SidebarItem>
+                  <SidebarItem href="/authentication/forgot-password">Forgot password</SidebarItem>
+                  <SidebarItem href="/authentication/reset-password">Reset password</SidebarItem>
+                  <SidebarItem href="/authentication/profile-lock">Profile lock</SidebarItem>
+                </SidebarCollapse>
+              </SidebarItemGroup>
+              <SidebarItemGroup>
+                <SidebarItem href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>
                   Docs
-                </Sidebar.Item>
-                <Sidebar.Item href="https://flowbite-react.com/" icon={HiCollection}>
+                </SidebarItem>
+                <SidebarItem href="https://flowbite-react.com/" icon={HiCollection}>
                   Components
-                </Sidebar.Item>
-                <Sidebar.Item href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>
+                </SidebarItem>
+                <SidebarItem href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>
                   Help
-                </Sidebar.Item>
-              </Sidebar.ItemGroup>
-            </Sidebar.Items>
+                </SidebarItem>
+              </SidebarItemGroup>
+            </SidebarItems>
           </div>
           <BottomMenu />
         </div>
-      </Sidebar>
+      </SidebarComponent>
     </div>
   );
-};
+});
 
-const BottomMenu: FC = () => (
+const BottomMenu = component$(() => (
   <div class="flex items-center justify-center gap-x-5">
     <button class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
       <span class="sr-only">Tweaks</span>
@@ -154,9 +153,9 @@ const BottomMenu: FC = () => (
       <LanguageDropdown />
     </div>
   </div>
-);
+));
 
-const LanguageDropdown: FC = () => (
+const LanguageDropdown = component$(() => (
   <Dropdown
     arrowIcon={false}
     inline
@@ -290,6 +289,4 @@ const LanguageDropdown: FC = () => (
       </li>
     </ul>
   </Dropdown>
-);
-
-export default ExampleSidebar;
+));

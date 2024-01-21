@@ -14,7 +14,7 @@ import {
   useVisibleTask$,
 } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import { CAN_USE_DOM } from "../../utils/canUseDom";
+import { CAN_USE_DOM } from "../../utils/dom";
 
 import Lexical from "lexical";
 import type {

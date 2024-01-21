@@ -22,7 +22,7 @@ import { accordionTheme } from "./Accordion/theme";
 // import { rangeSliderTheme } from "./RangeSlider/theme";
 // import { ratingTheme } from "./Rating/theme";
 // import { selectTheme } from "./Select/theme";
-// import { sidebarTheme } from "./Sidebar/theme";
+import { sidebarTheme } from "./Sidebar/theme";
 // import { spinnerTheme } from "./Spinner/theme";
 // import { tabTheme } from "./Tab/theme";
 // import { tableTheme } from "./Table/theme";
@@ -61,7 +61,7 @@ export const theme = {
   //   textInput: textInputTheme,
   //   textarea: textareaTheme,
   //   toggleSwitch: toggleSwitchTheme,
-  //   sidebar: sidebarTheme,
+  sidebar: sidebarTheme,
   //   spinner: spinnerTheme,
   //   tab: tabTheme,
   //   table: tableTheme,
