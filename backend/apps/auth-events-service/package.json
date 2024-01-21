@@ -3,14 +3,17 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+    "@types/pg": "^8.10.9",
+    "bun-types": "latest",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "framework": "workspace:*",
+    "kafkajs": "^2.2.4",
+    "pg": "^8.11.3",
+    "schemas": "workspace:*",
     "utils": "workspace:*",
-    "schemas": "workspace:*"
-  }
+    "zod": "^3.22.4"
+  },
+  "scripts": { "dev": "bun ./src/index.ts --watch" }
 }

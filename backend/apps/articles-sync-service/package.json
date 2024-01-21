@@ -3,13 +3,18 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+    "@types/bun": "latest",
+    "typescript": "^5.3.3",
+    "@types/pg": "^8.10.9"
   },
   "dependencies": {
+    "@elysiajs/cron": "^0.8.0",
+    "drizzle-orm": "^0.29.3",
+    "elysia": "^0.8.9",
     "framework": "workspace:*",
-    "schemas": "workspace:*"
-  }
+    "pg": "^8.11.3",
+    "schemas": "workspace:*",
+    "zod": "^3.22.4"
+  },
+  "scripts": { "dev": "bun ./src/index.ts --watch" }
 }

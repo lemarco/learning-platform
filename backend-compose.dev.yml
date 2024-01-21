@@ -5,60 +5,69 @@ services:
     container_name: ${ARTICLES_QUERY_SERVICE_HOST_NAME}
     restart: on-failure
     build:
-      dockerfile: ./backend/.dev.dockerfile
-    command: bun dev:articles-query
+      dockerfile: ./backend/apps/articles-query-service/.dev.dockerfile
+
     expose:
       - ${ARTICLES_QUERY_SERVICE_PORT}
     volumes:
-      - ./backend:/app
+      - ./backend/apps/articles-query-service/src:/app/backend/apps/articles-query-service/src
       - ./logs/services:/app/logs
-
-
 
   articles-command-service:
     container_name: ${ARTICLES_COMMAND_SERVICE_HOST_NAME}
     restart: on-failure
     build:
-      dockerfile: ./backend/.dev.dockerfile
-    command: bun dev:articles-command
+      dockerfile: ./backend/apps/articles-command-service/.dev.dockerfile
     expose:
       - ${ARTICLES_COMMAND_SERVICE_PORT}
     volumes:
-      - ./backend:/app
+      - ./backend/apps/articles-command-service/src:/app/backend/apps/articles-command-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
   articles-sync-service:
     container_name: ${ARTICLES_SYNC_SERVICE_HOST_NAME}
     restart: on-failure
     build:
-      dockerfile: ./backend/.dev.dockerfile
-    command: bun dev:articles-sync
+      dockerfile: ./backend/apps/articles-sync-service/.dev.dockerfile
+
     expose:
       - ${ARTICLES_SYNC_SERVICE_PORT}
     volumes:
-      - ./backend:/app
+      - ./backend/apps/articles-sync-service/src:/app/backend/apps/articles-sync-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
 
   auth_command_service:
     container_name: ${AUTH_COMMANDS_SERVICE_HOST_NAME}
     restart: on-failure
     build:
-      dockerfile: ./backend/.dev.dockerfile
-    command: bun run dev:auth-command
+      dockerfile: ./backend/apps/auth-command-service/.dev.dockerfile
+
     expose:
       - ${AUTH_COMMANDS_SERVICE_PORT}
     volumes:
-      - ./backend:/app
+      - ./backend/apps/auth-command-service/src:/app/backend/apps/auth-command-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
 
   auth_query_service:
     container_name: ${AUTH_QUERY_SERVICE_HOST_NAME}
     build:
-      dockerfile: ./backend/.dev.dockerfile
-    command: bun run dev:auth-query
+      dockerfile: ./backend/apps/auth-query-service/.dev.dockerfile
+
     ports:
       - ${AUTH_QUERY_SERVICE_PORT}:${AUTH_QUERY_SERVICE_PORT}
     volumes:
-      - ./backend:/app
+      - ./backend/apps/auth-query-service/src:/app/backend/apps/auth-query-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
     expose:
       - ${AUTH_QUERY_SERVICE_PORT}
@@ -66,19 +75,25 @@ services:
   auth_events_service:
     container_name: ${AUTH_EVENTS_SERVICE_HOST_NAME}
     build:
-      dockerfile: ./backend/.dev.dockerfile
-    command: bun run dev:auth-events
+      dockerfile: ./backend/apps/auth-events-service/.dev.dockerfile
+
     volumes:
-      - ./backend:/app
+      - ./backend/apps/auth-events-service/src:/app/backend/apps/auth-events-service/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs
 
   gateway:
     container_name: ${GATEWAY_HOST_NAME}
     build:
-      dockerfile: ./backend/.dev.dockerfile
-    command: bun run dev:gateway
+      dockerfile: ./backend/apps/gateway/.dev.dockerfile
+
     ports:
       - ${GATEWAY_PORT}:${GATEWAY_PORT}
     volumes:
-      - ./backend:/app
+      - ./backend/apps/gateway/src:/app/backend/apps/gateway/src
+      - ./backend/libs/framework/src:/app/backend/libs/framework/src
+      - ./backend/libs/schemas/src:/app/backend/libs/schemas/src
+      - ./backend/libs/utils/src:/app/backend/libs/utils/src
       - ./logs/services:/app/logs

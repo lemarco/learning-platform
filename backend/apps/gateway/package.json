@@ -3,9 +3,13 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "typescript": "^5.3.3"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "scripts": { "dev": "bun ./src/index.ts --watch" },
+  "dependencies": {
+    "elysia": "^0.8.9",
+    "kafkajs": "^2.2.4",
+    "zod": "^3.22.4"
   }
 }
