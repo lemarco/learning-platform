@@ -38,5 +38,10 @@ services:
     ports:
       - "${PUBLIC_FRONTEND_MAIN_APP_PORT}:${PUBLIC_FRONTEND_MAIN_APP_PORT}"
     volumes:
-      - "./frontend/apps/main/src:/app/frontend/apps/main/src"
-      - "./frontend/libs/components/src:/app/frontend/libs/components/src"
+      - "./frontend/apps/main/app:/app/frontend/apps/main/app"
+      - "./frontend/apps/main/components:/app/frontend/apps/main/components"
+      - "./frontend/apps/main/context:/app/frontend/apps/main/context"
+      - "./frontend/apps/main/data:/app/frontend/apps/main/data"
+      - "./frontend/apps/main/helpers:/app/frontend/apps/main/helpers"
+      - "./frontend/apps/main/public:/app/frontend/apps/main/public"
+      - "./frontend/apps/main/types:/app/frontend/apps/main/types"

@@ -9,7 +9,6 @@
     "re": "bun ./automation re",
     "components:dev": "cd ./frontend/libs/components && bun run build.lib",
     "front:dev": "cp .env ./frontend/apps/main/.env && cd ./frontend/apps/main && bun run dev",
-    "front-with-components:dev": "bun run concurrently \"bun run components:dev\" \"bun run front:dev\" ",
     "articles-command-service:dev": "cd ./backend/apps/articles-command-service && bun run dev",
     "articles-query-service:dev": "cd ./backend/apps/articles-query-service && bun run dev",
     "articles-sync-service:dev": "cd ./backend/apps/articles-sync-service && bun run dev",
@@ -31,9 +30,6 @@
     "storybook": "cd ./frontend/libs/components && bun run storybook"
   },
   "dependencies": {
-    "classnames": "^2.5.1",
-    "concurrently": "8.2.2",
-    "tailwind-merge": "^2.2.0",
-    "vite-plugin-dts": "^3.7.1"
+    "concurrently": "8.2.2"
   }
 }
