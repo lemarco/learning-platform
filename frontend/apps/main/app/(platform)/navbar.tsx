@@ -1,7 +1,5 @@
 "use client";
 
-import { useSidebarContext } from "../../context/SidebarContext";
-import { isSmallScreen } from "../../helpers/is-small-screen";
 import { Avatar, DarkThemeToggle, Dropdown, Label, Navbar, TextInput, Tooltip, useThemeMode } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +20,8 @@ import {
   HiViewGrid,
   HiX,
 } from "react-icons/hi";
+import { useSidebarContext } from "../../context/SidebarContext";
+import { isSmallScreen } from "../../helpers/is-small-screen";
 
 export function DashboardNavbar() {
   const { isCollapsed: isSidebarCollapsed, setCollapsed: setSidebarCollapsed } = useSidebarContext();

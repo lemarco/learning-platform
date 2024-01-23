@@ -45,3 +45,5 @@ services:
       - "./frontend/apps/main/helpers:/app/frontend/apps/main/helpers"
       - "./frontend/apps/main/public:/app/frontend/apps/main/public"
       - "./frontend/apps/main/types:/app/frontend/apps/main/types"
+      - "./frontend/apps/main/widgets:/app/frontend/apps/main/widgets"
+      - "./frontend/apps/main/theme.ts:/app/frontend/apps/main/theme.ts"

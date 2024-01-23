@@ -1,12 +1,12 @@
 "use client";
 
-import ApexChart from "../../../components/chart";
-import { formatNumber, formatToUSD } from "../../../helpers/format-number";
 import { Badge, Dropdown, Table, useThemeMode } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, type FC } from "react";
+import { type FC, useEffect } from "react";
 import "svgmap/dist/svgMap.min.css";
+import ApexChart from "../../../widgets/chart";
+import { formatNumber, formatToUSD } from "../../../helpers/format-number";
 import type { DashboardPageData } from "./page";
 
 const DashboardPageContent: FC<DashboardPageData> = ({ dashboard }) => (
@@ -160,9 +160,7 @@ const SalesApexChart: FC<DashboardPageData> = ({ dashboard }) => {
           fontSize: "14px",
           fontWeight: 500,
         },
-        formatter: function (value) {
-          return "$" + value;
-        },
+        formatter: (value) => `$${value}`,
       },
     },
     legend: {
@@ -204,7 +202,7 @@ const NewProductsThisWeek: FC<DashboardPageData> = ({ dashboard }) => (
         <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">New products this week</h3>
       </div>
       <div className="ml-5 flex w-0 flex-1 items-center justify-end text-base font-bold text-green-500 dark:text-green-400">
-        {dashboard.newProductsThisWeek.percentage * 100}%
+        {dashboard.newProductsThisWeek.percentage * 100}%{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
         <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"
@@ -319,7 +317,7 @@ const VisitorsThisWeek: FC<DashboardPageData> = ({ dashboard }) => (
         <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">Visitors this week</h3>
       </div>
       <div className="ml-5 flex w-0 flex-1 items-center justify-end text-base font-bold text-green-500 dark:text-green-400">
-        {dashboard.visitorsThisWeek.percentage * 100}%
+        {dashboard.visitorsThisWeek.percentage * 100}%{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
         <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"
@@ -412,7 +410,7 @@ const UserSignupsThisWeek: FC<DashboardPageData> = ({ dashboard }) => (
         <h3 className="text-base font-normal text-gray-600 dark:text-gray-400">User signups this week</h3>
       </div>
       <div className="ml-5 flex w-0 flex-1 items-center justify-end text-base font-bold text-red-500 dark:text-red-400">
-        {dashboard.userSignupsThisWeek.percentage * 100}%
+        {dashboard.userSignupsThisWeek.percentage * 100}%{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
         <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"
@@ -431,6 +429,7 @@ const UserSignupsThisWeek: FC<DashboardPageData> = ({ dashboard }) => (
           className="inline-flex items-center rounded-lg p-2 text-xs font-medium uppercase text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700 sm:text-sm"
         >
           Users Report
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg
             className="ml-1 h-4 w-4 sm:h-5 sm:w-5"
             fill="none"
@@ -538,6 +537,7 @@ const SessionsByCountry: FC<DashboardPageData> = ({ dashboard }) => (
     <ul className="space-y-6">
       <li className="w-full items-center sm:flex">
         <div className="mb-3 flex items-center sm:mb-0">
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect y="0.529053" width="25.7522" height="17.1429" rx={2} fill="white" />
             <mask id="mask0" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x={0} y={0} width={26} height={18}>
@@ -596,6 +596,7 @@ const SessionsByCountry: FC<DashboardPageData> = ({ dashboard }) => (
       </li>
       <li className="w-full items-center sm:flex">
         <div className="mb-3 flex items-center sm:mb-0">
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.25" y="0.779053" width="25.2567" height="16.6429" rx="1.75" fill="white" stroke="#F3F4F6" strokeWidth="0.5" />
             <mask id="mask0" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x={0} y={0} width={26} height={18}>
@@ -625,6 +626,7 @@ const SessionsByCountry: FC<DashboardPageData> = ({ dashboard }) => (
       </li>
       <li className="w-full items-center sm:flex">
         <div className="mb-3 flex items-center sm:mb-0">
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.25" y="0.779053" width="25.2567" height="16.6429" rx="1.75" fill="white" stroke="#F3F4F6" strokeWidth="0.5" />
             <mask id="mask0" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x={0} y={0} width={26} height={18}>
@@ -648,6 +650,7 @@ const SessionsByCountry: FC<DashboardPageData> = ({ dashboard }) => (
       </li>
       <li className="w-full items-center sm:flex">
         <div className="mb-3 flex items-center sm:mb-0">
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.25" y="0.779297" width="25.2522" height="16.6429" rx="1.75" fill="white" stroke="#F3F4F6" strokeWidth="0.5" />
             <mask id="mask0" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x={0} y={0} width={26} height={18}>
@@ -671,6 +674,7 @@ const SessionsByCountry: FC<DashboardPageData> = ({ dashboard }) => (
       </li>
       <li className="w-full items-center sm:flex">
         <div className="mb-3 flex items-center sm:mb-0">
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect y="0.529053" width="25.7567" height="17.1429" rx={2} fill="white" />
             <mask id="mask0" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x={0} y={0} width={26} height={18}>
@@ -757,6 +761,7 @@ const SessionsByCountry: FC<DashboardPageData> = ({ dashboard }) => (
       </li>
       <li className="w-full items-center sm:flex">
         <div className="mb-3 flex items-center sm:mb-0">
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg className="h-4 w-4" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.25" y="0.779053" width="25.2567" height="16.6429" rx="1.75" fill="white" stroke="#F3F4F6" strokeWidth="0.5" />
             <mask id="mask0" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x={0} y={0} width={26} height={18}>
@@ -800,6 +805,7 @@ const SessionsByCountry: FC<DashboardPageData> = ({ dashboard }) => (
           className="inline-flex items-center rounded-lg p-2 text-xs font-medium uppercase text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700 sm:text-sm"
         >
           Location Overview
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg
             className="ml-1 h-4 w-4 sm:h-5 sm:w-5"
             fill="none"
@@ -821,7 +827,6 @@ const SessionsByCountryMap: FC<DashboardPageData> = ({ dashboard }) => {
   const isDarkTheme = mode === "dark";
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const SVGMap = require("svgmap");
     const previousMap = document.getElementsByClassName("svgMap-map-wrapper")[0];
     previousMap?.parentElement?.removeChild(previousMap);
@@ -893,6 +898,7 @@ const LatestCustomers: FC<DashboardPageData> = ({ dashboard }) => (
           className="inline-flex items-center rounded-lg p-2 text-xs font-medium uppercase text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700 sm:text-sm"
         >
           Sales Report
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg
             className="ml-1 h-4 w-4 sm:h-5 sm:w-5"
             fill="none"
@@ -965,6 +971,7 @@ const AcquisitionOverview: FC<DashboardPageData> = ({ dashboard }) => (
           className="inline-flex items-center rounded-lg p-2 text-xs font-medium uppercase text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700 sm:text-sm"
         >
           Acquisition Report
+          {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
           <svg
             className="ml-1 h-4 w-4 sm:h-5 sm:w-5"
             fill="none"
@@ -1028,7 +1035,7 @@ const AcquisitionApexChart: FC<DashboardPageData> = ({ dashboard }) => {
         },
       },
       y: {
-        formatter: (value) => value + "%",
+        formatter: (value) => `${value}%`,
       },
     },
     grid: {

@@ -30,6 +30,7 @@
     "storybook": "cd ./frontend/libs/components && bun run storybook"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^2.0.0",
     "concurrently": "8.2.2"
   }
 }

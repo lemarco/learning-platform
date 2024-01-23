@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Label, Textarea, TextInput } from "flowbite-react";
+import { Button, Label, TextInput, Textarea } from "flowbite-react";
 import type { NextPage } from "next";
 import Link from "next/link";
 import {

@@ -1,11 +1,11 @@
 "use client";
 
-import { formatToUSD } from "../../../../../helpers/format-number";
-import { Badge, Breadcrumb, Button, Card, Label, Table, Textarea, TextInput } from "flowbite-react";
+import { Badge, Breadcrumb, Button, Card, Label, Table, TextInput, Textarea } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { FC } from "react";
 import { HiDocumentText, HiHome } from "react-icons/hi";
+import { formatToUSD } from "../../../../../helpers/format-number";
 import type { ECommerceBillingPageData } from "./page";
 
 const ECommerceBillingPageContent: FC<ECommerceBillingPageData> = ({ nextPayment, orderHistory }) => (

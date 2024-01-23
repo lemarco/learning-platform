@@ -1,5 +1,5 @@
-import { FooterMain } from "@/components/footer-main";
-import { NavbarMain } from "@/components/navbar-main";
+import { FooterMain } from "../../../../widgets/footer-main";
+import { NavbarMain } from "../../../../widgets/navbar-main";
 import { Benefits, FAQ, PricingPlan } from "./sections";
 
 export default function PricingPage() {

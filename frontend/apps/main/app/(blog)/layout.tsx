@@ -1,6 +1,6 @@
-import { Footer } from "../../components/footer";
-import { Header } from "../../components/header";
 import type { ReactNode } from "react";
+import { Footer } from "../../widgets/footer";
+import { Header } from "../../widgets/header";
 // export const useGetGoogleLink = routeLoader$(async () => {
 //   return await fetch("http://0.0.0.0:6004/auth/google/link")
 //     .then((data) => data.json())

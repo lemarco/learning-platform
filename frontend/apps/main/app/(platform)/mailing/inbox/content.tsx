@@ -4,7 +4,7 @@ import { Checkbox, Label, Progress, Table } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, type FC } from "react";
+import { type FC, useState } from "react";
 import {
   HiArchive,
   HiChevronLeft,

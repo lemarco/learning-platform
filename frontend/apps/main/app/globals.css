@@ -1,114 +1,76 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-/* chart styles */
-.apexcharts-tooltip {
-  @apply rounded-lg border-0 bg-white text-gray-500 shadow-lg dark:bg-gray-700 dark:text-gray-400 !important;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
 }
-
-.apexcharts-tooltip .apexcharts-tooltip-title {
-  @apply border-b border-gray-200 bg-gray-100 px-4 py-2 dark:border-gray-500 dark:bg-gray-600 !important;
-}
-
-.apexcharts-xaxistooltip {
-  @apply rounded-lg border-0 bg-white text-gray-500 shadow-lg dark:bg-gray-700 dark:text-gray-300 !important;
-}
-
-.apexcharts-tooltip .apexcharts-tooltip-text-y-value {
-  @apply dark:text-white;
-}
-
-.apexcharts-xaxistooltip-text {
-  @apply text-sm font-medium !important;
-}
-
-.apexcharts-xaxistooltip:before,
-.apexcharts-xaxistooltip:after {
-  @apply border-0 !important;
-}
-
-/* SVG map styles */
-.svgMap-map-wrapper {
-  @apply bg-white !important;
-}
-
-.svgMap-map-image {
-  @apply dark:bg-gray-800;
-}
-
-.svgMap-map-controls-wrapper {
-  @apply bottom-0 left-0 shadow-none dark:bg-gray-800 !important;
-}
-
-.svgMap-map-controls-zoom {
-  @apply dark:bg-gray-800 !important;
-}
-
-.svgMap-map-wrapper .svgMap-control-button {
-  @apply rounded-lg border border-solid border-gray-300 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-600 !important;
-}
-
-.svgMap-map-wrapper .svgMap-control-button.svgMap-zoom-button:after,
-.svgMap-map-wrapper .svgMap-control-button.svgMap-zoom-button:before {
-  @apply dark:bg-gray-600 dark:hover:bg-gray-500;
-}
-
-.svgMap-map-wrapper .svgMap-control-button:first-child {
-  @apply mr-2 !important;
-}
-
-.svgMap-tooltip {
-  @apply rounded-lg border-0 bg-white text-left shadow-lg dark:bg-gray-700 !important;
-}
-
-.svgMap-tooltip .svgMap-tooltip-content-container .svgMap-tooltip-flag-container {
-  @apply mr-2 inline-block border-0 p-0 text-left !important;
-}
-
-.svgMap-tooltip .svgMap-tooltip-content-container .svgMap-tooltip-flag-container .svgMap-tooltip-flag {
-  @apply inline-block h-4 border-0 p-0 !important;
-}
-
-.svgMap-tooltip .svgMap-tooltip-title {
-  @apply inline-block pt-2 text-sm font-semibold text-gray-900 dark:text-white !important;
-}
-
-.svgMap-tooltip .svgMap-tooltip-content {
-  @apply mt-0 !important;
-}
-
-.svgMap-tooltip .svgMap-tooltip-content table td {
-  @apply text-left text-sm font-normal text-gray-500 dark:text-gray-400 !important;
-}
-
-.svgMap-tooltip .svgMap-tooltip-content table td span {
-  @apply text-left text-sm font-semibold text-gray-900 dark:text-white !important;
-}
-
-.svgMap-tooltip .svgMap-tooltip-pointer {
-  @apply hidden !important;
-}
-
-.svgMap-map-wrapper .svgMap-country {
-  @apply dark:stroke-gray-800;
-}
-
-.svgMap-map-wrapper .svgMap-country {
-  @apply dark:stroke-gray-800 !important;
-}
-
-.svgMap-country[fill="#4B5563"] {
-  @apply fill-[#4B5563] !important;
-}
-
-/* kanban styles */
-
-.drag-card {
-  @apply opacity-100 !important;
-  @apply rotate-6;
-}
-
-.ghost-card {
-  @apply bg-gray-100/40 dark:bg-gray-600/40 !important;
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

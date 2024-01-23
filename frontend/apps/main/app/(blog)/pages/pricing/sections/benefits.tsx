@@ -10,22 +10,13 @@ export function Benefits() {
               <thead className="bg-gray-50 dark:bg-gray-900">
                 <tr>
                   <th scope="col" className="p-4 text-left" />
-                  <th
-                    scope="col"
-                    className="p-4 text-right text-base font-semibold tracking-wider text-gray-900 dark:text-white"
-                  >
+                  <th scope="col" className="p-4 text-right text-base font-semibold tracking-wider text-gray-900 dark:text-white">
                     Freelancer
                   </th>
-                  <th
-                    scope="col"
-                    className="p-4 text-right text-base font-semibold tracking-wider text-gray-900 dark:text-white"
-                  >
+                  <th scope="col" className="p-4 text-right text-base font-semibold tracking-wider text-gray-900 dark:text-white">
                     Company
                   </th>
-                  <th
-                    scope="col"
-                    className="p-4 text-right text-base font-semibold tracking-wider text-gray-900 dark:text-white"
-                  >
+                  <th scope="col" className="p-4 text-right text-base font-semibold tracking-wider text-gray-900 dark:text-white">
                     Enterprise
                   </th>
                 </tr>
@@ -79,9 +70,7 @@ export function Benefits() {
                   </td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-900">
-                  <td className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                    Estimate tax payments
-                  </td>
+                  <td className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">Estimate tax payments</td>
                   <td className="p-4">
                     <svg
                       className="ml-auto h-5 w-5 text-green-400"
@@ -267,9 +256,7 @@ export function Benefits() {
                   </td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-900">
-                  <td className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                    Run payroll
-                  </td>
+                  <td className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">Run payroll</td>
                   <td className="p-4">
                     <svg
                       className="ml-auto h-5 w-5 text-red-500"
@@ -361,56 +348,29 @@ export function Benefits() {
                   </td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-900">
-                  <td className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                    Number of Users
-                  </td>
+                  <td className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">Number of Users</td>
                   <td className="p-4">
                     <div className="flex items-center justify-end space-x-1">
-                      <svg
-                        className="h-5 w-5 text-gray-900"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                          clipRule="evenodd"
-                        />
+                      <svg className="h-5 w-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                       </svg>
-                      <span className="text-xs font-medium text-gray-900 dark:text-white sm:text-sm md:text-base">
-                        1 User
-                      </span>
+                      <span className="text-xs font-medium text-gray-900 dark:text-white sm:text-sm md:text-base">1 User</span>
                     </div>
                   </td>
                   <td className="p-4">
                     <div className="flex items-center justify-end space-x-1">
-                      <svg
-                        className="h-5 w-5 text-gray-900"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      <svg className="h-5 w-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                       </svg>
-                      <span className="text-xs font-medium text-gray-900 dark:text-white sm:text-sm md:text-base">
-                        5-10 Users
-                      </span>
+                      <span className="text-xs font-medium text-gray-900 dark:text-white sm:text-sm md:text-base">5-10 Users</span>
                     </div>
                   </td>
                   <td className="rounded-r-lg p-4">
                     <div className="flex items-center justify-end space-x-1">
-                      <svg
-                        className="h-5 w-5 text-gray-900"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      <svg className="h-5 w-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
                       </svg>
-                      <span className="text-xs font-medium text-gray-900 dark:text-white sm:text-sm md:text-base">
-                        20+ Users
-                      </span>
+                      <span className="text-xs font-medium text-gray-900 dark:text-white sm:text-sm md:text-base">20+ Users</span>
                     </div>
                   </td>
                 </tr>
@@ -462,9 +422,7 @@ export function Benefits() {
                   </td>
                 </tr>
                 <tr className="bg-gray-50 dark:bg-gray-900">
-                  <td className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                    Track employee time
-                  </td>
+                  <td className="whitespace-nowrap p-4 text-base font-normal text-gray-500 dark:text-gray-400">Track employee time</td>
                   <td className="p-4">
                     <svg
                       className="ml-auto h-5 w-5 text-red-500"

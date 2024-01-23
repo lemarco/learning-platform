@@ -1,7 +1,6 @@
 "use client";
 
-import type { KanbanBoard } from "../../../types/kanban";
-import { Button, Label, Modal, Textarea, TextInput } from "flowbite-react";
+import { Button, Label, Modal, TextInput, Textarea } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { FC } from "react";
@@ -21,6 +20,7 @@ import {
 } from "react-icons/hi";
 import { PiCaretUpDownBold } from "react-icons/pi";
 import { ReactSortable } from "react-sortablejs";
+import type { KanbanBoard } from "../../../types/kanban";
 import type { KanbanPageData } from "./page";
 
 const KanbanPageContent: FC<KanbanPageData> = ({ kanbanBoards }) => {

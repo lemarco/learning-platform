@@ -1,6 +1,5 @@
 "use client";
 
-import { useSidebarContext } from "../../context/SidebarContext";
 import { Dropdown, Sidebar, TextInput, Tooltip } from "flowbite-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -20,6 +19,7 @@ import {
   HiViewGrid,
 } from "react-icons/hi";
 import { twMerge } from "tailwind-merge";
+import { useSidebarContext } from "../../context/SidebarContext";
 
 export function DashboardSidebar() {
   const { isCollapsed, setCollapsed } = useSidebarContext();

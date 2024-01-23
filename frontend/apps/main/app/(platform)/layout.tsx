@@ -1,8 +1,8 @@
 "use client";
 
-import { SidebarProvider, useSidebarContext } from "../../context/SidebarContext";
 import type { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
+import { SidebarProvider, useSidebarContext } from "../../context/SidebarContext";
 import { DashboardNavbar } from "./navbar";
 import { DashboardSidebar } from "./sidebar";
 

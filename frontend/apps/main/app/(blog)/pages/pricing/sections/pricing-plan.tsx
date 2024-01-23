@@ -3,16 +3,7 @@
 import { formatNumber } from "@/helpers/format-number";
 import { Label, ToggleSwitch } from "flowbite-react";
 import { ComponentProps, useState } from "react";
-import {
-  HiChat,
-  HiCreditCard,
-  HiCube,
-  HiEmojiHappy,
-  HiFire,
-  HiPaperAirplane,
-  HiPresentationChartBar,
-  HiShieldCheck,
-} from "react-icons/hi";
+import { HiChat, HiCreditCard, HiCube, HiEmojiHappy, HiFire, HiPaperAirplane, HiPresentationChartBar, HiShieldCheck } from "react-icons/hi";
 import { twMerge } from "tailwind-merge";
 
 const BENEFITS: PricingCardBenefit[] = [
@@ -59,37 +50,18 @@ export function PricingPlan() {
         Our pricing plan made simple
       </h1>
       <p className="mb-6 text-lg font-normal text-gray-500 dark:text-gray-400 sm:text-xl">
-        All types of businesses need access to development resources, so we give
-        you the option to decide how much you need to use.
+        All types of businesses need access to development resources, so we give you the option to decide how much you need to use.
       </p>
       <div className="flex items-center">
-        <span
-          className={twMerge(
-            "text-base font-medium text-gray-500 dark:text-gray-400",
-            !isYearly && "text-gray-900 dark:text-white",
-          )}
-        >
+        <span className={twMerge("text-base font-medium text-gray-500 dark:text-gray-400", !isYearly && "text-gray-900 dark:text-white")}>
           Monthly
         </span>
         <div>
-          <Label
-            htmlFor="yearly"
-            className="relative mx-4 flex cursor-pointer items-center"
-          >
-            <ToggleSwitch
-              checked={isYearly}
-              id="yearly"
-              name="yearly"
-              onChange={() => setYearly((state) => !state)}
-            />
+          <Label htmlFor="yearly" className="relative mx-4 flex cursor-pointer items-center">
+            <ToggleSwitch checked={isYearly} id="yearly" name="yearly" onChange={() => setYearly((state) => !state)} />
           </Label>
         </div>
-        <span
-          className={twMerge(
-            "text-base font-medium text-gray-500 dark:text-gray-400",
-            isYearly && "text-gray-900 dark:text-white",
-          )}
-        >
+        <span className={twMerge("text-base font-medium text-gray-500 dark:text-gray-400", isYearly && "text-gray-900 dark:text-white")}>
           Yearly
         </span>
       </div>
@@ -154,34 +126,20 @@ interface PricingCardProps {
   href: string;
 }
 
-function PricingCard({
-  title,
-  price,
-  description,
-  benefits,
-  href,
-}: PricingCardProps) {
+function PricingCard({ title, price, description, benefits, href }: PricingCardProps) {
   return (
     <div className="flex flex-col rounded-lg bg-white p-6 shadow dark:bg-gray-800 xl:p-8">
       <div className="flex-1">
-        <h3 className="mb-4 text-2xl font-semibold text-gray-500 dark:text-gray-400">
-          {title}
-        </h3>
+        <h3 className="mb-4 text-2xl font-semibold text-gray-500 dark:text-gray-400">{title}</h3>
         <div className="mb-4 flex items-baseline text-gray-900 dark:text-white">
-          <span className="text-3xl font-semibold dark:text-white">
-            {price.currency}
-          </span>
-          <span className="text-5xl font-extrabold tracking-tight dark:text-white">
-            {formatNumber(price[price.type])}
-          </span>
+          <span className="text-3xl font-semibold dark:text-white">{price.currency}</span>
+          <span className="text-5xl font-extrabold tracking-tight dark:text-white">{formatNumber(price[price.type])}</span>
           <span className="ml-1 text-2xl font-normal text-gray-500 dark:text-gray-400">
             {price.type === "monthly" && "/month"}
             {price.type === "yearly" && "/year"}
           </span>
         </div>
-        <p className="text-lg font-normal text-gray-500 dark:text-gray-400">
-          {description}
-        </p>
+        <p className="text-lg font-normal text-gray-500 dark:text-gray-400">{description}</p>
         <ul role="list" className="my-6 space-y-4">
           {benefits.map((benefit) => (
             <PricingCardBenefit key={benefit.title} {...benefit} />
@@ -204,25 +162,11 @@ interface PricingCardBenefit {
   disabled?: boolean;
 }
 
-function PricingCardBenefit({
-  icon: Icon,
-  title,
-  disabled,
-}: PricingCardBenefit) {
+function PricingCardBenefit({ icon: Icon, title, disabled }: PricingCardBenefit) {
   return (
     <li className={twMerge("flex space-x-3", disabled && "line-through")}>
-      <Icon
-        className={twMerge(
-          "h-5 w-5 flex-shrink-0 text-green-400",
-          disabled && "text-gray-400 dark:text-gray-500",
-        )}
-      />
-      <span
-        className={twMerge(
-          "text-base font-normal text-gray-500 dark:text-gray-400",
-          disabled && "text-gray-500 dark:text-gray-500",
-        )}
-      >
+      <Icon className={twMerge("h-5 w-5 flex-shrink-0 text-green-400", disabled && "text-gray-400 dark:text-gray-500")} />
+      <span className={twMerge("text-base font-normal text-gray-500 dark:text-gray-400", disabled && "text-gray-500 dark:text-gray-500")}>
         {title}
       </span>
     </li>
