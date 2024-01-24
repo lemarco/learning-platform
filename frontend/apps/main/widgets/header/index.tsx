@@ -260,8 +260,8 @@ const BottomHeader = () => {
   );
 };
 
-import "./styles.css";
 import { Children } from "react";
+import "./styles.css";
 const DropDownTrigger = ({ children, dropdownId, triggerId }: { triggerId: string; dropdownId: string; children: React.ReactNode }) => {
   return (
     <button
@@ -284,7 +284,7 @@ const DropDownContent = ({ children, dropdownId, triggerId }: { triggerId: strin
     </div>
   );
 };
-import { Item, DropDownItem } from "./select";
+import { DropDownItem, Item } from "./select";
 
 export const Header = ({ link = "" }: { link: string }) => {
   return (

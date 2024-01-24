@@ -43,16 +43,19 @@ export class CollapsibleContainerNode extends ElementNode {
   }
 
   createDOM(config: EditorConfig, editor: LexicalEditor): HTMLElement {
-    const dom = document.createElement("details");
-    dom.classList.add("Collapsible__container");
-    dom.open = this.__open;
-    dom.addEventListener("toggle", () => {
-      const open = editor.getEditorState().read(() => this.getOpen());
-      if (open !== dom.open) {
-        editor.update(() => this.toggleOpen());
-      }
-    });
-    return dom;
+    if (typeof document !== "undefined") {
+      const dom = document.createElement("details");
+      dom.classList.add("Collapsible__container");
+      dom.open = this.__open;
+      dom.addEventListener("toggle", () => {
+        const open = editor.getEditorState().read(() => this.getOpen());
+        if (open !== dom.open) {
+          editor.update(() => this.toggleOpen());
+        }
+      });
+      return dom;
+    }
+    return undefined as any;
   }
 
   updateDOM(prevNode: CollapsibleContainerNode, dom: HTMLDetailsElement): boolean {
@@ -80,9 +83,12 @@ export class CollapsibleContainerNode extends ElementNode {
   }
 
   exportDOM(): DOMExportOutput {
-    const element = document.createElement("details");
-    element.setAttribute("open", this.__open.toString());
-    return { element };
+    if (typeof document !== "undefined") {
+      const element = document.createElement("details");
+      element.setAttribute("open", this.__open.toString());
+      return { element };
+    }
+    return undefined as any;
   }
 
   exportJSON(): SerializedCollapsibleContainerNode {

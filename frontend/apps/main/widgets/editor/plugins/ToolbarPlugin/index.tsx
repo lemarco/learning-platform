@@ -48,6 +48,7 @@ import { IS_APPLE } from "../../shared/environment";
 
 import useModal from "../../hooks/useModal";
 
+import { Button, ButtonGroup, Dropdown, Select } from "flowbite-react";
 import { $createStickyNode } from "../../nodes/StickyNode";
 // import DropDown, { DropDownItem } from "../../ui/DropDown";
 import DropdownColorPicker from "../../ui/DropdownColorPicker";
@@ -64,7 +65,6 @@ import { INSERT_PAGE_BREAK } from "../PageBreakPlugin";
 import { InsertPollDialog } from "../PollPlugin";
 import { InsertTableDialog } from "../TablePlugin";
 import FontSize from "./fontSize";
-import { Button, ButtonGroup, Dropdown, Select } from "flowbite-react";
 import { ParagraphIcon, RedoIcon, UndoIcon } from "./icons";
 
 // import { SelectContent, SelectItem, SelectTrigger, SelectValue, Select } from "@radix-ui/react-select";

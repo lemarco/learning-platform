@@ -34,9 +34,12 @@ export class CollapsibleTitleNode extends ElementNode {
   }
 
   createDOM(config: EditorConfig, editor: LexicalEditor): HTMLElement {
-    const dom = document.createElement("summary");
-    dom.classList.add("Collapsible__title");
-    return dom;
+    if (typeof document !== "undefined") {
+      const dom = document.createElement("summary");
+      dom.classList.add("Collapsible__title");
+      return dom;
+    }
+    return undefined as any;
   }
 
   updateDOM(prevNode: CollapsibleTitleNode, dom: HTMLElement): boolean {
@@ -59,8 +62,11 @@ export class CollapsibleTitleNode extends ElementNode {
   }
 
   exportDOM(): DOMExportOutput {
-    const element = document.createElement("summary");
-    return { element };
+    if (typeof document !== "undefined") {
+      const element = document.createElement("summary");
+      return { element };
+    }
+    return undefined as any;
   }
 
   exportJSON(): SerializedCollapsibleTitleNode {

@@ -374,6 +374,10 @@ export default function DraggableBlockPlugin({
 }: {
   anchorElem?: HTMLElement;
 }): JSX.Element {
-  const [editor] = useLexicalComposerContext();
-  return useDraggableBlockMenu(editor, anchorElem, editor._editable);
+  if (typeof document !== "undefined") {
+    anchorElem = !anchorElem ? document.body : anchorElem;
+    const [editor] = useLexicalComposerContext();
+    return useDraggableBlockMenu(editor, anchorElem, editor._editable);
+  }
+  return <></>;
 }

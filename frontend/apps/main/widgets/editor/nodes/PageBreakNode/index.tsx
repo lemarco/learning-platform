@@ -112,10 +112,13 @@ export class PageBreakNode extends DecoratorNode<JSX.Element> {
   }
 
   createDOM(): HTMLElement {
-    const el = document.createElement("figure");
-    el.style.pageBreakAfter = "always";
-    el.setAttribute("type", this.getType());
-    return el;
+    if (typeof document !== "undefined") {
+      const el = document.createElement("figure");
+      el.style.pageBreakAfter = "always";
+      el.setAttribute("type", this.getType());
+      return el;
+    }
+    return undefined as any;
   }
 
   getTextContent(): string {

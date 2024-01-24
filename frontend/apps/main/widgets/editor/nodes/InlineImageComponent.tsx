@@ -214,11 +214,12 @@ export default function InlineImageComponent({
           caption.focus();
           return true;
         }
-
-        if (buttonElem !== null && buttonElem !== document.activeElement) {
-          event.preventDefault();
-          buttonElem.focus();
-          return true;
+        if (typeof document !== "undefined") {
+          if (buttonElem !== null && buttonElem !== document.activeElement) {
+            event.preventDefault();
+            buttonElem.focus();
+            return true;
+          }
         }
       }
       return false;

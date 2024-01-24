@@ -60,7 +60,7 @@ export class AutocompleteNode extends DecoratorNode<JSX.Element | null> {
     if (typeof document !== "undefined") {
       return document.createElement("span");
     }
-    return undefined as any
+    return undefined as any;
   }
 
   decorate(): JSX.Element | null {

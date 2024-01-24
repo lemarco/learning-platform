@@ -839,39 +839,41 @@ export default function CommentPlugin({
   const onAddComment = () => {
     editor.dispatchCommand(INSERT_INLINE_COMMAND, undefined);
   };
-
-  return (
-    <>
-      {showCommentInput &&
-        createPortal(
-          <CommentInputBox editor={editor} cancelAddComment={cancelAddComment} submitAddComment={submitAddComment} />,
+  if (typeof document !== "undefined") {
+    return (
+      <>
+        {showCommentInput &&
+          createPortal(
+            <CommentInputBox editor={editor} cancelAddComment={cancelAddComment} submitAddComment={submitAddComment} />,
+            document.body,
+          )}
+        {activeAnchorKey !== null &&
+          activeAnchorKey !== undefined &&
+          !showCommentInput &&
+          createPortal(<AddCommentBox anchorKey={activeAnchorKey} editor={editor} onAddComment={onAddComment} />, document.body)}
+        {createPortal(
+          <Button
+            className={`CommentPlugin_ShowCommentsButton ${showComments ? "active" : ""}`}
+            onClick={() => setShowComments(!showComments)}
+            title={showComments ? "Hide Comments" : "Show Comments"}
+          >
+            <i className="comments" />
+          </Button>,
           document.body,
         )}
-      {activeAnchorKey !== null &&
-        activeAnchorKey !== undefined &&
-        !showCommentInput &&
-        createPortal(<AddCommentBox anchorKey={activeAnchorKey} editor={editor} onAddComment={onAddComment} />, document.body)}
-      {createPortal(
-        <Button
-          className={`CommentPlugin_ShowCommentsButton ${showComments ? "active" : ""}`}
-          onClick={() => setShowComments(!showComments)}
-          title={showComments ? "Hide Comments" : "Show Comments"}
-        >
-          <i className="comments" />
-        </Button>,
-        document.body,
-      )}
-      {showComments &&
-        createPortal(
-          <CommentsPanel
-            comments={comments}
-            submitAddComment={submitAddComment}
-            deleteCommentOrThread={deleteCommentOrThread}
-            activeIDs={activeIDs}
-            markNodeMap={markNodeMap}
-          />,
-          document.body,
-        )}
-    </>
-  );
+        {showComments &&
+          createPortal(
+            <CommentsPanel
+              comments={comments}
+              submitAddComment={submitAddComment}
+              deleteCommentOrThread={deleteCommentOrThread}
+              activeIDs={activeIDs}
+              markNodeMap={markNodeMap}
+            />,
+            document.body,
+          )}
+      </>
+    );
+  }
+  return <></>;
 }

@@ -20,19 +20,22 @@ export function EditorApp(): JSX.Element {
     },
     theme: PlaygroundEditorTheme,
   };
-  return (
-    <SettingsContext>
-      <LexicalComposer initialConfig={initialConfig}>
-        <SharedHistoryContext>
-          <TableContext>
-            <SharedAutocompleteContext>
-              <div className="editor-shell">
-                <Editor />
-              </div>
-            </SharedAutocompleteContext>
-          </TableContext>
-        </SharedHistoryContext>
-      </LexicalComposer>
-    </SettingsContext>
-  );
+  if (typeof document !== "undefined") {
+    return (
+      <SettingsContext>
+        <LexicalComposer initialConfig={initialConfig}>
+          <SharedHistoryContext>
+            <TableContext>
+              <SharedAutocompleteContext>
+                <div className="editor-shell">
+                  <Editor />
+                </div>
+              </SharedAutocompleteContext>
+            </TableContext>
+          </SharedHistoryContext>
+        </LexicalComposer>
+      </SettingsContext>
+    );
+  }
+  return <></>;
 }

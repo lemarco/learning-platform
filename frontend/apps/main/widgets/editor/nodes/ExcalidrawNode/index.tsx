@@ -73,17 +73,20 @@ export class ExcalidrawNode extends DecoratorNode<JSX.Element> {
 
   // View
   createDOM(config: EditorConfig): HTMLElement {
-    const span = document.createElement("span");
-    const theme = config.theme;
-    const className = theme.image;
+    if (typeof document !== "undefined") {
+      const span = document.createElement("span");
+      const theme = config.theme;
+      const className = theme.image;
 
-    span.style.width = this.__width === "inherit" ? "inherit" : `${this.__width}px`;
-    span.style.height = this.__height === "inherit" ? "inherit" : `${this.__height}px`;
+      span.style.width = this.__width === "inherit" ? "inherit" : `${this.__width}px`;
+      span.style.height = this.__height === "inherit" ? "inherit" : `${this.__height}px`;
 
-    if (className !== undefined) {
-      span.className = className;
+      if (className !== undefined) {
+        span.className = className;
+      }
+      return span;
     }
-    return span;
+    return undefined as any;
   }
 
   updateDOM(): false {
@@ -105,23 +108,26 @@ export class ExcalidrawNode extends DecoratorNode<JSX.Element> {
   }
 
   exportDOM(editor: LexicalEditor): DOMExportOutput {
-    const element = document.createElement("span");
+    if (typeof document !== "undefined") {
+      const element = document.createElement("span");
 
-    element.style.display = "inline-block";
+      element.style.display = "inline-block";
 
-    const content = editor.getElementByKey(this.getKey());
-    if (content !== null) {
-      const svg = content.querySelector("svg");
-      if (svg !== null) {
-        element.innerHTML = svg.outerHTML;
+      const content = editor.getElementByKey(this.getKey());
+      if (content !== null) {
+        const svg = content.querySelector("svg");
+        if (svg !== null) {
+          element.innerHTML = svg.outerHTML;
+        }
       }
+
+      element.style.width = this.__width === "inherit" ? "inherit" : `${this.__width}px`;
+      element.style.height = this.__height === "inherit" ? "inherit" : `${this.__height}px`;
+
+      element.setAttribute("data-lexical-excalidraw-json", this.__data);
+      return { element };
     }
-
-    element.style.width = this.__width === "inherit" ? "inherit" : `${this.__width}px`;
-    element.style.height = this.__height === "inherit" ? "inherit" : `${this.__height}px`;
-
-    element.setAttribute("data-lexical-excalidraw-json", this.__data);
-    return { element };
+    return undefined as any;
   }
 
   setData(data: string): void {

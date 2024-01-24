@@ -61,10 +61,13 @@ export class EquationNode extends DecoratorNode<JSX.Element> {
   }
 
   createDOM(_config: EditorConfig): HTMLElement {
-    const element = document.createElement(this.__inline ? "span" : "div");
-    // EquationNodes should implement `user-action:none` in their CSS to avoid issues with deletion on Android.
-    element.className = "editor-equation";
-    return element;
+    if (typeof document !== "undefined") {
+      const element = document.createElement(this.__inline ? "span" : "div");
+      // EquationNodes should implement `user-action:none` in their CSS to avoid issues with deletion on Android.
+      element.className = "editor-equation";
+      return element;
+    }
+    return undefined as any;
   }
 
   exportDOM(): DOMExportOutput {

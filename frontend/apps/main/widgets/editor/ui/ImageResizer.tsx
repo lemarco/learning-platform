@@ -125,9 +125,10 @@ export default function ImageResizer({
       controlWrapper.classList.add("image-control-wrapper--resizing");
       image.style.height = `${height}px`;
       image.style.width = `${width}px`;
-
-      document.addEventListener("pointermove", handlePointerMove);
-      document.addEventListener("pointerup", handlePointerUp);
+      if (typeof document !== "undefined") {
+        document.addEventListener("pointermove", handlePointerMove);
+        document.addEventListener("pointerup", handlePointerUp);
+      }
     }
   };
   const handlePointerMove = (event: PointerEvent) => {
@@ -189,9 +190,10 @@ export default function ImageResizer({
 
       setEndCursor();
       onResizeEnd(width, height);
-
-      document.removeEventListener("pointermove", handlePointerMove);
-      document.removeEventListener("pointerup", handlePointerUp);
+      if (typeof document !== "undefined") {
+        document.removeEventListener("pointermove", handlePointerMove);
+        document.removeEventListener("pointerup", handlePointerUp);
+      }
     }
   };
   return (

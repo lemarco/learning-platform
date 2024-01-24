@@ -61,15 +61,17 @@ function TextFormatFloatingToolbar({
   };
 
   function mouseMoveListener(e: MouseEvent) {
-    if (popupCharStylesEditorRef?.current && (e.buttons === 1 || e.buttons === 3)) {
-      if (popupCharStylesEditorRef.current.style.pointerEvents !== "none") {
-        const x = e.clientX;
-        const y = e.clientY;
-        const elementUnderMouse = document.elementFromPoint(x, y);
+    if (typeof document !== "undefined") {
+      if (popupCharStylesEditorRef?.current && (e.buttons === 1 || e.buttons === 3)) {
+        if (popupCharStylesEditorRef.current.style.pointerEvents !== "none") {
+          const x = e.clientX;
+          const y = e.clientY;
+          const elementUnderMouse = document.elementFromPoint(x, y);
 
-        if (!popupCharStylesEditorRef.current.contains(elementUnderMouse)) {
-          // Mouse is not over the target element => not a normal click, but probably a drag
-          popupCharStylesEditorRef.current.style.pointerEvents = "none";
+          if (!popupCharStylesEditorRef.current.contains(elementUnderMouse)) {
+            // Mouse is not over the target element => not a normal click, but probably a drag
+            popupCharStylesEditorRef.current.style.pointerEvents = "none";
+          }
         }
       }
     }

@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { type FC, useEffect } from "react";
 import "svgmap/dist/svgMap.min.css";
-import ApexChart from "../../../widgets/chart";
 import { formatNumber, formatToUSD } from "../../../helpers/format-number";
+import ApexChart from "../../../widgets/chart";
 import type { DashboardPageData } from "./page";
 
 const DashboardPageContent: FC<DashboardPageData> = ({ dashboard }) => (

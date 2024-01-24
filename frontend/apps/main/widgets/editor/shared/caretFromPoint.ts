@@ -15,18 +15,21 @@ export default function caretFromPoint(
       offset: range.startOffset,
     };
     // @ts-ignore
-  } else if (document.caretPositionFromPoint !== "undefined") {
-    // @ts-ignore FF - no types
-    const range = document.caretPositionFromPoint(x, y);
-    if (range === null) {
-      return null;
-    }
-    return {
-      node: range.offsetNode,
-      offset: range.offset,
-    };
-  } else {
-    // Gracefully handle IE
-    return null;
   }
+  if (typeof document !== "undefined") {
+    //@ts-ignore
+    if (document.caretPositionFromPoint !== "undefined") {
+      // @ts-ignore FF - no types
+      const range = document.caretPositionFromPoint(x, y);
+      if (range === null) {
+        return null;
+      }
+      return {
+        node: range.offsetNode,
+        offset: range.offset,
+      };
+    }
+  }
+  // Gracefully handle IE
+  return null;
 }

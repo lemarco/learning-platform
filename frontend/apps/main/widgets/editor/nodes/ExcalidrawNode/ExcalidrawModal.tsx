@@ -207,33 +207,35 @@ export default function ExcalidrawModal({
     setElements(els);
     setFiles(fls);
   };
-
-  return createPortal(
-    <div className="ExcalidrawModal__overlay" role="dialog">
-      <div className="ExcalidrawModal__modal" ref={excaliDrawModelRef} tabIndex={-1}>
-        <div className="ExcalidrawModal__row">
-          {discardModalOpen && <ShowDiscardDialog />}
-          <Excalidraw
-            onChange={onChange}
-            excalidrawAPI={excalidrawAPIRefCallback}
-            initialData={{
-              appState: initialAppState || { isLoading: false },
-              // @ts-ignore
-              elements: initialElements,
-              files: initialFiles,
-            }}
-          />
-          <div className="ExcalidrawModal__actions">
-            <button className="action-button" onClick={discard}>
-              Discard
-            </button>
-            <button className="action-button" onClick={save}>
-              Save
-            </button>
+  if (typeof document !== "undefined") {
+    return createPortal(
+      <div className="ExcalidrawModal__overlay" role="dialog">
+        <div className="ExcalidrawModal__modal" ref={excaliDrawModelRef} tabIndex={-1}>
+          <div className="ExcalidrawModal__row">
+            {discardModalOpen && <ShowDiscardDialog />}
+            <Excalidraw
+              onChange={onChange}
+              excalidrawAPI={excalidrawAPIRefCallback}
+              initialData={{
+                appState: initialAppState || { isLoading: false },
+                // @ts-ignore
+                elements: initialElements,
+                files: initialFiles,
+              }}
+            />
+            <div className="ExcalidrawModal__actions">
+              <button className="action-button" onClick={discard}>
+                Discard
+              </button>
+              <button className="action-button" onClick={save}>
+                Save
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>,
-    document.body,
-  );
+      </div>,
+      document.body,
+    );
+  }
+  return null;
 }
