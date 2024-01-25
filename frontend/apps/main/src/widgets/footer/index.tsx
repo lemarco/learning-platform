@@ -1,5 +1,5 @@
-import {  component$ } from "@builder.io/qwik";
-export const Footer =component$(() => {
+import { component$ } from "@builder.io/qwik";
+export const Footer = component$(() => {
   const date = new Date();
 
   return (
@@ -95,4 +95,4 @@ export const Footer =component$(() => {
       </div>
     </footer>
   );
-})
+});

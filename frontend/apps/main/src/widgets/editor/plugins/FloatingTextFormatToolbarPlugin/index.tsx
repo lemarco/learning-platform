@@ -1,21 +1,28 @@
+/** @jsxImportSource react */
+
 import "./index.css";
 
-import { $isCodeHighlightNode } from "@lexical/code";
-import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { mergeRegister } from "@lexical/utils";
-import {
+import LexCode from "@lexical/code";
+const { $isCodeHighlightNode } = LexCode;
+import LexLink from "@lexical/link";
+const { $isLinkNode, TOGGLE_LINK_COMMAND } = LexLink;
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import LexUtils from "@lexical/utils";
+const { mergeRegister } = LexUtils;
+import Lex, { LexicalEditor } from "lexical";
+const {
   $getSelection,
   $isParagraphNode,
   $isRangeSelection,
   $isTextNode,
   COMMAND_PRIORITY_LOW,
   FORMAT_TEXT_COMMAND,
-  LexicalEditor,
+
   SELECTION_CHANGE_COMMAND,
-} from "lexical";
+} = Lex;
 import { useCallback, useEffect, useRef, useState } from "react";
-import * as React from "react";
+
 import { createPortal } from "react-dom";
 
 import { getDOMRangeRect } from "../../utils/getDOMRangeRect";
@@ -61,17 +68,15 @@ function TextFormatFloatingToolbar({
   };
 
   function mouseMoveListener(e: MouseEvent) {
-    if (typeof document !== "undefined") {
-      if (popupCharStylesEditorRef?.current && (e.buttons === 1 || e.buttons === 3)) {
-        if (popupCharStylesEditorRef.current.style.pointerEvents !== "none") {
-          const x = e.clientX;
-          const y = e.clientY;
-          const elementUnderMouse = document.elementFromPoint(x, y);
+    if (popupCharStylesEditorRef?.current && (e.buttons === 1 || e.buttons === 3)) {
+      if (popupCharStylesEditorRef.current.style.pointerEvents !== "none") {
+        const x = e.clientX;
+        const y = e.clientY;
+        const elementUnderMouse = document.elementFromPoint(x, y);
 
-          if (!popupCharStylesEditorRef.current.contains(elementUnderMouse)) {
-            // Mouse is not over the target element => not a normal click, but probably a drag
-            popupCharStylesEditorRef.current.style.pointerEvents = "none";
-          }
+        if (!popupCharStylesEditorRef.current.contains(elementUnderMouse)) {
+          // Mouse is not over the target element => not a normal click, but probably a drag
+          popupCharStylesEditorRef.current.style.pointerEvents = "none";
         }
       }
     }

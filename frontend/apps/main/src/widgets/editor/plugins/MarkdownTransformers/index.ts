@@ -1,16 +1,18 @@
-import {
+/** @jsxImportSource react */
+import LexMarkdown, { ElementTransformer, TextMatchTransformer, Transformer } from "@lexical/markdown";
+const {
   $convertFromMarkdownString,
   $convertToMarkdownString,
   CHECK_LIST,
   ELEMENT_TRANSFORMERS,
-  ElementTransformer,
   TEXT_FORMAT_TRANSFORMERS,
   TEXT_MATCH_TRANSFORMERS,
-  TextMatchTransformer,
-  Transformer,
-} from "@lexical/markdown";
-import { $createHorizontalRuleNode, $isHorizontalRuleNode, HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
-import {
+} = LexMarkdown;
+
+import LexLexicalHorizontalRuleNode from "@lexical/react/LexicalHorizontalRuleNode";
+const { $createHorizontalRuleNode, $isHorizontalRuleNode, HorizontalRuleNode } = LexLexicalHorizontalRuleNode;
+import LexTable from "@lexical/table";
+const {
   $createTableCellNode,
   $createTableNode,
   $createTableRowNode,
@@ -21,9 +23,9 @@ import {
   TableCellNode,
   TableNode,
   TableRowNode,
-} from "@lexical/table";
-import { $createTextNode, $isParagraphNode, $isTextNode, LexicalNode } from "lexical";
-
+} = LexTable;
+import Lex, { LexicalNode } from "lexical";
+const { $createTextNode, $isParagraphNode, $isTextNode } = Lex;
 import { $createEquationNode, $isEquationNode, EquationNode } from "../../nodes/EquationNode";
 import { $createImageNode, $isImageNode, ImageNode } from "../../nodes/ImageNode";
 import { $createTweetNode, $isTweetNode, TweetNode } from "../../nodes/TweetNode";

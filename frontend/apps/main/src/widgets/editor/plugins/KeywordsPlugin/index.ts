@@ -1,7 +1,11 @@
+/** @jsxImportSource react */
+
 import type { TextNode } from "lexical";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { useLexicalTextEntity } from "@lexical/react/useLexicalTextEntity";
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import LexuseLexicalTextEntity from "@lexical/react/useLexicalTextEntity";
+const { useLexicalTextEntity } = LexuseLexicalTextEntity;
 import { useCallback, useEffect } from "react";
 
 import { $createKeywordNode, KeywordNode } from "../../nodes/KeywordNode";

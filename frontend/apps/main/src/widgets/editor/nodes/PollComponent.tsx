@@ -1,11 +1,16 @@
+/** @jsxImportSource react */
+
 import type { Option, Options, PollNode } from "./PollNode";
 
 import "./PollNode.css";
 
-import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import LexicalCollaborationContext from "@lexical/react/LexicalCollaborationContext";
+const { useCollaborationContext } = LexicalCollaborationContext;
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
 import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
-import { mergeRegister } from "@lexical/utils";
+import LexUtils from "@lexical/utils";
+const { mergeRegister } = LexUtils;
 import {
   $getNodeByKey,
   $getSelection,

@@ -1,16 +1,20 @@
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $wrapNodeInElement } from "@lexical/utils";
-import {
+/** @jsxImportSource react */
+
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+
+import LexUtils from "@lexical/utils";
+const { $wrapNodeInElement } = LexUtils;
+import Lex, { LexicalCommand, LexicalEditor } from "lexical";
+const {
   $createParagraphNode,
   $insertNodes,
   $isRootOrShadowRoot,
   COMMAND_PRIORITY_EDITOR,
-  LexicalCommand,
-  LexicalEditor,
+
   createCommand,
-} from "lexical";
+} = Lex;
 import { useEffect, useState } from "react";
-import * as React from "react";
 
 import { $createPollNode, PollNode, createPollOption } from "../../nodes/PollNode";
 import Button from "../../ui/Button";

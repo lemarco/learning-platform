@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import * as React from "react";
 import { ReactNode, createContext, useContext, useEffect, useMemo, useState } from "react";
 
@@ -35,7 +37,6 @@ export const SharedAutocompleteContext = ({
       },
       (newSuggestion: Suggestion) => {
         suggestion = newSuggestion;
-        //@ts-ignore
         for (const listener of listeners) {
           listener(newSuggestion);
         }

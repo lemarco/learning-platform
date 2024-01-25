@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import * as React from "react";
 
 import ColorPicker from "./ColorPicker";

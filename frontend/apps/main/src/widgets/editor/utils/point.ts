@@ -1,3 +1,4 @@
+/** @jsxImportSource react */
 export class Point {
   private readonly _x: number;
   private readonly _y: number;

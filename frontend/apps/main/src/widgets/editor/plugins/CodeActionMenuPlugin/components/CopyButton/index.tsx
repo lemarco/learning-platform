@@ -1,6 +1,9 @@
-import { $isCodeNode } from "@lexical/code";
-import { $getNearestNodeFromDOMNode, $getSelection, $setSelection, LexicalEditor } from "lexical";
-import * as React from "react";
+/** @jsxImportSource react */
+import LexCode from "@lexical/code";
+const { $isCodeNode } = LexCode;
+
+import Lex, { LexicalEditor } from "lexical";
+const { $getNearestNodeFromDOMNode, $getSelection, $setSelection } = Lex;
 import { useState } from "react";
 
 import { useDebounce } from "../../utils";
@@ -42,7 +45,7 @@ export function CopyButton({ editor, getCodeDOMNode }: Props) {
       setCopyCompleted(true);
       removeSuccessIcon();
     } catch (err) {
-      console.error("Failed to copy: ", err);
+      // console.error("Failed to copy: ", err);
     }
   }
 

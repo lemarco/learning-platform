@@ -1,25 +1,26 @@
+/** @jsxImportSource react */
 import "./index.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
-import { mergeRegister } from "@lexical/utils";
-import {
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import LexuseLexicalNodeSelection from "@lexical/react/useLexicalNodeSelection";
+const { useLexicalNodeSelection } = LexuseLexicalNodeSelection;
+import LexUtils from "@lexical/utils";
+const { mergeRegister } = LexUtils;
+import Lex, { DOMConversionMap, DOMConversionOutput, LexicalNode, NodeKey, SerializedLexicalNode } from "lexical";
+const {
   $getNodeByKey,
   $getSelection,
   $isNodeSelection,
   CLICK_COMMAND,
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
-  DOMConversionMap,
-  DOMConversionOutput,
+
   DecoratorNode,
   KEY_BACKSPACE_COMMAND,
   KEY_DELETE_COMMAND,
-  LexicalNode,
-  NodeKey,
-  SerializedLexicalNode,
-} from "lexical";
-import * as React from "react";
+} = Lex;
+
 import { useCallback, useEffect } from "react";
 
 export type SerializedPageBreakNode = SerializedLexicalNode;
@@ -112,13 +113,10 @@ export class PageBreakNode extends DecoratorNode<JSX.Element> {
   }
 
   createDOM(): HTMLElement {
-    if (typeof document !== "undefined") {
-      const el = document.createElement("figure");
-      el.style.pageBreakAfter = "always";
-      el.setAttribute("type", this.getType());
-      return el;
-    }
-    return undefined as any;
+    const el = document.createElement("figure");
+    el.style.pageBreakAfter = "always";
+    el.setAttribute("type", this.getType());
+    return el;
   }
 
   getTextContent(): string {

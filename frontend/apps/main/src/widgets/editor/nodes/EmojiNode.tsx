@@ -1,7 +1,9 @@
+/** @jsxImportSource react */
+
 import type { EditorConfig, LexicalNode, NodeKey, SerializedTextNode, Spread } from "lexical";
 
-import { $applyNodeReplacement, TextNode } from "lexical";
-
+import Lex from "lexical";
+const { $applyNodeReplacement, TextNode } = Lex;
 export type SerializedEmojiNode = Spread<
   {
     className: string;
@@ -26,15 +28,12 @@ export class EmojiNode extends TextNode {
   }
 
   createDOM(config: EditorConfig): HTMLElement {
-    if (typeof document !== "undefined") {
-      const dom = document.createElement("span");
-      const inner = super.createDOM(config);
-      dom.className = this.__className;
-      inner.className = "emoji-inner";
-      dom.appendChild(inner);
-      return dom;
-    }
-    return undefined as any;
+    const dom = document.createElement("span");
+    const inner = super.createDOM(config);
+    dom.className = this.__className;
+    inner.className = "emoji-inner";
+    dom.appendChild(inner);
+    return dom;
   }
 
   updateDOM(prevNode: TextNode, dom: HTMLElement, config: EditorConfig): boolean {

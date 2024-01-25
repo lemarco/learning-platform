@@ -1,29 +1,37 @@
+/** @jsxImportSource react */
+
 import type { Klass, LexicalNode } from "lexical";
 
-import { CodeHighlightNode, CodeNode } from "@lexical/code";
-import { HashtagNode } from "@lexical/hashtag";
-import { AutoLinkNode, LinkNode } from "@lexical/link";
-import { ListItemNode, ListNode } from "@lexical/list";
-import { MarkNode } from "@lexical/mark";
-import { OverflowNode } from "@lexical/overflow";
-import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
-import { HeadingNode, QuoteNode } from "@lexical/rich-text";
-import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
-
+import LexCode from "@lexical/code";
+const { CodeHighlightNode, CodeNode } = LexCode;
+import LexHahtag from "@lexical/hashtag";
+const { HashtagNode } = LexHahtag;
+import LexLink from "@lexical/link";
+const { AutoLinkNode, LinkNode } = LexLink;
+import LexList from "@lexical/list";
+const { ListItemNode, ListNode } = LexList;
+import LexMark from "@lexical/mark";
+const { MarkNode } = LexMark;
+import LexOverflow from "@lexical/overflow";
+const { OverflowNode } = LexOverflow;
+import LexicalHorizontalRuleNode from "@lexical/react/LexicalHorizontalRuleNode";
+const { HorizontalRuleNode } = LexicalHorizontalRuleNode;
+import LexRichText from "@lexical/rich-text";
+const { HeadingNode, QuoteNode } = LexRichText;
+import LexTable from "@lexical/table";
+const { TableCellNode, TableNode, TableRowNode } = LexTable;
 import { CollapsibleContainerNode } from "../plugins/CollapsiblePlugin/CollapsibleContainerNode";
 import { CollapsibleContentNode } from "../plugins/CollapsiblePlugin/CollapsibleContentNode";
 import { CollapsibleTitleNode } from "../plugins/CollapsiblePlugin/CollapsibleTitleNode";
-import { AutocompleteNode } from "./AutocompleteNode";
+// import { AutocompleteNode } from "./AutocompleteNode";
 import { EmojiNode } from "./EmojiNode";
 import { EquationNode } from "./EquationNode";
-import { ExcalidrawNode } from "./ExcalidrawNode";
-import { FigmaNode } from "./FigmaNode";
+
 import { ImageNode } from "./ImageNode";
 import { InlineImageNode } from "./InlineImageNode";
 import { KeywordNode } from "./KeywordNode";
-import { LayoutContainerNode } from "./LayoutContainerNode";
-import { LayoutItemNode } from "./LayoutItemNode";
-import { MentionNode } from "./MentionNode";
+
+// import { MentionNode } from "./MentionNode";
 import { PageBreakNode } from "./PageBreakNode";
 import { PollNode } from "./PollNode";
 import { StickyNode } from "./StickyNode";
@@ -48,23 +56,21 @@ const PlaygroundNodes: Array<Klass<LexicalNode>> = [
   StickyNode,
   ImageNode,
   InlineImageNode,
-  MentionNode,
+  // MentionNode,
   EmojiNode,
-  ExcalidrawNode,
+
   EquationNode,
-  AutocompleteNode,
+  // AutocompleteNode,
   KeywordNode,
   HorizontalRuleNode,
   TweetNode,
   YouTubeNode,
-  FigmaNode,
+
   MarkNode,
   CollapsibleContainerNode,
   CollapsibleContentNode,
   CollapsibleTitleNode,
   PageBreakNode,
-  LayoutContainerNode,
-  LayoutItemNode,
 ];
 
 export default PlaygroundNodes;

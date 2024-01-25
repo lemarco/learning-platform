@@ -1,8 +1,13 @@
+/** @jsxImportSource react */
+
 import "./index.css";
 
-import { $isCodeNode, CodeNode, getLanguageFriendlyName, normalizeCodeLang } from "@lexical/code";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $getNearestNodeFromDOMNode } from "lexical";
+import LexCode from "@lexical/code";
+const { $isCodeNode, CodeNode, getLanguageFriendlyName, normalizeCodeLang } = LexCode;
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import Lex from "lexical";
+const { $getNearestNodeFromDOMNode } = Lex;
 import { useEffect, useRef, useState } from "react";
 import * as React from "react";
 import { createPortal } from "react-dom";
@@ -96,7 +101,6 @@ function CodeActionMenuContainer({
 
   editor.registerMutationListener(CodeNode, (mutations) => {
     editor.getEditorState().read(() => {
-      // @ts-ignore
       for (const [key, type] of mutations) {
         switch (type) {
           case "created":

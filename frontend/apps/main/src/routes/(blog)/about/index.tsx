@@ -113,7 +113,7 @@ export default component$(() => {
       </section>
     </>
   );
-})
+});
 
 export const metadata = {
   title: "About us",

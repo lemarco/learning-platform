@@ -1,7 +1,13 @@
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch } from "@lexical/react/LexicalTypeaheadMenuPlugin";
-import { $createTextNode, $getSelection, $isRangeSelection, TextNode } from "lexical";
-import * as React from "react";
+/** @jsxImportSource react */
+
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+
+import LexLexicalTypeaheadMenuPlugin from "@lexical/react/LexicalTypeaheadMenuPlugin";
+const { LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch } = LexLexicalTypeaheadMenuPlugin;
+import Lex from "lexical";
+const { $createTextNode, $getSelection, $isRangeSelection, TextNode } = Lex;
+
 import { useCallback, useEffect, useMemo, useState } from "react";
 import * as ReactDOM from "react-dom";
 
@@ -41,16 +47,14 @@ function EmojiMenuItem({
     className += " selected";
   }
   return (
-    // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
     <li
       key={option.key}
       tabIndex={-1}
       className={className}
       ref={option.setRefElement}
-      // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: <explanation>
       role="option"
       aria-selected={isSelected}
-      id={`typeahead-item-${index}`}
+      id={"typeahead-item-" + index}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
     >
@@ -132,44 +136,46 @@ export default function EmojiPickerPlugin() {
     },
     [editor],
   );
+  if (typeof document !== "undefined") {
+    return (
+      <LexicalTypeaheadMenuPlugin
+        onQueryChange={setQueryString}
+        onSelectOption={onSelectOption}
+        triggerFn={checkForTriggerMatch}
+        options={options}
+        menuRenderFn={(anchorElementRef, { selectedIndex, selectOptionAndCleanUp, setHighlightedIndex }) => {
+          if (anchorElementRef.current == null || options.length === 0) {
+            return null;
+          }
 
-  return (
-    <LexicalTypeaheadMenuPlugin
-      onQueryChange={setQueryString}
-      onSelectOption={onSelectOption}
-      triggerFn={checkForTriggerMatch}
-      options={options}
-      menuRenderFn={(anchorElementRef, { selectedIndex, selectOptionAndCleanUp, setHighlightedIndex }) => {
-        if (anchorElementRef.current == null || options.length === 0) {
-          return null;
-        }
-
-        return anchorElementRef.current && options.length
-          ? ReactDOM.createPortal(
-              <div className="typeahead-popover emoji-menu">
-                <ul>
-                  {options.map((option: EmojiOption, index) => (
-                    <div key={option.key}>
-                      <EmojiMenuItem
-                        index={index}
-                        isSelected={selectedIndex === index}
-                        onClick={() => {
-                          setHighlightedIndex(index);
-                          selectOptionAndCleanUp(option);
-                        }}
-                        onMouseEnter={() => {
-                          setHighlightedIndex(index);
-                        }}
-                        option={option}
-                      />
-                    </div>
-                  ))}
-                </ul>
-              </div>,
-              anchorElementRef.current,
-            )
-          : null;
-      }}
-    />
-  );
+          return anchorElementRef.current && options.length
+            ? ReactDOM.createPortal(
+                <div className="typeahead-popover emoji-menu">
+                  <ul>
+                    {options.map((option: EmojiOption, index) => (
+                      <div key={option.key}>
+                        <EmojiMenuItem
+                          index={index}
+                          isSelected={selectedIndex === index}
+                          onClick={() => {
+                            setHighlightedIndex(index);
+                            selectOptionAndCleanUp(option);
+                          }}
+                          onMouseEnter={() => {
+                            setHighlightedIndex(index);
+                          }}
+                          option={option}
+                        />
+                      </div>
+                    ))}
+                  </ul>
+                </div>,
+                anchorElementRef.current,
+              )
+            : null;
+        }}
+      />
+    );
+  }
+  return <></>;
 }

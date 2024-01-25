@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import type { Ref, RefObject } from "react";
 
 import "./EquationEditor.css";

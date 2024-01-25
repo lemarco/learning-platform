@@ -1,3 +1,4 @@
+/** @jsxImportSource react */
 export function getDOMRangeRect(nativeSelection: Selection, rootElement: HTMLElement): DOMRect {
   const domRange = nativeSelection.getRangeAt(0);
 

@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import type { SettingName } from "../appSettings";
 
 import * as React from "react";
@@ -48,21 +50,19 @@ export const useSettings = (): SettingsContextShape => {
 };
 
 function setURLParam(param: SettingName, value: null | boolean) {
-  if (typeof window !== "undefined") {
-    const url = new URL(window.location.href);
-    const params = new URLSearchParams(url.search);
-    if (value !== null) {
-      if (params.has(param)) {
-        params.set(param, String(value));
-      } else {
-        params.append(param, String(value));
-      }
+  const url = new URL(window.location.href);
+  const params = new URLSearchParams(url.search);
+  if (value !== null) {
+    if (params.has(param)) {
+      params.set(param, String(value));
     } else {
-      if (params.has(param)) {
-        params.delete(param);
-      }
+      params.append(param, String(value));
     }
-    url.search = params.toString();
-    window.history.pushState(null, "", url.toString());
+  } else {
+    if (params.has(param)) {
+      params.delete(param);
+    }
   }
+  url.search = params.toString();
+  window.history.pushState(null, "", url.toString());
 }

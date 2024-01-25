@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import "./Dialog.css";
 
 import * as React from "react";

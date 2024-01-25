@@ -1,4 +1,4 @@
-"use client";
+/** @jsxImportSource react */
 
 export const isDevPlayground: boolean = false;
 
@@ -15,7 +15,7 @@ export const DEFAULT_SETTINGS = {
   shouldUseLexicalContextMenu: false,
   showNestedEditorTreeView: false,
   showTableOfContents: false,
-
+  showTreeView: true,
   tableCellBackgroundColor: true,
   tableCellMerge: true,
 };

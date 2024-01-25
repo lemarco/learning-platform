@@ -1,8 +1,10 @@
-import { LinkPlugin as LexicalLinkPlugin } from "@lexical/react/LexicalLinkPlugin";
-import * as React from "react";
+/** @jsxImportSource react */
+
+import LexLexicalLinkPlugin from "@lexical/react/LexicalLinkPlugin";
+const { LinkPlugin: LLP } = LexLexicalLinkPlugin;
 
 import { validateUrl } from "../../utils/url";
 
 export default function LinkPlugin(): JSX.Element {
-  return <LexicalLinkPlugin validateUrl={validateUrl} />;
+  return <LLP validateUrl={validateUrl} />;
 }

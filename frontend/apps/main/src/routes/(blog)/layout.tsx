@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
 import { Footer } from "@/widgets/footer";
 import { Header } from "@/widgets/header";
-import {component$} from '@builder.io/qwik'
+import { component$ } from "@builder.io/qwik";
+import type { ReactNode } from "react";
 // export const useGetGoogleLink = routeLoader$(async () => {
 //   return await fetch("http://0.0.0.0:6004/auth/google/link")
 //     .then((data) => data.json())
@@ -20,4 +20,4 @@ export default component$(({ children }: { children: ReactNode }) => {
       <Footer />
     </>
   );
-})
+});

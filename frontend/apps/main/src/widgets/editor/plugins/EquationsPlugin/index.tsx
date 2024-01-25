@@ -1,16 +1,20 @@
+/** @jsxImportSource react */
+
 import "katex/dist/katex.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $wrapNodeInElement } from "@lexical/utils";
-import {
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import LexUtils from "@lexical/utils";
+const { $wrapNodeInElement } = LexUtils;
+import Lex, { LexicalCommand, LexicalEditor } from "lexical";
+const {
   $createParagraphNode,
   $insertNodes,
   $isRootOrShadowRoot,
   COMMAND_PRIORITY_EDITOR,
-  LexicalCommand,
-  LexicalEditor,
+
   createCommand,
-} from "lexical";
+} = Lex;
 import { useCallback, useEffect } from "react";
 import * as React from "react";
 

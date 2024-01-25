@@ -1,25 +1,38 @@
-import { $createCodeNode } from "@lexical/code";
-import { INSERT_CHECK_LIST_COMMAND, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND } from "@lexical/list";
-import { INSERT_EMBED_COMMAND } from "@lexical/react/LexicalAutoEmbedPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { INSERT_HORIZONTAL_RULE_COMMAND } from "@lexical/react/LexicalHorizontalRuleNode";
-import { LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch } from "@lexical/react/LexicalTypeaheadMenuPlugin";
-import { $createHeadingNode, $createQuoteNode } from "@lexical/rich-text";
-import { $setBlocksType } from "@lexical/selection";
-import { INSERT_TABLE_COMMAND } from "@lexical/table";
-import { $createParagraphNode, $getSelection, $isRangeSelection, FORMAT_ELEMENT_COMMAND, LexicalEditor, TextNode } from "lexical";
+/** @jsxImportSource react */
+
+import LexCode from "@lexical/code";
+const { $createCodeNode } = LexCode;
+import LexList from "@lexical/list";
+const { INSERT_CHECK_LIST_COMMAND, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND } = LexList;
+import LexicalAutoEmbedPlugin from "@lexical/react/LexicalAutoEmbedPlugin";
+const { INSERT_EMBED_COMMAND } = LexicalAutoEmbedPlugin;
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+
+import LexicalHorizontalRuleNode from "@lexical/react/LexicalHorizontalRuleNode";
+const { INSERT_HORIZONTAL_RULE_COMMAND } = LexicalHorizontalRuleNode;
+import LexLexicalTypeaheadMenuPlugin from "@lexical/react/LexicalTypeaheadMenuPlugin";
+const { LexicalTypeaheadMenuPlugin, MenuOption, useBasicTypeaheadTriggerMatch } = LexLexicalTypeaheadMenuPlugin;
+import LexRichText from "@lexical/rich-text";
+const { $createHeadingNode, $createQuoteNode } = LexRichText;
+import LexSelection from "@lexical/selection";
+const { $setBlocksType } = LexSelection;
+import LexTable from "@lexical/table";
+const { INSERT_TABLE_COMMAND } = LexTable;
+import Lex, { LexicalEditor } from "lexical";
+const { $createParagraphNode, $getSelection, $isRangeSelection, FORMAT_ELEMENT_COMMAND, TextNode } = Lex;
 import { useCallback, useMemo, useState } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import useModal from "../../hooks/useModal";
-
+import catTypingGif from "../../images/cat-typing.gif";
 import { EmbedConfigs } from "../AutoEmbedPlugin";
 import { INSERT_COLLAPSIBLE_COMMAND } from "../CollapsiblePlugin";
 import { InsertEquationDialog } from "../EquationsPlugin";
-import { INSERT_EXCALIDRAW_COMMAND } from "../ExcalidrawPlugin";
+
 import { INSERT_IMAGE_COMMAND, InsertImageDialog } from "../ImagesPlugin";
-import InsertLayoutDialog from "../LayoutPlugin/InsertLayoutDialog";
+
 import { INSERT_PAGE_BREAK } from "../PageBreakPlugin";
 import { InsertPollDialog } from "../PollPlugin";
 import { InsertTableDialog } from "../TablePlugin";
@@ -78,10 +91,9 @@ function ComponentPickerMenuItem({
       tabIndex={-1}
       className={className}
       ref={option.setRefElement}
-      // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: <explanation>
       role="option"
       aria-selected={isSelected}
-      id={`typeahead-item-${index}`}
+      id={"typeahead-item-" + index}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
     >
@@ -209,11 +221,7 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
       keywords: ["page break", "divider"],
       onSelect: () => editor.dispatchCommand(INSERT_PAGE_BREAK, undefined),
     }),
-    new ComponentPickerOption("Excalidraw", {
-      icon: <i className="icon diagram-2" />,
-      keywords: ["excalidraw", "diagram", "drawing"],
-      onSelect: () => editor.dispatchCommand(INSERT_EXCALIDRAW_COMMAND, undefined),
-    }),
+
     new ComponentPickerOption("Poll", {
       icon: <i className="icon poll" />,
       keywords: ["poll", "vote"],
@@ -238,7 +246,7 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
       onSelect: () =>
         editor.dispatchCommand(INSERT_IMAGE_COMMAND, {
           altText: "Cat typing on a laptop",
-          src: "",
+          src: catTypingGif,
         }),
     }),
     new ComponentPickerOption("Image", {
@@ -251,11 +259,7 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
       keywords: ["collapse", "collapsible", "toggle"],
       onSelect: () => editor.dispatchCommand(INSERT_COLLAPSIBLE_COMMAND, undefined),
     }),
-    new ComponentPickerOption("Columns Layout", {
-      icon: <i className="icon columns" />,
-      keywords: ["columns", "layout", "grid"],
-      onSelect: () => showModal("Insert Columns Layout", (onClose) => <InsertLayoutDialog activeEditor={editor} onClose={onClose} />),
-    }),
+
     ...(["left", "center", "right", "justify"] as const).map(
       (alignment) =>
         new ComponentPickerOption(`Align ${alignment}`, {
@@ -301,42 +305,44 @@ export default function ComponentPickerMenuPlugin(): JSX.Element {
     },
     [editor],
   );
-
-  return (
-    <>
-      {modal}
-      <LexicalTypeaheadMenuPlugin<ComponentPickerOption>
-        onQueryChange={setQueryString}
-        onSelectOption={onSelectOption}
-        triggerFn={checkForTriggerMatch}
-        options={options}
-        menuRenderFn={(anchorElementRef, { selectedIndex, selectOptionAndCleanUp, setHighlightedIndex }) =>
-          anchorElementRef.current && options.length
-            ? ReactDOM.createPortal(
-                <div className="typeahead-popover component-picker-menu">
-                  <ul>
-                    {options.map((option, i: number) => (
-                      <ComponentPickerMenuItem
-                        index={i}
-                        isSelected={selectedIndex === i}
-                        onClick={() => {
-                          setHighlightedIndex(i);
-                          selectOptionAndCleanUp(option);
-                        }}
-                        onMouseEnter={() => {
-                          setHighlightedIndex(i);
-                        }}
-                        key={option.key}
-                        option={option}
-                      />
-                    ))}
-                  </ul>
-                </div>,
-                anchorElementRef.current,
-              )
-            : null
-        }
-      />
-    </>
-  );
+  if (typeof document !== "undefined") {
+    return (
+      <>
+        {modal}
+        <LexicalTypeaheadMenuPlugin<ComponentPickerOption>
+          onQueryChange={setQueryString}
+          onSelectOption={onSelectOption}
+          triggerFn={checkForTriggerMatch}
+          options={options}
+          menuRenderFn={(anchorElementRef, { selectedIndex, selectOptionAndCleanUp, setHighlightedIndex }) =>
+            anchorElementRef.current && options.length
+              ? ReactDOM.createPortal(
+                  <div className="typeahead-popover component-picker-menu">
+                    <ul>
+                      {options.map((option, i: number) => (
+                        <ComponentPickerMenuItem
+                          index={i}
+                          isSelected={selectedIndex === i}
+                          onClick={() => {
+                            setHighlightedIndex(i);
+                            selectOptionAndCleanUp(option);
+                          }}
+                          onMouseEnter={() => {
+                            setHighlightedIndex(i);
+                          }}
+                          key={option.key}
+                          option={option}
+                        />
+                      ))}
+                    </ul>
+                  </div>,
+                  anchorElementRef.current,
+                )
+              : null
+          }
+        />
+      </>
+    );
+  }
+  return <></>;
 }

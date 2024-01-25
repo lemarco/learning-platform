@@ -1,13 +1,7 @@
-import {
-  DOMConversionMap,
-  DOMConversionOutput,
-  DOMExportOutput,
-  DecoratorNode,
-  LexicalNode,
-  NodeKey,
-  SerializedLexicalNode,
-  Spread,
-} from "lexical";
+/** @jsxImportSource react */
+
+import Lex, { LexicalNode, NodeKey, SerializedLexicalNode, Spread, DOMConversionMap, DOMConversionOutput, DOMExportOutput } from "lexical";
+const { DecoratorNode } = Lex;
 import * as React from "react";
 import { Suspense } from "react";
 
@@ -151,22 +145,16 @@ export class PollNode extends DecoratorNode<JSX.Element> {
   }
 
   exportDOM(): DOMExportOutput {
-    if (typeof document !== "undefined") {
-      const element = document.createElement("span");
-      element.setAttribute("data-lexical-poll-question", this.__question);
-      element.setAttribute("data-lexical-poll-options", JSON.stringify(this.__options));
-      return { element };
-    }
-    return undefined as any;
+    const element = document.createElement("span");
+    element.setAttribute("data-lexical-poll-question", this.__question);
+    element.setAttribute("data-lexical-poll-options", JSON.stringify(this.__options));
+    return { element };
   }
 
   createDOM(): HTMLElement {
-    if (typeof document !== "undefined") {
-      const elem = document.createElement("span");
-      elem.style.display = "inline-block";
-      return elem;
-    }
-    return undefined as any;
+    const elem = document.createElement("span");
+    elem.style.display = "inline-block";
+    return elem;
   }
 
   updateDOM(): false {

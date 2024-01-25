@@ -1,4 +1,4 @@
-import {component$} from '@builder.io/qwik'
+import { component$ } from "@builder.io/qwik";
 const BlogPreview = () => {
   return (
     <section class="bg-white dark:bg-gray-900 antialiased">
@@ -69,13 +69,7 @@ const BlogPreview = () => {
             <article>
               <div class="space-y-3">
                 <span class="bg-indigo-100 text-indigo-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">
-                  <svg
-                    aria-hidden="true"
-                    class="w-3 h-3 mr-1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
+                  <svg aria-hidden="true" class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path
                       fill-rule="evenodd"
                       d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
@@ -102,13 +96,7 @@ const BlogPreview = () => {
                   class="inline-flex items-center text-base font-semibold leading-tight text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Read more
-                  <svg
-                    aria-hidden="true"
-                    class="w-4 h-4 ml-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fill-rule="evenodd"
                       d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
@@ -122,13 +110,7 @@ const BlogPreview = () => {
             <article>
               <div class="space-y-3">
                 <span class="bg-pink-100 text-pink-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">
-                  <svg
-                    aria-hidden="true"
-                    class="w-3 h-3 mr-1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
+                  <svg aria-hidden="true" class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path
                       fill-rule="evenodd"
                       d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z"
@@ -154,13 +136,7 @@ const BlogPreview = () => {
                   class="inline-flex items-center text-base font-semibold leading-tight text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Read more
-                  <svg
-                    aria-hidden="true"
-                    class="w-4 h-4 ml-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fill-rule="evenodd"
                       d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
@@ -174,13 +150,7 @@ const BlogPreview = () => {
             <article>
               <div class="space-y-3">
                 <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                  <svg
-                    aria-hidden="true"
-                    class="w-3 h-3 mr-1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
+                  <svg aria-hidden="true" class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path
                       fill-rule="evenodd"
                       d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z"
@@ -206,13 +176,7 @@ const BlogPreview = () => {
                   class="inline-flex items-center text-base font-semibold leading-tight text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Read more
-                  <svg
-                    aria-hidden="true"
-                    class="w-4 h-4 ml-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fill-rule="evenodd"
                       d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
@@ -234,9 +198,7 @@ const PriceSection = () => {
     <section class="bg-white dark:bg-gray-900">
       <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-            Designed for business teams like yours
-          </h2>
+          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Designed for business teams like yours</h2>
           <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
             Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic
             growth.
@@ -639,13 +601,7 @@ const CourseCorousel = () => {
                     class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 hover:no-underline"
                   >
                     Read more{" "}
-                    <svg
-                      class="mt-px ml-1 w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
+                    <svg class="mt-px ml-1 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -687,13 +643,7 @@ const CourseCorousel = () => {
                     class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 hover:no-underline"
                   >
                     Read more{" "}
-                    <svg
-                      class="mt-px ml-1 w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
+                    <svg class="mt-px ml-1 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -735,13 +685,7 @@ const CourseCorousel = () => {
                     class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 hover:no-underline"
                   >
                     Read more{" "}
-                    <svg
-                      class="mt-px ml-1 w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
+                    <svg class="mt-px ml-1 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -787,13 +731,7 @@ const CourseCorousel = () => {
                     class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 hover:no-underline"
                   >
                     Read more{" "}
-                    <svg
-                      class="mt-px ml-1 w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
+                    <svg class="mt-px ml-1 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -835,13 +773,7 @@ const CourseCorousel = () => {
                     class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 hover:no-underline"
                   >
                     Read more{" "}
-                    <svg
-                      class="mt-px ml-1 w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
+                    <svg class="mt-px ml-1 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -883,13 +815,7 @@ const CourseCorousel = () => {
                     class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 hover:no-underline"
                   >
                     Read more{" "}
-                    <svg
-                      class="mt-px ml-1 w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
+                    <svg class="mt-px ml-1 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -935,13 +861,7 @@ const CourseCorousel = () => {
                     class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 hover:no-underline"
                   >
                     Read more{" "}
-                    <svg
-                      class="mt-px ml-1 w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
+                    <svg class="mt-px ml-1 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -983,13 +903,7 @@ const CourseCorousel = () => {
                     class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 hover:no-underline"
                   >
                     Read more{" "}
-                    <svg
-                      class="mt-px ml-1 w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
+                    <svg class="mt-px ml-1 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -1031,13 +945,7 @@ const CourseCorousel = () => {
                     class="inline-flex items-center font-medium text-primary-600 hover:text-primary-800 dark:text-primary-500 hover:no-underline"
                   >
                     Read more{" "}
-                    <svg
-                      class="mt-px ml-1 w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
-                    >
+                    <svg class="mt-px ml-1 w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                       <path
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -1107,7 +1015,7 @@ export default component$(() => {
       <PriceSection />
     </>
   );
-})
+});
 
 export const metadata = {
   title: "Welcome to Qwik",

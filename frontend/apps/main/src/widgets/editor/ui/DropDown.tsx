@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import * as React from "react";
 import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -195,31 +197,29 @@ export default function DropDown({
       document.removeEventListener("scroll", handleButtonPositionUpdate);
     };
   }, [buttonRef, dropDownRef, showDropDown]);
-  if (typeof document !== "undefined") {
-    return (
-      <>
-        <button
-          type="button"
-          disabled={disabled}
-          aria-label={buttonAriaLabel || buttonLabel}
-          className={buttonClassName}
-          onClick={() => setShowDropDown(!showDropDown)}
-          ref={buttonRef}
-        >
-          {buttonIconClassName && <span className={buttonIconClassName} />}
-          {buttonLabel && <span className="text dropdown-button-text">{buttonLabel}</span>}
-          <i className="chevron-down" />
-        </button>
 
-        {showDropDown &&
-          createPortal(
-            <DropDownItems dropDownRef={dropDownRef} onClose={handleClose}>
-              {children}
-            </DropDownItems>,
-            document.body,
-          )}
-      </>
-    );
-  }
-  return <></>;
+  return (
+    <>
+      <button
+        type="button"
+        disabled={disabled}
+        aria-label={buttonAriaLabel || buttonLabel}
+        className={buttonClassName}
+        onClick={() => setShowDropDown(!showDropDown)}
+        ref={buttonRef}
+      >
+        {buttonIconClassName && <span className={buttonIconClassName} />}
+        {buttonLabel && <span className="text dropdown-button-text">{buttonLabel}</span>}
+        <i className="chevron-down" />
+      </button>
+
+      {showDropDown &&
+        createPortal(
+          <DropDownItems dropDownRef={dropDownRef} onClose={handleClose}>
+            {children}
+          </DropDownItems>,
+          document.body,
+        )}
+    </>
+  );
 }

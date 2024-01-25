@@ -1,20 +1,35 @@
+/** @jsxImportSource react */
+
 import type { LexicalEditor } from "lexical";
 
-import { $createCodeNode, $isCodeNode } from "@lexical/code";
-import { exportFile, importFile } from "@lexical/file";
-import { $convertFromMarkdownString, $convertToMarkdownString } from "@lexical/markdown";
-import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { mergeRegister } from "@lexical/utils";
-import { CONNECTED_COMMAND, TOGGLE_CONNECT_COMMAND } from "@lexical/yjs";
-import { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND, COMMAND_PRIORITY_EDITOR } from "lexical";
+import LexCode from "@lexical/code";
+const { $createCodeNode, $isCodeNode } = LexCode;
+import LexFile from "@lexical/file";
+
+const { exportFile, importFile } = LexFile;
+import LexMarkdown from "@lexical/markdown";
+const { $convertFromMarkdownString, $convertToMarkdownString } = LexMarkdown;
+
+// import LexicalCollaborationContext from "@lexical/react/LexicalCollaborationContext";
+// const { useCollaborationContext } = LexicalCollaborationContext;
+
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+
+import LexUtils from "@lexical/utils";
+const { mergeRegister } = LexUtils;
+import LexYjs from "@lexical/yjs";
+const { CONNECTED_COMMAND, TOGGLE_CONNECT_COMMAND } = LexYjs;
+import Lex from "lexical";
+const { $createTextNode, $getRoot, $isParagraphNode, CLEAR_EDITOR_COMMAND, COMMAND_PRIORITY_EDITOR } = Lex;
+
 import * as React from "react";
 import { useCallback, useEffect, useState } from "react";
 
 import useModal from "../../hooks/useModal";
 import Button from "../../ui/Button";
 import { PLAYGROUND_TRANSFORMERS } from "../MarkdownTransformers";
-import { SPEECH_TO_TEXT_COMMAND, SUPPORT_SPEECH_RECOGNITION } from "../SpeechToTextPlugin";
+import { SPEECH_TO_TEXT_COMMAND } from "../SpeechToTextPlugin";
 
 async function sendEditorState(editor: LexicalEditor): Promise<void> {
   const stringifiedEditorState = JSON.stringify(editor.getEditorState());
@@ -63,7 +78,7 @@ export default function ActionsPlugin({
   const [connected, setConnected] = useState(false);
   const [isEditorEmpty, setIsEditorEmpty] = useState(true);
   const [modal, showModal] = useModal();
-  const { isCollabActive } = useCollaborationContext();
+  // const { isCollabActive } = useCollaborationContext();
 
   useEffect(() => {
     return mergeRegister(
@@ -123,21 +138,18 @@ export default function ActionsPlugin({
 
   return (
     <div className="actions">
-      {SUPPORT_SPEECH_RECOGNITION && (
-        // biome-ignore lint/a11y/useButtonType: <explanation>
-        <button
-          onClick={() => {
-            editor.dispatchCommand(SPEECH_TO_TEXT_COMMAND, !isSpeechToText);
-            setIsSpeechToText(!isSpeechToText);
-          }}
-          className={`action-button action-button-mic ${isSpeechToText ? "active" : ""}`}
-          title="Speech To Text"
-          aria-label={`${isSpeechToText ? "Enable" : "Disable"} speech to text`}
-        >
-          <i className="mic" />
-        </button>
-      )}
-      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+      <button
+        onClick={() => {
+          editor.dispatchCommand(SPEECH_TO_TEXT_COMMAND, !isSpeechToText);
+          setIsSpeechToText(!isSpeechToText);
+        }}
+        className={`action-button action-button-mic ${isSpeechToText ? "active" : ""}`}
+        title="Speech To Text"
+        aria-label={`${isSpeechToText ? "Enable" : "Disable"} speech to text`}
+      >
+        <i className="mic" />
+      </button>
+
       <button className="action-button import" onClick={() => importFile(editor)} title="Import" aria-label="Import editor state from JSON">
         <i className="import" />
       </button>
@@ -182,7 +194,7 @@ export default function ActionsPlugin({
       <button className="action-button" onClick={handleMarkdownToggle} title="Convert From Markdown" aria-label="Convert from markdown">
         <i className="markdown" />
       </button>
-      {isCollabActive && (
+      {/* {isCollabActive && (
         <button
           className="action-button connect"
           onClick={() => {
@@ -193,7 +205,7 @@ export default function ActionsPlugin({
         >
           <i className={connected ? "disconnect" : "connect"} />
         </button>
-      )}
+      )} */}
       {modal}
     </div>
   );

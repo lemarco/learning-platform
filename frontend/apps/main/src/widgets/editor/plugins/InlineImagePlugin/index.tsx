@@ -1,10 +1,14 @@
+/** @jsxImportSource react */
 import type { Position } from "../../nodes/InlineImageNode";
 
 import "../../ui/Checkbox.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $wrapNodeInElement, mergeRegister } from "@lexical/utils";
-import {
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import LexUtils from "@lexical/utils";
+const { $wrapNodeInElement, mergeRegister } = LexUtils;
+import Lex, { LexicalCommand, LexicalEditor } from "lexical";
+const {
   $createParagraphNode,
   $createRangeSelection,
   $getSelection,
@@ -18,10 +22,9 @@ import {
   DRAGOVER_COMMAND,
   DRAGSTART_COMMAND,
   DROP_COMMAND,
-  LexicalCommand,
-  LexicalEditor,
+
   createCommand,
-} from "lexical";
+} = Lex;
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { CAN_USE_DOM } from "../../shared/canUseDOM";
@@ -35,7 +38,7 @@ import TextInput from "../../ui/TextInput";
 
 export type InsertInlineImagePayload = Readonly<InlineImagePayload>;
 
-const getDOMSelection = (targetWindow: Window | null): Selection | null => (CAN_USE_DOM ? (targetWindow || window)?.getSelection() : null);
+const getDOMSelection = (targetWindow: Window | null): Selection | null => (CAN_USE_DOM ? (targetWindow || window).getSelection() : null);
 
 export const INSERT_INLINE_IMAGE_COMMAND: LexicalCommand<InlineImagePayload> = createCommand("INSERT_INLINE_IMAGE_COMMAND");
 
@@ -185,13 +188,6 @@ export default function InlineImagePlugin(): JSX.Element | null {
 
 const TRANSPARENT_IMAGE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-let img: any = {};
-if (typeof document !== "undefined") {
-  img = document.createElement("img");
-}
-img.src = TRANSPARENT_IMAGE;
-
 function onDragStart(event: DragEvent): boolean {
   const node = getImageNodeInSelection();
   if (!node) {
@@ -202,6 +198,8 @@ function onDragStart(event: DragEvent): boolean {
     return false;
   }
   dataTransfer.setData("text/plain", "_");
+  const img = document.createElement("img");
+  img.src = TRANSPARENT_IMAGE;
   dataTransfer.setDragImage(img, 0, 0);
   dataTransfer.setData(
     "application/x-lexical-drag",

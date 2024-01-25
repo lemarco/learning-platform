@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import type { EditorThemeClasses } from "lexical";
 
 import "./PlaygroundEditorTheme.css";
@@ -58,7 +60,6 @@ const theme: EditorThemeClasses = {
   layoutItem: "PlaygroundEditorTheme__layoutItem",
   link: "PlaygroundEditorTheme__link",
   list: {
-    //@ts-ignore
     checklist: "PlaygroundEditorTheme__checklist",
     listitem: "PlaygroundEditorTheme__listItem",
     listitemChecked: "PlaygroundEditorTheme__listItemChecked",

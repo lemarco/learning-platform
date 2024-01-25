@@ -1,3 +1,6 @@
+/** @jsxImportSource react */
+/** @jsxImportSource react */
+
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -11,7 +14,8 @@ import type {
   Spread,
 } from "lexical";
 
-import { $applyNodeReplacement, DecoratorNode, createEditor } from "lexical";
+import Lex from "lexical";
+const { $applyNodeReplacement, createEditor, DecoratorNode } = Lex;
 import * as React from "react";
 import { Suspense } from "react";
 
@@ -132,17 +136,12 @@ export class InlineImageNode extends DecoratorNode<JSX.Element> {
   }
 
   exportDOM(): DOMExportOutput {
-    if (typeof document !== "undefined") {
-      const element = document.createElement("img");
-      element.setAttribute("src", this.__src);
-      element.setAttribute("alt", this.__altText);
-      element.setAttribute("width", this.__width.toString());
-      element.setAttribute("height", this.__height.toString());
-      return { element };
-    }
-
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    return undefined as any;
+    const element = document.createElement("img");
+    element.setAttribute("src", this.__src);
+    element.setAttribute("alt", this.__altText);
+    element.setAttribute("width", this.__width.toString());
+    element.setAttribute("height", this.__height.toString());
+    return { element };
   }
 
   exportJSON(): SerializedInlineImageNode {
@@ -213,15 +212,12 @@ export class InlineImageNode extends DecoratorNode<JSX.Element> {
   // View
 
   createDOM(config: EditorConfig): HTMLElement {
-    if (typeof document !== "undefined") {
-      const span = document.createElement("span");
-      const className = `${config.theme.inlineImage} position-${this.__position}`;
-      if (className !== undefined) {
-        span.className = className;
-      }
-      return span;
+    const span = document.createElement("span");
+    const className = `${config.theme.inlineImage} position-${this.__position}`;
+    if (className !== undefined) {
+      span.className = className;
     }
-    return undefined as any;
+    return span;
   }
 
   updateDOM(prevNode: InlineImageNode, dom: HTMLElement, config: EditorConfig): false {

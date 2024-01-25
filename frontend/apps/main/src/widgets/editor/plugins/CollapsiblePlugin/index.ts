@@ -1,8 +1,14 @@
+/** @jsxImportSource react */
+
 import "./Collapsible.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $findMatchingParent, $insertNodeToNearestRoot, mergeRegister } from "@lexical/utils";
-import {
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+
+import LexUtils from "@lexical/utils";
+const { $findMatchingParent, $insertNodeToNearestRoot, mergeRegister } = LexUtils;
+import Lex, { LexicalNode, NodeKey, ElementNode } from "lexical";
+const {
   $createParagraphNode,
   $getPreviousSelection,
   $getSelection,
@@ -11,16 +17,15 @@ import {
   $setSelection,
   COMMAND_PRIORITY_LOW,
   DELETE_CHARACTER_COMMAND,
-  ElementNode,
+
   INSERT_PARAGRAPH_COMMAND,
   KEY_ARROW_DOWN_COMMAND,
   KEY_ARROW_LEFT_COMMAND,
   KEY_ARROW_RIGHT_COMMAND,
   KEY_ARROW_UP_COMMAND,
-  LexicalNode,
-  NodeKey,
+
   createCommand,
-} from "lexical";
+} = Lex;
 import { useEffect } from "react";
 
 import { $createCollapsibleContainerNode, $isCollapsibleContainerNode, CollapsibleContainerNode } from "./CollapsibleContainerNode";
@@ -138,7 +143,7 @@ export default function CollapsiblePlugin(): null {
           if (topLevelElement === null) {
             return false;
           }
-          // @ts-ignore
+
           const container = topLevelElement.getPreviousSibling<LexicalNode>();
           if (!$isCollapsibleContainerNode(container) || container.getOpen()) {
             return false;

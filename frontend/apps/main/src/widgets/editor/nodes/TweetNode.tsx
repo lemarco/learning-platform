@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -10,9 +12,11 @@ import type {
   Spread,
 } from "lexical";
 
-import { BlockWithAlignableContents } from "@lexical/react/LexicalBlockWithAlignableContents";
-import { DecoratorBlockNode, SerializedDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
-import * as React from "react";
+import LexicalBlockWithAlignableContents from "@lexical/react/LexicalBlockWithAlignableContents";
+const { BlockWithAlignableContents } = LexicalBlockWithAlignableContents;
+import LexicalDecoratorBlockNode, { SerializedDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
+const { DecoratorBlockNode } = LexicalDecoratorBlockNode;
+
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const WIDGET_SCRIPT_URL = "https://platform.twitter.com/widgets.js";
@@ -48,21 +52,19 @@ function TweetComponent({ className, format, loadingComponent, nodeKey, onError,
   const [isTweetLoading, setIsTweetLoading] = useState(false);
 
   const createTweet = useCallback(async () => {
-    if (typeof window !== "undefined") {
-      try {
-        // @ts-expect-error Twitter is attached to the window.
-        await window?.twttr.widgets.createTweet(tweetID, containerRef.current);
+    try {
+      // @ts-expect-error Twitter is attached to the window.
+      await window.twttr.widgets.createTweet(tweetID, containerRef.current);
 
-        setIsTweetLoading(false);
-        isTwitterScriptLoading = false;
+      setIsTweetLoading(false);
+      isTwitterScriptLoading = false;
 
-        if (onLoad) {
-          onLoad();
-        }
-      } catch (error) {
-        if (onError) {
-          onError(String(error));
-        }
+      if (onLoad) {
+        onLoad();
+      }
+    } catch (error) {
+      if (onError) {
+        onError(String(error));
       }
     }
   }, [onError, onLoad, tweetID]);
@@ -72,16 +74,13 @@ function TweetComponent({ className, format, loadingComponent, nodeKey, onError,
       setIsTweetLoading(true);
 
       if (isTwitterScriptLoading) {
-        if (typeof document !== "undefined") {
-          const script = document.createElement("script");
-          script.src = WIDGET_SCRIPT_URL;
-          script.async = true;
-          document.body?.appendChild(script);
-
-          script.onload = createTweet;
-          if (onError) {
-            script.onerror = onError as OnErrorEventHandler;
-          }
+        const script = document.createElement("script");
+        script.src = WIDGET_SCRIPT_URL;
+        script.async = true;
+        document.body?.appendChild(script);
+        script.onload = createTweet;
+        if (onError) {
+          script.onerror = onError as OnErrorEventHandler;
         }
       } else {
         createTweet();
@@ -149,14 +148,11 @@ export class TweetNode extends DecoratorBlockNode {
   }
 
   exportDOM(): DOMExportOutput {
-    if (typeof document !== "undefined") {
-      const element = document.createElement("div");
-      element.setAttribute("data-lexical-tweet-id", this.__id);
-      const text = document.createTextNode(this.getTextContent());
-      element.append(text);
-      return { element };
-    }
-    return undefined as any;
+    const element = document.createElement("div");
+    element.setAttribute("data-lexical-tweet-id", this.__id);
+    const text = document.createTextNode(this.getTextContent());
+    element.append(text);
+    return { element };
   }
 
   constructor(id: string, format?: ElementFormatType, key?: NodeKey) {

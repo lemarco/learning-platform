@@ -1,15 +1,18 @@
 import type { BaseSelection, LexicalEditor, NodeKey } from "lexical";
+/** @jsxImportSource react */
 import type { Position } from "./InlineImageNode";
 
 import "./InlineImageNode.css";
 
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
-import { mergeRegister } from "@lexical/utils";
+import LexUtils from "@lexical/utils";
+const { mergeRegister } = LexUtils;
 import {
   $getNodeByKey,
   $getSelection,
@@ -213,13 +216,10 @@ export default function InlineImageComponent({
           event.preventDefault();
           caption.focus();
           return true;
-        }
-        if (typeof document !== "undefined") {
-          if (buttonElem !== null && buttonElem !== document.activeElement) {
-            event.preventDefault();
-            buttonElem.focus();
-            return true;
-          }
+        } else if (buttonElem !== null && buttonElem !== document.activeElement) {
+          event.preventDefault();
+          buttonElem.focus();
+          return true;
         }
       }
       return false;

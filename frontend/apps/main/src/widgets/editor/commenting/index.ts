@@ -1,9 +1,12 @@
-import type { LexicalEditor } from "lexical";
+/** @jsxImportSource react */
 
-import { Provider, TOGGLE_CONNECT_COMMAND } from "@lexical/yjs";
-import { COMMAND_PRIORITY_LOW } from "lexical";
+import Lex, { LexicalEditor } from "lexical";
+// const { COMMAND_PRIORITY_LOW } = Lex;
+// import LexYjs, { Provider } from "@lexical/yjs";
+// const { TOGGLE_CONNECT_COMMAND } = LexYjs;
+
 import { useEffect, useState } from "react";
-import { Array as YArray, Map as YMap, Transaction, YArrayEvent, YEvent } from "yjs";
+// import { Array as YArray, Map as YMap, Transaction, YArrayEvent, YEvent } from "yjs";
 
 export type Comment = {
   author: string;
@@ -72,7 +75,6 @@ function markDeleted(comment: Comment): Comment {
 
 function triggerOnChange(commentStore: CommentStore): void {
   const listeners = commentStore._changeListeners;
-  //@ts-ignore
   for (const listener of listeners) {
     listener();
   }
@@ -82,18 +84,17 @@ export class CommentStore {
   _editor: LexicalEditor;
   _comments: Comments;
   _changeListeners: Set<() => void>;
-  _collabProvider: null | Provider;
 
   constructor(editor: LexicalEditor) {
     this._comments = [];
     this._editor = editor;
-    this._collabProvider = null;
+
     this._changeListeners = new Set();
   }
 
-  isCollaborative(): boolean {
-    return this._collabProvider !== null;
-  }
+  // isCollaborative(): boolean {
+  //   return this._collabProvider !== null;
+  // }
 
   getComments(): Comments {
     return this._comments;
@@ -102,8 +103,8 @@ export class CommentStore {
   addComment(commentOrThread: Comment | Thread, thread?: Thread, offset?: number): void {
     const nextComments = Array.from(this._comments);
     // The YJS types explicitly use `any` as well.
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const sharedCommentsArray: YArray<any> | null = this._getCollabComments();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // const sharedCommentsArray: YArray<any> | null = this._getCollabComments();
 
     if (thread !== undefined && commentOrThread.type === "comment") {
       for (let i = 0; i < nextComments.length; i++) {
@@ -112,25 +113,25 @@ export class CommentStore {
           const newThread = cloneThread(comment);
           nextComments.splice(i, 1, newThread);
           const insertOffset = offset !== undefined ? offset : newThread.comments.length;
-          if (this.isCollaborative() && sharedCommentsArray !== null) {
-            const parentSharedArray = sharedCommentsArray.get(i).get("comments");
-            this._withRemoteTransaction(() => {
-              const sharedMap = this._createCollabSharedMap(commentOrThread);
-              parentSharedArray.insert(insertOffset, [sharedMap]);
-            });
-          }
+          // if (this.isCollaborative() && sharedCommentsArray !== null) {
+          //   const parentSharedArray = sharedCommentsArray.get(i).get("comments");
+          //   this._withRemoteTransaction(() => {
+          //     const sharedMap = this._createCollabSharedMap(commentOrThread);
+          //     parentSharedArray.insert(insertOffset, [sharedMap]);
+          //   });
+          // }
           newThread.comments.splice(insertOffset, 0, commentOrThread);
           break;
         }
       }
     } else {
       const insertOffset = offset !== undefined ? offset : nextComments.length;
-      if (this.isCollaborative() && sharedCommentsArray !== null) {
-        this._withRemoteTransaction(() => {
-          const sharedMap = this._createCollabSharedMap(commentOrThread);
-          sharedCommentsArray.insert(insertOffset, [sharedMap]);
-        });
-      }
+      // if (this.isCollaborative() && sharedCommentsArray !== null) {
+      //   this._withRemoteTransaction(() => {
+      //     const sharedMap = this._createCollabSharedMap(commentOrThread);
+      //     sharedCommentsArray.insert(insertOffset, [sharedMap]);
+      //   });
+      // }
       nextComments.splice(insertOffset, 0, commentOrThread);
     }
     this._comments = nextComments;
@@ -140,9 +141,8 @@ export class CommentStore {
   deleteCommentOrThread(commentOrThread: Comment | Thread, thread?: Thread): { markedComment: Comment; index: number } | null {
     const nextComments = Array.from(this._comments);
     // The YJS types explicitly use `any` as well.
-
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const sharedCommentsArray: YArray<any> | null = this._getCollabComments();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // const sharedCommentsArray: YArray<any> | null = this._getCollabComments();
     let commentIndex: number | null = null;
 
     if (thread !== undefined) {
@@ -153,23 +153,23 @@ export class CommentStore {
           nextComments.splice(i, 1, newThread);
           const threadComments = newThread.comments;
           commentIndex = threadComments.indexOf(commentOrThread as Comment);
-          if (this.isCollaborative() && sharedCommentsArray !== null) {
-            const parentSharedArray = sharedCommentsArray.get(i).get("comments");
-            this._withRemoteTransaction(() => {
-              parentSharedArray.delete(commentIndex);
-            });
-          }
+          // if (this.isCollaborative() && sharedCommentsArray !== null) {
+          //   const parentSharedArray = sharedCommentsArray.get(i).get("comments");
+          //   this._withRemoteTransaction(() => {
+          //     parentSharedArray.delete(commentIndex);
+          //   });
+          // }
           threadComments.splice(commentIndex, 1);
           break;
         }
       }
     } else {
       commentIndex = nextComments.indexOf(commentOrThread);
-      if (this.isCollaborative() && sharedCommentsArray !== null) {
-        this._withRemoteTransaction(() => {
-          sharedCommentsArray.delete(commentIndex as number);
-        });
-      }
+      // if (this.isCollaborative() && sharedCommentsArray !== null) {
+      //   this._withRemoteTransaction(() => {
+      //     sharedCommentsArray.delete(commentIndex as number);
+      //   });
+      // }
       nextComments.splice(commentIndex, 1);
     }
     this._comments = nextComments;
@@ -193,191 +193,189 @@ export class CommentStore {
     };
   }
 
-  _withRemoteTransaction(fn: () => void): void {
-    const provider = this._collabProvider;
-    if (provider !== null) {
-      // @ts-expect-error doc does exist
-      const doc = provider.doc;
-      doc.transact(fn, this);
-    }
-  }
+  // _withRemoteTransaction(fn: () => void): void {
+  //   const provider = this._collabProvider;
+  //   if (provider !== null) {
+  //     // @ts-expect-error doc does exist
+  //     const doc = provider.doc;
+  //     doc.transact(fn, this);
+  //   }
+  // }
 
-  _withLocalTransaction(fn: () => void): void {
-    const collabProvider = this._collabProvider;
-    try {
-      this._collabProvider = null;
-      fn();
-    } finally {
-      this._collabProvider = collabProvider;
-    }
-  }
+  // _withLocalTransaction(fn: () => void): void {
+  //   const collabProvider = this._collabProvider;
+  //   try {
+  //     this._collabProvider = null;
+  //     fn();
+  //   } finally {
+  //     this._collabProvider = collabProvider;
+  //   }
+  // }
 
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  _getCollabComments(): null | YArray<any> {
-    const provider = this._collabProvider;
-    if (provider !== null) {
-      // @ts-expect-error doc does exist
-      const doc = provider.doc;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // _getCollabComments(): null | YArray<any> {
+  //   const provider = this._collabProvider;
+  //   if (provider !== null) {
+  //     // @ts-expect-error doc does exist
+  //     const doc = provider.doc;
+  //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //     return doc.get("comments", YArray) as YArray<any>;
+  //   }
+  //   return null;
+  // }
 
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-      return doc.get("comments", YArray) as YArray<any>;
-    }
-    return null;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // _createCollabSharedMap(commentOrThread: Comment | Thread): YMap<any> {
+  //   const sharedMap = new YMap();
+  //   const type = commentOrThread.type;
+  //   const id = commentOrThread.id;
+  //   sharedMap.set("type", type);
+  //   sharedMap.set("id", id);
+  //   if (type === "comment") {
+  //     sharedMap.set("author", commentOrThread.author);
+  //     sharedMap.set("content", commentOrThread.content);
+  //     sharedMap.set("deleted", commentOrThread.deleted);
+  //     sharedMap.set("timeStamp", commentOrThread.timeStamp);
+  //   } else {
+  //     sharedMap.set("quote", commentOrThread.quote);
+  //     const commentsArray = new YArray();
+  //     commentOrThread.comments.forEach((comment, i) => {
+  //       const sharedChildComment = this._createCollabSharedMap(comment);
+  //       commentsArray.insert(i, [sharedChildComment]);
+  //     });
+  //     sharedMap.set("comments", commentsArray);
+  //   }
+  //   return sharedMap;
+  // }
 
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  _createCollabSharedMap(commentOrThread: Comment | Thread): YMap<any> {
-    const sharedMap = new YMap();
-    const type = commentOrThread.type;
-    const id = commentOrThread.id;
-    sharedMap.set("type", type);
-    sharedMap.set("id", id);
-    if (type === "comment") {
-      sharedMap.set("author", commentOrThread.author);
-      sharedMap.set("content", commentOrThread.content);
-      sharedMap.set("deleted", commentOrThread.deleted);
-      sharedMap.set("timeStamp", commentOrThread.timeStamp);
-    } else {
-      sharedMap.set("quote", commentOrThread.quote);
-      const commentsArray = new YArray();
-      commentOrThread.comments.forEach((comment, i) => {
-        const sharedChildComment = this._createCollabSharedMap(comment);
-        commentsArray.insert(i, [sharedChildComment]);
-      });
-      sharedMap.set("comments", commentsArray);
-    }
-    return sharedMap;
-  }
+  // registerCollaboration(provider: Provider): () => void {
+  //   this._collabProvider = provider;
+  //   const sharedCommentsArray = this._getCollabComments();
 
-  registerCollaboration(provider: Provider): () => void {
-    this._collabProvider = provider;
-    const sharedCommentsArray = this._getCollabComments();
+  //   const connect = () => {
+  //     provider.connect();
+  //   };
 
-    const connect = () => {
-      provider.connect();
-    };
+  //   const disconnect = () => {
+  //     try {
+  //       provider.disconnect();
+  //     } catch (e) {
+  //       // Do nothing
+  //     }
+  //   };
 
-    const disconnect = () => {
-      try {
-        provider.disconnect();
-      } catch (e) {
-        // Do nothing
-      }
-    };
+  //   const unsubscribe = this._editor.registerCommand(
+  //     TOGGLE_CONNECT_COMMAND,
+  //     (payload) => {
+  //       if (connect !== undefined && disconnect !== undefined) {
+  //         const shouldConnect = payload;
 
-    const unsubscribe = this._editor.registerCommand(
-      TOGGLE_CONNECT_COMMAND,
-      (payload) => {
-        if (connect !== undefined && disconnect !== undefined) {
-          const shouldConnect = payload;
+  //         if (shouldConnect) {
+  //           // eslint-disable-next-line no-console
+  //           console.log("Comments connected!");
+  //           connect();
+  //         } else {
+  //           // eslint-disable-next-line no-console
+  //           console.log("Comments disconnected!");
+  //           disconnect();
+  //         }
+  //       }
 
-          if (shouldConnect) {
-            console.log("Comments connected!");
-            connect();
-          } else {
-            console.log("Comments disconnected!");
-            disconnect();
-          }
-        }
+  //       return false;
+  //     },
+  //     COMMAND_PRIORITY_LOW,
+  //   );
 
-        return false;
-      },
-      COMMAND_PRIORITY_LOW,
-    );
+  //   const onSharedCommentChanges = (
+  //     // The YJS types explicitly use `any` as well.
+  //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //     events: Array<YEvent<any>>,
+  //     transaction: Transaction,
+  //   ) => {
+  //     if (transaction.origin !== this) {
+  //       for (let i = 0; i < events.length; i++) {
+  //         const event = events[i];
 
-    const onSharedCommentChanges = (
-      // The YJS types explicitly use `any` as well.
+  //         if (event instanceof YArrayEvent) {
+  //           const target = event.target;
+  //           const deltas = event.delta;
+  //           let offset = 0;
 
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-      events: Array<YEvent<any>>,
-      transaction: Transaction,
-    ) => {
-      if (transaction.origin !== this) {
-        for (let i = 0; i < events.length; i++) {
-          const event = events[i];
+  //           for (let s = 0; s < deltas.length; s++) {
+  //             const delta = deltas[s];
+  //             const insert = delta.insert;
+  //             const retain = delta.retain;
+  //             const del = delta.delete;
+  //             const parent = target.parent;
+  //             const parentThread =
+  //               target === sharedCommentsArray
+  //                 ? undefined
+  //                 : parent instanceof YMap && (this._comments.find((t) => t.id === parent.get("id")) as Thread | undefined);
 
-          if (event instanceof YArrayEvent) {
-            const target = event.target;
-            const deltas = event.delta;
-            let offset = 0;
+  //             if (Array.isArray(insert)) {
+  //               insert
+  //                 .slice()
+  //                 .reverse()
+  //                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //                 .forEach((map: YMap<any>) => {
+  //                   const id = map.get("id");
+  //                   const type = map.get("type");
 
-            for (let s = 0; s < deltas.length; s++) {
-              const delta = deltas[s];
-              const insert = delta.insert;
-              const retain = delta.retain;
-              const del = delta.delete;
-              const parent = target.parent;
-              const parentThread =
-                target === sharedCommentsArray
-                  ? undefined
-                  : parent instanceof YMap && (this._comments.find((t) => t.id === parent.get("id")) as Thread | undefined);
+  //                   const commentOrThread =
+  //                     type === "thread"
+  //                       ? createThread(
+  //                           map.get("quote"),
+  //                           map
+  //                             .get("comments")
+  //                             .toArray()
+  //                             .map((innerComment: Map<string, string | number | boolean>) =>
+  //                               createComment(
+  //                                 innerComment.get("content") as string,
+  //                                 innerComment.get("author") as string,
+  //                                 innerComment.get("id") as string,
+  //                                 innerComment.get("timeStamp") as number,
+  //                                 innerComment.get("deleted") as boolean,
+  //                               ),
+  //                             ),
+  //                           id,
+  //                         )
+  //                       : createComment(map.get("content"), map.get("author"), id, map.get("timeStamp"), map.get("deleted"));
+  //                   this._withLocalTransaction(() => {
+  //                     this.addComment(commentOrThread, parentThread as Thread, offset);
+  //                   });
+  //                 });
+  //             } else if (typeof retain === "number") {
+  //               offset += retain;
+  //             } else if (typeof del === "number") {
+  //               for (let d = 0; d < del; d++) {
+  //                 const commentOrThread =
+  //                   parentThread === undefined || parentThread === false ? this._comments[offset] : parentThread.comments[offset];
+  //                 this._withLocalTransaction(() => {
+  //                   this.deleteCommentOrThread(commentOrThread, parentThread as Thread);
+  //                 });
+  //                 offset++;
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   };
 
-              if (Array.isArray(insert)) {
-                // biome-ignore lint/complexity/noForEach: <explanation>
-                insert
-                  .slice()
-                  .reverse()
+  //   if (sharedCommentsArray === null) {
+  //     return () => null;
+  //   }
 
-                  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-                  .forEach((map: YMap<any>) => {
-                    const id = map.get("id");
-                    const type = map.get("type");
+  //   sharedCommentsArray.observeDeep(onSharedCommentChanges);
 
-                    const commentOrThread =
-                      type === "thread"
-                        ? createThread(
-                            map.get("quote"),
-                            map
-                              .get("comments")
-                              .toArray()
-                              .map((innerComment: Map<string, string | number | boolean>) =>
-                                createComment(
-                                  innerComment.get("content") as string,
-                                  innerComment.get("author") as string,
-                                  innerComment.get("id") as string,
-                                  innerComment.get("timeStamp") as number,
-                                  innerComment.get("deleted") as boolean,
-                                ),
-                              ),
-                            id,
-                          )
-                        : createComment(map.get("content"), map.get("author"), id, map.get("timeStamp"), map.get("deleted"));
-                    this._withLocalTransaction(() => {
-                      this.addComment(commentOrThread, parentThread as Thread, offset);
-                    });
-                  });
-              } else if (typeof retain === "number") {
-                offset += retain;
-              } else if (typeof del === "number") {
-                for (let d = 0; d < del; d++) {
-                  const commentOrThread =
-                    parentThread === undefined || parentThread === false ? this._comments[offset] : parentThread.comments[offset];
-                  this._withLocalTransaction(() => {
-                    this.deleteCommentOrThread(commentOrThread, parentThread as Thread);
-                  });
-                  offset++;
-                }
-              }
-            }
-          }
-        }
-      }
-    };
+  //   connect();
 
-    if (sharedCommentsArray === null) {
-      return () => null;
-    }
-
-    sharedCommentsArray.observeDeep(onSharedCommentChanges);
-
-    connect();
-
-    return () => {
-      sharedCommentsArray.unobserveDeep(onSharedCommentChanges);
-      unsubscribe();
-      this._collabProvider = null;
-    };
-  }
+  //   return () => {
+  //     sharedCommentsArray.unobserveDeep(onSharedCommentChanges);
+  //     unsubscribe();
+  //     this._collabProvider = null;
+  //   };
+  // }
 }
 
 export function useCommentStore(commentStore: CommentStore): Comments {

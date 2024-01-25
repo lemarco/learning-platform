@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -10,8 +12,11 @@ import type {
   Spread,
 } from "lexical";
 
-import { BlockWithAlignableContents } from "@lexical/react/LexicalBlockWithAlignableContents";
-import { DecoratorBlockNode, SerializedDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
+import LexicalBlockWithAlignableContents from "@lexical/react/LexicalBlockWithAlignableContents";
+const { BlockWithAlignableContents } = LexicalBlockWithAlignableContents;
+
+import LexicalDecoratorBlockNode, { SerializedDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
+const { DecoratorBlockNode } = LexicalDecoratorBlockNode;
 import * as React from "react";
 
 type YouTubeComponentProps = Readonly<{
@@ -88,19 +93,16 @@ export class YouTubeNode extends DecoratorBlockNode {
   }
 
   exportDOM(): DOMExportOutput {
-    if (typeof document !== "undefined") {
-      const element = document.createElement("iframe");
-      element.setAttribute("data-lexical-youtube", this.__id);
-      element.setAttribute("width", "560");
-      element.setAttribute("height", "315");
-      element.setAttribute("src", `https://www.youtube-nocookie.com/embed/${this.__id}`);
-      element.setAttribute("frameborder", "0");
-      element.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
-      element.setAttribute("allowfullscreen", "true");
-      element.setAttribute("title", "YouTube video");
-      return { element };
-    }
-    return undefined as any;
+    const element = document.createElement("iframe");
+    element.setAttribute("data-lexical-youtube", this.__id);
+    element.setAttribute("width", "560");
+    element.setAttribute("height", "315");
+    element.setAttribute("src", `https://www.youtube-nocookie.com/embed/${this.__id}`);
+    element.setAttribute("frameborder", "0");
+    element.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
+    element.setAttribute("allowfullscreen", "true");
+    element.setAttribute("title", "YouTube video");
+    return { element };
   }
 
   static importDOM(): DOMConversionMap | null {

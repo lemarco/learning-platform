@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import type { LexicalEditor } from "lexical";
 
 import * as React from "react";
@@ -125,10 +127,9 @@ export default function ImageResizer({
       controlWrapper.classList.add("image-control-wrapper--resizing");
       image.style.height = `${height}px`;
       image.style.width = `${width}px`;
-      if (typeof document !== "undefined") {
-        document.addEventListener("pointermove", handlePointerMove);
-        document.addEventListener("pointerup", handlePointerUp);
-      }
+
+      document.addEventListener("pointermove", handlePointerMove);
+      document.addEventListener("pointerup", handlePointerUp);
     }
   };
   const handlePointerMove = (event: PointerEvent) => {
@@ -190,10 +191,9 @@ export default function ImageResizer({
 
       setEndCursor();
       onResizeEnd(width, height);
-      if (typeof document !== "undefined") {
-        document.removeEventListener("pointermove", handlePointerMove);
-        document.removeEventListener("pointerup", handlePointerUp);
-      }
+
+      document.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerup", handlePointerUp);
     }
   };
   return (

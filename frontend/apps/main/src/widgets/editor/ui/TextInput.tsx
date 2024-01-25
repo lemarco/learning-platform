@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import "./Input.css";
 
 import * as React from "react";

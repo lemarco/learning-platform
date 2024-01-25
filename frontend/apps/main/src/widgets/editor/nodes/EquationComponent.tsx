@@ -1,5 +1,9 @@
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { mergeRegister } from "@lexical/utils";
+/** @jsxImportSource react */
+
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import LexUtils from "@lexical/utils";
+const { mergeRegister } = LexUtils;
 import {
   $getNodeByKey,
   $getSelection,
@@ -52,46 +56,45 @@ export default function EquationComponent({ equation, inline, nodeKey }: Equatio
   }, [showEquationEditor, equation, equationValue]);
 
   useEffect(() => {
-    if (typeof document !== "undefined") {
-      if (showEquationEditor) {
-        return mergeRegister(
-          editor.registerCommand(
-            SELECTION_CHANGE_COMMAND,
-            (payload) => {
-              const activeElement = document.activeElement;
-              const inputElem = inputRef.current;
-              if (inputElem !== activeElement) {
-                onHide();
-              }
-              return false;
-            },
-            COMMAND_PRIORITY_HIGH,
-          ),
-          editor.registerCommand(
-            KEY_ESCAPE_COMMAND,
-            (payload) => {
-              const activeElement = document.activeElement;
-              const inputElem = inputRef.current;
-              if (inputElem === activeElement) {
-                onHide(true);
-                return true;
-              }
-              return false;
-            },
-            COMMAND_PRIORITY_HIGH,
-          ),
-        );
-      }
-    }
-    return editor.registerUpdateListener(({ editorState }) => {
-      const isSelected = editorState.read(() => {
-        const selection = $getSelection();
-        return $isNodeSelection(selection) && selection.has(nodeKey) && selection.getNodes().length === 1;
+    if (showEquationEditor) {
+      return mergeRegister(
+        editor.registerCommand(
+          SELECTION_CHANGE_COMMAND,
+          (payload) => {
+            const activeElement = document.activeElement;
+            const inputElem = inputRef.current;
+            if (inputElem !== activeElement) {
+              onHide();
+            }
+            return false;
+          },
+          COMMAND_PRIORITY_HIGH,
+        ),
+        editor.registerCommand(
+          KEY_ESCAPE_COMMAND,
+          (payload) => {
+            const activeElement = document.activeElement;
+            const inputElem = inputRef.current;
+            if (inputElem === activeElement) {
+              onHide(true);
+              return true;
+            }
+            return false;
+          },
+          COMMAND_PRIORITY_HIGH,
+        ),
+      );
+    } else {
+      return editor.registerUpdateListener(({ editorState }) => {
+        const isSelected = editorState.read(() => {
+          const selection = $getSelection();
+          return $isNodeSelection(selection) && selection.has(nodeKey) && selection.getNodes().length === 1;
+        });
+        if (isSelected) {
+          setShowEquationEditor(true);
+        }
       });
-      if (isSelected) {
-        setShowEquationEditor(true);
-      }
-    });
+    }
   }, [editor, nodeKey, onHide, showEquationEditor]);
 
   return (

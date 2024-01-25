@@ -1,24 +1,42 @@
-import type { Provider } from "@lexical/yjs";
+/** @jsxImportSource react */
+
+// import type { Provider } from "@lexical/yjs";
 import type { EditorState, LexicalCommand, LexicalEditor, NodeKey, RangeSelection } from "lexical";
-import type { Doc } from "yjs";
+// import type { Doc } from "yjs";
 
 import "./index.css";
 
-import { $createMarkNode, $getMarkIDs, $isMarkNode, $unwrapMarkNode, $wrapSelectionInMarkNode, MarkNode } from "@lexical/mark";
-import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { ClearEditorPlugin } from "@lexical/react/LexicalClearEditorPlugin";
-import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
-import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { EditorRefPlugin } from "@lexical/react/LexicalEditorRefPlugin";
+import LexMark from "@lexical/mark";
+const { $createMarkNode, $getMarkIDs, $isMarkNode, $unwrapMarkNode, $wrapSelectionInMarkNode, MarkNode } = LexMark;
+import LexLexicalAutoFocusPlugin from "@lexical/react/LexicalAutoFocusPlugin";
+const { AutoFocusPlugin } = LexLexicalAutoFocusPlugin;
+import LexicalClearEditorPlugin from "@lexical/react/LexicalClearEditorPlugin";
+const { ClearEditorPlugin } = LexicalClearEditorPlugin;
+// import LexicalCollaborationContext from "@lexical/react/LexicalCollaborationContext";
+// const { useCollaborationContext } = LexicalCollaborationContext;
+import LexLexicalComposer from "@lexical/react/LexicalComposer";
+const { LexicalComposer } = LexLexicalComposer;
+
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import LexicalEditorRefPlugin from "@lexical/react/LexicalEditorRefPlugin";
+const { EditorRefPlugin } = LexicalEditorRefPlugin;
+
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
-import { createDOMRange, createRectsFromDOMRange } from "@lexical/selection";
-import { $isRootTextContentEmpty, $rootTextContent } from "@lexical/text";
-import { mergeRegister, registerNestedElementResolver } from "@lexical/utils";
-import {
+import LexicalHistoryPlugin from "@lexical/react/LexicalHistoryPlugin";
+const { HistoryPlugin } = LexicalHistoryPlugin;
+import LexicalOnChangePlugin from "@lexical/react/LexicalOnChangePlugin";
+const { OnChangePlugin } = LexicalOnChangePlugin;
+import LexicalPlainTextPlugin from "@lexical/react/LexicalPlainTextPlugin";
+const { PlainTextPlugin } = LexicalPlainTextPlugin;
+import LexSelection from "@lexical/selection";
+const { createDOMRange, createRectsFromDOMRange } = LexSelection;
+import LexText from "@lexical/text";
+const { $isRootTextContentEmpty, $rootTextContent } = LexText;
+import LexUtils from "@lexical/utils";
+const { mergeRegister, registerNestedElementResolver } = LexUtils;
+import Lex from "lexical";
+const {
   $getNodeByKey,
   $getSelection,
   $isRangeSelection,
@@ -27,9 +45,9 @@ import {
   COMMAND_PRIORITY_EDITOR,
   KEY_ESCAPE_COMMAND,
   createCommand,
-} from "lexical";
+} = Lex;
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import * as React from "react";
+// import * as React from "react";
 import { createPortal } from "react-dom";
 import useLayoutEffect from "../../shared/useLayoutEffect";
 
@@ -66,15 +84,12 @@ function AddCommentBox({
     }
   }, [anchorKey, editor]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", updatePosition);
+    window.addEventListener("resize", updatePosition);
 
-      return () => {
-        window.removeEventListener("resize", updatePosition);
-      };
-    }
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+    };
   }, [editor, updatePosition]);
 
   useLayoutEffect(() => {
@@ -83,7 +98,6 @@ function AddCommentBox({
 
   return (
     <div className="CommentPlugin_AddCommentBox" ref={boxRef}>
-      {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
       <button className="CommentPlugin_AddCommentBox_button" onClick={onAddComment}>
         <i className="icon add-comment" />
       </button>
@@ -183,95 +197,84 @@ function CommentInputBox({
   const [content, setContent] = useState("");
   const [canSubmit, setCanSubmit] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
-  const selectionState = useMemo(() => {
-    if (typeof document !== "undefined") {
-      return {
-        container: document.createElement("div"),
-        elements: [],
-      };
-    }
-  }, []);
+  const selectionState = useMemo(
+    () => ({
+      container: document.createElement("div"),
+      elements: [],
+    }),
+    [],
+  );
   const selectionRef = useRef<RangeSelection | null>(null);
-  const author = useCollabAuthorName();
+  // const author = useCollabAuthorName();
 
   const updateLocation = useCallback(() => {
-    if (typeof window !== "undefined") {
-      editor.getEditorState().read(() => {
-        const selection = $getSelection();
+    editor.getEditorState().read(() => {
+      const selection = $getSelection();
 
-        if ($isRangeSelection(selection)) {
-          selectionRef.current = selection.clone();
-          const anchor = selection.anchor;
-          const focus = selection.focus;
-          const range = createDOMRange(editor, anchor.getNode(), anchor.offset, focus.getNode(), focus.offset);
-          const boxElem = boxRef.current;
-          if (range !== null && boxElem !== null) {
-            const { left, bottom, width } = range.getBoundingClientRect();
-            const selectionRects = createRectsFromDOMRange(editor, range);
-            let correctedLeft = selectionRects.length === 1 ? left + width / 2 - 125 : left - 125;
-            if (correctedLeft < 10) {
-              correctedLeft = 10;
-            }
-            boxElem.style.left = `${correctedLeft}px`;
-            boxElem.style.top = `${bottom + 20 + (window?.pageYOffset || document.documentElement.scrollTop)}px`;
+      if ($isRangeSelection(selection)) {
+        selectionRef.current = selection.clone();
+        const anchor = selection.anchor;
+        const focus = selection.focus;
+        const range = createDOMRange(editor, anchor.getNode(), anchor.offset, focus.getNode(), focus.offset);
+        const boxElem = boxRef.current;
+        if (range !== null && boxElem !== null) {
+          const { left, bottom, width } = range.getBoundingClientRect();
+          const selectionRects = createRectsFromDOMRange(editor, range);
+          let correctedLeft = selectionRects.length === 1 ? left + width / 2 - 125 : left - 125;
+          if (correctedLeft < 10) {
+            correctedLeft = 10;
+          }
+          boxElem.style.left = `${correctedLeft}px`;
+          boxElem.style.top = `${bottom + 20 + (window.pageYOffset || document.documentElement.scrollTop)}px`;
+          const selectionRectsLength = selectionRects.length;
+          const { container } = selectionState;
+          const elements: Array<HTMLSpanElement> = selectionState.elements;
+          const elementsLength = elements.length;
 
-            const selectionRectsLength = selectionRects.length;
-            //@ts-ignore
-            const { container } = selectionState;
-            //@ts-ignore
-            const elements: Array<HTMLSpanElement> = selectionState.elements;
-            const elementsLength = elements.length;
-
-            for (let i = 0; i < selectionRectsLength; i++) {
-              const selectionRect = selectionRects[i];
-              let elem: HTMLSpanElement = elements[i];
-              if (elem === undefined) {
-                elem = document.createElement("span");
-                elements[i] = elem;
-                container.appendChild(elem);
-              }
-              const color = "255, 212, 0";
-              const style = `position:absolute;top:${
-                selectionRect.top + (window?.pageYOffset || document.documentElement.scrollTop)
-              }px;left:${selectionRect.left}px;height:${selectionRect.height}px;width:${
-                selectionRect.width
-              }px;background-color:rgba(${color}, 0.3);pointer-events:none;z-index:5;`;
-              elem.style.cssText = style;
+          for (let i = 0; i < selectionRectsLength; i++) {
+            const selectionRect = selectionRects[i];
+            let elem: HTMLSpanElement = elements[i];
+            if (elem === undefined) {
+              elem = document.createElement("span");
+              elements[i] = elem;
+              container.appendChild(elem);
             }
-            for (let i = elementsLength - 1; i >= selectionRectsLength; i--) {
-              const elem = elements[i];
-              container.removeChild(elem);
-              elements.pop();
-            }
+            const color = "255, 212, 0";
+            const style = `position:absolute;top:${selectionRect.top + (window.pageYOffset || document.documentElement.scrollTop)}px;left:${
+              selectionRect.left
+            }px;height:${selectionRect.height}px;width:${
+              selectionRect.width
+            }px;background-color:rgba(${color}, 0.3);pointer-events:none;z-index:5;`;
+            elem.style.cssText = style;
+          }
+          for (let i = elementsLength - 1; i >= selectionRectsLength; i--) {
+            const elem = elements[i];
+            container.removeChild(elem);
+            elements.pop();
           }
         }
-      });
-    }
+      }
+    });
   }, [editor, selectionState]);
 
   useLayoutEffect(() => {
     updateLocation();
-    const container = selectionState?.container;
+    const container = selectionState.container;
     const body = document.body;
     if (body !== null) {
-      //@ts-ignore
       body.appendChild(container);
       return () => {
-        //@ts-ignore
         body.removeChild(container);
       };
     }
-    //@ts-ignore
   }, [selectionState.container, updateLocation]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", updateLocation);
+    window.addEventListener("resize", updateLocation);
 
-      return () => {
-        window.removeEventListener("resize", updateLocation);
-      };
-    }
+    return () => {
+      window.removeEventListener("resize", updateLocation);
+    };
   }, [updateLocation]);
 
   const onEscape = (event: KeyboardEvent): boolean => {
@@ -289,7 +292,8 @@ function CommentInputBox({
       if (quote.length > 100) {
         quote = quote.slice(0, 99) + "…";
       }
-      submitAddComment(createThread(quote, [createComment(content, author)]), true, undefined, selectionRef.current);
+      // TODO author!!
+      submitAddComment(createThread(quote, [createComment(content, "")]), true, undefined, selectionRef.current);
       selectionRef.current = null;
     }
   };
@@ -320,7 +324,7 @@ function CommentsComposer({
   submitAddComment: (
     commentOrThread: Comment,
     isInlineComment: boolean,
-
+    // eslint-disable-next-line no-shadow
     thread?: Thread,
   ) => void;
   thread?: Thread;
@@ -328,13 +332,15 @@ function CommentsComposer({
   const [content, setContent] = useState("");
   const [canSubmit, setCanSubmit] = useState(false);
   const editorRef = useRef<LexicalEditor>(null);
-  const author = useCollabAuthorName();
+  // const author = useCollabAuthorName();
 
   const onChange = useOnChange(setContent, setCanSubmit);
 
   const submitComment = () => {
     if (canSubmit) {
-      submitAddComment(createComment(content, author), false, thread);
+      // TODO author
+      submitAddComment(createComment(content, ""), false, thread);
+      // submitAddComment(createComment(content, author), false, thread);
       const editor = editorRef.current;
       if (editor !== null) {
         editor.dispatchCommand(CLEAR_EDITOR_COMMAND, undefined);
@@ -371,7 +377,7 @@ function ShowDeleteCommentOrThreadDialog({
 
   deleteCommentOrThread: (
     comment: Comment | Thread,
-
+    // eslint-disable-next-line no-shadow
     thread?: Thread,
   ) => void;
   onClose: () => void;
@@ -410,7 +416,7 @@ function CommentsPanelListComment({
   comment: Comment;
   deleteComment: (
     commentOrThread: Comment | Thread,
-
+    // eslint-disable-next-line no-shadow
     thread?: Thread,
   ) => void;
   rtf: Intl.RelativeTimeFormat;
@@ -524,7 +530,7 @@ function CommentsPanelList({
           };
 
           return (
-            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
             <li
               key={id}
               onClick={handleClickThread}
@@ -612,18 +618,20 @@ function CommentsPanel({
   );
 }
 
-function useCollabAuthorName(): string {
-  const collabContext = useCollaborationContext();
-  const { yjsDocMap, name } = collabContext;
-  return yjsDocMap.has("comments") ? name : "Playground User";
-}
+// function useCollabAuthorName(): string {
+//   const collabContext = useCollaborationContext();
+//   const { yjsDocMap, name } = collabContext;
+//   return yjsDocMap.has("comments") ? name : "Playground User";
+// }
 
-export default function CommentPlugin({
-  providerFactory,
-}: {
-  providerFactory?: (id: string, yjsDocMap: Map<string, Doc>) => Provider;
-}): JSX.Element {
-  const collabContext = useCollaborationContext();
+export default function CommentPlugin(
+  //   {
+  //   providerFactory,
+  // }: {
+  //   providerFactory?: (id: string, yjsDocMap: Map<string, Doc>) => Provider;
+  // }
+): JSX.Element {
+  // const collabContext = useCollaborationContext();
   const [editor] = useLexicalComposerContext();
   const commentStore = useMemo(() => new CommentStore(editor), [editor]);
   const comments = useCommentStore(commentStore);
@@ -634,14 +642,14 @@ export default function CommentPlugin({
   const [activeIDs, setActiveIDs] = useState<Array<string>>([]);
   const [showCommentInput, setShowCommentInput] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  const { yjsDocMap } = collabContext;
+  // const { yjsDocMap } = collabContext;
 
-  useEffect(() => {
-    if (providerFactory) {
-      const provider = providerFactory("comments", yjsDocMap);
-      return commentStore.registerCollaboration(provider);
-    }
-  }, [commentStore, providerFactory, yjsDocMap]);
+  // useEffect(() => {
+  //   if (providerFactory) {
+  //     const provider = providerFactory("comments", yjsDocMap);
+  //     return commentStore.registerCollaboration(provider);
+  //   }
+  // }, [commentStore, providerFactory, yjsDocMap]);
 
   const cancelAddComment = useCallback(() => {
     editor.update(() => {
@@ -670,7 +678,6 @@ export default function CommentPlugin({
           // Do async to avoid causing a React infinite loop
           setTimeout(() => {
             editor.update(() => {
-              // @ts-ignore
               for (const key of markNodeKeys) {
                 const node: null | MarkNode = $getNodeByKey(key);
                 if ($isMarkNode(node)) {
@@ -713,7 +720,6 @@ export default function CommentPlugin({
       const id = activeIDs[i];
       const keys = markNodeMap.get(id);
       if (keys !== undefined) {
-        // @ts-ignore
         for (const key of keys) {
           const elem = editor.getElementByKey(key);
           if (elem !== null) {
@@ -745,7 +751,6 @@ export default function CommentPlugin({
         (from: MarkNode, to: MarkNode) => {
           // Merge the IDs
           const ids = from.getIDs();
-          // biome-ignore lint/complexity/noForEach: <explanation>
           ids.forEach((id) => {
             to.addID(id);
           });
@@ -753,7 +758,6 @@ export default function CommentPlugin({
       ),
       editor.registerMutationListener(MarkNode, (mutations) => {
         editor.getEditorState().read(() => {
-          // @ts-ignore
           for (const [key, mutation] of mutations) {
             const node: null | MarkNode = $getNodeByKey(key);
             let ids: NodeKey[] = [];

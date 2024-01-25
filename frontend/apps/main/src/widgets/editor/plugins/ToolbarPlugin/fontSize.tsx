@@ -1,13 +1,18 @@
+/** @jsxImportSource react */
+
 import "./fontSize.css";
 
-import { $patchStyleText } from "@lexical/selection";
-import { $getSelection, LexicalEditor } from "lexical";
+import LexSelection from "@lexical/selection";
+const { $patchStyleText } = LexSelection;
+import Lex from "lexical";
+const { $getSelection, LexicalEditor } = Lex;
 import * as React from "react";
 
 const MIN_ALLOWED_FONT_SIZE = 8;
 const MAX_ALLOWED_FONT_SIZE = 72;
 const DEFAULT_FONT_SIZE = 15;
 
+// eslint-disable-next-line no-shadow
 enum updateFontSizeType {
   increment = 1,
   decrement = 2,
@@ -98,7 +103,6 @@ export default function FontSize({
         if (!prevFontSize) {
           prevFontSize = `${DEFAULT_FONT_SIZE}px`;
         }
-
         prevFontSize = prevFontSize.slice(0, -2);
         const nextFontSize = calculateNextFontSize(Number(prevFontSize), updateType);
         return `${nextFontSize}px`;
@@ -108,7 +112,6 @@ export default function FontSize({
         if (editor.isEditable()) {
           const selection = $getSelection();
           if (selection !== null) {
-            // @ts-ignore
             $patchStyleText(selection, {
               "font-size": newFontSize || getNextFontSize,
             });
@@ -121,7 +124,7 @@ export default function FontSize({
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const inputValueNumber = Number(inputValue);
-    // @ts-ignore
+
     if (["e", "E", "+", "-"].includes(e.key) || isNaN(inputValueNumber)) {
       e.preventDefault();
       setInputValue("");
@@ -138,7 +141,6 @@ export default function FontSize({
         updatedFontSize = MIN_ALLOWED_FONT_SIZE;
       }
       setInputValue(String(updatedFontSize));
-
       updateFontSizeInSelection(String(updatedFontSize) + "px", null);
     }
   };

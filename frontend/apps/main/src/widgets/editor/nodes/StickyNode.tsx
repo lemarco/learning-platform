@@ -1,6 +1,9 @@
+/** @jsxImportSource react */
+
 import type { EditorConfig, LexicalEditor, LexicalNode, NodeKey, SerializedEditor, SerializedLexicalNode, Spread } from "lexical";
 
-import { $setSelection, DecoratorNode, createEditor } from "lexical";
+import Lex from "lexical";
+const { $setSelection, DecoratorNode, createEditor } = Lex;
 import * as React from "react";
 import { Suspense } from "react";
 import { createPortal } from "react-dom";
@@ -63,12 +66,9 @@ export class StickyNode extends DecoratorNode<JSX.Element> {
   }
 
   createDOM(config: EditorConfig): HTMLElement {
-    if (typeof document !== "undefined") {
-      const div = document.createElement("div");
-      div.style.display = "contents";
-      return div;
-    }
-    return undefined as any;
+    const div = document.createElement("div");
+    div.style.display = "contents";
+    return div;
   }
 
   updateDOM(): false {
@@ -88,15 +88,12 @@ export class StickyNode extends DecoratorNode<JSX.Element> {
   }
 
   decorate(editor: LexicalEditor, config: EditorConfig): JSX.Element {
-    if (typeof document !== "undefined") {
-      return createPortal(
-        <Suspense fallback={null}>
-          <StickyComponent color={this.__color} x={this.__x} y={this.__y} nodeKey={this.getKey()} caption={this.__caption} />
-        </Suspense>,
-        document.body,
-      );
-    }
-    return <></>;
+    return createPortal(
+      <Suspense fallback={null}>
+        <StickyComponent color={this.__color} x={this.__x} y={this.__y} nodeKey={this.getKey()} caption={this.__caption} />
+      </Suspense>,
+      document.body,
+    );
   }
 
   isIsolated(): true {

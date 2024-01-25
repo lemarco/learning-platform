@@ -1,5 +1,5 @@
 // import { ArrowIcon, BurgerIcon, ExploreDesignWorkIcon } from "@frontend/icons";
-import {component$} from '@builder.io/qwik'
+import { component$ } from "@builder.io/qwik";
 const Form = ({ googleLink }: { googleLink: string }) => {
   return (
     <form>
@@ -61,6 +61,6 @@ const LoginTriggerAndPopup = component$(({ googleLink = "" }: { googleLink: stri
       </Modal> */}
     </>
   );
-})
+});
 
 export default LoginTriggerAndPopup;

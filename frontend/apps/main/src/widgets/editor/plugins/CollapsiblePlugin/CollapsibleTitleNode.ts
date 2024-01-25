@@ -1,17 +1,21 @@
-import {
-  $createParagraphNode,
-  $isElementNode,
-  DOMConversionMap,
-  DOMConversionOutput,
-  DOMExportOutput,
-  EditorConfig,
-  ElementNode,
+/** @jsxImportSource react */
+
+import Lex, {
   LexicalEditor,
   LexicalNode,
   RangeSelection,
   SerializedElementNode,
+  DOMConversionMap,
+  DOMConversionOutput,
+  DOMExportOutput,
+  EditorConfig,
 } from "lexical";
+const {
+  $createParagraphNode,
+  $isElementNode,
 
+  ElementNode,
+} = Lex;
 import { $isCollapsibleContainerNode } from "./CollapsibleContainerNode";
 import { $isCollapsibleContentNode } from "./CollapsibleContentNode";
 
@@ -34,12 +38,9 @@ export class CollapsibleTitleNode extends ElementNode {
   }
 
   createDOM(config: EditorConfig, editor: LexicalEditor): HTMLElement {
-    if (typeof document !== "undefined") {
-      const dom = document.createElement("summary");
-      dom.classList.add("Collapsible__title");
-      return dom;
-    }
-    return undefined as any;
+    const dom = document.createElement("summary");
+    dom.classList.add("Collapsible__title");
+    return dom;
   }
 
   updateDOM(prevNode: CollapsibleTitleNode, dom: HTMLElement): boolean {
@@ -62,11 +63,8 @@ export class CollapsibleTitleNode extends ElementNode {
   }
 
   exportDOM(): DOMExportOutput {
-    if (typeof document !== "undefined") {
-      const element = document.createElement("summary");
-      return { element };
-    }
-    return undefined as any;
+    const element = document.createElement("summary");
+    return { element };
   }
 
   exportJSON(): SerializedCollapsibleTitleNode {

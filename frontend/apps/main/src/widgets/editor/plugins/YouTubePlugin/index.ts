@@ -1,6 +1,12 @@
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $insertNodeToNearestRoot } from "@lexical/utils";
-import { COMMAND_PRIORITY_EDITOR, LexicalCommand, createCommand } from "lexical";
+/** @jsxImportSource react */
+
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+
+import LexUtils from "@lexical/utils";
+const { $insertNodeToNearestRoot } = LexUtils;
+import Lex, { LexicalCommand } from "lexical";
+const { COMMAND_PRIORITY_EDITOR, createCommand } = Lex;
 import { useEffect } from "react";
 
 import { $createYouTubeNode, YouTubeNode } from "../../nodes/YouTubeNode";

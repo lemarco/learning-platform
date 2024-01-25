@@ -31,18 +31,12 @@ const UserMenu = () => {
         </div>
         <ul class="py-1 font-light text-gray-500 dark:text-gray-400" aria-labelledby="user-profile-dropdown">
           <li>
-            <a
-              href="/"
-              class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-            >
+            <a href="/" class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
               My profile
             </a>
           </li>
           <li>
-            <a
-              href="/"
-              class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-            >
+            <a href="/" class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
               Account settings
             </a>
           </li>
@@ -202,10 +196,7 @@ const SearchBlock = () => {
           {categoriesToSearch.map((name, idx) => {
             return (
               <li key={`${idx}${name}`}>
-                <button
-                  type="button"
-                  class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
+                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                   {name}
                 </button>
               </li>
@@ -261,16 +252,13 @@ const BottomHeader = () => {
   );
 };
 
-
-
-export const Header =component$( ({ link = "" }: { link: string }) => {
+export const Header = component$(({ link = "" }: { link: string }) => {
   return (
     <header class="shadow-md z-[99] sticky top-0 ">
       <UpperHeader googleLink={link} />
       <div class="flex">
-
         <BottomHeader />
       </div>
     </header>
   );
-})
+});

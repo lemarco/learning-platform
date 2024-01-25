@@ -1,13 +1,7 @@
-import {
-  DOMConversionMap,
-  DOMConversionOutput,
-  DOMExportOutput,
-  EditorConfig,
-  ElementNode,
-  LexicalNode,
-  SerializedElementNode,
-} from "lexical";
+/** @jsxImportSource react */
 
+import Lex, { DOMConversionMap, DOMConversionOutput, DOMExportOutput, EditorConfig, LexicalNode, SerializedElementNode } from "lexical";
+const { ElementNode } = Lex;
 type SerializedCollapsibleContentNode = SerializedElementNode;
 
 export function convertCollapsibleContentElement(domNode: HTMLElement): DOMConversionOutput | null {
@@ -27,12 +21,9 @@ export class CollapsibleContentNode extends ElementNode {
   }
 
   createDOM(config: EditorConfig): HTMLElement {
-    if (typeof document !== "undefined") {
-      const dom = document.createElement("div");
-      dom.classList.add("Collapsible__content");
-      return dom;
-    }
-    return undefined as any;
+    const dom = document.createElement("div");
+    dom.classList.add("Collapsible__content");
+    return dom;
   }
 
   updateDOM(prevNode: CollapsibleContentNode, dom: HTMLElement): boolean {
@@ -54,12 +45,9 @@ export class CollapsibleContentNode extends ElementNode {
   }
 
   exportDOM(): DOMExportOutput {
-    if (typeof document !== "undefined") {
-      const element = document.createElement("div");
-      element.setAttribute("data-lexical-collapsible-content", "true");
-      return { element };
-    }
-    return undefined as any;
+    const element = document.createElement("div");
+    element.setAttribute("data-lexical-collapsible-content", "true");
+    return { element };
   }
 
   static importJSON(serializedNode: SerializedCollapsibleContentNode): CollapsibleContentNode {

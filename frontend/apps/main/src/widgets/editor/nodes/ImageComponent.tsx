@@ -1,18 +1,23 @@
+/** @jsxImportSource react */
+
 import type { BaseSelection, LexicalCommand, LexicalEditor, NodeKey } from "lexical";
 
 import "./ImageNode.css";
 
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
-
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+// import LexicalCollaborationContext from "@lexical/react/LexicalCollaborationContext";
+// const { useCollaborationContext } = LexicalCollaborationContext;
+// import { CollaborationPlugin } from "@lexical/react/LexicalCollaborationPlugin";
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { HashtagPlugin } from "@lexical/react/LexicalHashtagPlugin";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
-import { mergeRegister } from "@lexical/utils";
+import LexUtils from "@lexical/utils";
+const { mergeRegister } = LexUtils;
 import {
   $getNodeByKey,
   $getSelection,
@@ -29,15 +34,15 @@ import {
   SELECTION_CHANGE_COMMAND,
   createCommand,
 } from "lexical";
-import * as React from "react";
+
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
-import { useSettings } from "../context/SettingsContext";
+// import { useSettings } from "../context/SettingsContext";
 import { useSharedHistoryContext } from "../context/SharedHistoryContext";
 import EmojisPlugin from "../plugins/EmojisPlugin";
 import KeywordsPlugin from "../plugins/KeywordsPlugin";
 import LinkPlugin from "../plugins/LinkPlugin";
-import MentionsPlugin from "../plugins/MentionsPlugin";
+// import MentionsPlugin from "../plugins/MentionsPlugin";
 
 import ContentEditable from "../ui/ContentEditable";
 import ImageResizer from "../ui/ImageResizer";
@@ -122,7 +127,7 @@ export default function ImageComponent({
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection(nodeKey);
   const [isResizing, setIsResizing] = useState<boolean>(false);
-  const { isCollabActive } = useCollaborationContext();
+  // const { isCollabActive } = useCollaborationContext();
   const [editor] = useLexicalComposerContext();
   const [selection, setSelection] = useState<BaseSelection | null>(null);
   const activeEditorRef = useRef<LexicalEditor | null>(null);
@@ -154,12 +159,10 @@ export default function ImageComponent({
           caption.focus();
           return true;
         }
-        if (typeof document !== "undefined") {
-          if (buttonElem !== null && buttonElem !== document.activeElement) {
-            event.preventDefault();
-            buttonElem.focus();
-            return true;
-          }
+        if (buttonElem !== null && buttonElem !== document.activeElement) {
+          event.preventDefault();
+          buttonElem.focus();
+          return true;
         }
       }
       return false;
@@ -220,7 +223,6 @@ export default function ImageComponent({
     [editor],
   );
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     let isMounted = true;
     const rootElement = editor.getRootElement();
@@ -296,9 +298,9 @@ export default function ImageComponent({
   };
 
   const { historyState } = useSharedHistoryContext();
-  const {
-    settings: { showNestedEditorTreeView },
-  } = useSettings();
+  // const {
+  //   settings: { showNestedEditorTreeView },
+  // } = useSettings();
 
   const draggable = isSelected && $isNodeSelection(selection) && !isResizing;
   const isFocused = isSelected || isResizing;
@@ -320,7 +322,7 @@ export default function ImageComponent({
           <div className="image-caption-container">
             <LexicalNestedComposer initialEditor={caption}>
               <AutoFocusPlugin />
-              <MentionsPlugin />
+              {/* <MentionsPlugin /> */}
               <LinkPlugin />
               <EmojisPlugin />
               <HashtagPlugin />

@@ -1,17 +1,18 @@
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $createTableNodeWithDimensions, INSERT_TABLE_COMMAND, TableNode } from "@lexical/table";
-import {
+/** @jsxImportSource react */
+
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import LexTable from "@lexical/table";
+const { $createTableNodeWithDimensions, INSERT_TABLE_COMMAND, TableNode } = LexTable;
+import Lex, { EditorThemeClasses, Klass, LexicalCommand, LexicalEditor, LexicalNode } from "lexical";
+const {
   $insertNodes,
   COMMAND_PRIORITY_EDITOR,
-  EditorThemeClasses,
-  Klass,
-  LexicalCommand,
-  LexicalEditor,
-  LexicalNode,
+
   createCommand,
-} from "lexical";
+} = Lex;
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import * as React from "react";
+
 import invariant from "../shared/invariant";
 
 import Button from "../ui/Button";

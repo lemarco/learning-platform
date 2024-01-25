@@ -1,19 +1,17 @@
+/** @jsxImportSource react */
 import "./index.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { eventFiles } from "@lexical/rich-text";
-import { mergeRegister } from "@lexical/utils";
-import {
-  $getNearestNodeFromDOMNode,
-  $getNodeByKey,
-  $getRoot,
-  COMMAND_PRIORITY_HIGH,
-  COMMAND_PRIORITY_LOW,
-  DRAGOVER_COMMAND,
-  DROP_COMMAND,
-  LexicalEditor,
-} from "lexical";
-import * as React from "react";
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+
+import LexRichText from "@lexical/rich-text";
+const { eventFiles } = LexRichText;
+import LexUtils from "@lexical/utils";
+const { mergeRegister } = LexUtils;
+import Lex, { LexicalEditor } from "lexical";
+const { $getNearestNodeFromDOMNode, $getNodeByKey, $getRoot, COMMAND_PRIORITY_HIGH, COMMAND_PRIORITY_LOW, DRAGOVER_COMMAND, DROP_COMMAND } =
+  Lex;
+
 import { DragEvent as ReactDragEvent, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -48,25 +46,20 @@ function getTopLevelNodeKeys(editor: LexicalEditor): string[] {
   return editor.getEditorState().read(() => $getRoot().getChildrenKeys());
 }
 
-//@ts-ignore
 function getCollapsedMargins(elem: HTMLElement): {
   marginTop: number;
   marginBottom: number;
 } {
-  if (typeof window !== "undefined") {
-    const getMargin = (element: Element | null, margin: "marginTop" | "marginBottom"): number =>
-      element ? parseFloat(window?.getComputedStyle(element)[margin]) : 0;
+  const getMargin = (element: Element | null, margin: "marginTop" | "marginBottom"): number =>
+    element ? parseFloat(window.getComputedStyle(element)[margin]) : 0;
 
-    //@ts-ignore
-    // biome-ignore lint/correctness/noUnsafeOptionalChaining: <explanation>
-    const { marginTop, marginBottom } = window?.getComputedStyle(elem);
-    const prevElemSiblingMarginBottom = getMargin(elem.previousElementSibling, "marginBottom");
-    const nextElemSiblingMarginTop = getMargin(elem.nextElementSibling, "marginTop");
-    const collapsedTopMargin = Math.max(parseFloat(marginTop), prevElemSiblingMarginBottom);
-    const collapsedBottomMargin = Math.max(parseFloat(marginBottom), nextElemSiblingMarginTop);
+  const { marginTop, marginBottom } = window.getComputedStyle(elem);
+  const prevElemSiblingMarginBottom = getMargin(elem.previousElementSibling, "marginBottom");
+  const nextElemSiblingMarginTop = getMargin(elem.nextElementSibling, "marginTop");
+  const collapsedTopMargin = Math.max(parseFloat(marginTop), prevElemSiblingMarginBottom);
+  const collapsedBottomMargin = Math.max(parseFloat(marginBottom), nextElemSiblingMarginTop);
 
-    return { marginBottom: collapsedBottomMargin, marginTop: collapsedTopMargin };
-  }
+  return { marginBottom: collapsedBottomMargin, marginTop: collapsedTopMargin };
 }
 
 function getBlockElement(anchorElem: HTMLElement, editor: LexicalEditor, event: MouseEvent, useEdgeAsDefault = false): HTMLElement | null {
@@ -151,25 +144,23 @@ function isOnMenu(element: HTMLElement): boolean {
 }
 
 function setMenuPosition(targetElem: HTMLElement | null, floatingElem: HTMLElement, anchorElem: HTMLElement) {
-  if (typeof window !== "undefined") {
-    if (!targetElem) {
-      floatingElem.style.opacity = "0";
-      floatingElem.style.transform = "translate(-10000px, -10000px)";
-      return;
-    }
-
-    const targetRect = targetElem.getBoundingClientRect();
-    const targetStyle = window?.getComputedStyle(targetElem);
-    const floatingElemRect = floatingElem.getBoundingClientRect();
-    const anchorElementRect = anchorElem.getBoundingClientRect();
-
-    const top = targetRect.top + (parseInt(targetStyle.lineHeight, 10) - floatingElemRect.height) / 2 - anchorElementRect.top;
-
-    const left = SPACE;
-
-    floatingElem.style.opacity = "1";
-    floatingElem.style.transform = `translate(${left}px, ${top}px)`;
+  if (!targetElem) {
+    floatingElem.style.opacity = "0";
+    floatingElem.style.transform = "translate(-10000px, -10000px)";
+    return;
   }
+
+  const targetRect = targetElem.getBoundingClientRect();
+  const targetStyle = window.getComputedStyle(targetElem);
+  const floatingElemRect = floatingElem.getBoundingClientRect();
+  const anchorElementRect = anchorElem.getBoundingClientRect();
+
+  const top = targetRect.top + (parseInt(targetStyle.lineHeight, 10) - floatingElemRect.height) / 2 - anchorElementRect.top;
+
+  const left = SPACE;
+
+  floatingElem.style.opacity = "1";
+  floatingElem.style.transform = `translate(${left}px, ${top}px)`;
 }
 
 function setDragImage(dataTransfer: DataTransfer, draggableBlockElem: HTMLElement) {
@@ -374,10 +365,6 @@ export default function DraggableBlockPlugin({
 }: {
   anchorElem?: HTMLElement;
 }): JSX.Element {
-  if (typeof document !== "undefined") {
-    anchorElem = !anchorElem ? document.body : anchorElem;
-    const [editor] = useLexicalComposerContext();
-    return useDraggableBlockMenu(editor, anchorElem, editor._editable);
-  }
-  return <></>;
+  const [editor] = useLexicalComposerContext();
+  return useDraggableBlockMenu(editor, anchorElem, editor._editable);
 }

@@ -1,8 +1,13 @@
+/** @jsxImportSource react */
+
 import type { RangeSelection } from "lexical";
 
-import { $getListDepth, $isListItemNode, $isListNode } from "@lexical/list";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $getSelection, $isElementNode, $isRangeSelection, COMMAND_PRIORITY_CRITICAL, ElementNode, INDENT_CONTENT_COMMAND } from "lexical";
+import LexList from "@lexical/list";
+const { $getListDepth, $isListItemNode, $isListNode } = LexList;
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import Lex from "lexical";
+const { $getSelection, $isElementNode, $isRangeSelection, COMMAND_PRIORITY_CRITICAL, ElementNode, INDENT_CONTENT_COMMAND } = Lex;
 import { useEffect } from "react";
 
 type Props = Readonly<{
@@ -29,7 +34,7 @@ function isIndentPermitted(maxDepth: number): boolean {
   const elementNodesInSelection: Set<ElementNode> = getElementNodesInSelection(selection);
 
   let totalDepth = 0;
-  // @ts-ignore
+
   for (const elementNode of elementNodesInSelection) {
     if ($isListNode(elementNode)) {
       totalDepth = Math.max($getListDepth(elementNode) + 1, totalDepth);

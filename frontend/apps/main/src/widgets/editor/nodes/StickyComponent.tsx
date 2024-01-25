@@ -1,16 +1,17 @@
+/** @jsxImportSource react */
+
 import type { LexicalEditor, NodeKey } from "lexical";
 
 import "./StickyNode.css";
 
-import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
-import { CollaborationPlugin } from "@lexical/react/LexicalCollaborationPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
 import { $getNodeByKey } from "lexical";
-import * as React from "react";
+
 import { useEffect, useRef } from "react";
 import useLayoutEffect from "../shared/useLayoutEffect";
 
@@ -61,7 +62,6 @@ export default function StickyComponent({
     x: 0,
     y: 0,
   });
-  const { isCollabActive } = useCollaborationContext();
 
   useEffect(() => {
     const position = positioningRef.current;
@@ -75,45 +75,43 @@ export default function StickyComponent({
   }, [x, y]);
 
   useLayoutEffect(() => {
-    if (typeof window !== "undefined") {
-      const position = positioningRef.current;
-      const resizeObserver = new ResizeObserver((entries) => {
-        for (let i = 0; i < entries.length; i++) {
-          const entry = entries[i];
-          const { target } = entry;
-          position.rootElementRect = target.getBoundingClientRect();
-          const stickyContainer = stickyContainerRef.current;
-          if (stickyContainer !== null) {
-            positionSticky(stickyContainer, position);
-          }
-        }
-      });
-
-      const removeRootListener = editor.registerRootListener((nextRootElem, prevRootElem) => {
-        if (prevRootElem !== null) {
-          resizeObserver.unobserve(prevRootElem);
-        }
-        if (nextRootElem !== null) {
-          resizeObserver.observe(nextRootElem);
-        }
-      });
-
-      const handleWindowResize = () => {
-        const rootElement = editor.getRootElement();
+    const position = positioningRef.current;
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let i = 0; i < entries.length; i++) {
+        const entry = entries[i];
+        const { target } = entry;
+        position.rootElementRect = target.getBoundingClientRect();
         const stickyContainer = stickyContainerRef.current;
-        if (rootElement !== null && stickyContainer !== null) {
-          position.rootElementRect = rootElement.getBoundingClientRect();
+        if (stickyContainer !== null) {
           positionSticky(stickyContainer, position);
         }
-      };
+      }
+    });
 
-      window.addEventListener("resize", handleWindowResize);
+    const removeRootListener = editor.registerRootListener((nextRootElem, prevRootElem) => {
+      if (prevRootElem !== null) {
+        resizeObserver.unobserve(prevRootElem);
+      }
+      if (nextRootElem !== null) {
+        resizeObserver.observe(nextRootElem);
+      }
+    });
 
-      return () => {
-        window.removeEventListener("resize", handleWindowResize);
-        removeRootListener();
-      };
-    }
+    const handleWindowResize = () => {
+      const rootElement = editor.getRootElement();
+      const stickyContainer = stickyContainerRef.current;
+      if (rootElement !== null && stickyContainer !== null) {
+        position.rootElementRect = rootElement.getBoundingClientRect();
+        positionSticky(stickyContainer, position);
+      }
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+      removeRootListener();
+    };
   }, [editor]);
 
   useEffect(() => {
@@ -139,22 +137,20 @@ export default function StickyComponent({
   };
 
   const handlePointerUp = (event: PointerEvent) => {
-    if (typeof document !== "undefined") {
-      const stickyContainer = stickyContainerRef.current;
-      const positioning = positioningRef.current;
-      if (stickyContainer !== null) {
-        positioning.isDragging = false;
-        stickyContainer.classList.remove("dragging");
-        editor.update(() => {
-          const node = $getNodeByKey(nodeKey);
-          if ($isStickyNode(node)) {
-            node.setPosition(positioning.x, positioning.y);
-          }
-        });
-      }
-      document.removeEventListener("pointermove", handlePointerMove);
-      document.removeEventListener("pointerup", handlePointerUp);
+    const stickyContainer = stickyContainerRef.current;
+    const positioning = positioningRef.current;
+    if (stickyContainer !== null) {
+      positioning.isDragging = false;
+      stickyContainer.classList.remove("dragging");
+      editor.update(() => {
+        const node = $getNodeByKey(nodeKey);
+        if ($isStickyNode(node)) {
+          node.setPosition(positioning.x, positioning.y);
+        }
+      });
     }
+    document.removeEventListener("pointermove", handlePointerMove);
+    document.removeEventListener("pointerup", handlePointerUp);
   };
 
   const handleDelete = () => {
@@ -195,10 +191,8 @@ export default function StickyComponent({
             positioning.offsetY = event.clientY - top;
             positioning.isDragging = true;
             stickContainer.classList.add("dragging");
-            if (typeof document !== "undefined") {
-              document.addEventListener("pointermove", handlePointerMove);
-              document.addEventListener("pointerup", handlePointerUp);
-            }
+            document.addEventListener("pointermove", handlePointerMove);
+            document.addEventListener("pointerup", handlePointerUp);
             event.preventDefault();
           }
         }}

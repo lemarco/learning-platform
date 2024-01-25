@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import { useCallback, useMemo, useState } from "react";
 import * as React from "react";
 
@@ -29,7 +31,7 @@ export default function useModal(): [JSX.Element | null, (title: string, showMod
   const showModal = useCallback(
     (
       title: string,
-
+      // eslint-disable-next-line no-shadow
       getContent: (onClose: () => void) => JSX.Element,
       closeOnClickOutside = false,
     ) => {

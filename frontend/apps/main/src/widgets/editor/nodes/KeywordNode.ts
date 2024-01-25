@@ -1,7 +1,9 @@
+/** @jsxImportSource react */
+
 import type { EditorConfig, LexicalNode, SerializedTextNode } from "lexical";
 
-import { TextNode } from "lexical";
-
+import Lex from "lexical";
+const { TextNode } = Lex;
 export type SerializedKeywordNode = SerializedTextNode;
 
 export class KeywordNode extends TextNode {

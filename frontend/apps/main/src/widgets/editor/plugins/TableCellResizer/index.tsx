@@ -1,11 +1,14 @@
+/** @jsxImportSource react */
 import type { Cell } from "@lexical/table";
 import type { LexicalEditor } from "lexical";
 
 import "./index.css";
 
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
 import useLexicalEditable from "@lexical/react/useLexicalEditable";
-import {
+import LexTable from "@lexical/table";
+const {
   $getTableColumnIndexFromTableCellNode,
   $getTableNodeFromLexicalNodeOrThrow,
   $getTableRowIndexFromTableCellNode,
@@ -14,9 +17,10 @@ import {
   $isTableRowNode,
   TableCellNode,
   getCellFromTarget,
-} from "@lexical/table";
-import { $getNearestNodeFromDOMNode, $getSelection, COMMAND_PRIORITY_HIGH, SELECTION_CHANGE_COMMAND } from "lexical";
-import * as React from "react";
+} = LexTable;
+import Lex from "lexical";
+const { $getNearestNodeFromDOMNode, $getSelection, COMMAND_PRIORITY_HIGH, SELECTION_CHANGE_COMMAND } = Lex;
+
 import { MouseEventHandler, ReactPortal, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -353,8 +357,5 @@ function TableCellResizer({ editor }: { editor: LexicalEditor }): JSX.Element {
 export default function TableCellResizerPlugin(): null | ReactPortal {
   const [editor] = useLexicalComposerContext();
   const isEditable = useLexicalEditable();
-  if (typeof document !== "undefined") {
-    return useMemo(() => (isEditable ? createPortal(<TableCellResizer editor={editor} />, document.body) : null), [editor, isEditable]);
-  }
-  return null;
+  return useMemo(() => (isEditable ? createPortal(<TableCellResizer editor={editor} />, document.body) : null), [editor, isEditable]);
 }

@@ -1,16 +1,17 @@
-import {
+/** @jsxImportSource react */
+
+import Lex, {
   DOMConversionMap,
   DOMConversionOutput,
   DOMExportOutput,
   EditorConfig,
-  ElementNode,
   LexicalEditor,
   LexicalNode,
   NodeKey,
   SerializedElementNode,
   Spread,
 } from "lexical";
-
+const { ElementNode } = Lex;
 type SerializedCollapsibleContainerNode = Spread<
   {
     open: boolean;
@@ -43,19 +44,16 @@ export class CollapsibleContainerNode extends ElementNode {
   }
 
   createDOM(config: EditorConfig, editor: LexicalEditor): HTMLElement {
-    if (typeof document !== "undefined") {
-      const dom = document.createElement("details");
-      dom.classList.add("Collapsible__container");
-      dom.open = this.__open;
-      dom.addEventListener("toggle", () => {
-        const open = editor.getEditorState().read(() => this.getOpen());
-        if (open !== dom.open) {
-          editor.update(() => this.toggleOpen());
-        }
-      });
-      return dom;
-    }
-    return undefined as any;
+    const dom = document.createElement("details");
+    dom.classList.add("Collapsible__container");
+    dom.open = this.__open;
+    dom.addEventListener("toggle", () => {
+      const open = editor.getEditorState().read(() => this.getOpen());
+      if (open !== dom.open) {
+        editor.update(() => this.toggleOpen());
+      }
+    });
+    return dom;
   }
 
   updateDOM(prevNode: CollapsibleContainerNode, dom: HTMLDetailsElement): boolean {
@@ -83,12 +81,9 @@ export class CollapsibleContainerNode extends ElementNode {
   }
 
   exportDOM(): DOMExportOutput {
-    if (typeof document !== "undefined") {
-      const element = document.createElement("details");
-      element.setAttribute("open", this.__open.toString());
-      return { element };
-    }
-    return undefined as any;
+    const element = document.createElement("details");
+    element.setAttribute("open", this.__open.toString());
+    return { element };
   }
 
   exportJSON(): SerializedCollapsibleContainerNode {

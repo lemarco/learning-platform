@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import "./Select.css";
 
 import * as React from "react";

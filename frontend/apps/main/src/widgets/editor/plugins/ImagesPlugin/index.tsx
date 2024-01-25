@@ -1,6 +1,11 @@
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $wrapNodeInElement, mergeRegister } from "@lexical/utils";
-import {
+/** @jsxImportSource react */
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+
+import LexUtils from "@lexical/utils";
+const { $wrapNodeInElement, mergeRegister } = LexUtils;
+import Lex, { LexicalCommand, LexicalEditor } from "lexical";
+const {
   $createParagraphNode,
   $createRangeSelection,
   $getSelection,
@@ -14,14 +19,15 @@ import {
   DRAGOVER_COMMAND,
   DRAGSTART_COMMAND,
   DROP_COMMAND,
-  LexicalCommand,
-  LexicalEditor,
+
   createCommand,
-} from "lexical";
+} = Lex;
 import { useEffect, useRef, useState } from "react";
 import * as React from "react";
 import { CAN_USE_DOM } from "../../shared/canUseDOM";
 
+import landscapeImage from "../../images/landscape.jpg";
+import yellowFlowerImage from "../../images/yellow-flower.jpg";
 import { $createImageNode, $isImageNode, ImageNode, ImagePayload } from "../../nodes/ImageNode";
 import Button from "../../ui/Button";
 import { DialogActions, DialogButtonsList } from "../../ui/Dialog";
@@ -30,7 +36,7 @@ import TextInput from "../../ui/TextInput";
 
 export type InsertImagePayload = Readonly<ImagePayload>;
 
-const getDOMSelection = (targetWindow: Window | null): Selection | null => (CAN_USE_DOM ? (targetWindow || window)?.getSelection() : null);
+const getDOMSelection = (targetWindow: Window | null): Selection | null => (CAN_USE_DOM ? (targetWindow || window).getSelection() : null);
 
 export const INSERT_IMAGE_COMMAND: LexicalCommand<InsertImagePayload> = createCommand("INSERT_IMAGE_COMMAND");
 
@@ -121,7 +127,6 @@ export function InsertImageDialog({
   const [mode, setMode] = useState<null | "url" | "file">(null);
   const hasModifier = useRef(false);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     hasModifier.current = false;
     const handler = (e: KeyboardEvent) => {
@@ -149,11 +154,11 @@ export function InsertImageDialog({
                 hasModifier.current
                   ? {
                       altText: "Daylight fir trees forest glacier green high ice landscape",
-                      src: "",
+                      src: landscapeImage,
                     }
                   : {
                       altText: "Yellow flower in tilt shift lens",
-                      src: "",
+                      src: yellowFlowerImage,
                     },
               )
             }
@@ -181,7 +186,6 @@ export default function ImagesPlugin({
 }): JSX.Element | null {
   const [editor] = useLexicalComposerContext();
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!editor.hasNodes([ImageNode])) {
       throw new Error("ImagesPlugin: ImageNode not registered on editor");
@@ -229,12 +233,6 @@ export default function ImagesPlugin({
 }
 
 const TRANSPARENT_IMAGE = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-let img: any = {};
-if (typeof document !== "undefined") {
-  img = document.createElement("img");
-}
-img.src = TRANSPARENT_IMAGE;
 
 function onDragStart(event: DragEvent): boolean {
   const node = getImageNodeInSelection();
@@ -245,6 +243,9 @@ function onDragStart(event: DragEvent): boolean {
   if (!dataTransfer) {
     return false;
   }
+  const img = document.createElement("img");
+
+  img.src = TRANSPARENT_IMAGE;
   dataTransfer.setData("text/plain", "_");
   dataTransfer.setDragImage(img, 0, 0);
   dataTransfer.setData(
@@ -343,7 +344,6 @@ function canDropImage(event: DragEvent): boolean {
 }
 
 function getDragSelection(event: DragEvent): Range | null | undefined {
-  // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
   let range;
   const target = event.target as null | Element | Document;
   const targetWindow =
@@ -355,7 +355,7 @@ function getDragSelection(event: DragEvent): Range | null | undefined {
     domSelection.collapse(event.rangeParent, event.rangeOffset || 0);
     range = domSelection.getRangeAt(0);
   } else {
-    throw Error("Cannot get the selection when dragging");
+    throw Error(`Cannot get the selection when dragging`);
   }
 
   return range;

@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import "./ColorPicker.css";
 
 import { useEffect, useMemo, useRef, useState } from "react";

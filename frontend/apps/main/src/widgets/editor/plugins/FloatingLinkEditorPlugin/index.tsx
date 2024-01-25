@@ -1,20 +1,25 @@
+/** @jsxImportSource react */
 import "./index.css";
 
-import { $isAutoLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $findMatchingParent, mergeRegister } from "@lexical/utils";
-import {
+import LexLink from "@lexical/link";
+const { $isAutoLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } = LexLink;
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
+import LexUtils from "@lexical/utils";
+const { $findMatchingParent, mergeRegister } = LexUtils;
+import Lex, { BaseSelection, LexicalEditor } from "lexical";
+const {
   $getSelection,
   $isRangeSelection,
-  BaseSelection,
+
   CLICK_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
   KEY_ESCAPE_COMMAND,
-  LexicalEditor,
+
   SELECTION_CHANGE_COMMAND,
-} from "lexical";
+} = Lex;
 import { Dispatch, useCallback, useEffect, useRef, useState } from "react";
 import * as React from "react";
 import { createPortal } from "react-dom";
@@ -62,7 +67,7 @@ function FloatingLinkEditor({
       }
     }
     const editorElem = editorRef.current;
-    const nativeSelection = window?.getSelection();
+    const nativeSelection = window.getSelection();
     const activeElement = document.activeElement;
 
     if (editorElem === null) {
@@ -97,29 +102,27 @@ function FloatingLinkEditor({
   }, [anchorElem, editor, setIsLinkEditMode, isLinkEditMode, linkUrl]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const scrollerElem = anchorElem.parentElement;
+    const scrollerElem = anchorElem.parentElement;
 
-      const update = () => {
-        editor.getEditorState().read(() => {
-          updateLinkEditor();
-        });
-      };
+    const update = () => {
+      editor.getEditorState().read(() => {
+        updateLinkEditor();
+      });
+    };
 
-      window?.addEventListener("resize", update);
+    window.addEventListener("resize", update);
+
+    if (scrollerElem) {
+      scrollerElem.addEventListener("scroll", update);
+    }
+
+    return () => {
+      window.removeEventListener("resize", update);
 
       if (scrollerElem) {
-        scrollerElem.addEventListener("scroll", update);
+        scrollerElem.removeEventListener("scroll", update);
       }
-
-      return () => {
-        window?.removeEventListener("resize", update);
-
-        if (scrollerElem) {
-          scrollerElem.removeEventListener("scroll", update);
-        }
-      };
-    }
+    };
   }, [anchorElem.parentElement, editor, updateLinkEditor]);
 
   useEffect(() => {

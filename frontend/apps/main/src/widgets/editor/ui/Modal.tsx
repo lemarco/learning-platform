@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import "./Modal.css";
 
 import * as React from "react";
@@ -78,13 +80,10 @@ export default function Modal({
   onClose: () => void;
   title: string;
 }): JSX.Element {
-  if (typeof document !== "undefined") {
-    return createPortal(
-      <PortalImpl onClose={onClose} title={title} closeOnClickOutside={closeOnClickOutside}>
-        {children}
-      </PortalImpl>,
-      document.body,
-    );
-  }
-  return <></>;
+  return createPortal(
+    <PortalImpl onClose={onClose} title={title} closeOnClickOutside={closeOnClickOutside}>
+      {children}
+    </PortalImpl>,
+    document.body,
+  );
 }

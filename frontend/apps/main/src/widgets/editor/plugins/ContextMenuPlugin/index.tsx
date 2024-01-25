@@ -1,4 +1,7 @@
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+/** @jsxImportSource react */
+
+import LexicalComposerContext from "@lexical/react/LexicalComposerContext";
+const { useLexicalComposerContext } = LexicalComposerContext;
 import { LexicalContextMenuPlugin, MenuOption } from "@lexical/react/LexicalContextMenuPlugin";
 import { $getSelection, $isRangeSelection, COPY_COMMAND, CUT_COMMAND, type LexicalNode, PASTE_COMMAND } from "lexical";
 import { useCallback, useMemo } from "react";

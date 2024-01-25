@@ -1,4 +1,4 @@
-import {component$} from '@builder.io/qwik'
+import { component$ } from "@builder.io/qwik";
 type RelatedArticleInfo = { id: string; image: string; link: string; title: string; previewText: string; estimatedReadTime: number };
 
 const RelatedArticle = ({ image, link, title, previewText, estimatedReadTime }: RelatedArticleInfo) => {
@@ -164,13 +164,7 @@ const Comments = () => {
             11 Likes
           </button>
           <button type="button" class="flex items-center font-medium text-sm text-gray-500 hover:underline dark:text-gray-400">
-            <svg
-              class="mr-1.5 w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 18"
-            >
+            <svg class="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
               <path d="M18 0H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2v4a1 1 0 0 0 1.707.707L10.414 13H18a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5 4h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2ZM5 4h5a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Zm2 5H5a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm9 0h-6a1 1 0 0 1 0-2h6a1 1 0 1 1 0 2Z" />
             </svg>
             Reply
@@ -181,11 +175,7 @@ const Comments = () => {
         <footer class="flex justify-between items-center mb-2">
           <div class="flex items-center">
             <p class="inline-flex items-center mr-3 font-semibold text-sm text-gray-900 dark:text-white">
-              <img
-                class="mr-2 w-6 h-6 rounded-full"
-                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                alt="Jese Leos"
-              />
+              <img class="mr-2 w-6 h-6 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Jese Leos" />
               Jese Leos
             </p>
             <p class="text-sm text-gray-600 dark:text-gray-400" />
@@ -234,13 +224,7 @@ const Comments = () => {
             3 Likes
           </button>
           <button type="button" class="flex items-center font-medium text-sm text-gray-500 hover:underline dark:text-gray-400">
-            <svg
-              class="mr-1.5 w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 18"
-            >
+            <svg class="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
               <path d="M18 0H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2v4a1 1 0 0 0 1.707.707L10.414 13H18a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5 4h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2ZM5 4h5a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Zm2 5H5a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm9 0h-6a1 1 0 0 1 0-2h6a1 1 0 1 1 0 2Z" />
             </svg>
             Reply
@@ -307,13 +291,7 @@ const Comments = () => {
             24 Likes
           </button>
           <button type="button" class="flex items-center font-medium text-sm text-gray-500 hover:underline dark:text-gray-400">
-            <svg
-              class="mr-1.5 w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 18"
-            >
+            <svg class="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
               <path d="M18 0H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2v4a1 1 0 0 0 1.707.707L10.414 13H18a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5 4h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2ZM5 4h5a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Zm2 5H5a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm9 0h-6a1 1 0 0 1 0-2h6a1 1 0 1 1 0 2Z" />
             </svg>
             Reply
@@ -378,13 +356,7 @@ const Comments = () => {
             9 Likes
           </button>
           <button type="button" class="flex items-center font-medium text-sm text-gray-500 hover:underline dark:text-gray-400">
-            <svg
-              class="mr-1.5 w-3.5 h-3.5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 18"
-            >
+            <svg class="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
               <path d="M18 0H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2v4a1 1 0 0 0 1.707.707L10.414 13H18a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5 4h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2ZM5 4h5a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Zm2 5H5a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm9 0h-6a1 1 0 0 1 0-2h6a1 1 0 1 1 0 2Z" />
             </svg>
             Reply
@@ -464,13 +436,7 @@ const AdsPlaceholder = () => {
     <div>
       {/* biome-ignore lint/a11y/useAnchorContent: <explanation> */}
       <a href="/" class="flex justify-center items-center mb-3 w-full h-48 bg-gray-100 rounded-lg dark:bg-gray-700">
-        <svg
-          aria-hidden="true"
-          class="w-8 h-8 text-gray-400"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg aria-hidden="true" class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <title>X</title>
           <path
             fill-rule="evenodd"
@@ -852,7 +818,7 @@ export default component$(() => {
       <RelatedArticles />
     </>
   );
-})
+});
 
 export const metadata = {
   title: "Article",

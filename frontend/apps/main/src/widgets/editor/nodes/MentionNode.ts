@@ -1,17 +1,18 @@
-import type { Spread } from "lexical";
+/** @jsxImportSource react */
 
-import {
-  $applyNodeReplacement,
-  type DOMConversionMap,
-  type DOMConversionOutput,
-  type DOMExportOutput,
-  type EditorConfig,
-  type LexicalNode,
-  type NodeKey,
-  type SerializedTextNode,
-  TextNode,
+import type {
+  DOMConversionMap,
+  DOMConversionOutput,
+  DOMExportOutput,
+  EditorConfig,
+  LexicalNode,
+  NodeKey,
+  SerializedTextNode,
+  Spread,
 } from "lexical";
 
+import Lex from "lexical";
+const { $applyNodeReplacement, TextNode } = Lex;
 export type SerializedMentionNode = Spread<
   {
     mentionName: string;
@@ -75,13 +76,10 @@ export class MentionNode extends TextNode {
   }
 
   exportDOM(): DOMExportOutput {
-    if (typeof document !== "undefined") {
-      const element = document.createElement("span");
-      element.setAttribute("data-lexical-mention", "true");
-      element.textContent = this.__text;
-      return { element };
-    }
-    return undefined as any;
+    const element = document.createElement("span");
+    element.setAttribute("data-lexical-mention", "true");
+    element.textContent = this.__text;
+    return { element };
   }
 
   static importDOM(): DOMConversionMap | null {

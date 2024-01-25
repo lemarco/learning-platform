@@ -1,4 +1,4 @@
-import {component$} from '@builder.io/qwik'
+import { component$ } from "@builder.io/qwik";
 const ArticlePreview = () => {
   return (
     <article class="w-full max-w-4xl">
@@ -145,11 +145,7 @@ const AsideProfileCard = () => {
     <div class="p-6 mb-6 text-gray-500 rounded-lg border border-gray-200 dark:border-gray-700 dark:text-gray-400">
       <a href="/" class="flex items-center mb-4">
         <div class="mr-3 shrink-0">
-          <img
-            class="mt-1 w-8 h-8 rounded-full"
-            src={"https://flowbite.com/docs/images/people/profile-picture-1.jpg"}
-            alt="Jese Leos"
-          />
+          <img class="mt-1 w-8 h-8 rounded-full" src={"https://flowbite.com/docs/images/people/profile-picture-1.jpg"} alt="Jese Leos" />
         </div>
         <div class="mr-3">
           <span class="block font-medium text-gray-900 dark:text-white">Jese Leos</span>
@@ -197,9 +193,7 @@ export default component$(() => {
       </main>
     </>
   );
-})
-
-
+});
 
 export const metadata = {
   title: "Feed",

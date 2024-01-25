@@ -1,7 +1,19 @@
-import type { DOMConversionMap, DOMConversionOutput, EditorConfig, LexicalNode, NodeKey, SerializedLexicalNode, Spread } from "lexical";
+/** @jsxImportSource react */
+
+import type {
+  DOMConversionMap,
+  DOMConversionOutput,
+  DOMExportOutput,
+  EditorConfig,
+  LexicalNode,
+  NodeKey,
+  SerializedLexicalNode,
+  Spread,
+} from "lexical";
 
 import katex from "katex";
-import { $applyNodeReplacement, DOMExportOutput, DecoratorNode } from "lexical";
+import Lex from "lexical";
+const { $applyNodeReplacement, DecoratorNode } = Lex;
 import * as React from "react";
 import { Suspense } from "react";
 
@@ -61,33 +73,27 @@ export class EquationNode extends DecoratorNode<JSX.Element> {
   }
 
   createDOM(_config: EditorConfig): HTMLElement {
-    if (typeof document !== "undefined") {
-      const element = document.createElement(this.__inline ? "span" : "div");
-      // EquationNodes should implement `user-action:none` in their CSS to avoid issues with deletion on Android.
-      element.className = "editor-equation";
-      return element;
-    }
-    return undefined as any;
+    const element = document.createElement(this.__inline ? "span" : "div");
+    // EquationNodes should implement `user-action:none` in their CSS to avoid issues with deletion on Android.
+    element.className = "editor-equation";
+    return element;
   }
 
   exportDOM(): DOMExportOutput {
-    if (typeof document !== "undefined") {
-      const element = document.createElement(this.__inline ? "span" : "div");
-      // Encode the equation as base64 to avoid issues with special characters
-      const equation = btoa(this.__equation);
-      element.setAttribute("data-lexical-equation", equation);
-      element.setAttribute("data-lexical-inline", `${this.__inline}`);
-      katex.render(this.__equation, element, {
-        displayMode: !this.__inline, // true === block display //
-        errorColor: "#cc0000",
-        output: "html",
-        strict: "warn",
-        throwOnError: false,
-        trust: false,
-      });
-      return { element };
-    }
-    return undefined as any;
+    const element = document.createElement(this.__inline ? "span" : "div");
+    // Encode the equation as base64 to avoid issues with special characters
+    const equation = btoa(this.__equation);
+    element.setAttribute("data-lexical-equation", equation);
+    element.setAttribute("data-lexical-inline", `${this.__inline}`);
+    katex.render(this.__equation, element, {
+      displayMode: !this.__inline, // true === block display //
+      errorColor: "#cc0000",
+      output: "html",
+      strict: "warn",
+      throwOnError: false,
+      trust: false,
+    });
+    return { element };
   }
 
   static importDOM(): DOMConversionMap | null {

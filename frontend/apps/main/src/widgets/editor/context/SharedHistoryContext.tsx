@@ -1,14 +1,17 @@
+/** @jsxImportSource react */
+
 import type { HistoryState } from "@lexical/react/LexicalHistoryPlugin";
 
-import { createEmptyHistoryState } from "@lexical/react/LexicalHistoryPlugin";
-import * as React from "react";
-import { ReactNode, createContext, useContext, useMemo } from "react";
+import LexHistoryPlugin from "@lexical/react/LexicalHistoryPlugin";
+const { createEmptyHistoryState } = LexHistoryPlugin;
+
+import { Context as Ctx, ReactNode, createContext, useContext, useMemo } from "react";
 
 type ContextShape = {
   historyState?: HistoryState;
 };
 
-const Context: React.Context<ContextShape> = createContext({});
+const Context: Ctx<ContextShape> = createContext({});
 
 export const SharedHistoryContext = ({
   children,

@@ -1,4 +1,4 @@
-import { CAN_USE_DOM } from "./canUseDOM";
+import { CAN_USE_DOM } from "../shared/canUseDOM";
 
 declare global {
   interface Document {
@@ -10,10 +10,8 @@ declare global {
   }
 }
 
-let documentMode: any;
-if (typeof document !== "undefined") {
-  documentMode = CAN_USE_DOM && "documentMode" in document ? document.documentMode : null;
-}
+const documentMode = CAN_USE_DOM && "documentMode" in document ? document.documentMode : null;
+
 export const IS_APPLE: boolean = CAN_USE_DOM && /Mac|iPod|iPhone|iPad/.test(navigator.platform);
 
 export const IS_FIREFOX: boolean = CAN_USE_DOM && /^(?!.*Seamonkey)(?=.*Firefox).*/i.test(navigator.userAgent);

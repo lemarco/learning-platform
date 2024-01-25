@@ -1,9 +1,12 @@
+/** @jsxImportSource react */
 import "./index.css";
 
-import { $isCodeNode } from "@lexical/code";
-import { $getNearestNodeFromDOMNode, LexicalEditor } from "lexical";
+import LexCode from "@lexical/code";
+const { $isCodeNode } = LexCode;
+import Lex, { LexicalEditor } from "lexical";
+const { $getNearestNodeFromDOMNode } = Lex;
 import { Options } from "prettier";
-import * as React from "react";
+
 import { useState } from "react";
 
 interface Props {
@@ -86,7 +89,6 @@ export function PrettierButton({ lang, editor, getCodeDOMNode }: Props) {
           let parsed = "";
 
           try {
-            // @ts-ignore
             parsed = format(content, options);
           } catch (error: unknown) {
             setError(error);
@@ -110,7 +112,7 @@ export function PrettierButton({ lang, editor, getCodeDOMNode }: Props) {
       setSyntaxError(error.message);
       setTipsVisible(true);
     } else {
-      console.error("Unexpected error: ", error);
+      // console.error("Unexpected error: ", error);
     }
   }
 
