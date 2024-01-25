@@ -1,7 +1,7 @@
 import { resolve } from "path";
 import { NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
 import { Elysia, ListenCallback, TSchema } from "elysia";
-import { migrator, KafkaProducer, Logger, Redis, createEnvStore } from "framework";
+import { KafkaProducer, Logger, Redis, createEnvStore, migrator } from "framework";
 
 import { Pool } from "pg";
 import { events } from "schemas";

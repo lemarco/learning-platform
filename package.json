@@ -1,6 +1,7 @@
 {
   "name": "learning-platform",
   "workspaces": ["./frontend/apps/*", "./frontend/libs/*", "./backend/apps/*", "./backend/libs/*"],
+  "trustedDependencies": ["sharp"],
   "devDependencies": {
     "bun-types": "latest",
     "typescript": "^5.3.3"
@@ -24,13 +25,12 @@
     "frontend:pretty": "bunx @biomejs/biome check --apply ./frontend",
     "backend:pretty": "bunx @biomejs/biome check --apply ./backend",
     "automation:pretty": "bunx @biomejs/biome check --apply ./automation",
-    "all:pretty": "bun run frontend:pretty && bun run backend:pretty && bun run automation:pretty",
+    "pretty": "bun run frontend:pretty && bun run backend:pretty && bun run automation:pretty",
     "orm:studio": "bunx drizzle-kit studio",
     "start:dev": "bun run mirgation:generate:all && bun run docker:dev",
     "storybook": "cd ./frontend/libs/components && bun run storybook"
   },
   "dependencies": {
-    "@radix-ui/react-select": "^2.0.0",
     "concurrently": "8.2.2"
   }
 }
