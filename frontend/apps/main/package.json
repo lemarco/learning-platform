@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "flowbite-react": "^0.7.2",
     "i18next": "^23.7.20",
     "i18next-browser-languagedetector": "^7.2.0",

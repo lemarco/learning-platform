@@ -7,7 +7,8 @@ import { AUTH_REFRESH_URL } from "@/constants/api";
 import { FetchInputType, FetchInitType } from "@/types/http";
 import useLanguage from "@/services/i18n/use-language";
 import { useAuthTokens } from "@/services/auth/use-auth-tokens";
-
+import { FetchJsonResponse } from "@/types/http";
+import { HTTP_CODES_ENUM } from "@/types/http";
 export function useFetch() {
   const { tokensInfoRef, setTokensInfo } = useAuthTokens();
   const fetchBase = useFetchBase();
@@ -95,3 +96,15 @@ export function useFetchBase() {
     [language],
   );
 }
+
+async function wrapperFetchJsonResponse<T>(response: Response): Promise<FetchJsonResponse<T>> {
+  const status = response.status as FetchJsonResponse<T>["status"];
+  return {
+    status,
+    data: [HTTP_CODES_ENUM.NO_CONTENT, HTTP_CODES_ENUM.SERVICE_UNAVAILABLE, HTTP_CODES_ENUM.INTERNAL_SERVER_ERROR].includes(status)
+      ? undefined
+      : await response.json(),
+  };
+}
+
+export default wrapperFetchJsonResponse;

@@ -5,6 +5,8 @@ import StoreLanguageProvider from "@/services/i18n/store-language-provider";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import { customTheme } from "@/app/theme";
 import AuthProvider from "@/services/auth/auth-provider";
+import GoogleAuthProvider from "@/services/auth/social-auth/google/google-auth-provider";
+import FacebookAuthProvider from "@/services/auth/social-auth/facebook/facebook-auth-provider";
 export const generateMetadata = getMetadataGenerator("common");
 
 export default function RootLayout({
@@ -20,7 +22,11 @@ export default function RootLayout({
       <body>
         <Flowbite theme={{ theme: customTheme }}>
           <StoreLanguageProvider>
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+              <GoogleAuthProvider>
+                <FacebookAuthProvider>{children}</FacebookAuthProvider>
+              </GoogleAuthProvider>
+            </AuthProvider>
           </StoreLanguageProvider>
         </Flowbite>
       </body>
