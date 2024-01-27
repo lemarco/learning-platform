@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
   "organizeImports": {
     "enabled": true,
     "ignore": ["node_modules", "dist", "lib", "build", "out", "data", "logs", "temp", "configs", "migrations", "*.spec.ts", "*.spec.tsx"]
@@ -16,6 +16,10 @@
     "ignore": ["node_modules", "dist", "lib", "build", "out", "data", "logs", "temp", "configs", "migrations", "*.spec.ts", "*.spec.tsx"],
     "enabled": true,
     "rules": {
+
+      "a11y": {
+        "noSvgWithoutTitle": "off"
+      },
       "recommended": true
     }
   }
