@@ -15,8 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { language: string };
 }) {
+  // dir={dir(language)}
   return (
-    <html lang={language} dir={dir(language)}>
+    <html lang={language}>
       <head>
         <ThemeModeScript />
       </head>
