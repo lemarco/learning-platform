@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@types/js-cookie": "^3.0.6",
+    "accept-language": "^3.0.18",
     "concurrently": "8.2.2"
   }
 }
