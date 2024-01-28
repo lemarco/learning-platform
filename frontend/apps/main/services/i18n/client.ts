@@ -1,15 +1,15 @@
 "use client";
 
+import { isServer } from "@/utils/is-server";
 import i18next from "i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import resourcesToBackend from "i18next-resources-to-backend";
 import { useEffect, useState } from "react";
 import { initReactI18next, useTranslation as useTranslationOriginal } from "react-i18next";
-import resourcesToBackend from "i18next-resources-to-backend";
-import LanguageDetector from "i18next-browser-languagedetector";
 import { getOptions, languages } from "./config";
+import { useLanguage } from "./use-language";
 import { useStoreLanguage } from "./use-store-language";
 import { useStoreLanguageActions } from "./use-store-language-actions";
-import { useLanguage } from "./use-language";
-import { isServer } from "@/utils/is-server";
 
 i18next
   .use(initReactI18next)

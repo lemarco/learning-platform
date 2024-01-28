@@ -1,8 +1,8 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useAuth } from "./use-auth";
-import { FunctionComponent, useEffect } from "react";
 import { useLanguage } from "@/services/i18n/use-language";
+import { useRouter } from "next/navigation";
+import { FunctionComponent, useEffect } from "react";
+import { useAuth } from "./use-auth";
 
 type PropsType = {
   params: { slug: string };

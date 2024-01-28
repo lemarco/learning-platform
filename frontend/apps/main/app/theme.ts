@@ -1,4 +1,4 @@
-import { theme, type CustomFlowbiteTheme } from "flowbite-react";
+import { type CustomFlowbiteTheme, theme } from "flowbite-react";
 import { twMerge } from "tailwind-merge";
 
 export const customTheme: CustomFlowbiteTheme = {

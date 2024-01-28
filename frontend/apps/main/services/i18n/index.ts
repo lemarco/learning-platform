@@ -1,8 +1,8 @@
 import { createInstance } from "i18next";
 import resourcesToBackend from "i18next-resources-to-backend";
+import { Metadata } from "next";
 import { initReactI18next } from "react-i18next/initReactI18next";
 import { getOptions } from "./config";
-import { Metadata } from "next";
 
 const initI18next = async (language: string, namespace: string) => {
   // On server side we create a new instance for each render, because during

@@ -1,9 +1,9 @@
 "use client";
 
-import { PropsWithChildren, useCallback, useMemo, useState } from "react";
 import Cookies from "js-cookie";
-import { Language, StoreLanguageActionsContext, StoreLanguageContext } from "./store-language-context";
+import { PropsWithChildren, useCallback, useMemo, useState } from "react";
 import { cookieName, fallbackLanguage } from "./config";
+import { Language, StoreLanguageActionsContext, StoreLanguageContext } from "./store-language-context";
 
 export function StoreLanguageProvider(props: PropsWithChildren) {
   const [language, setLanguageRaw] = useState<Language>(() => Cookies.get(cookieName) ?? fallbackLanguage);

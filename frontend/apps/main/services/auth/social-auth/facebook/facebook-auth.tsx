@@ -1,16 +1,16 @@
 "use client";
 
-import { HTTP_CODES_ENUM } from "@/types/http";
 import { useAuthActions } from "@/services/auth/use-auth-actions";
 import { useAuthTokens } from "@/services/auth/use-auth-tokens";
+import { HTTP_CODES_ENUM } from "@/types/http";
 import { useCallback, useState } from "react";
 
-import { RequestConfigType } from "@/types/http";
-import { useContext, createContext } from "react";
+import { API_URL } from "@/constants/api";
 import { useTranslation } from "@/services/i18n/client";
 import { Tokens, User } from "@/types/auth";
-import { wrapperFetchJsonResponse, useFetchBase } from "@/utils/fetch";
-import { API_URL } from "@/constants/api";
+import { RequestConfigType } from "@/types/http";
+import { useFetchBase, wrapperFetchJsonResponse } from "@/utils/fetch";
+import { createContext, useContext } from "react";
 export type AuthFacebookLoginRequest = {
   accessToken: string;
 };

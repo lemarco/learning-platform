@@ -1,9 +1,9 @@
 "use client";
+import { RoleEnum } from "@/types/auth";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./use-auth";
 import { FunctionComponent, useEffect } from "react";
 import { useLanguage } from "../i18n/use-language";
-import { RoleEnum } from "@/types/auth";
+import { useAuth } from "./use-auth";
 
 type PropsType = {
   params: { slug: string };

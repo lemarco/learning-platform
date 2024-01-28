@@ -1,13 +1,14 @@
 "use client";
 
-import { User, Tokens } from "@/types/auth";
+import { Tokens, User } from "@/types/auth";
 
-import { PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AuthActionsContext, AuthContext, AuthTokensContext, TokensInfo } from "./auth-context";
-import Cookies from "js-cookie";
-import { useFetchBase } from "@/utils/fetch";
 import { AUTH_LOGOUT_URL, AUTH_ME_URL } from "@/constants/api";
 import { HTTP_CODES_ENUM } from "@/types/http";
+import { useFetchBase } from "@/utils/fetch";
+import Cookies from "js-cookie";
+import { PropsWithChildren, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { AuthActionsContext, AuthContext, AuthTokensContext, TokensInfo } from "./auth-context";
+import { SocialAuthProvider } from "./social-auth";
 
 export function AuthProvider(props: PropsWithChildren) {
   const AUTH_TOKEN_KEY = "auth-token-data";
@@ -127,7 +128,9 @@ export function AuthProvider(props: PropsWithChildren) {
   return (
     <AuthContext.Provider value={contextValue}>
       <AuthActionsContext.Provider value={contextActionsValue}>
-        <AuthTokensContext.Provider value={contextTokensValue}>{props.children}</AuthTokensContext.Provider>
+        <AuthTokensContext.Provider value={contextTokensValue}>
+          <SocialAuthProvider>{props.children}</SocialAuthProvider>
+        </AuthTokensContext.Provider>
       </AuthActionsContext.Provider>
     </AuthContext.Provider>
   );
