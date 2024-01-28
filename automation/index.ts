@@ -1,6 +1,6 @@
-import { re } from "./re";
-import { install } from "./install";
 import { clean } from "./clean";
+import { install } from "./install";
+import { re } from "./re";
 
 const args = process.argv;
 const command = args[2];

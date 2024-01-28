@@ -1,6 +1,6 @@
+import { access, rmdir } from "node:fs/promises";
 //@ts-expect-error
 import { $ } from "bun";
-import { access, rmdir } from "node:fs/promises";
 export const getFolderList = async (path = "./") => ((await $`ls ${path}`.text()) as string).split("\n").filter(Boolean);
 export const pwd = async () => console.log("Current directory: ", await $`pwd`.text());
 export const rm = async (path: string) => {
