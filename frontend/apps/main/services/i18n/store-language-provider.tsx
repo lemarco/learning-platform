@@ -2,17 +2,11 @@
 
 import { PropsWithChildren, useCallback, useMemo, useState } from "react";
 import Cookies from "js-cookie";
-import {
-  Language,
-  StoreLanguageActionsContext,
-  StoreLanguageContext,
-} from "./store-language-context";
+import { Language, StoreLanguageActionsContext, StoreLanguageContext } from "./store-language-context";
 import { cookieName, fallbackLanguage } from "./config";
 
-function StoreLanguageProvider(props: PropsWithChildren) {
-  const [language, setLanguageRaw] = useState<Language>(
-    () => Cookies.get(cookieName) ?? fallbackLanguage
-  );
+export function StoreLanguageProvider(props: PropsWithChildren) {
+  const [language, setLanguageRaw] = useState<Language>(() => Cookies.get(cookieName) ?? fallbackLanguage);
 
   const setLanguage = useCallback((language: Language) => {
     Cookies.set(cookieName, language ?? fallbackLanguage);
@@ -25,16 +19,12 @@ function StoreLanguageProvider(props: PropsWithChildren) {
     () => ({
       setLanguage,
     }),
-    [setLanguage]
+    [setLanguage],
   );
 
   return (
     <StoreLanguageContext.Provider value={contextValue}>
-      <StoreLanguageActionsContext.Provider value={contextActionsValue}>
-        {props.children}
-      </StoreLanguageActionsContext.Provider>
+      <StoreLanguageActionsContext.Provider value={contextActionsValue}>{props.children}</StoreLanguageActionsContext.Provider>
     </StoreLanguageContext.Provider>
   );
 }
-
-export default StoreLanguageProvider;

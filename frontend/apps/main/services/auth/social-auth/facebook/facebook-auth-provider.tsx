@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo } from "react";
-import { FacebookAuthLoginResponse, FacebookContext } from "./facebook-context";
-import { facebookAppId, isFacebookAuthEnabled } from "./facebook-config";
+import { FacebookAuthLoginResponse, FacebookContext } from "./facebook-auth";
+
 import { languages } from "@/services/i18n/config";
-import useLanguage from "@/services/i18n/use-language";
+import { useLanguage } from "@/services/i18n/use-language";
+export const facebookAppId = process.env.NEXT_PUBLIC_FACEBOOK_APP_ID;
 
 type FacebookAuthProviderProps = {
   children: React.ReactNode;
@@ -87,6 +88,6 @@ function FacebookProvider({ children }: FacebookAuthProviderProps) {
   return <FacebookContext.Provider value={valueContext}>{children}</FacebookContext.Provider>;
 }
 
-export default function FacebookAuthProvider({ children }: FacebookAuthProviderProps) {
-  return isFacebookAuthEnabled ? <FacebookProvider>{children}</FacebookProvider> : children;
+export function FacebookAuthProvider({ children }: FacebookAuthProviderProps) {
+  return <FacebookProvider>{children}</FacebookProvider>;
 }

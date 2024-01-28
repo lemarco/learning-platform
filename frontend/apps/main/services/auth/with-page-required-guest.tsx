@@ -1,15 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import useAuth from "./use-auth";
-import React, { FunctionComponent, useEffect } from "react";
-import useLanguage from "@/services/i18n/use-language";
+import { useAuth } from "./use-auth";
+import { FunctionComponent, useEffect } from "react";
+import { useLanguage } from "@/services/i18n/use-language";
 
 type PropsType = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-function withPageRequiredGuest(Component: FunctionComponent<PropsType>) {
+export function withPageRequiredGuest(Component: FunctionComponent<PropsType>) {
   return function PageRequiredGuest(props: PropsType) {
     const { user, isLoaded } = useAuth();
     const router = useRouter();
@@ -30,5 +30,3 @@ function withPageRequiredGuest(Component: FunctionComponent<PropsType>) {
     return !user && isLoaded ? <Component {...props} /> : null;
   };
 }
-
-export default withPageRequiredGuest;

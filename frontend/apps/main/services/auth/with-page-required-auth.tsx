@@ -1,8 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-import useAuth from "./use-auth";
-import React, { FunctionComponent, useEffect } from "react";
-import useLanguage from "../i18n/use-language";
+import { useAuth } from "./use-auth";
+import { FunctionComponent, useEffect } from "react";
+import { useLanguage } from "../i18n/use-language";
 import { RoleEnum } from "@/types/auth";
 
 type PropsType = {
@@ -16,7 +16,7 @@ type OptionsType = {
 
 const roles = Object.values(RoleEnum).filter((value) => !Number.isNaN(Number(value))) as RoleEnum[];
 
-function withPageRequiredAuth(Component: FunctionComponent<PropsType>, options?: OptionsType) {
+export function withPageRequiredAuth(Component: FunctionComponent<PropsType>, options?: OptionsType) {
   const optionRoles = options?.roles || roles;
 
   return function WithPageRequiredAuth(props: PropsType) {
@@ -49,5 +49,3 @@ function withPageRequiredAuth(Component: FunctionComponent<PropsType>, options?:
     return user?.role?.id && optionRoles.includes(user?.role.id) ? <Component {...props} /> : null;
   };
 }
-
-export default withPageRequiredAuth;

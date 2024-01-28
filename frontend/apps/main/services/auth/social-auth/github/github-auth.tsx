@@ -10,13 +10,8 @@ import { useLanguage } from "@/services/i18n/use-language";
 import { wrapperFetchJsonResponse, useFetchBase } from "@/utils/fetch";
 import { Tokens, User } from "@/types/auth";
 import { API_URL } from "@/constants/api";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 
-export const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-
-export function GoogleAuthProvider({ children }: { children: React.ReactNode }) {
-  return googleClientId ? <GoogleOAuthProvider clientId={googleClientId}>{children}</GoogleOAuthProvider> : children;
-}
+export const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID;
 
 export type AuthGoogleLoginRequest = {
   idToken: string;

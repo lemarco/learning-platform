@@ -5,7 +5,7 @@ import { Tokens } from "@/types/auth";
 import { TokensInfo } from "@/services/auth/auth-context";
 import { AUTH_REFRESH_URL } from "@/constants/api";
 import { FetchInputType, FetchInitType } from "@/types/http";
-import useLanguage from "@/services/i18n/use-language";
+import { useLanguage } from "@/services/i18n/use-language";
 import { useAuthTokens } from "@/services/auth/use-auth-tokens";
 import { FetchJsonResponse } from "@/types/http";
 import { HTTP_CODES_ENUM } from "@/types/http";
@@ -97,7 +97,7 @@ export function useFetchBase() {
   );
 }
 
-async function wrapperFetchJsonResponse<T>(response: Response): Promise<FetchJsonResponse<T>> {
+export async function wrapperFetchJsonResponse<T>(response: Response): Promise<FetchJsonResponse<T>> {
   const status = response.status as FetchJsonResponse<T>["status"];
   return {
     status,
@@ -106,5 +106,3 @@ async function wrapperFetchJsonResponse<T>(response: Response): Promise<FetchJso
       : await response.json(),
   };
 }
-
-export default wrapperFetchJsonResponse;

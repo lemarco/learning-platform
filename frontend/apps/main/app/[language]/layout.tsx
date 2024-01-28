@@ -1,12 +1,12 @@
 import "./globals.css";
 import { dir } from "i18next";
 import { getMetadataGenerator } from "@/services/i18n";
-import StoreLanguageProvider from "@/services/i18n/store-language-provider";
+import { StoreLanguageProvider } from "@/services/i18n/store-language-provider";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import { customTheme } from "@/app/theme";
-import AuthProvider from "@/services/auth/auth-provider";
-import GoogleAuthProvider from "@/services/auth/social-auth/google/google-auth-provider";
-import FacebookAuthProvider from "@/services/auth/social-auth/facebook/facebook-auth-provider";
+import { AuthProvider } from "@/services/auth/auth-provider";
+import { GoogleAuthProvider } from "@/services/auth/social-auth/google/google-auth";
+import { FacebookAuthProvider } from "@/services/auth/social-auth/facebook/facebook-auth-provider";
 export const generateMetadata = getMetadataGenerator("common");
 
 export default function RootLayout({

@@ -9,7 +9,7 @@ import { useFetchBase } from "@/utils/fetch";
 import { AUTH_LOGOUT_URL, AUTH_ME_URL } from "@/constants/api";
 import { HTTP_CODES_ENUM } from "@/types/http";
 
-function AuthProvider(props: PropsWithChildren) {
+export function AuthProvider(props: PropsWithChildren) {
   const AUTH_TOKEN_KEY = "auth-token-data";
   const [isLoaded, setIsLoaded] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -132,5 +132,3 @@ function AuthProvider(props: PropsWithChildren) {
     </AuthContext.Provider>
   );
 }
-
-export default AuthProvider;

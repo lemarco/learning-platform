@@ -1,15 +1,15 @@
 "use client";
 
 import { HTTP_CODES_ENUM } from "@/types/http";
-import useAuthActions from "@/services/auth/use-auth-actions";
+import { useAuthActions } from "@/services/auth/use-auth-actions";
 import { useAuthTokens } from "@/services/auth/use-auth-tokens";
 import { useCallback, useState } from "react";
 
 import { RequestConfigType } from "@/types/http";
-import useFacebookAuth from "./use-facebook-auth";
+import { useContext, createContext } from "react";
 import { useTranslation } from "@/services/i18n/client";
 import { Tokens, User } from "@/types/auth";
-import wrapperFetchJsonResponse, { useFetchBase } from "@/utils/fetch";
+import { wrapperFetchJsonResponse, useFetchBase } from "@/utils/fetch";
 import { API_URL } from "@/constants/api";
 export type AuthFacebookLoginRequest = {
   accessToken: string;
@@ -18,6 +18,26 @@ export type AuthFacebookLoginRequest = {
 export type AuthFacebookLoginResponse = Tokens & {
   user: User;
 };
+
+export const useFacebookAuth = () => useContext(FacebookContext);
+export type FacebookAuthResponse = {
+  accessToken: string;
+  expiresIn: number;
+  signedRequest: string;
+  userID: string;
+};
+
+export type FacebookAuthLoginResponse = {
+  authResponse: FacebookAuthResponse;
+};
+
+export const FacebookContext = createContext<{
+  login: () => Promise<FacebookAuthLoginResponse>;
+}>({
+  login: async () => {
+    throw new Error("FacebookAuthProvider not mounted");
+  },
+});
 
 export function useAuthFacebookLoginService() {
   const fetchBase = useFetchBase();
@@ -34,7 +54,7 @@ export function useAuthFacebookLoginService() {
   );
 }
 
-export default function FacebookAuth() {
+export function FacebookAuth() {
   const { setUser } = useAuthActions();
   const { setTokensInfo } = useAuthTokens();
   const authFacebookLoginService = useAuthFacebookLoginService();
