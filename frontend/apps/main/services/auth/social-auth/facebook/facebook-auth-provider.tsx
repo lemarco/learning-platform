@@ -89,5 +89,5 @@ function FacebookProvider({ children }: FacebookAuthProviderProps) {
 }
 
 export function FacebookAuthProvider({ children }: FacebookAuthProviderProps) {
-  return <FacebookProvider>{children}</FacebookProvider>;
+  return facebookAppId ? <FacebookProvider>{children}</FacebookProvider>:children
 }
