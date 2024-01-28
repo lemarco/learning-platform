@@ -280,7 +280,6 @@ const PriceSection = () => {
               Get started
             </a>
 
-            {/* biome-ignore lint/a11y/noRedundantRoles: <explanation> */}
             <ul role="list" className="space-y-4 text-left text-gray-900 dark:text-gray-400">
               <li className="flex items-center space-x-3">
                 <svg className="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -388,7 +387,6 @@ const PriceSection = () => {
               Get started
             </a>
 
-            {/* biome-ignore lint/a11y/noRedundantRoles: <explanation> */}
             <ul role="list" className="space-y-4 text-left text-gray-900 dark:text-gray-400">
               <li className="flex items-center space-x-3">
                 <svg className="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -490,7 +488,6 @@ const PriceSection = () => {
               Get started
             </a>
 
-            {/* biome-ignore lint/a11y/noRedundantRoles: <explanation> */}
             <ul role="list" className="space-y-4 text-left text-gray-900 dark:text-gray-400">
               <li className="flex items-center space-x-3">
                 <svg className="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

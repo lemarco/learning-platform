@@ -16,6 +16,7 @@ export default function RootLayout({
   params: { language: string };
 }) {
   // dir={dir(language)}
+  console.log("language = ", language);
   return (
     <html lang={language}>
       <head>

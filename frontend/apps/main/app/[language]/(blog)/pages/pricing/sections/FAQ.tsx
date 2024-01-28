@@ -37,7 +37,7 @@ export function FAQ() {
             <p className="mb-4 text-gray-600 dark:text-gray-400">
               Feel free to{" "}
               <a
-                href="#"
+                href="/"
                 className="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
                 target="_blank"
                 rel="noreferrer"
@@ -68,7 +68,7 @@ export function FAQ() {
             <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">What does "free updates" include?</h3>
             <p className="mb-4 text-gray-600 dark:text-gray-400">
               The free updates that will be provided is based on the{" "}
-              <a href="#" className="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500">
+              <a href="/" className="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500">
                 roadmap
               </a>{" "}
               that we have laid out for this project. It is also possible that we will provide extra updates outside of the roadmap as well.
@@ -78,7 +78,7 @@ export function FAQ() {
             <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">What does the free version include?</h3>
             <p className="mb-4 text-gray-600 dark:text-gray-400">
               The{" "}
-              <a href="#" className="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500">
+              <a href="/" className="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500">
                 free version
               </a>{" "}
               of FlowBite includes a minimal style guidelines, component variants, and a dashboard page with the mobile version alongside
@@ -185,7 +185,7 @@ export function FAQ() {
             <p className="mb-4 text-gray-600 dark:text-gray-400">
               If you forgot to complete the information, or you didn't get the invoice by email, feel free to{" "}
               <a
-                href="#"
+                href="/"
                 className="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
                 target="_blank"
                 rel="noreferrer"
@@ -213,7 +213,7 @@ export function FAQ() {
             <p className="mb-4 text-gray-600 dark:text-gray-400">
               If you are unhappy with your purchase, just{" "}
               <a
-                href="#"
+                href="/"
                 className="font-medium text-primary-600 underline hover:no-underline dark:text-primary-500"
                 target="_blank"
                 rel="noreferrer"

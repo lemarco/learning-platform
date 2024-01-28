@@ -260,18 +260,12 @@ const BottomHeader = () => {
   );
 };
 
-
-
-
-
 export const Header = ({ link = "" }: { link: string }) => {
   return (
     <header className="shadow-md z-[99] sticky top-0 ">
       <UpperHeader googleLink={link} />
- 
 
-        <BottomHeader />
-  
+      <BottomHeader />
     </header>
   );
 };

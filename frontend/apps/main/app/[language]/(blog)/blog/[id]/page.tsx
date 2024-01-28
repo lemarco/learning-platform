@@ -618,7 +618,7 @@ const SocialMediaShare = () => {
             <path
               stroke="currentColor"
               strokeLinecap="round"
-              strokeLinejoin=="round"
+              strokeLinejoin="round"
               strokeWidth="2"
               d="M11.013 7.962a3.519 3.519 0 0 0-4.975 0l-3.554 3.554a3.518 3.518 0 0 0 4.975 4.975l.461-.46m-.461-4.515a3.518 3.518 0 0 0 4.975 0l3.553-3.554a3.518 3.518 0 0 0-4.974-4.975L10.3 3.7"
             />
@@ -648,7 +648,7 @@ const SocialMediaShare = () => {
             <path
               stroke="currentColor"
               strokeLinecap="round"
-              strokeLinejoin=="round"
+              strokeLinejoin="round"
               strokeWidth="2"
               d="m13 19-6-5-6 5V2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17Z"
             />
