@@ -17,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang={language} dir={dir(language)}>
-      <ThemeModeScript />
+      <head>
+        <ThemeModeScript />
+      </head>
+
       <body>
         <Flowbite theme={{ theme: customTheme }}>
           <StoreLanguageProvider>
