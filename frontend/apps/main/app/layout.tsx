@@ -6,6 +6,7 @@ import { StoreLanguageProvider } from "@/services/i18n/store-language-provider";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import { dir } from "i18next";
 import "./globals.css";
+import "@/components/modal/listeners";
 export const generateMetadata = getMetadataGenerator("common");
 
 export default function RootLayout({

@@ -34,11 +34,11 @@ services:
   main-app:
     container_name: ${PUBLIC_FRONTEND_MAIN_APP_HOST}
     build:
-      dockerfile: ./frontend/apps/main/Dockerfile
+      dockerfile: ./frontend/apps/app/Dockerfile
     ports:
       - "${PUBLIC_FRONTEND_MAIN_APP_PORT}:${PUBLIC_FRONTEND_MAIN_APP_PORT}"
     volumes:
-      - "./frontend/apps/main/app:/app/frontend/apps/main/app"
+      - "./frontend/apps/app/pages:/app/frontend/apps/app/pages"
       - "./frontend/apps/main/public:/app/frontend/apps/main/public"
       - "./frontend/apps/main/services:/app/frontend/apps/main/services"
       - "./frontend/apps/main/utils:/app/frontend/apps/main/utils"

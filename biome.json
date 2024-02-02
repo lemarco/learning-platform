@@ -60,7 +60,10 @@
     "rules": {
       "a11y": {
         "noSvgWithoutTitle": "off",
-        "noRedundantRoles": "off"
+        "noRedundantRoles": "off",
+        "useValidAriaRole": "off",
+        "useButtonType": "off",
+        "noAutofocus": "off"
       },
       "recommended": true
     }

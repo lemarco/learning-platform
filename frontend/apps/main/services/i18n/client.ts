@@ -1,6 +1,6 @@
 "use client";
 
-import { isServer } from "@/utils/is-server";
+import { isServer } from "@/utils/env";
 import i18next from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import resourcesToBackend from "i18next-resources-to-backend";
