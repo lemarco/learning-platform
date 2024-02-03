@@ -3,13 +3,14 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "nodemon": "^3.0.3"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "dev:server": "bun --watch ./index.ts",
+    "dev:server": "bun --hot  ./index.ts ",
     "dev:styles": "npx tailwindcss -i ./index.css -o ./dist/styles.css --watch",
     "dev": "bun concurrently 'bun run dev:styles' 'bun run dev:server' --kill-others"
   }
